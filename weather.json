@@ -1,0 +1,89 @@
+<?php header('content-type: application/json; charset=utf-8');
+
+    # Copyright 2014 Wayne D Grant (www.waynedgrant.com)
+    # Licensed under the MIT License
+
+    include 'common.php';
+    include 'humidity.php';
+    include 'pressure.php';
+    include 'rainfall.php';
+    include 'temperature.php';
+    include 'wind.php';
+    include 'uv.php';
+    
+    $client_raw_fields = get_client_raw_fields();
+            
+    $temperature_item = array(
+        "current" => get_temperature_item($client_raw_fields, 4),
+        "high" => get_temperature_item($client_raw_fields, 46),
+        "low" => get_temperature_item($client_raw_fields, 47),
+        "trend" => get_trend(read_client_raw_field($client_raw_fields, 143)));
+
+    $pressure_item = array(
+        "current" => get_pressure_item($client_raw_fields, 6),
+        "high" => get_pressure_item($client_raw_fields, 131),
+        "low" => get_pressure_item($client_raw_fields, 132),
+        "trend_per_hr" => get_pressure_item($client_raw_fields, 50)); 
+        
+    $rainfall_item = array(
+        "daily" => get_rainfall_item($client_raw_fields, 7),
+        "rate_per_min" => get_rainfall_rate_item($client_raw_fields, 10),
+        "max_rate_per_min" => get_rainfall_rate_item($client_raw_fields, 11),
+        "yesterday" => get_rainfall_item($client_raw_fields, 19));
+        
+    $wind_item = array(
+        "direction" => get_wind_direction_item($client_raw_fields, 3),
+        "avg_direction" => get_wind_direction_item($client_raw_fields, 117),
+        "avg_speed" => get_wind_speed_item($client_raw_fields, 1),
+        "max_avg_speed" => get_wind_speed_item($client_raw_fields, 113),
+        "gust_speed" => get_wind_speed_item($client_raw_fields, 2),
+        "max_gust_speed" => get_wind_speed_item($client_raw_fields, 71));
+    
+    $humidity_item = array(
+        "current" => get_humidity(read_client_raw_field($client_raw_fields, 5)),
+        "high" => get_humidity(read_client_raw_field($client_raw_fields, 163)),
+        "low" => get_humidity(read_client_raw_field($client_raw_fields, 164)),
+        "trend" => get_trend(read_client_raw_field($client_raw_fields, 144)));      
+    
+    $dew_point_item = array(
+        "current" => get_temperature_item($client_raw_fields, 72),
+        "high" => get_temperature_item($client_raw_fields, 138),
+        "low" => get_temperature_item($client_raw_fields, 139));
+
+    $wind_chill_item = array(
+        "current" => get_temperature_item($client_raw_fields, 44),
+        "high" => get_temperature_item($client_raw_fields, 77),
+        "low" => get_temperature_item($client_raw_fields, 78));        
+    
+    $humidex_item = array(
+        "current" => get_temperature_item($client_raw_fields, 45),
+        "high" => get_temperature_item($client_raw_fields, 75),
+        "low" => get_temperature_item($client_raw_fields, 76),
+        "trend" => get_trend(read_client_raw_field($client_raw_fields, 145)));             
+
+    $heat_index_item = array(
+        "current" => get_temperature_item($client_raw_fields, 112),
+        "high" => get_temperature_item($client_raw_fields, 110),
+        "low" => get_temperature_item($client_raw_fields, 111));
+    
+    $uv_item = get_uv_item($client_raw_fields, 79); 
+    
+    $data = array(
+        "station" => get_station_item($client_raw_fields),
+        "time" => get_time_item($client_raw_fields, 29, 30, 35, 36, 141),
+        "temperature" => $temperature_item,
+        "pressure" => $pressure_item,
+        "rainfall" => $rainfall_item,
+        "wind" => $wind_item,
+        "humidity" => $humidity_item,
+        "dew_point" => $dew_point_item,
+        "wind_chill" => $wind_chill_item,
+        "humidex" => $humidex_item,
+        "heat_index" => $heat_index_item,
+        "uv" => $uv_item);
+    
+    $json = json_encode($data);
+
+    echo isset($_GET['callback']) ? "{$_GET['callback']}($json)" : $json;
+    
+?>
