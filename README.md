@@ -16,6 +16,8 @@ Besides exposing the data in the default units found in clientraw the responses 
 
 I only expose the data I am interested in for my own purposes (i.e. what my weather station setup supports). However, it would be a simply matter to expand the service calls to add, say, solar measurements or extend the selection of almanac measurements.
 
+![alt tag](json-webservice-wdlive.png)
+
 ## Requirements
 
 1. [Weather Display](http://www.weather-display.com) (or equivalent such as [MeteoHub](http://wiki.meteohub.de)) configured to periodically upload WDL clientraw files to a web server
