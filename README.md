@@ -23,14 +23,14 @@ I only expose the data I am interested in for my own purposes (i.e. what my weat
 
 ## Installation
 
-1. Clone the PHP source from github:
+* Clone the PHP source from github:
 
 ```
 $ git clone https://github.com/waynedgrant/json-webservice-wdlive.git
 ```
 
-2. Upload all json-webservice-wdlive .php and .json files to the same directory as clientraw files are hosted on your web server
-3. Modify your web server to process .json files using PHP. For example, for Apache add the following to your .htaccess file:
+* Upload all json-webservice-wdlive .php and .json files to the same directory as clientraw files are hosted on your web server
+* Modify your web server to process .json files using PHP. For example, for Apache add the following to your .htaccess file:
 
 ```
 AddHandler application/x-httpd-php5 .json
@@ -44,7 +44,7 @@ Hit the URL of your deployed .json files using a web browser or other REST clien
 
 For example:
 
-### Current Weather URL - weather.json
+**Current Weather URL - weather.json**
 
 JSON:
 [http://www.waynedgrant.com/weather/api/weather.json](http://www.waynedgrant.com/weather/api/weather.json)
@@ -52,7 +52,7 @@ JSON:
 JSONP:
 [http://www.waynedgrant.com/weather/api/weather.json?callback=weatherCallback](http://www.waynedgrant.com/weather/api/weather.json?callback=weatherCallback)
 
-### Weather Almanac URL - almanac.json
+**Weather Almanac URL - almanac.json**
 
 JSON:
 [http://www.waynedgrant.com/weather/api/almanac.json](http://www.waynedgrant.com/weather/api/almanac.json)
