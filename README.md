@@ -48,19 +48,13 @@ For example:
 
 **Current Weather URL - weather.json**
 
-JSON:
-[http://www.waynedgrant.com/weather/api/weather.json](http://www.waynedgrant.com/weather/api/weather.json)
-
-JSONP:
-[http://www.waynedgrant.com/weather/api/weather.json?callback=weatherCallback](http://www.waynedgrant.com/weather/api/weather.json?callback=weatherCallback)
+* JSON: [http://www.waynedgrant.com/weather/api/weather.json](http://www.waynedgrant.com/weather/api/weather.json)
+* JSONP: [http://www.waynedgrant.com/weather/api/weather.json?callback=weatherCallback](http://www.waynedgrant.com/weather/api/weather.json?callback=weatherCallback)
 
 **Weather Almanac URL - almanac.json**
 
-JSON:
-[http://www.waynedgrant.com/weather/api/almanac.json](http://www.waynedgrant.com/weather/api/almanac.json)
-
-JSONP:
-[http://www.waynedgrant.com/weather/api/almanac.json?callback=weatherCallback](http://www.waynedgrant.com/weather/api/almanac.json?callback=weatherCallback)
+* JSON: [http://www.waynedgrant.com/weather/api/almanac.json](http://www.waynedgrant.com/weather/api/almanac.json)
+* JSONP: [http://www.waynedgrant.com/weather/api/almanac.json?callback=weatherCallback](http://www.waynedgrant.com/weather/api/almanac.json?callback=weatherCallback)
 
 ## API Documentation
 
