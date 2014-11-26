@@ -99,6 +99,7 @@
 
         $month_to_date_item = array(
             "month" => get_value(read_client_raw_field($client_raw_fields, 36)),
+            "year" => get_value(read_client_raw_field($client_raw_fields, 141)),
             "temperature" => $month_to_date_temperature_item,
             "pressure" => $month_to_date_pressure_item,
             "rainfall" => $month_to_date_rainfall_item,
