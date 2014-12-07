@@ -8,7 +8,7 @@ JSON formatted Web Service API to expose [Weather Display Live](http://www.weath
 
 ## Overview
 
-json-webservice-wdlive exposes much of a weather station's Weather Display Live (WDL) data as a simple JSON formatted Web Service API.
+json-webservice-wdlive exposes much of a weather station's Weather Display Live (WD Live) data as a simple JSON formatted Web Service API.
 
 It exposes two URLs. The first returns current weather conditions including Temperature, Pressure, Rainfall, Wind, Humidity, Dew Point, Wind Chill, Humidex, Heat Index and UV. The second returns a weather almanac for Month-to-Date, Year-to-Date and All Time records.
 
