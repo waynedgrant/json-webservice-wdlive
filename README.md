@@ -25,11 +25,7 @@ I only expose the data I am interested in for my own purposes (i.e. what my weat
 
 ## Installation
 
-* Clone the PHP source from github:
-
-```
-$ git clone https://github.com/waynedgrant/json-webservice-wdlive.git
-```
+* Download the source code for the [latest release](https://github.com/waynedgrant/json-webservice-wdlive/releases) and unzip it
 
 * Upload all json-webservice-wdlive .php and .json files to the same directory as clientraw files are hosted on your web server
 * Modify your web server to process .json files using PHP. For example, for Apache add the following to your .htaccess file:
