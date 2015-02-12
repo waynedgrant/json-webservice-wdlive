@@ -8,7 +8,7 @@ JSON formatted Web Service API to expose [Weather Display Live](http://www.weath
 
 ## Overview
 
-json-webservice-wdlive exposes much of a weather station's Weather Display Live (WDL) data as a simple JSON formatted Web Service API.
+json-webservice-wdlive exposes much of a weather station's Weather Display Live (WD Live) data as a simple JSON formatted Web Service API.
 
 It exposes three URLs. The first returns current weather conditions including Temperature, Pressure, Rainfall, Wind, Humidity, Dew Point, Wind Chill, Humidex, Heat Index and UV. The second returns a weather almanac for Month-to-Date, Year-to-Date and All Time records. The third returns the current indoor conditions for Temperature and Humidity.
 
@@ -25,11 +25,7 @@ I only expose the data I am interested in for my own purposes (i.e. what my weat
 
 ## Installation
 
-* Clone the PHP source from github:
-
-```
-$ git clone https://github.com/waynedgrant/json-webservice-wdlive.git
-```
+* Download the source code for the [latest release](https://github.com/waynedgrant/json-webservice-wdlive/releases) and unzip it
 
 * Upload all json-webservice-wdlive .php and .json files to the same directory as clientraw files are hosted on your web server
 * Modify your web server to process .json files using PHP. For example, for Apache add the following to your .htaccess file:
