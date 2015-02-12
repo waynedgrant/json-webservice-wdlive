@@ -10,7 +10,7 @@ JSON formatted Web Service API to expose [Weather Display Live](http://www.weath
 
 json-webservice-wdlive exposes much of a weather station's Weather Display Live (WDL) data as a simple JSON formatted Web Service API.
 
-It exposes two URLs. The first returns current weather conditions including Temperature, Pressure, Rainfall, Wind, Humidity, Dew Point, Wind Chill, Humidex, Heat Index and UV. The second returns a weather almanac for Month-to-Date, Year-to-Date and All Time records.
+It exposes three URLs. The first returns current weather conditions including Temperature, Pressure, Rainfall, Wind, Humidity, Dew Point, Wind Chill, Humidex, Heat Index and UV. The second returns a weather almanac for Month-to-Date, Year-to-Date and All Time records. The third returns the current indoor conditions for Temperature and Humidity.
 
 Besides exposing the data in the default units found in clientraw the responses also contain many alternative units. For example, clientraw files store wind speeds in knots. The Web Service responses, on the other hand, respond with Bft, knots, km/h, mph, and m/s.
 
@@ -55,6 +55,12 @@ For example:
 
 * JSON: [http://www.waynedgrant.com/weather/api/almanac.json](http://www.waynedgrant.com/weather/api/almanac.json)
 * JSONP: [http://www.waynedgrant.com/weather/api/almanac.json?callback=weatherCallback](http://www.waynedgrant.com/weather/api/almanac.json?callback=weatherCallback)
+
+**Current Indoor Conditions URL - indoor.json**
+
+* JSON: [http://www.waynedgrant.com/weather/api/indoor.json](http://www.waynedgrant.com/weather/api/indoor.json)
+* JSONP: [http://www.waynedgrant.com/weather/api/indoor.json?callback=weatherCallback](http://www.waynedgrant.com/weather/api/indoor.json?callback=weatherCallback)
+
 
 ## API Documentation
 

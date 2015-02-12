@@ -69,6 +69,7 @@
     $uv_item = get_uv_item($client_raw_fields, 79); 
     
     $data = array(
+        "endpoint" => get_endpoint_item(),
         "station" => get_station_item($client_raw_fields),
         "time" => get_time_item($client_raw_fields, 29, 30, 35, 36, 141),
         "temperature" => $temperature_item,
