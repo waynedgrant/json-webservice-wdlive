@@ -4,6 +4,7 @@
     # Licensed under the MIT License
 
     $client_raw_directory = './';
+    $service_version = 1.1;
     
     function get_client_raw_fields()
     {
@@ -71,6 +72,14 @@
     {
         return "http".(!empty($_SERVER['HTTPS'])?"s":"")."://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
     }
+    
+    function get_endpoint_item()
+    {
+        global $service_version;
+        return array(  
+            "url" => get_service_url(),
+            "version" => $service_version);
+    }
 
     function get_station_name($station_name)
     {
@@ -111,8 +120,7 @@
 
     function get_station_item($client_raw_fields)
     {
-        return array(
-            "url" => get_service_url(),
+        return array(            
             "name" => get_station_name(read_client_raw_field($client_raw_fields, 32)),
             "latitude" => get_value(read_client_raw_field($client_raw_fields, 160)),
             "longitude" => get_value(read_client_raw_field($client_raw_fields, 161)),

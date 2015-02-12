@@ -1,0 +1,23 @@
+<?php header('content-type: application/json; charset=utf-8');
+
+    # Copyright 2014 Wayne D Grant (www.waynedgrant.com)
+    # Licensed under the MIT License
+
+    include 'common.php';
+    include 'humidity.php';
+    include 'temperature.php';
+    
+    $client_raw_fields = get_client_raw_fields();
+    
+    $data = array(
+        "endpoint" => get_endpoint_item(),
+        "station" => get_station_item($client_raw_fields),
+        "time" => get_time_item($client_raw_fields, 29, 30, 35, 36, 141),
+        "temperature" => get_temperature_item($client_raw_fields, 12),
+        "humidity" => get_humidity(read_client_raw_field($client_raw_fields, 13)));
+
+    $json = json_encode($data);
+
+    echo isset($_GET['callback']) ? "{$_GET['callback']}($json)" : $json;
+
+?>

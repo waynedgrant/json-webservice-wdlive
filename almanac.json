@@ -308,6 +308,7 @@
     }
     
     $data = array(
+        "endpoint" => get_endpoint_item(),
         "station" => get_station_item($client_raw_fields),
         "month_to_date" => get_month_to_date_item(),
         "year_to_date" => get_year_to_date_item(),
