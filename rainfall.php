@@ -13,10 +13,10 @@
         }
 
         return $rainfall_in;
-    }    
+    }
 
     function get_rainfall_mm($rainfall_mm)
-    {        
+    {
         if ($rainfall_mm == '-')
         {
             $rainfall_mm = null;
@@ -28,7 +28,7 @@
 
         return $rainfall_mm;
     }
-    
+
     function get_rainfall_item($client_raw_fields, $rainfall_field)
     {
         return array(
@@ -46,10 +46,10 @@
         }
 
         return $rainfall_rate_in_min;
-    }    
+    }
 
     function get_rainfall_rate_mm_min($rainfall_rate_mm_min)
-    {        
+    {
         if ($rainfall_rate_mm_min == '-')
         {
             $rainfall_rate_mm_min = null;
@@ -61,7 +61,7 @@
 
         return $rainfall_rate_mm_min;
     }
-    
+
     function get_rainfall_rate_item($client_raw_fields, $rainfall_rate_field)
     {
         return array(

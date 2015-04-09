@@ -6,9 +6,9 @@
     include 'common.php';
     include 'humidity.php';
     include 'temperature.php';
-    
+
     $client_raw_fields = get_client_raw_fields();
-    
+
     $data = array(
         "endpoint" => get_endpoint_item(),
         "station" => get_station_item($client_raw_fields),

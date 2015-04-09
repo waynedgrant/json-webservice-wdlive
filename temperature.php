@@ -4,7 +4,7 @@
     # Licensed under the MIT License
 
     function get_temperature_celsius($temperature_celsius)
-    {        
+    {
         if ($temperature_celsius == '-')
         {
             $temperature_celsius = null;
@@ -15,7 +15,7 @@
         }
 
         return $temperature_celsius;
-    }    
+    }
 
     function get_temperature_fahrenheit($temperature_celsius)
     {
@@ -35,5 +35,5 @@
             "c" => get_temperature_celsius(read_client_raw_field($client_raw_fields, $temperature_field)),
             "f" => get_temperature_fahrenheit(read_client_raw_field($client_raw_fields, $temperature_field)));
     }
-    
+
 ?>

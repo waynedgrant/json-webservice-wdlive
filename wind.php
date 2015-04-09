@@ -15,9 +15,9 @@
 
         return $wind_direction_cardinal;
     }
-    
+
     function get_wind_direction_degrees($wind_direction_degrees)
-    {    
+    {
         if ($wind_direction_degrees == '-')
         {
             $wind_direction_degrees = null;
@@ -29,7 +29,7 @@
 
         return $wind_direction_degrees;
     }
-    
+
     function get_wind_direction_item($client_raw_fields, $wind_direction_field)
     {
         return array(
@@ -153,13 +153,13 @@
     }
 
     function get_wind_speed_item($client_raw_fields, $wind_direction_field)
-    {            
+    {
         return array(
                 "bft" => get_wind_speed_bft(read_client_raw_field($client_raw_fields, $wind_direction_field)),
                 "kn" => get_wind_speed_kn(read_client_raw_field($client_raw_fields, $wind_direction_field)),
                 "kmh" => get_wind_speed_kmh(read_client_raw_field($client_raw_fields, $wind_direction_field)),
                 "mph" => get_wind_speed_mph(read_client_raw_field($client_raw_fields, $wind_direction_field)),
-                "ms" => get_wind_speed_ms(read_client_raw_field($client_raw_fields, $wind_direction_field)));            
+                "ms" => get_wind_speed_ms(read_client_raw_field($client_raw_fields, $wind_direction_field)));
     }
-    
+
 ?>
