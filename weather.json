@@ -10,9 +10,58 @@
     include 'temperature.php';
     include 'wind.php';
     include 'uv.php';
-    
+
+    function replace_high_or_low_with_current(&$weather_item, $unit)
+    {
+        /* The current value may be higher than the high value or lower than the low value due to a
+           lag in the AWS software in updating high and low as current value changes over time.
+           In either of these cases this function replaces high of low with current. */
+        if ($unit)
+        {
+            if ($weather_item["current"][$unit])
+            {
+                if ($weather_item["high"][$unit])
+                {
+                    if ($weather_item["current"][$unit] > $weather_item["high"][$unit])
+                    {
+                        $weather_item["high"][$unit] = $weather_item["current"][$unit];
+                    }
+                }
+
+                if ($weather_item["low"][$unit])
+                {
+                    if ($weather_item["low"][$unit] > $weather_item["current"][$unit])
+                    {
+                        $weather_item["low"][$unit] = $weather_item["current"][$unit];
+                    }
+                }
+            }
+        }
+        else
+        {
+            if ($weather_item["current"])
+            {
+                if ($weather_item["high"])
+                {
+                    if ($weather_item["current"] > $weather_item["high"])
+                    {
+                        $weather_item["high"] = $weather_item["current"];
+                    }
+                }
+
+                if ($weather_item["low"])
+                {
+                    if ($weather_item["low"] > $weather_item["current"])
+                    {
+                        $weather_item["low"] = $weather_item["current"];
+                    }
+                }
+            }
+        }
+    }
+
     $client_raw_fields = get_client_raw_fields();
-            
+
     $temperature_item = array(
         "current" => get_temperature_item($client_raw_fields, 4),
         "high" => get_temperature_item($client_raw_fields, 46),
@@ -23,14 +72,14 @@
         "current" => get_pressure_item($client_raw_fields, 6),
         "high" => get_pressure_item($client_raw_fields, 131),
         "low" => get_pressure_item($client_raw_fields, 132),
-        "trend_per_hr" => get_pressure_item($client_raw_fields, 50)); 
-        
+        "trend_per_hr" => get_pressure_item($client_raw_fields, 50));
+
     $rainfall_item = array(
         "daily" => get_rainfall_item($client_raw_fields, 7),
         "rate_per_min" => get_rainfall_rate_item($client_raw_fields, 10),
         "max_rate_per_min" => get_rainfall_rate_item($client_raw_fields, 11),
         "yesterday" => get_rainfall_item($client_raw_fields, 19));
-        
+
     $wind_item = array(
         "direction" => get_wind_direction_item($client_raw_fields, 3),
         "avg_direction" => get_wind_direction_item($client_raw_fields, 117),
@@ -38,13 +87,13 @@
         "max_avg_speed" => get_wind_speed_item($client_raw_fields, 113),
         "gust_speed" => get_wind_speed_item($client_raw_fields, 2),
         "max_gust_speed" => get_wind_speed_item($client_raw_fields, 71));
-    
+
     $humidity_item = array(
         "current" => get_humidity(read_client_raw_field($client_raw_fields, 5)),
         "high" => get_humidity(read_client_raw_field($client_raw_fields, 163)),
         "low" => get_humidity(read_client_raw_field($client_raw_fields, 164)),
-        "trend" => get_trend(read_client_raw_field($client_raw_fields, 144)));      
-    
+        "trend" => get_trend(read_client_raw_field($client_raw_fields, 144)));
+
     $dew_point_item = array(
         "current" => get_temperature_item($client_raw_fields, 72),
         "high" => get_temperature_item($client_raw_fields, 138),
@@ -53,21 +102,29 @@
     $wind_chill_item = array(
         "current" => get_temperature_item($client_raw_fields, 44),
         "high" => get_temperature_item($client_raw_fields, 77),
-        "low" => get_temperature_item($client_raw_fields, 78));        
-    
+        "low" => get_temperature_item($client_raw_fields, 78));
+
     $humidex_item = array(
         "current" => get_temperature_item($client_raw_fields, 45),
         "high" => get_temperature_item($client_raw_fields, 75),
         "low" => get_temperature_item($client_raw_fields, 76),
-        "trend" => get_trend(read_client_raw_field($client_raw_fields, 145)));             
+        "trend" => get_trend(read_client_raw_field($client_raw_fields, 145)));
 
     $heat_index_item = array(
         "current" => get_temperature_item($client_raw_fields, 112),
         "high" => get_temperature_item($client_raw_fields, 110),
         "low" => get_temperature_item($client_raw_fields, 111));
-    
-    $uv_item = get_uv_item($client_raw_fields, 79); 
-    
+
+    $uv_item = get_uv_item($client_raw_fields, 79);
+
+    replace_high_or_low_with_current($temperature_item, "c");
+    replace_high_or_low_with_current($pressure_item, "hpa");
+    replace_high_or_low_with_current($humidity_item, null);
+    replace_high_or_low_with_current($dew_point_item, "c");
+    replace_high_or_low_with_current($wind_chill_item, "c");
+    replace_high_or_low_with_current($humidex_item, "c");
+    replace_high_or_low_with_current($heat_index_item, "c");
+
     $data = array(
         "endpoint" => get_endpoint_item(),
         "station" => get_station_item($client_raw_fields),
@@ -82,9 +139,9 @@
         "humidex" => $humidex_item,
         "heat_index" => $heat_index_item,
         "uv" => $uv_item);
-    
+
     $json = json_encode($data);
 
     echo isset($_GET['callback']) ? "{$_GET['callback']}($json)" : $json;
-    
+
 ?>

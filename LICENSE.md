@@ -1,7 +1,7 @@
 json-webservice-wdlive is licensed under the MIT License:
 
 > The MIT License (MIT)
-> 
+>
 > Copyright (c) 2014 Wayne D Grant
 >
 > Permission is hereby granted, free of charge, to any person obtaining a copy

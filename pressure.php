@@ -4,7 +4,7 @@
     # Licensed under the MIT License
 
     function get_pressure_hpa($pressure_hpa)
-    {        
+    {
         if ($pressure_hpa == '-')
         {
             $pressure_hpa = null;
@@ -15,7 +15,7 @@
         }
 
         return $pressure_hpa;
-    } 
+    }
 
     function get_pressure_inhg($pressure_hpa)
     {
@@ -42,7 +42,7 @@
     }
 
     function get_pressure_mb($pressure_hpa)
-    {        
+    {
         if ($pressure_hpa == '-')
         {
             $pressure_mb = null;
@@ -53,7 +53,7 @@
         }
 
         return $pressure_mb;
-    } 
+    }
 
     function get_pressure_mmhg($pressure_hpa)
     {
@@ -76,5 +76,5 @@
             "mb" => get_pressure_mb(read_client_raw_field($client_raw_fields, $pressure_field)),
             "mmhg" => get_pressure_mmhg(read_client_raw_field($client_raw_fields, $pressure_field)));
     }
-    
+
 ?>

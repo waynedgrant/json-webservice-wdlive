@@ -20,7 +20,7 @@
     function get_uvi_description($uvi)
     {
         $description = null;
-        
+
         if ($uvi != '-')
         {
             if ($uvi < 3)
@@ -47,12 +47,12 @@
 
         return $description;
     }
-    
+
     function get_uv_item($client_raw_fields, $uvi_field)
     {
         return array(
             "uvi" => get_uvi(read_client_raw_field($client_raw_fields, $uvi_field)),
             "description" => get_uvi_description(read_client_raw_field($client_raw_fields, $uvi_field)));
     }
-    
+
 ?>
