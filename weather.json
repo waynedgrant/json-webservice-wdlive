@@ -11,50 +11,50 @@
     include 'wind.php';
     include 'uv.php';
 
-    function replace_high_or_low_with_current(&$weather_item, $unit)
-    {
-        /* The current value may be higher than the high value or lower than the low value due to a
-           lag in the AWS software in updating high and low as current value changes over time.
-           In either of these cases this function replaces high of low with current. */
-        if ($unit)
-        {
-            if ($weather_item["current"][$unit])
-            {
-                if ($weather_item["high"][$unit])
-                {
-                    if ($weather_item["current"][$unit] > $weather_item["high"][$unit])
-                    {
-                        $weather_item["high"][$unit] = $weather_item["current"][$unit];
-                    }
-                }
+    /* For a given weather item the current value may be higher than the high value or
+       lower than the low value due to a lag in the AWS software in updating high and
+       low as current value changes over time. In either of these cases these functions
+       replace the high of low value with the current value. */
 
-                if ($weather_item["low"][$unit])
+    function replace_high_or_low_with_current_for_unit(&$weather_item, $unit)
+    {
+        if (!is_null($weather_item["current"][$unit]))
+        {
+            if (!is_null($weather_item["high"][$unit]))
+            {
+                if ($weather_item["current"][$unit] > $weather_item["high"][$unit])
                 {
-                    if ($weather_item["low"][$unit] > $weather_item["current"][$unit])
-                    {
-                        $weather_item["low"][$unit] = $weather_item["current"][$unit];
-                    }
+                    $weather_item["high"] = $weather_item["current"];
+                }
+            }
+
+            if (!is_null($weather_item["low"][$unit]))
+            {
+                if ($weather_item["low"][$unit] > $weather_item["current"][$unit])
+                {
+                    $weather_item["low"] = $weather_item["current"];
                 }
             }
         }
-        else
-        {
-            if ($weather_item["current"])
-            {
-                if ($weather_item["high"])
-                {
-                    if ($weather_item["current"] > $weather_item["high"])
-                    {
-                        $weather_item["high"] = $weather_item["current"];
-                    }
-                }
+    }
 
-                if ($weather_item["low"])
+    function replace_high_or_low_with_current(&$weather_item)
+    {
+        if (!is_null($weather_item["current"]))
+        {
+            if (!is_null($weather_item["high"]))
+            {
+                if ($weather_item["current"] > $weather_item["high"])
                 {
-                    if ($weather_item["low"] > $weather_item["current"])
-                    {
-                        $weather_item["low"] = $weather_item["current"];
-                    }
+                    $weather_item["high"] = $weather_item["current"];
+                }
+            }
+
+            if (!is_null($weather_item["low"]))
+            {
+                if ($weather_item["low"] > $weather_item["current"])
+                {
+                    $weather_item["low"] = $weather_item["current"];
                 }
             }
         }
@@ -117,13 +117,13 @@
 
     $uv_item = get_uv_item($client_raw_fields, 79);
 
-    replace_high_or_low_with_current($temperature_item, "c");
-    replace_high_or_low_with_current($pressure_item, "hpa");
-    replace_high_or_low_with_current($humidity_item, null);
-    replace_high_or_low_with_current($dew_point_item, "c");
-    replace_high_or_low_with_current($wind_chill_item, "c");
-    replace_high_or_low_with_current($humidex_item, "c");
-    replace_high_or_low_with_current($heat_index_item, "c");
+    replace_high_or_low_with_current_for_unit($temperature_item, "c");
+    replace_high_or_low_with_current_for_unit($pressure_item, "hpa");
+    replace_high_or_low_with_current($humidity_item);
+    replace_high_or_low_with_current_for_unit($dew_point_item, "c");
+    replace_high_or_low_with_current_for_unit($wind_chill_item, "c");
+    replace_high_or_low_with_current_for_unit($humidex_item, "c");
+    replace_high_or_low_with_current_for_unit($heat_index_item, "c");
 
     $data = array(
         "endpoint" => get_endpoint_item(),
