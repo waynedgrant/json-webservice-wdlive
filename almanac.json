@@ -1,6 +1,6 @@
 <?php header('content-type: application/json; charset=utf-8');
 
-    # Copyright 2014 Wayne D Grant (www.waynedgrant.com)
+    # Copyright 2015 Wayne D Grant (www.waynedgrant.com)
     # Licensed under the MIT License
 
     include 'common.php';
@@ -9,9 +9,6 @@
     include 'temperature.php';
     include 'wind.php';
     include 'uv.php';
-
-    $client_raw_fields = get_client_raw_fields();
-    $client_raw_extra_fields = get_client_raw_extra_fields();
 
     function get_month_to_date_item()
     {
@@ -307,12 +304,113 @@
         return $all_time_item;
     }
 
+    /* Due to lag in the AWS software the alamanac values may not be up to date for the
+       'year to date' or 'all time' because of new records being set in 'month to date'.
+       These functions propogate these newly set records until the AWS software catches
+       up. */
+
+    function propogate_high_record(&$data, $item_field, $high_field, $unit_field)
+    {
+        $month_to_date_high = $data["month_to_date"][$item_field][$high_field][$unit_field];
+        $year_to_date_high = $data["year_to_date"][$item_field][$high_field][$unit_field];
+        $all_time_high = $data["all_time"][$item_field][$high_field][$unit_field];
+
+        if (!is_null($month_to_date_high) && !is_null($year_to_date_high))
+        {
+            if ($month_to_date_high > $year_to_date_high)
+            {
+                $data["year_to_date"][$item_field][$high_field] = $data["month_to_date"][$item_field][$high_field];
+                $year_to_date_high = $month_to_date_high;
+            }
+        }
+
+        if (!is_null($year_to_date_high) && !is_null($all_time_high))
+        {
+            if ($year_to_date_high > $all_time_high)
+            {
+                $data["all_time"][$item_field][$high_field] = $data["year_to_date"][$item_field][$high_field];
+            }
+        }
+    }
+
+    function propogate_low_record(&$data, $item_field, $low_field, $unit_field)
+    {
+        $month_to_date_low = $data["month_to_date"][$item_field][$low_field][$unit_field];
+        $year_to_date_low = $data["year_to_date"][$item_field][$low_field][$unit_field];
+        $all_time_low = $data["all_time"][$item_field][$low_field][$unit_field];
+
+        if (!is_null($$month_to_date_low) && !is_null($year_to_date_low))
+        {
+            if ($month_to_date_low < $year_to_date_low)
+            {
+                $data["year_to_date"][$item_field][$low_field] = $data["month_to_date"][$item_field][$low_field];
+                $year_to_date_low = $month_to_date_low;
+            }
+        }
+
+        if (!is_null($year_to_date_low) && !is_null($all_time_low))
+        {
+            if ($year_to_date_low < $all_time_low)
+            {
+                $data["all_time"][$item_field][$low_field] = $data["year_to_date"][$item_field][$low_field];
+            }
+        }
+    }
+
+    function propogate_high_wind_speed_record(&$data, $item_field)
+    {
+        $month_to_date_high = $data["month_to_date"]["wind"][$item_field]["speed"]["kn"];
+        $year_to_date_high = $data["year_to_date"]["wind"][$item_field]["speed"]["kn"];
+        $all_time_high = $data["all_time"]["wind"][$item_field]["speed"]["kn"];
+
+        if (!is_null($month_to_date_high) && !is_null($year_to_date_high))
+        {
+            if ($month_to_date_high > $year_to_date_high)
+            {
+                $data["year_to_date"]["wind"][$item_field] = $data["month_to_date"]["wind"][$item_field];
+                $year_to_date_high = $month_to_date_high;
+            }
+        }
+
+        if (!is_null($year_to_date_high) && !is_null($all_time_high))
+        {
+            if ($year_to_date_high > $all_time_high)
+            {
+                $data["all_time"]["wind"][$item_field] = $data["year_to_date"]["wind"][$item_field];
+            }
+        }
+    }
+
+
+    $client_raw_fields = get_client_raw_fields();
+    $client_raw_extra_fields = get_client_raw_extra_fields();
+
     $data = array(
         "endpoint" => get_endpoint_item(),
         "station" => get_station_item($client_raw_fields),
         "month_to_date" => get_month_to_date_item(),
         "year_to_date" => get_year_to_date_item(),
         "all_time" => get_all_time_item());
+
+    propogate_high_record($data, "temperature", "high", "c");
+    propogate_low_record($data, "temperature", "low", "c");
+
+    propogate_high_record($data, "pressure", "high", "hpa");
+    propogate_low_record($data, "pressure", "low", "hpa");
+
+    propogate_high_record($data, "rainfall", "max_rate_per_min", "mm");
+
+    propogate_high_wind_speed_record($data, "max_avg");
+    propogate_high_wind_speed_record($data, "max_gust");
+
+    propogate_high_record($data, "dew_point", "high", "c");
+    propogate_low_record($data, "dew_point", "low", "c");
+
+    propogate_low_record($data, "wind_chill", "low", "c");
+
+    propogate_low_record($data, "heat_index", "high", "c");
+
+    propogate_high_record($data, "uv", "high", "uvi");
 
     $json = json_encode($data);
 
