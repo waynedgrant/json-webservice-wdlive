@@ -27,7 +27,7 @@ I only expose the data I am interested in for my own purposes (i.e. what my weat
 
 * Download the source code for the [latest release](https://github.com/waynedgrant/json-webservice-wdlive/releases) and unzip it
 
-* Upload all json-webservice-wdlive .php and .json files to the same directory as clientraw files are hosted on your web server
+* Upload all .php and .json files in json-webservice-wdlive/src to the same directory as the clientraw files are hosted on your web server
 * Modify your web server to process .json files using PHP. For example, for Apache add the following to your .htaccess file:
 
 ```
@@ -61,3 +61,11 @@ For example:
 ## API Documentation
 
 For details of Web Service response fields see Web Service API page at [Wayne's Weather](http://www.waynedgrant.com/weather/api.html).
+
+## Unit Testing
+
+This project utilizes [PHPUnit](https://phpunit.de/) for unit testing.
+
+* Install [PHPUnit](https://phpunit.de/)
+* cd json-webservice-wdlive
+* phpunit --bootstrap bootstrap.php test/
