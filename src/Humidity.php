@@ -12,7 +12,6 @@ class Humidity
         if ($percentage != '-')
         {
             $this->percentage = number_format($percentage, 0, '.', '');
-
         }
     }
 

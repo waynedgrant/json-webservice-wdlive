@@ -32,19 +32,19 @@ class WindSpeedTest extends PHPUnit_Framework_TestCase
 
     public function test_beaufort_scale_values_are_correct_when_knots_is_not_empty()
     {
-        self::assert_beaufort_scale_range_correct(0.0, 0.4, 0);
-        self::assert_beaufort_scale_range_correct(0.5, 3.4, 1);
-        self::assert_beaufort_scale_range_correct(3.5, 6.4, 2);
-        self::assert_beaufort_scale_range_correct(6.5, 10.4, 3);
-        self::assert_beaufort_scale_range_correct(10.5, 16.4, 4);
-        self::assert_beaufort_scale_range_correct(16.5, 21.4, 5);
-        self::assert_beaufort_scale_range_correct(21.5, 27.4, 6);
-        self::assert_beaufort_scale_range_correct(27.5, 33.4, 7);
-        self::assert_beaufort_scale_range_correct(33.5, 40.4, 8);
-        self::assert_beaufort_scale_range_correct(40.5, 47.4, 9);
-        self::assert_beaufort_scale_range_correct(47.5, 55.4, 10);
-        self::assert_beaufort_scale_range_correct(55.5, 63.4, 11);
-        self::assert_beaufort_scale_range_correct(63.5, 100.0, 12);
+        self::assert_beaufort_scale_range_correct("0.0", "0.4", 0);
+        self::assert_beaufort_scale_range_correct("0.5", "3.4", 1);
+        self::assert_beaufort_scale_range_correct("3.5", "6.4", 2);
+        self::assert_beaufort_scale_range_correct("6.5", "10.4", 3);
+        self::assert_beaufort_scale_range_correct("10.5", "16.4", 4);
+        self::assert_beaufort_scale_range_correct("16.5", "21.4", 5);
+        self::assert_beaufort_scale_range_correct("21.5", "27.4", 6);
+        self::assert_beaufort_scale_range_correct("27.5", "33.4", 7);
+        self::assert_beaufort_scale_range_correct("33.5", "40.4", 8);
+        self::assert_beaufort_scale_range_correct("40.5", "47.4", 9);
+        self::assert_beaufort_scale_range_correct("47.5", "55.4", 10);
+        self::assert_beaufort_scale_range_correct("55.5", "63.4", 11);
+        self::assert_beaufort_scale_range_correct("63.5", "100.0", 12);
     }
 
     private function assert_beaufort_scale_range_correct($low_knots, $high_knots, $expected_beaufort_scale)
