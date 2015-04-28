@@ -5,6 +5,8 @@
 
 class WindDirection
 {
+    private static $CARDINAL_DIRECTIONS = array('N','NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW','SW', 'WSW', 'W', 'WNW', 'NW', 'NNW');
+
     private $cardinalDirection;
     private $compassDegress;
 
@@ -29,8 +31,7 @@ class WindDirection
 
     private function calculateCardinalDirection($compassDegress)
     {
-        $cardinal = array('N','NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW','SW', 'WSW', 'W', 'WNW', 'NW', 'NNW');
-        return $cardinal[fmod((($compassDegress + 11) / 22.5), 16)];
+        return self::$CARDINAL_DIRECTIONS[fmod((($compassDegress + 11) / 22.5), 16)];
     }
 }
 
