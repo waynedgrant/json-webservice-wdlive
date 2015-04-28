@@ -13,27 +13,7 @@ class Uv
         if ($uvi != '-')
         {
             $this->uvi = number_format($uvi, 1, '.', '');
-
-            if ($uvi < 3)
-            {
-                $this->uviDescription = 'low';
-            }
-            elseif ($uvi < 6)
-            {
-                $this->uviDescription = 'moderate';
-            }
-            elseif ($uvi < 8)
-            {
-                $this->uviDescription = 'high';
-            }
-            elseif ($uvi < 11)
-            {
-                $this->uviDescription = 'very high';
-            }
-            else
-            {
-                $this->uviDescription = 'extreme';
-            }
+            $this->uviDescription = self::calculateUviDescription($uvi);
         }
     }
 
@@ -45,6 +25,32 @@ class Uv
     public function getUviDescription()
     {
         return $this->uviDescription;
+    }
+
+    private function calculateUviDescription($uvi)
+    {
+        if ($uvi < 3)
+        {
+            $uviDescription = 'low';
+        }
+        elseif ($uvi < 6)
+        {
+            $uviDescription = 'moderate';
+        }
+        elseif ($uvi < 8)
+        {
+            $uviDescription = 'high';
+        }
+        elseif ($uvi < 11)
+        {
+            $uviDescription = 'very high';
+        }
+        else
+        {
+            $uviDescription = 'extreme';
+        }
+
+        return $uviDescription;
     }
 }
 
