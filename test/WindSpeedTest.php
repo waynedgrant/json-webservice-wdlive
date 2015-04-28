@@ -47,13 +47,13 @@ class WindSpeedTest extends PHPUnit_Framework_TestCase
         self::assert_beaufort_scale_range_correct("63.5", "100.0", 12);
     }
 
-    private function assert_beaufort_scale_range_correct($low_knots, $high_knots, $expected_beaufort_scale)
+    private function assert_beaufort_scale_range_correct($lowKnots, $highKnots, $expectedBeaufortScale)
     {
-        $testee = new WindSpeed($low_knots);
-        $this->assertEquals($expected_beaufort_scale, $testee->getBeaufortScale());
+        $testee = new WindSpeed($lowKnots);
+        $this->assertEquals($expectedBeaufortScale, $testee->getBeaufortScale());
 
-        $testee = new WindSpeed($high_knots);
-        $this->assertEquals($expected_beaufort_scale, $testee->getBeaufortScale());
+        $testee = new WindSpeed($highKnots);
+        $this->assertEquals($expectedBeaufortScale, $testee->getBeaufortScale());
     }
 }
 
