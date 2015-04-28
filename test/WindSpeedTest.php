@@ -18,16 +18,16 @@ class WindSpeedTest extends PHPUnit_Framework_TestCase
     public function test_wind_speed_values_are_correct_when_knots_is_not_empty()
     {
         $testee = new WindSpeed("0.0");
-        $this->assertEquals("0.0", $testee->getKilometresPerHour());
-        $this->assertEquals("0.0", $testee->getKnots());
-        $this->assertEquals("0.0", $testee->getMetresPerSecond());
-        $this->assertEquals("0.0", $testee->getMilesPerHour());
+        $this->assertSame("0.0", $testee->getKilometresPerHour());
+        $this->assertSame("0.0", $testee->getKnots());
+        $this->assertSame("0.0", $testee->getMetresPerSecond());
+        $this->assertSame("0.0", $testee->getMilesPerHour());
 
         $testee = new WindSpeed("5.1");
-        $this->assertEquals("9.4", $testee->getKilometresPerHour());
-        $this->assertEquals("5.1", $testee->getKnots());
-        $this->assertEquals("2.6", $testee->getMetresPerSecond());
-        $this->assertEquals("5.9", $testee->getMilesPerHour());
+        $this->assertSame("9.4", $testee->getKilometresPerHour());
+        $this->assertSame("5.1", $testee->getKnots());
+        $this->assertSame("2.6", $testee->getMetresPerSecond());
+        $this->assertSame("5.9", $testee->getMilesPerHour());
     }
 
     public function test_beaufort_scale_values_are_correct_when_knots_is_not_empty()
@@ -50,10 +50,10 @@ class WindSpeedTest extends PHPUnit_Framework_TestCase
     private function assert_beaufort_scale_range_correct($lowKnots, $highKnots, $expectedBeaufortScale)
     {
         $testee = new WindSpeed($lowKnots);
-        $this->assertEquals($expectedBeaufortScale, $testee->getBeaufortScale());
+        $this->assertSame($expectedBeaufortScale, $testee->getBeaufortScale());
 
         $testee = new WindSpeed($highKnots);
-        $this->assertEquals($expectedBeaufortScale, $testee->getBeaufortScale());
+        $this->assertSame($expectedBeaufortScale, $testee->getBeaufortScale());
     }
 }
 
