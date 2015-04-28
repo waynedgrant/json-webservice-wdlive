@@ -5,26 +5,26 @@
 
 class WindDirection
 {
-    private $compassDegress;
     private $cardinalDirection;
+    private $compassDegress;
 
     public function __construct($compassDegress)
     {
         if ($compassDegress != '-')
         {
-            $this->compassDegress = number_format($compassDegress, 0, '.', '');
             $this->cardinalDirection = self::calculateCardinalDirection($compassDegress);
+            $this->compassDegress = number_format($compassDegress, 0, '.', '');
         }
-    }
-
-    public function getCompassDegrees()
-    {
-        return $this->compassDegress;
     }
 
     public function getCardinalDirection()
     {
         return $this->cardinalDirection;
+    }
+
+    public function getCompassDegrees()
+    {
+        return $this->compassDegress;
     }
 
     private function calculateCardinalDirection($compassDegress)
