@@ -15,10 +15,10 @@ class WindDirectionTest extends PHPUnit_Framework_TestCase
     public function test_wind_direction_values_are_correct_when_compass_degrees_is_not_empty()
     {
         $testee = new WindDirection("0");
-        $this->assertEquals("0", $testee->getCompassDegrees());
+        $this->assertSame("0", $testee->getCompassDegrees());
 
         $testee = new WindDirection("180");
-        $this->assertEquals("180", $testee->getCompassDegrees());
+        $this->assertSame("180", $testee->getCompassDegrees());
     }
 
     public function test_cardinal_direction_values_are_correct_when_compass_degrees_is_not_empty()
@@ -44,7 +44,7 @@ class WindDirectionTest extends PHPUnit_Framework_TestCase
     private function assert_cardinal_direction_correct($compassDegrees, $expectedCardinalDirection)
     {
         $testee = new WindDirection($compassDegrees);
-        $this->assertEquals($expectedCardinalDirection, $testee->getCardinalDirection());
+        $this->assertSame($expectedCardinalDirection, $testee->getCardinalDirection());
     }
 }
 
