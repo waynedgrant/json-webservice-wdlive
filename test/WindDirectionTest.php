@@ -8,8 +8,8 @@ class WindDirectionTest extends PHPUnit_Framework_TestCase
     public function test_wind_direction_values_are_null_when_compass_degrees_is_empty()
     {
         $testee = new WindDirection("-");
-        $this->assertNull($testee->getCompassDegrees());
         $this->assertNull($testee->getCardinalDirection());
+        $this->assertNull($testee->getCompassDegrees());
     }
 
     public function test_wind_direction_values_are_correct_when_compass_degrees_is_not_empty()
