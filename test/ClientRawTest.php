@@ -47,6 +47,33 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $this->assertSame("90", $testee->getWindDirection()->getCompassDegrees());
     }
 
+    public function test_get_indoor_temperature()
+    {
+        self::$generator->generateWithField(new Field(ClientRaw::INDOOR_TEMPERATURE, "25.6"));
+
+        $testee = new ClientRaw(self::CLIENT_RAW_PATH);
+
+        $this->assertSame("25.6", $testee->getIndoorTemperature()->getCelsius());
+    }
+
+    public function test_get_indoor_humidity()
+    {
+        self::$generator->generateWithField(new Field(ClientRaw::INDOOR_HUMIDITY, "45"));
+
+        $testee = new ClientRaw(self::CLIENT_RAW_PATH);
+
+        $this->assertSame("45", $testee->getIndoorHumidity()->getPercentage());
+    }
+
+    public function test_get_station_name()
+    {
+        self::$generator->generateWithField(new Field(ClientRaw::STATION_NAME, "Clifton,_NJ,_USA-17:45"));
+
+        $testee = new ClientRaw(self::CLIENT_RAW_PATH);
+
+        $this->assertSame("Clifton, NJ, USA", $testee->getStationName());
+    }
+
     public function test_get_maximum_gust_speed()
     {
         self::$generator->generateWithField(new Field(ClientRaw::MAXIMUM_GUST_SPEED, "15.5"));
@@ -74,6 +101,33 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $this->assertSame("270", $testee->getAverageWindDirection()->getCompassDegrees());
     }
 
+    public function test_get_latitude()
+    {
+        self::$generator->generateWithField(new Field(ClientRaw::LATITUDE, "40.874444"));
+
+        $testee = new ClientRaw(self::CLIENT_RAW_PATH);
+
+        $this->assertSame("40.874444", $testee->getLatitude());
+    }
+
+    public function test_get_longitude()
+    {
+        self::$generator->generateWithField(new Field(ClientRaw::LONGITUDE, "74.16"));
+
+        $testee = new ClientRaw(self::CLIENT_RAW_PATH);
+
+        $this->assertSame("74.16", $testee->getLongitude());
+    }
+
+    public function test_get_wd_version()
+    {
+        self::$generator->generateWithField(new Field(167, "!!C10.37Of!!"));
+
+        $testee = new ClientRaw(self::CLIENT_RAW_PATH);
+
+        $this->assertSame("C10.37Of", $testee->getWdVersion());
+    }
+
     public function test_when_fields_are_missing()
     {
         self::$generator->generateEmpty();
@@ -83,9 +137,15 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getAverageWindSpeed()->getKnots());
         $this->assertNull($testee->getGustSpeed()->getKnots());
         $this->assertNull($testee->getWindDirection()->getCompassDegrees());
+        $this->assertNull($testee->getIndoorTemperature()->getCelsius());
+        $this->assertNull($testee->getIndoorHumidity()->getPercentage());
+        $this->assertNull($testee->getStationName());
         $this->assertNull($testee->getMaximumGustSpeed()->getKnots());
         $this->assertNull($testee->getMaximumAverageWindSpeed()->getKnots());
         $this->assertNull($testee->getAverageWindDirection()->getCompassDegrees());
+        $this->assertNull($testee->getLatitude());
+        $this->assertNull($testee->getLongitude());
+        $this->assertNull($testee->getWdVersion());
     }
 }
 

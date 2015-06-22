@@ -1,0 +1,23 @@
+<?php header('content-type: application/json; charset=utf-8');
+
+# Copyright 2015 Wayne D Grant (www.waynedgrant.com)
+# Licensed under the MIT License
+
+require_once("config.php");
+require_once("common.php");
+require_once("ClientRaw.php");
+
+$clientRaw = new ClientRaw(CLIENT_RAW_DIRECTORY . "clientraw.txt");
+
+$data = array(
+    "endpoint" => createEndpointItem(),
+    "station" => createStationItem($clientRaw),
+    "time" => array(), //get_time_item($client_raw_fields, 29, 30, 35, 36, 141),
+    "temperature" => createTemperatureItem($clientRaw->getIndoorTemperature()),
+    "humidity" => $clientRaw->getIndoorHumidity()->getPercentage());
+
+$json = json_encode($data);
+
+echo isset($_GET['callback']) ? "{$_GET['callback']}($json)" : $json;
+
+?>
