@@ -128,6 +128,27 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $this->assertSame("C10.37Of", $testee->getWdVersion());
     }
 
+    public function test_get_date_and_time()
+    {
+        self::$generator->generateWithFields(
+            array(
+                new Field(ClientRaw::YEAR, "2015"),
+                new Field(ClientRaw::MONTH, "12"),
+                new Field(ClientRaw::DAY, "31"),
+                new Field(ClientRaw::HOUR, "23"),
+                new Field(ClientRaw::MINUTE, "59")));
+
+        $testee = new ClientRaw(self::CLIENT_RAW_PATH);
+
+        $dateAndTime = $testee->getDateAndTime();
+
+        $this->assertSame("2015", $dateAndTime->getYear());
+        $this->assertSame("12", $dateAndTime->getMonth());
+        $this->assertSame("31", $dateAndTime->getDay());
+        $this->assertSame("23", $dateAndTime->getHour());
+        $this->assertSame("59", $dateAndTime->getMinute());
+    }
+
     public function test_when_fields_are_missing()
     {
         self::$generator->generateEmpty();
@@ -146,6 +167,12 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getLatitude());
         $this->assertNull($testee->getLongitude());
         $this->assertNull($testee->getWdVersion());
+
+        $this->assertNull($testee->getDateAndTime()->getYear());
+        $this->assertNull($testee->getDateAndTime()->getMonth());
+        $this->assertNull($testee->getDateAndTime()->getDay());
+        $this->assertNull($testee->getDateAndTime()->getHour());
+        $this->assertNull($testee->getDateAndTime()->getMinute());
     }
 }
 
