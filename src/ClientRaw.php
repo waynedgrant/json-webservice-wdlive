@@ -3,6 +3,7 @@
 # Copyright 2015 Wayne D Grant (www.waynedgrant.com)
 # Licensed under the MIT License
 
+require_once("DateAndTime.php");
 require_once("Humidity.php");
 require_once("Temperature.php");
 
@@ -19,6 +20,12 @@ class ClientRaw
     const AVERAGE_WIND_DIRECTION = 117;
     const LATITUDE = 160;
     const LONGITUDE = 161;
+
+    const YEAR = 141;
+    const MONTH = 36;
+	const DAY = 35;
+	const HOUR = 29;
+	const MINUTE = 30;
 
     private $fields;
 
@@ -170,6 +177,17 @@ class ClientRaw
         }
 
         return $wdVersion;
+    }
+
+    public function getDateAndTime()
+    {
+        $year = self::readField(self::YEAR);
+        $month = self::readField(self::MONTH);
+        $day = self::readField(self::DAY);
+        $hour = self::readField(self::HOUR);
+        $minute = self::readField(self::MINUTE);
+
+        return new DateAndTime($year, $month, $day, $hour, $minute, $second);
     }
 }
 

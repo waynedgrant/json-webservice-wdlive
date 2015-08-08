@@ -26,6 +26,21 @@ function createStationItem($clientRaw)
         "wd_version" => $clientRaw->getWdVersion());
 }
 
+function createTimeItem($clientRaw)
+{
+    $dateAndTime = $clientRaw->getDateAndTime();
+
+    return array(
+        "hour" => $dateAndTime->getHour(),
+        "minute" => $dateAndTime->getMinute(),
+        "day" => $dateAndTime->getDay(),
+        "month" => $dateAndTime->getMonth(),
+        "year" => $dateAndTime->getYear(),
+        "time" => $dateAndTime->getTime(),
+        "date" => $dateAndTime->getDate(),
+        "time_date" => $dateAndTime->getTimeAndDate());
+}
+
 function createTemperatureItem($temperature)
 {
     return array(
