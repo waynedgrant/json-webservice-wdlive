@@ -134,7 +134,7 @@
 
         $time = null;
 
-        if (!is_null($hour) and !is_null($minute))
+        if (!is_null($hour) && !is_null($minute))
         {
             $time = $hour . ":" . $minute;
         }
@@ -145,14 +145,14 @@
 
         $date = null;
 
-        if (!is_null($day) and !is_null($month) and !is_null($year))
+        if (!is_null($day) && !is_null($month) && !is_null($year))
         {
             $date = $day . "/" . $month . "/" . $year;
         }
 
         $time_date = null;
 
-        if (!is_null($time) and !is_null($date))
+        if (!is_null($time) && !is_null($date))
         {
             $time_date = $time . " " . $date;
         }

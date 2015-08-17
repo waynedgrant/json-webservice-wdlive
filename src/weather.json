@@ -9,12 +9,27 @@ require_once("ClientRaw.php");
 
 $clientRaw = new ClientRaw(CLIENT_RAW_DIRECTORY . "clientraw.txt");
 
+$temperature_item = array(
+    "current" => createTemperatureItem($clientRaw->getOutdoorTemperature()),
+    "high" => createTemperatureItem($clientRaw->getDailyMaxOutdoorTemperature()),
+    "low" => createTemperatureItem($clientRaw->getDailyMinOutdoorTemperature()),
+    "trend" => $clientRaw->getOutdoorTemperatureTrend()->getTrend()
+);
+
 $data = array(
     "endpoint" => createEndpointItem(),
     "station" => createStationItem($clientRaw),
-    "time" => array(), createTimeItem($clientRaw));
-
-// TODO - other fields
+    "time" => createTimeItem($clientRaw),
+    "temperature" => $temperature_item,
+    "pressure" => array(),
+    "rainfall" => array(),
+    "wind" => array(),
+    "humidity" => array(),
+    "dew_point" => array(),
+    "wind_chill" => array(),
+    "humidex" => array(),
+    "heat_index" => array(),
+    "uv" => array());
 
 $json = json_encode($data);
 

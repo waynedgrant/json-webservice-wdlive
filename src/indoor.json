@@ -12,7 +12,7 @@ $clientRaw = new ClientRaw(CLIENT_RAW_DIRECTORY . "clientraw.txt");
 $data = array(
     "endpoint" => createEndpointItem(),
     "station" => createStationItem($clientRaw),
-    "time" => array(), createTimeItem($clientRaw),
+    "time" => createTimeItem($clientRaw),
     "temperature" => createTemperatureItem($clientRaw->getIndoorTemperature()),
     "humidity" => $clientRaw->getIndoorHumidity()->getPercentage());
 

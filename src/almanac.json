@@ -12,9 +12,10 @@ $clientRaw = new ClientRaw(CLIENT_RAW_DIRECTORY . "clientraw.txt");
 $data = array(
     "endpoint" => createEndpointItem(),
     "station" => createStationItem($clientRaw),
-    "time" => array(), createTimeItem($clientRaw));
-
-// TODO - other fields
+    "time" => createTimeItem($clientRaw),
+    "month_to_date" => array(),
+    "year_to_date" => array(),
+    "all_time" => array());
 
 $json = json_encode($data);
 
