@@ -80,36 +80,36 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $this->assertSame("Clifton, NJ, USA", $testee->getStationName());
     }
     
-    public function test_get_daily_max_outdoor_temperature()
+    public function test_get_daily_high_outdoor_temperature()
     {
-        $testee = self::createClientRawWithField(new Field(ClientRaw::DAILY_MAX_OUTDOOR_TEMPERATURE, "30.8"));
-        $this->assertSame("30.8", $testee->getDailyMaxOutdoorTemperature()->getCelsius());
+        $testee = self::createClientRawWithField(new Field(ClientRaw::DAILY_HIGH_OUTDOOR_TEMPERATURE, "30.8"));
+        $this->assertSame("30.8", $testee->getDailyHighOutdoorTemperature()->getCelsius());
     }
     
-    public function test_get_daily_max_outdoor_temperature_when_outdoor_temperature_higher()
+    public function test_get_daily_high_outdoor_temperature_when_outdoor_temperature_higher()
     {
         $testee = self::createClientRawWithFields(
             array(
-                new Field(ClientRaw::DAILY_MAX_OUTDOOR_TEMPERATURE, "30.8"),
+                new Field(ClientRaw::DAILY_HIGH_OUTDOOR_TEMPERATURE, "30.8"),
                 new Field(ClientRaw::OUTDOOR_TEMPERATURE, "30.9")));
                 
-        $this->assertSame("30.9", $testee->getDailyMaxOutdoorTemperature()->getCelsius());
+        $this->assertSame("30.9", $testee->getDailyHighOutdoorTemperature()->getCelsius());
     }
     
-    public function test_get_daily_min_outdoor_temperature()
+    public function test_get_daily_low_outdoor_temperature()
     {
-        $testee = self::createClientRawWithField(new Field(ClientRaw::DAILY_MIN_OUTDOOR_TEMPERATURE, "-13.3"));
-        $this->assertSame("-13.3", $testee->getDailyMinOutdoorTemperature()->getCelsius());
+        $testee = self::createClientRawWithField(new Field(ClientRaw::DAILY_LOW_OUTDOOR_TEMPERATURE, "-13.3"));
+        $this->assertSame("-13.3", $testee->getDailyLowOutdoorTemperature()->getCelsius());
     }
     
-    public function test_get_daily_min_outdoor_temperature_when_outdoor_temperature_lower()
+    public function test_get_daily_low_outdoor_temperature_when_outdoor_temperature_lower()
     {
         $testee = self::createClientRawWithFields(
             array(
-                new Field(ClientRaw::DAILY_MIN_OUTDOOR_TEMPERATURE, "-13.3"),
+                new Field(ClientRaw::DAILY_LOW_OUTDOOR_TEMPERATURE, "-13.3"),
                 new Field(ClientRaw::OUTDOOR_TEMPERATURE, "-13.4")));
                 
-        $this->assertSame("-13.4", $testee->getDailyMinOutdoorTemperature()->getCelsius());
+        $this->assertSame("-13.4", $testee->getDailyLowOutdoorTemperature()->getCelsius());
     }
 
     public function test_get_maximum_gust_speed()
@@ -184,8 +184,8 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getIndoorTemperature()->getCelsius());
         $this->assertNull($testee->getIndoorHumidity()->getPercentage());
         $this->assertNull($testee->getStationName());
-		$this->assertNull($testee->getDailyMaxOutdoorTemperature()->getCelsius());
-		$this->assertNull($testee->getDailyMinOutdoorTemperature()->getCelsius());
+		$this->assertNull($testee->getDailyHighOutdoorTemperature()->getCelsius());
+		$this->assertNull($testee->getDailyLowOutdoorTemperature()->getCelsius());
         $this->assertNull($testee->getMaximumGustSpeed()->getKnots());
         $this->assertNull($testee->getMaximumAverageWindSpeed()->getKnots());
         $this->assertNull($testee->getAverageWindDirection()->getCompassDegrees());
