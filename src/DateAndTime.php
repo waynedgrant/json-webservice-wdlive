@@ -16,7 +16,7 @@ class DateAndTime
 
     public function __construct($year, $month, $day, $hour, $minute)
     {
-        if ($year != '-' and $month != '-' and $day != '-' and $hour != '-' and $minute != '-')
+        if ($year != '-' && $month != '-' && $day != '-' && $hour != '-' && $minute != '-')
         {
             $this->year = $year;
             $this->month = $month;
