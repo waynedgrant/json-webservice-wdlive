@@ -21,8 +21,8 @@ class ClientRaw
     
     const STATION_NAME = 32;
     
-    const DAILY_MAX_OUTDOOR_TEMPERATURE = 46;
-    const DAILY_MIN_OUTDOOR_TEMPERATURE = 47;
+    const DAILY_HIGH_OUTDOOR_TEMPERATURE = 46;
+    const DAILY_LOW_OUTDOOR_TEMPERATURE = 47;
     
     const MAXIMUM_GUST_SPEED = 71;
     
@@ -140,34 +140,34 @@ class ClientRaw
         return $stationName;
     }
     
-    public function getDailyMaxOutdoorTemperature()
+    public function getDailyHighOutdoorTemperature()
     {        
-        $dailyMaxOutdoorTemperature = new Temperature(self::readField(self::DAILY_MAX_OUTDOOR_TEMPERATURE));
+        $dailyHighOutdoorTemperature = new Temperature(self::readField(self::DAILY_HIGH_OUTDOOR_TEMPERATURE));
         $outdoorTemperature = self::getOutdoorTemperature();
         
         if (!is_null($outdoorTemperature->getCelsius()) &&
-            !is_null($dailyMaxOutdoorTemperature->getCelsius()) &&
-            $outdoorTemperature->getCelsius() > $dailyMaxOutdoorTemperature->getCelsius())
+            !is_null($dailyHighOutdoorTemperature->getCelsius()) &&
+            $outdoorTemperature->getCelsius() > $dailyHighOutdoorTemperature->getCelsius())
         {
-            $dailyMaxOutdoorTemperature = $outdoorTemperature;
+            $dailyHighOutdoorTemperature = $outdoorTemperature;
         }
         
-        return $dailyMaxOutdoorTemperature;
+        return $dailyHighOutdoorTemperature;
     }
     
-    public function getDailyMinOutdoorTemperature()
+    public function getDailyLowOutdoorTemperature()
     {                
-        $dailyMinOutdoorTemperature = new Temperature(self::readField(self::DAILY_MIN_OUTDOOR_TEMPERATURE));
+        $dailyLowOutdoorTemperature = new Temperature(self::readField(self::DAILY_LOW_OUTDOOR_TEMPERATURE));
         $outdoorTemperature = self::getOutdoorTemperature();
         
         if (!is_null($outdoorTemperature->getCelsius()) &&
-            !is_null($dailyMinOutdoorTemperature->getCelsius()) &&
-            $outdoorTemperature->getCelsius() < $dailyMinOutdoorTemperature->getCelsius())
+            !is_null($dailyLowOutdoorTemperature->getCelsius()) &&
+            $outdoorTemperature->getCelsius() < $dailyLowOutdoorTemperature->getCelsius())
         {
-            $dailyMinOutdoorTemperature = $outdoorTemperature;
+            $dailyLowOutdoorTemperature = $outdoorTemperature;
         }
         
-        return $dailyMinOutdoorTemperature;
+        return $dailyLowOutdoorTemperature;
     }
 
     public function getMaximumGustSpeed()

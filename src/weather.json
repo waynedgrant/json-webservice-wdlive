@@ -9,18 +9,17 @@ require_once("ClientRaw.php");
 
 $clientRaw = new ClientRaw(CLIENT_RAW_DIRECTORY . "clientraw.txt");
 
-$temperature_item = array(
+$temperature_items = array(
     "current" => createTemperatureItem($clientRaw->getOutdoorTemperature()),
     "high" => createTemperatureItem($clientRaw->getDailyMaxOutdoorTemperature()),
     "low" => createTemperatureItem($clientRaw->getDailyMinOutdoorTemperature()),
-    "trend" => $clientRaw->getOutdoorTemperatureTrend()->getTrend()
-);
+    "trend" => $clientRaw->getOutdoorTemperatureTrend()->getTrend());
 
 $data = array(
     "endpoint" => createEndpointItem(),
     "station" => createStationItem($clientRaw),
     "time" => createTimeItem($clientRaw),
-    "temperature" => $temperature_item,
+    "temperature" => $temperature_items,
     "pressure" => array(),
     "rainfall" => array(),
     "wind" => array(),
