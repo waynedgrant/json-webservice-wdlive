@@ -9,26 +9,56 @@ require_once("ClientRaw.php");
 
 $clientRaw = new ClientRaw(CLIENT_RAW_DIRECTORY . "clientraw.txt");
 
-$temperature_items = array(
-    "current" => createTemperatureItem($clientRaw->getOutdoorTemperature()),
-    "high" => createTemperatureItem($clientRaw->getDailyMaxOutdoorTemperature()),
-    "low" => createTemperatureItem($clientRaw->getDailyMinOutdoorTemperature()),
+$temperature = array(
+    "current" => createTemperature($clientRaw->getOutdoorTemperature()),
+    "high" => createTemperature($clientRaw->getDailyHighOutdoorTemperature()),
+    "low" => createTemperature($clientRaw->getDailyLowOutdoorTemperature()),
     "trend" => $clientRaw->getOutdoorTemperatureTrend()->getTrend());
 
+$pressure = array(
+    "current" => createPressure($clientRaw->getSurfacePressure()),
+    "high" => createPressure($clientRaw->getDailyHighSurfacePressure()),
+    "low" => createPressure($clientRaw->getDailyLowSurfacePressure()),
+    "trend_per_hr" => createPressure($clientRaw->getSurfacePressureTrendPerHour()));
+
+$rainfall = array();
+
+$wind = array(
+    "direction" => createWindDirection($clientRaw->getWindDirection()),
+    "avg_direction" => createWindDirection($clientRaw->getAverageWindDirection()),
+    "avg_speed" => createWindSpeed($clientRaw->getAverageWindSpeed()),
+    "max_avg_speed" => createWindSpeed($clientRaw->getMaximumAverageWindSpeed()),
+    "gust_speed" => createWindSpeed($clientRaw->getGustSpeed()),
+    "max_gust_speed" => createWindSpeed($clientRaw->getMaximumGustSpeed()));
+
+$humidity = array(
+    "current" => $clientRaw->getOutdoorHumidity()->getPercentage(),
+    "high" => $clientRaw->getDailyHighOutdoorHumidity()->getPercentage(),
+    "low" => $clientRaw->getDailyLowOutdoorHumidity()->getPercentage(),
+    "trend" => $clientRaw->getOutdoorHumidityTrend()->getTrend());
+    
+$dewPoint = array();
+
+$windChill = array();
+
+$humidex = array();
+
+$heatIndex = array();
+
 $data = array(
-    "endpoint" => createEndpointItem(),
-    "station" => createStationItem($clientRaw),
-    "time" => createTimeItem($clientRaw),
-    "temperature" => $temperature_items,
-    "pressure" => array(),
-    "rainfall" => array(),
-    "wind" => array(),
-    "humidity" => array(),
-    "dew_point" => array(),
-    "wind_chill" => array(),
-    "humidex" => array(),
-    "heat_index" => array(),
-    "uv" => array());
+    "endpoint" => createEndpoint(),
+    "station" => createStation($clientRaw),
+    "time" => createTime($clientRaw),
+    "temperature" => $temperature,
+    "pressure" => $pressure,
+    "rainfall" => $rainfall,
+    "wind" => $wind,
+    "humidity" => $humidity,
+    "dew_point" => $dewPoint,
+    "wind_chill" => $windChill,
+    "humidex" => $humidex,
+    "heat_index" => $heatIndex,
+    "uv" => createUv($clientRaw->getUv()));
 
 $json = json_encode($data);
 

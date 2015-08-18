@@ -9,13 +9,17 @@ require_once("ClientRaw.php");
 
 $clientRaw = new ClientRaw(CLIENT_RAW_DIRECTORY . "clientraw.txt");
 
+$monthToDate = array();
+$yearToDate = array();
+$allTime = array();
+
 $data = array(
-    "endpoint" => createEndpointItem(),
-    "station" => createStationItem($clientRaw),
-    "time" => createTimeItem($clientRaw),
-    "month_to_date" => array(),
-    "year_to_date" => array(),
-    "all_time" => array());
+    "endpoint" => createEndpoint(),
+    "station" => createStation($clientRaw),
+    "time" => createTime($clientRaw),
+    "month_to_date" => $monthToDate,
+    "year_to_date" => $yearToDate,
+    "all_time" => $allTime);
 
 $json = json_encode($data);
 

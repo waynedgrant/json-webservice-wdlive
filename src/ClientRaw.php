@@ -5,17 +5,22 @@
 
 require_once("DateAndTime.php");
 require_once("Humidity.php");
+require_once("Pressure.php");
 require_once("Temperature.php");
 require_once("Trend.php");
+require_once("Uv.php");
+require_once("WindDirection.php");
+require_once("WindSpeed.php");
 
 class ClientRaw
 {
     const AVERAGE_WIND_SPEED = 1;
     const GUST_SPEED = 2;
     const WIND_DIRECTION = 3;
-    
     const OUTDOOR_TEMPERATURE = 4;
-    
+    const OUTDOOR_HUMIDITY = 5;
+	const SURFACE_PRESSURE = 6;    
+
     const INDOOR_TEMPERATURE = 12;
     const INDOOR_HUMIDITY = 13;
     
@@ -24,16 +29,27 @@ class ClientRaw
     const DAILY_HIGH_OUTDOOR_TEMPERATURE = 46;
     const DAILY_LOW_OUTDOOR_TEMPERATURE = 47;
     
+	const SURFACE_PRESSURE_TREND_PER_HOUR = 50;
+    
     const MAXIMUM_GUST_SPEED = 71;
+    
+    const UV_INDEX = 79;
     
     const MAXIMUM_AVERAGE_WIND_SPEED = 113;
     
     const AVERAGE_WIND_DIRECTION = 117;
     
+    const DAILY_HIGH_SURFACE_PRESSURE = 131;
+    const DAILY_LOW_SURFACE_PRESSURE = 132;
+    
     const OUTDOOR_TEMPERATURE_TREND = 143;
+	const OUTDOOR_HUMIDITY_TREND = 144;
     
     const LATITUDE = 160;
     const LONGITUDE = 161;
+    
+    const DAILY_HIGH_OUTDOOR_HUMIDITY = 163;
+    const DAILY_LOW_OUTDOOR_HUMIDITY = 164;
 
     const YEAR = 141;
     const MONTH = 36;
@@ -107,6 +123,16 @@ class ClientRaw
     {
         return new Temperature(self::readField(self::OUTDOOR_TEMPERATURE));
     }
+    
+    public function getOutdoorHumidity()
+    {
+        return new Humidity(self::readField(self::OUTDOOR_HUMIDITY));
+    }
+    
+    public function getSurfacePressure()
+    {
+        return new Pressure(self::readField(self::SURFACE_PRESSURE));
+    }
 
     public function getIndoorTemperature()
     {
@@ -174,6 +200,11 @@ class ClientRaw
     {
         return new WindSpeed(self::readField(self::MAXIMUM_GUST_SPEED));
     }
+    
+    public function getUV()
+    {
+        return new Uv(self::readField(self::UV_INDEX));
+    }
 
     public function getMaximumAverageWindSpeed()
     {
@@ -185,9 +216,44 @@ class ClientRaw
         return new WindDirection(self::readField(self::AVERAGE_WIND_DIRECTION));
     }
     
+    public function getDailyHighSurfacePressure()
+    {
+        $dailyHighSurfacePressure = new Pressure(self::readField(self::DAILY_HIGH_SURFACE_PRESSURE));
+        $surfacePressure = self::getSurfacePressure();
+        
+        if (!is_null($surfacePressure->getHectopascals()) &&
+            !is_null($dailyHighSurfacePressure->getHectopascals()) &&
+            $surfacePressure->getHectopascals() > $dailyHighSurfacePressure->getHectopascals())
+        {
+            $dailyHighSurfacePressure = $surfacePressure;
+        }
+        
+        return $dailyHighSurfacePressure;
+    }
+    
+    public function getDailyLowSurfacePressure()
+    {           
+        $dailyLowSurfacePressure = new Pressure(self::readField(self::DAILY_LOW_SURFACE_PRESSURE));
+        $surfacePressure = self::getSurfacePressure();
+        
+        if (!is_null($surfacePressure->getHectopascals()) &&
+            !is_null($dailyLowSurfacePressure->getHectopascals()) &&
+            $surfacePressure->getHectopascals() < $dailyLowSurfacePressure->getHectopascals())
+        {
+            $dailyLowSurfacePressure = $surfacePressure;
+        }
+        
+        return $dailyLowSurfacePressure;
+    }
+    
     public function getOutdoorTemperatureTrend()
     {
         return new Trend(self::readField(self::OUTDOOR_TEMPERATURE_TREND));
+    }
+    
+    public function getOutdoorHumidityTrend()
+    {
+        return new Trend(self::readField(self::OUTDOOR_HUMIDITY_TREND));
     }
 
     public function getLatitude()
@@ -212,6 +278,41 @@ class ClientRaw
         }
 
         return $longitude;
+    }
+    
+    public function getDailyHighOutdoorHumidity()
+    {        
+        $dailyHighOutdoorHumidity = new Humidity(self::readField(self::DAILY_HIGH_OUTDOOR_HUMIDITY));
+        $outdoorHumidity = self::getOutdoorHumidity();
+        
+        if (!is_null($outdoorHumidity->getPercentage()) &&
+            !is_null($dailyHighOutdoorHumidity->getPercentage()) &&
+            $outdoorHumidity->getPercentage() > $dailyHighOutdoorHumidity->getPercentage())
+        {
+            $dailyHighOutdoorHumidity = $outdoorHumidity;
+        }
+        
+        return $dailyHighOutdoorHumidity;
+    }
+    
+    public function getDailyLowOutdoorHumidity()
+    {        
+        $dailyLowOutdoorHumidity = new Humidity(self::readField(self::DAILY_LOW_OUTDOOR_HUMIDITY));
+        $outdoorHumidity = self::getOutdoorHumidity();
+        
+        if (!is_null($outdoorHumidity->getPercentage()) &&
+            !is_null($dailyLowOutdoorHumidity->getPercentage()) &&
+            $outdoorHumidity->getPercentage() < $dailyLowOutdoorHumidity->getPercentage())
+        {
+            $dailyLowOutdoorHumidity = $outdoorHumidity;
+        }
+        
+        return $dailyLowOutdoorHumidity;
+    }
+    
+    public function getSurfacePressureTrendPerHour()
+    {
+        return new Pressure(self::readField(self::SURFACE_PRESSURE_TREND_PER_HOUR));
     }
 
     public function getWdVersion()
