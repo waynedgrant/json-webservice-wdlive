@@ -102,8 +102,8 @@ class WindSpeed
         {
             $beaufortScale = 12;
         }
-
-        return $beaufortScale;
+        
+        return number_format($beaufortScale, 0, '.', '');
     }
 }
 

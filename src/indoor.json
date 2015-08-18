@@ -10,10 +10,10 @@ require_once("ClientRaw.php");
 $clientRaw = new ClientRaw(CLIENT_RAW_DIRECTORY . "clientraw.txt");
 
 $data = array(
-    "endpoint" => createEndpointItem(),
-    "station" => createStationItem($clientRaw),
-    "time" => createTimeItem($clientRaw),
-    "temperature" => createTemperatureItem($clientRaw->getIndoorTemperature()),
+    "endpoint" => createEndpoint(),
+    "station" => createStation($clientRaw),
+    "time" => createTime($clientRaw),
+    "temperature" => createTemperature($clientRaw->getIndoorTemperature()),
     "humidity" => $clientRaw->getIndoorHumidity()->getPercentage());
 
 $json = json_encode($data);

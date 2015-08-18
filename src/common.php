@@ -10,14 +10,14 @@ function getServiceUrl()
     return "http".(!empty($_SERVER['HTTPS'])?"s":"")."://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
 }
 
-function createEndpointItem()
+function createEndpoint()
 {
     return array(
         "url" => getServiceUrl(),
         "version" => SERVICE_VERSION);
 }
 
-function createStationItem($clientRaw)
+function createStation($clientRaw)
 {
     return array(
         "name" => $clientRaw->getStationName(),
@@ -26,7 +26,7 @@ function createStationItem($clientRaw)
         "wd_version" => $clientRaw->getWdVersion());
 }
 
-function createTimeItem($clientRaw)
+function createTime($clientRaw)
 {
     $dateAndTime = $clientRaw->getDateAndTime();
 
@@ -41,11 +41,45 @@ function createTimeItem($clientRaw)
         "time_date" => $dateAndTime->getTimeAndDate());
 }
 
-function createTemperatureItem($temperature)
+function createTemperature($temperature)
 {
     return array(
         "c" => $temperature->getCelsius(),
         "f" => $temperature->getFahrenheit());
+}
+
+function createPressure($pressure)
+{
+    return array(
+        "hpa" => $pressure->getHectopascals(),
+        "inhg" => $pressure->getInchesOfMercury(),
+        "kpa" => $pressure->getKilopascals(),
+        "mb" => $pressure->getMillibars(),
+        "mmhg" => $pressure->getMillimetresOfMercury());
+}
+
+function createWindDirection($windDirection)
+{    
+    return array(
+        "cardinal" => $windDirection->getCardinalDirection(),
+        "degrees" => $windDirection->getCompassDegrees());
+}
+
+function createWindSpeed($windSpeed)
+{
+    return array(
+        "bft" => $windSpeed->getBeaufortScale(),
+        "kn" => $windSpeed->getKnots(),
+        "kmh" => $windSpeed->getKilometresPerHour(),
+        "mph" => $windSpeed->getMilesPerHour(),
+        "ms" => $windSpeed->getMetresPerSecond());
+}
+
+function createUv($uv)
+{
+    return array(
+        "uvi" => $uv->getUvi(),
+        "description" => $uv->getUviDescription());
 }
 
 ?>
