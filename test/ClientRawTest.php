@@ -238,8 +238,8 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
 
     public function test_get_surface_pressure_trend_per_hour()
     {        
-        $testee = self::createClientRawWithField(new Field(ClientRaw::SURFACE_PRESSURE_TREND_PER_HOUR, "-0.1"));
-        $this->assertSame("-0.1", $testee->getSurfacePressureTrendPerHour()->getHectopascals());
+        $testee = self::createClientRawWithField(new Field(ClientRaw::SURFACE_PRESSURE_TREND_PER_HOUR, "-1.0"));
+        $this->assertSame("-1.0", $testee->getSurfacePressureTrendPerHour()->getHectopascals());
     }
     
     public function test_get_wd_version()

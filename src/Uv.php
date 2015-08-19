@@ -52,6 +52,13 @@ class Uv
 
         return $uviDescription;
     }
+    
+    public function getAllMeasures()
+    {
+        return array(
+            "uvi" => $this->getUvi(),
+            "description" => $this->getUviDescription());
+    }
 }
 
 ?>

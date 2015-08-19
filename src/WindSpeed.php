@@ -105,6 +105,16 @@ class WindSpeed
         
         return number_format($beaufortScale, 0, '.', '');
     }
+    
+    public function getAllMeasures()
+    {
+        return array(
+            "bft" => $this->getBeaufortScale(),
+            "kn" => $this->getKnots(),
+            "kmh" => $this->getKilometresPerHour(),
+            "mph" => $this->getMilesPerHour(),
+            "ms" => $this->getMetresPerSecond());
+    }
 }
 
 ?>

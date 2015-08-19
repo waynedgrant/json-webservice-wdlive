@@ -26,6 +26,13 @@ class Temperature
     {
         return $this->fahrenheit;
     }
+    
+    public function getAllMeasures()
+    {
+        return array(
+            "c" => $this->getCelsius(),
+            "f" => $this->getFahrenheit());
+    }
 }
 
 ?>
