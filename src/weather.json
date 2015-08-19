@@ -10,26 +10,26 @@ require_once("ClientRaw.php");
 $clientRaw = new ClientRaw(CLIENT_RAW_DIRECTORY . "clientraw.txt");
 
 $temperature = array(
-    "current" => createTemperature($clientRaw->getOutdoorTemperature()),
-    "high" => createTemperature($clientRaw->getDailyHighOutdoorTemperature()),
-    "low" => createTemperature($clientRaw->getDailyLowOutdoorTemperature()),
+    "current" => $clientRaw->getOutdoorTemperature()->getAllMeasures(),
+    "high" => $clientRaw->getDailyHighOutdoorTemperature()->getAllMeasures(),
+    "low" => $clientRaw->getDailyLowOutdoorTemperature()->getAllMeasures(),
     "trend" => $clientRaw->getOutdoorTemperatureTrend()->getTrend());
 
 $pressure = array(
-    "current" => createPressure($clientRaw->getSurfacePressure()),
-    "high" => createPressure($clientRaw->getDailyHighSurfacePressure()),
-    "low" => createPressure($clientRaw->getDailyLowSurfacePressure()),
-    "trend_per_hr" => createPressure($clientRaw->getSurfacePressureTrendPerHour()));
+    "current" => $clientRaw->getSurfacePressure()->getAllMeasures(),
+    "high" => $clientRaw->getDailyHighSurfacePressure()->getAllMeasures(),
+    "low" => $clientRaw->getDailyLowSurfacePressure()->getAllMeasures(),
+    "trend_per_hr" => $clientRaw->getSurfacePressureTrendPerHour()->getAllMeasures());
 
 $rainfall = array();
 
 $wind = array(
-    "direction" => createWindDirection($clientRaw->getWindDirection()),
-    "avg_direction" => createWindDirection($clientRaw->getAverageWindDirection()),
-    "avg_speed" => createWindSpeed($clientRaw->getAverageWindSpeed()),
-    "max_avg_speed" => createWindSpeed($clientRaw->getMaximumAverageWindSpeed()),
-    "gust_speed" => createWindSpeed($clientRaw->getGustSpeed()),
-    "max_gust_speed" => createWindSpeed($clientRaw->getMaximumGustSpeed()));
+    "direction" => $clientRaw->getWindDirection()->getAllMeasures(),
+    "avg_direction" => $clientRaw->getAverageWindDirection()->getAllMeasures(),
+    "avg_speed" => $clientRaw->getAverageWindSpeed()->getAllMeasures(),
+    "max_avg_speed" => $clientRaw->getMaximumAverageWindSpeed()->getAllMeasures(),
+    "gust_speed" => $clientRaw->getGustSpeed()->getAllMeasures(),
+    "max_gust_speed" => $clientRaw->getMaximumGustSpeed()->getAllMeasures());
 
 $humidity = array(
     "current" => $clientRaw->getOutdoorHumidity()->getPercentage(),
@@ -58,7 +58,7 @@ $data = array(
     "wind_chill" => $windChill,
     "humidex" => $humidex,
     "heat_index" => $heatIndex,
-    "uv" => createUv($clientRaw->getUv()));
+    "uv" => $clientRaw->getUv()->getAllMeasures());
 
 $json = json_encode($data);
 

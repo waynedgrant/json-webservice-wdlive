@@ -33,6 +33,13 @@ class WindDirection
     {
         return self::$CARDINAL_DIRECTIONS[fmod((($compassDegress + 11) / 22.5), 16)];
     }
+    
+    public function getAllMeasures()
+    {
+        return array(
+            "cardinal" => $this->getCardinalDirection(),
+            "degrees" => $this->getCompassDegrees());
+    }
 }
 
 ?>

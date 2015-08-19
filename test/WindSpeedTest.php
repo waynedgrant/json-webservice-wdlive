@@ -14,6 +14,16 @@ class WindSpeedTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getMetresPerSecond());
         $this->assertNull($testee->getMilesPerHour());
     }
+    
+    public function test_all_measures_values_are_null_when_knots_is_empty()
+    {
+        $testee = new WindSpeed("-");
+        $this->assertNull($testee->getAllMeasures()["bft"]);
+        $this->assertNull($testee->getAllMeasures()["kn"]);
+        $this->assertNull($testee->getAllMeasures()["kmh"]);
+        $this->assertNull($testee->getAllMeasures()["ms"]);
+        $this->assertNull($testee->getAllMeasures()["mph"]);
+    }
 
     public function test_wind_speed_values_are_correct_when_knots_is_not_empty()
     {
@@ -54,6 +64,23 @@ class WindSpeedTest extends PHPUnit_Framework_TestCase
 
         $testee = new WindSpeed($highKnots);
         $this->assertSame($expectedBeaufortScale, $testee->getBeaufortScale());
+    }
+    
+    public function test_all_measures_values_are_correct_when_knots_is_not_empty()
+    {
+        $testee = new WindSpeed("0.0");
+        $this->assertSame("0", $testee->getAllMeasures()["bft"]);
+        $this->assertSame("0.0", $testee->getAllMeasures()["kn"]);
+        $this->assertSame("0.0", $testee->getAllMeasures()["kmh"]);
+        $this->assertSame("0.0", $testee->getAllMeasures()["mph"]);
+        $this->assertSame("0.0", $testee->getAllMeasures()["ms"]);
+
+        $testee = new WindSpeed("5.1");
+        $this->assertSame("2", $testee->getAllMeasures()["bft"]);
+        $this->assertSame("5.1", $testee->getAllMeasures()["kn"]);
+        $this->assertSame("9.4", $testee->getAllMeasures()["kmh"]);
+        $this->assertSame("5.9", $testee->getAllMeasures()["mph"]);
+        $this->assertSame("2.6", $testee->getAllMeasures()["ms"]);
     }
 }
 

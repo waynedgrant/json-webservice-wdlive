@@ -47,6 +47,16 @@ class Pressure
     {
         return $this->millimetresOfMercury;
     }
+    
+    public function getAllMeasures()
+    {
+        return array(
+            "hpa" => $this->getHectopascals(),
+            "inhg" => $this->getInchesOfMercury(),
+            "kpa" => $this->getKilopascals(),
+            "mb" => $this->getMillibars(),
+            "mmhg" => $this->getMillimetresOfMercury());
+    }
 }
 
 ?>

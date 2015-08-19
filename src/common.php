@@ -41,45 +41,4 @@ function createTime($clientRaw)
         "time_date" => $dateAndTime->getTimeAndDate());
 }
 
-function createTemperature($temperature)
-{
-    return array(
-        "c" => $temperature->getCelsius(),
-        "f" => $temperature->getFahrenheit());
-}
-
-function createPressure($pressure)
-{
-    return array(
-        "hpa" => $pressure->getHectopascals(),
-        "inhg" => $pressure->getInchesOfMercury(),
-        "kpa" => $pressure->getKilopascals(),
-        "mb" => $pressure->getMillibars(),
-        "mmhg" => $pressure->getMillimetresOfMercury());
-}
-
-function createWindDirection($windDirection)
-{    
-    return array(
-        "cardinal" => $windDirection->getCardinalDirection(),
-        "degrees" => $windDirection->getCompassDegrees());
-}
-
-function createWindSpeed($windSpeed)
-{
-    return array(
-        "bft" => $windSpeed->getBeaufortScale(),
-        "kn" => $windSpeed->getKnots(),
-        "kmh" => $windSpeed->getKilometresPerHour(),
-        "mph" => $windSpeed->getMilesPerHour(),
-        "ms" => $windSpeed->getMetresPerSecond());
-}
-
-function createUv($uv)
-{
-    return array(
-        "uvi" => $uv->getUvi(),
-        "description" => $uv->getUviDescription());
-}
-
 ?>

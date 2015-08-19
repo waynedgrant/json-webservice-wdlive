@@ -13,7 +13,7 @@ $data = array(
     "endpoint" => createEndpoint(),
     "station" => createStation($clientRaw),
     "time" => createTime($clientRaw),
-    "temperature" => createTemperature($clientRaw->getIndoorTemperature()),
+    "temperature" => $clientRaw->getIndoorTemperature()->getAllMeasures(),
     "humidity" => $clientRaw->getIndoorHumidity()->getPercentage());
 
 $json = json_encode($data);
