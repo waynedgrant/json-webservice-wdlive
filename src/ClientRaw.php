@@ -6,6 +6,8 @@
 require_once("DateAndTime.php");
 require_once("Humidity.php");
 require_once("Pressure.php");
+require_once("Rainfall.php");
+require_once("RainfallRate.php");
 require_once("Temperature.php");
 require_once("Trend.php");
 require_once("Uv.php");
@@ -19,10 +21,14 @@ class ClientRaw
     const WIND_DIRECTION = 3;
     const OUTDOOR_TEMPERATURE = 4;
     const OUTDOOR_HUMIDITY = 5;
-	const SURFACE_PRESSURE = 6;    
-
+	const SURFACE_PRESSURE = 6;
+	const DAILY_RAINFALL = 7;
+	const RAINFALL_RATE_PER_MINUTE = 10;
+    const DAILY_MAX_RAINFALL_RATE_PER_MINUTE = 11;
     const INDOOR_TEMPERATURE = 12;
     const INDOOR_HUMIDITY = 13;
+    
+    const YESTERDAYS_RAINFALL = 19;
     
     const STATION_NAME = 32;
     
@@ -133,6 +139,21 @@ class ClientRaw
     {
         return new Pressure(self::readField(self::SURFACE_PRESSURE));
     }
+    
+    public function getDailyRainfall()
+    {
+        return new Rainfall(self::readField(self::DAILY_RAINFALL));
+    }
+    
+    public function getRainfallRatePerMinute()
+    {
+        return new RainfallRate(self::readField(self::RAINFALL_RATE_PER_MINUTE));
+    }
+    
+    public function getMaxRainfallRatePerMinute()
+    {
+        return new RainfallRate(self::readField(self::DAILY_MAX_RAINFALL_RATE_PER_MINUTE));
+    }
 
     public function getIndoorTemperature()
     {
@@ -143,7 +164,12 @@ class ClientRaw
     {
         return new Humidity(self::readField(self::INDOOR_HUMIDITY));
     }
-
+    
+    public function getYesterdaysRainfall()
+    {
+        return new Rainfall(self::readField(self::YESTERDAYS_RAINFALL));
+    }
+    
     public function getStationName()
     {
         $stationName = self::readField(self::STATION_NAME);

@@ -73,6 +73,25 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $testee = self::createClientRawWithField(new Field(ClientRaw::SURFACE_PRESSURE, "1021.7"));
         $this->assertSame("1021.7", $testee->getSurfacePressure()->getHectopascals());
     }
+    
+    public function test_get_daily_rainfall()
+    {
+        $testee = self::createClientRawWithField(new Field(ClientRaw::DAILY_RAINFALL, "10.21"));
+        $this->assertSame("10.21", $testee->getDailyRainfall()->getMillimetres());
+    }
+    
+    public function test_get_rainfall_rate_per_minute()
+    {
+        $testee = self::createClientRawWithField(new Field(ClientRaw::RAINFALL_RATE_PER_MINUTE, "0.12"));
+        $this->assertSame("0.12", $testee->getRainfallRatePerMinute()->getMillimetresPerMinute());
+    }
+    
+    
+    public function test_get_max_rainfall_rate_per_minute()
+    {
+        $testee = self::createClientRawWithField(new Field(ClientRaw::DAILY_MAX_RAINFALL_RATE_PER_MINUTE, "1.05"));
+        $this->assertSame("1.05", $testee->getMaxRainfallRatePerMinute()->getMillimetresPerMinute());
+    }
 
     public function test_get_indoor_temperature()
     {
@@ -84,6 +103,12 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
     {
         $testee = self::createClientRawWithField(new Field(ClientRaw::INDOOR_HUMIDITY, "45"));
         $this->assertSame("45", $testee->getIndoorHumidity()->getPercentage());
+    }
+        
+    public function test_get_yesterdays_rainfall()
+    {
+        $testee = self::createClientRawWithField(new Field(ClientRaw::YESTERDAYS_RAINFALL, "5.62"));
+        $this->assertSame("5.62", $testee->getYesterdaysRainfall()->getMillimetres());
     }
 
     public function test_get_station_name()
@@ -277,8 +302,12 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getOutdoorTemperature()->getCelsius());
         $this->assertNull($testee->getOutdoorHumidity()->getPercentage());
         $this->assertNull($testee->getSurfacePressure()->getHectopascals());
+        $this->assertNull($testee->getDailyRainfall()->getMillimetres());
+        $this->assertNull($testee->getRainfallRatePerMinute()->getMillimetresPerMinute());
+        $this->assertNull($testee->getMaxRainfallRatePerMinute()->getMillimetresPerMinute());        
         $this->assertNull($testee->getIndoorTemperature()->getCelsius());
         $this->assertNull($testee->getIndoorHumidity()->getPercentage());
+        $this->assertNull($testee->getYesterdaysRainfall()->getMillimetres());
         $this->assertNull($testee->getStationName());
 		$this->assertNull($testee->getDailyHighOutdoorTemperature()->getCelsius());
 		$this->assertNull($testee->getDailyLowOutdoorTemperature()->getCelsius());

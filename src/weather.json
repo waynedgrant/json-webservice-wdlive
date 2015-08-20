@@ -21,8 +21,12 @@ $pressure = array(
     "low" => $clientRaw->getDailyLowSurfacePressure()->getAllMeasures(),
     "trend_per_hr" => $clientRaw->getSurfacePressureTrendPerHour()->getAllMeasures());
 
-$rainfall = array();
-
+$rainfall = array(
+    "daily" => $clientRaw->getDailyRainfall()->getAllMeasures(),
+    "rate_per_min" => $clientRaw->getRainfallRatePerMinute()->getAllMeasures(),
+    "max_rate_per_min" => $clientRaw->getMaxRainfallRatePerMinute()->getAllMeasures(),
+    "yesterday" => $clientRaw->getYesterdaysRainfall()->getAllMeasures());
+    
 $wind = array(
     "direction" => $clientRaw->getWindDirection()->getAllMeasures(),
     "avg_direction" => $clientRaw->getAverageWindDirection()->getAllMeasures(),
