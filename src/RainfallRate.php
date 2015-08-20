@@ -26,6 +26,13 @@ class RainfallRate
     {
         return $this->millimetresPerMinute;
     }
+    
+    public function getAllMeasures()
+    {
+        return array(
+            "in" => $this->getInchesPerMinute(),
+            "mm" => $this->getMillimetresPerMinute());
+    }
 }
 
 ?>

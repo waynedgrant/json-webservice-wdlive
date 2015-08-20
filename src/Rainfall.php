@@ -26,6 +26,13 @@ class Rainfall
     {
         return $this->millimetres;
     }
+    
+    public function getAllMeasures()
+    {
+        return array(
+            "in" => $this->getInches(),
+            "mm" => $this->getMillimetres());
+    }
 }
 
 ?>
