@@ -154,6 +154,12 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $testee = self::createClientRawWithField(new Field(ClientRaw::MAXIMUM_GUST_SPEED, "15.5"));
         $this->assertSame("15.5", $testee->getMaximumGustSpeed()->getKnots());
     }
+        
+    public function test_get_dew_point()
+    {
+        $testee = self::createClientRawWithField(new Field(ClientRaw::DEW_POINT, "2.9"));
+        $this->assertSame("2.9", $testee->getDewPoint()->getCelsius());
+    }
     
     public function test_get_uv()
     {
@@ -203,6 +209,38 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
                 new Field(ClientRaw::SURFACE_PRESSURE, "1019.2")));
                 
         $this->assertSame("1019.2", $testee->getDailyLowSurfacePressure()->getHectopascals());
+    }
+        
+    public function test_get_daily_high_dew_point()
+    {
+        $testee = self::createClientRawWithField(new Field(ClientRaw::DAILY_HIGH_DEW_POINT, "9.4"));
+        $this->assertSame("9.4", $testee->getDailyHighDewPoint()->getCelsius());
+    }
+    
+    public function test_get_daily_high_dew_point_when_dew_point_higher()
+    {
+        $testee = self::createClientRawWithFields(
+            array(
+                new Field(ClientRaw::DAILY_HIGH_DEW_POINT, "9.4"),
+                new Field(ClientRaw::DEW_POINT, "9.5")));
+                
+        $this->assertSame("9.5", $testee->getDailyHighDewPoint()->getCelsius());
+    }
+        
+    public function test_get_daily_low_dew_point()
+    {
+        $testee = self::createClientRawWithField(new Field(ClientRaw::DAILY_LOW_DEW_POINT, "1.5"));
+        $this->assertSame("1.5", $testee->getDailyLowDewPoint()->getCelsius());
+    }
+    
+    public function test_get_daily_low_dew_point_when_dew_point_lower()
+    {
+        $testee = self::createClientRawWithFields(
+            array(
+                new Field(ClientRaw::DAILY_LOW_DEW_POINT, "1.5"),
+                new Field(ClientRaw::DEW_POINT, "1.4")));
+                
+        $this->assertSame("1.4", $testee->getDailyLowDewPoint()->getCelsius());
     }
     
     public function test_get_outdoor_temperature_trend()
@@ -312,11 +350,14 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
 		$this->assertNull($testee->getDailyHighOutdoorTemperature()->getCelsius());
 		$this->assertNull($testee->getDailyLowOutdoorTemperature()->getCelsius());
         $this->assertNull($testee->getMaximumGustSpeed()->getKnots());
+        $this->assertNull($testee->getDewPoint()->getCelsius());
         $this->assertNull($testee->getUv()->getUvi());
         $this->assertNull($testee->getMaximumAverageWindSpeed()->getKnots());
         $this->assertNull($testee->getAverageWindDirection()->getCompassDegrees());
         $this->assertNull($testee->getDailyHighSurfacePressure()->getHectopascals());
         $this->assertNull($testee->getDailyLowSurfacePressure()->getHectopascals());
+        $this->assertNull($testee->getDailyHighDewPoint()->getCelsius());
+        $this->assertNull($testee->getDailyLowDewPoint()->getCelsius());
 	    $this->assertNull($testee->getOutdoorTemperatureTrend()->getTrend());
 	    $this->assertNull($testee->getOutdoorHumidityTrend()->getTrend());
         $this->assertNull($testee->getLatitude());
