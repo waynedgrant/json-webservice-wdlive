@@ -38,6 +38,7 @@ class ClientRaw
 	const SURFACE_PRESSURE_TREND_PER_HOUR = 50;
     
     const MAXIMUM_GUST_SPEED = 71;
+	const DEW_POINT = 72;
     
     const UV_INDEX = 79;
     
@@ -47,6 +48,9 @@ class ClientRaw
     
     const DAILY_HIGH_SURFACE_PRESSURE = 131;
     const DAILY_LOW_SURFACE_PRESSURE = 132;
+    
+    const DAILY_HIGH_DEW_POINT = 138;
+    const DAILY_LOW_DEW_POINT = 139;
     
     const OUTDOOR_TEMPERATURE_TREND = 143;
 	const OUTDOOR_HUMIDITY_TREND = 144;
@@ -227,6 +231,11 @@ class ClientRaw
         return new WindSpeed(self::readField(self::MAXIMUM_GUST_SPEED));
     }
     
+    public function getDewPoint()
+    {
+        return new Temperature(self::readField(self::DEW_POINT));
+    }
+        
     public function getUV()
     {
         return new Uv(self::readField(self::UV_INDEX));
@@ -270,6 +279,36 @@ class ClientRaw
         }
         
         return $dailyLowSurfacePressure;
+    }
+    
+    public function getDailyHighDewPoint()
+    {
+        $dailyHighDewPoint = new Temperature(self::readField(self::DAILY_HIGH_DEW_POINT));
+        $dewPoint = self::getDewPoint();
+        
+        if (!is_null($dewPoint->getCelsius()) &&
+            !is_null($dailyHighDewPoint->getCelsius()) &&
+            $dewPoint->getCelsius() > $dailyHighDewPoint->getCelsius())
+        {
+            $dailyHighDewPoint = $dewPoint;
+        }
+        
+        return $dailyHighDewPoint;
+    }
+    
+    public function getDailyLowDewPoint()
+    {        
+        $dailyLowDewPoint = new Temperature(self::readField(self::DAILY_LOW_DEW_POINT));
+        $dewPoint = self::getDewPoint();
+        
+        if (!is_null($dewPoint->getCelsius()) &&
+            !is_null($dailyLowDewPoint->getCelsius()) &&
+            $dewPoint->getCelsius() < $dailyLowDewPoint->getCelsius())
+        {
+            $dailyLowDewPoint = $dewPoint;
+        }
+        
+        return $dailyLowDewPoint;
     }
     
     public function getOutdoorTemperatureTrend()

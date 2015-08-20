@@ -41,7 +41,10 @@ $humidity = array(
     "low" => $clientRaw->getDailyLowOutdoorHumidity()->getPercentage(),
     "trend" => $clientRaw->getOutdoorHumidityTrend()->getTrend());
     
-$dewPoint = array();
+$dewPoint = array(
+    "current" => $clientRaw->getDewPoint()->getAllMeasures(),
+    "high" => $clientRaw->getDailyHighDewPoint()->getAllMeasures(),
+    "low" => $clientRaw->getDailyLowDewPoint()->getAllMeasures());
 
 $windChill = array();
 
