@@ -117,6 +117,12 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $this->assertSame("Clifton, NJ, USA", $testee->getStationName());
     }
     
+    public function test_get_wind_chill()
+    {
+        $testee = self::createClientRawWithField(new Field(ClientRaw::WIND_CHILL, "3.2"));
+        $this->assertSame("3.2", $testee->getWindChill()->getCelsius());
+    }
+    
     public function test_get_daily_high_outdoor_temperature()
     {
         $testee = self::createClientRawWithField(new Field(ClientRaw::DAILY_HIGH_OUTDOOR_TEMPERATURE, "30.8"));
@@ -159,6 +165,38 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
     {
         $testee = self::createClientRawWithField(new Field(ClientRaw::DEW_POINT, "2.9"));
         $this->assertSame("2.9", $testee->getDewPoint()->getCelsius());
+    }
+    
+    public function test_get_daily_high_wind_chill()
+    {
+        $testee = self::createClientRawWithField(new Field(ClientRaw::DAILY_HIGH_WIND_CHILL, "17.6"));
+        $this->assertSame("17.6", $testee->getDailyHighWindChill()->getCelsius());
+    }
+    
+    public function test_get_daily_high_wind_chill_when_wind_chill_lower()
+    {
+        $testee = self::createClientRawWithFields(
+            array(
+                new Field(ClientRaw::DAILY_HIGH_WIND_CHILL, "17.6"),
+                new Field(ClientRaw::WIND_CHILL, "17.7")));
+                
+        $this->assertSame("17.7", $testee->getDailyHighWindChill()->getCelsius());
+    }
+    
+    public function test_get_daily_low_wind_chill()
+    {
+        $testee = self::createClientRawWithField(new Field(ClientRaw::DAILY_LOW_WIND_CHILL, "-7.5"));
+        $this->assertSame("-7.5", $testee->getDailyLowWindChill()->getCelsius());
+    }
+    
+    public function test_get_daily_low_wind_chill_when_wind_chill_lower()
+    {
+        $testee = self::createClientRawWithFields(
+            array(
+                new Field(ClientRaw::DAILY_LOW_WIND_CHILL, "-7.5"),
+                new Field(ClientRaw::WIND_CHILL, "-7.6")));
+                
+        $this->assertSame("-7.6", $testee->getDailyLowWindChill()->getCelsius());
     }
     
     public function test_get_uv()
@@ -347,10 +385,13 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getIndoorHumidity()->getPercentage());
         $this->assertNull($testee->getYesterdaysRainfall()->getMillimetres());
         $this->assertNull($testee->getStationName());
+        $this->assertNull($testee->getWindChill()->getCelsius());
 		$this->assertNull($testee->getDailyHighOutdoorTemperature()->getCelsius());
 		$this->assertNull($testee->getDailyLowOutdoorTemperature()->getCelsius());
         $this->assertNull($testee->getMaximumGustSpeed()->getKnots());
         $this->assertNull($testee->getDewPoint()->getCelsius());
+        $this->assertNull($testee->getDailyHighWindChill()->getCelsius());
+        $this->assertNull($testee->getDailyLowWindChill()->getCelsius());
         $this->assertNull($testee->getUv()->getUvi());
         $this->assertNull($testee->getMaximumAverageWindSpeed()->getKnots());
         $this->assertNull($testee->getAverageWindDirection()->getCompassDegrees());
