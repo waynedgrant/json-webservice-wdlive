@@ -32,6 +32,8 @@ class ClientRaw
     
     const STATION_NAME = 32;
     
+    const WIND_CHILL = 44;
+    
     const DAILY_HIGH_OUTDOOR_TEMPERATURE = 46;
     const DAILY_LOW_OUTDOOR_TEMPERATURE = 47;
     
@@ -39,6 +41,9 @@ class ClientRaw
     
     const MAXIMUM_GUST_SPEED = 71;
 	const DEW_POINT = 72;
+    
+    const DAILY_HIGH_WIND_CHILL = 77;
+    const DAILY_LOW_WIND_CHILL = 78;
     
     const UV_INDEX = 79;
     
@@ -195,6 +200,11 @@ class ClientRaw
 
         return $stationName;
     }
+        
+    public function getWindChill()
+    {
+        return new Temperature(self::readField(self::WIND_CHILL));        
+    }    
     
     public function getDailyHighOutdoorTemperature()
     {        
@@ -235,6 +245,36 @@ class ClientRaw
     {
         return new Temperature(self::readField(self::DEW_POINT));
     }
+    
+    public function getDailyHighWindChill()
+    {        
+        $dailyHighWindChill = new Temperature(self::readField(self::DAILY_HIGH_WIND_CHILL));
+        $windChill = self::getWindChill();
+        
+        if (!is_null($windChill->getCelsius()) &&
+            !is_null($dailyHighWindChill->getCelsius()) &&
+            $windChill->getCelsius() > $dailyHighWindChill->getCelsius())
+        {
+            $dailyHighWindChill = $windChill;
+        }
+        
+        return $dailyHighWindChill;                   
+    } 
+    
+    public function getDailyLowWindChill()
+    {        
+        $dailyLowWindChill = new Temperature(self::readField(self::DAILY_LOW_WIND_CHILL));
+        $windChill = self::getWindChill();
+        
+        if (!is_null($windChill->getCelsius()) &&
+            !is_null($dailyLowWindChill->getCelsius()) &&
+            $windChill->getCelsius() < $dailyLowWindChill->getCelsius())
+        {
+            $dailyLowWindChill = $windChill;
+        }
+        
+        return $dailyLowWindChill;        
+    } 
         
     public function getUV()
     {

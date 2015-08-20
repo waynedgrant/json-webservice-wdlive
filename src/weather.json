@@ -46,7 +46,10 @@ $dewPoint = array(
     "high" => $clientRaw->getDailyHighDewPoint()->getAllMeasures(),
     "low" => $clientRaw->getDailyLowDewPoint()->getAllMeasures());
 
-$windChill = array();
+$windChill = array(
+    "current" => $clientRaw->getWindChill()->getAllMeasures(),
+    "high" => $clientRaw->getDailyHighWindChill()->getAllMeasures(),
+    "low" => $clientRaw->getDailyLowWindChill()->getAllMeasures());
 
 $humidex = array();
 
