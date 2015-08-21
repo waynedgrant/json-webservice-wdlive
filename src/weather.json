@@ -51,7 +51,11 @@ $windChill = array(
     "high" => $clientRaw->getDailyHighWindChill()->getAllMeasures(),
     "low" => $clientRaw->getDailyLowWindChill()->getAllMeasures());
 
-$humidex = array();
+$humidex = array(
+    "current" => $clientRaw->getHumidex()->getAllMeasures(),
+    "high" => $clientRaw->getDailyHighHumidex()->getAllMeasures(),
+    "low" => $clientRaw->getDailyLowHumidex()->getAllMeasures(),
+    "trend" => $clientRaw->getHumidexTrend()->getTrend());
 
 $heatIndex = array();
 

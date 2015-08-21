@@ -86,7 +86,6 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $this->assertSame("0.12", $testee->getRainfallRatePerMinute()->getMillimetresPerMinute());
     }
     
-    
     public function test_get_max_rainfall_rate_per_minute()
     {
         $testee = self::createClientRawWithField(new Field(ClientRaw::DAILY_MAX_RAINFALL_RATE_PER_MINUTE, "1.05"));
@@ -121,6 +120,12 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
     {
         $testee = self::createClientRawWithField(new Field(ClientRaw::WIND_CHILL, "3.2"));
         $this->assertSame("3.2", $testee->getWindChill()->getCelsius());
+    }
+        
+    public function test_get_humidex()
+    {
+        $testee = self::createClientRawWithField(new Field(ClientRaw::HUMIDEX, "24.3"));
+        $this->assertSame("24.3", $testee->getHumidex()->getCelsius());
     }
     
     public function test_get_daily_high_outdoor_temperature()
@@ -166,7 +171,39 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $testee = self::createClientRawWithField(new Field(ClientRaw::DEW_POINT, "2.9"));
         $this->assertSame("2.9", $testee->getDewPoint()->getCelsius());
     }
+        
+    public function test_get_daily_high_humidex()
+    {
+        $testee = self::createClientRawWithField(new Field(ClientRaw::DAILY_HIGH_HUMIDEX, "30.3"));
+        $this->assertSame("30.3", $testee->getDailyHighHumidex()->getCelsius());
+    }
     
+    public function test_get_daily_high_humidex_when_humidex_lower()
+    {
+        $testee = self::createClientRawWithFields(
+            array(
+                new Field(ClientRaw::DAILY_HIGH_HUMIDEX, "30.3"),
+                new Field(ClientRaw::HUMIDEX, "30.4")));
+                
+        $this->assertSame("30.4", $testee->getDailyHighHumidex()->getCelsius());
+    }
+    
+    public function test_get_daily_low_humidex()
+    {
+        $testee = self::createClientRawWithField(new Field(ClientRaw::DAILY_LOW_HUMIDEX, "16.4"));
+        $this->assertSame("16.4", $testee->getDailyLowHumidex()->getCelsius());
+    }
+    
+    public function test_get_daily_low_humidex_when_humidex_lower()
+    {
+        $testee = self::createClientRawWithFields(
+            array(
+                new Field(ClientRaw::DAILY_LOW_HUMIDEX, "16.4"),
+                new Field(ClientRaw::HUMIDEX, "16.3")));
+                
+        $this->assertSame("16.3", $testee->getDailyLowHumidex()->getCelsius());
+    }
+        
     public function test_get_daily_high_wind_chill()
     {
         $testee = self::createClientRawWithField(new Field(ClientRaw::DAILY_HIGH_WIND_CHILL, "17.6"));
@@ -292,6 +329,12 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $testee = self::createClientRawWithField(new Field(ClientRaw::OUTDOOR_HUMIDITY_TREND, "-1"));
         $this->assertSame("-1", $testee->getOutdoorHumidityTrend()->getTrend());
     }
+    
+    public function test_get_humidex_trend()
+    {        
+        $testee = self::createClientRawWithField(new Field(ClientRaw::HUMIDEX_TREND, "1"));
+        $this->assertSame("1", $testee->getHumidexTrend()->getTrend());        
+    }
 
     public function test_get_latitude()
     {
@@ -386,10 +429,13 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getYesterdaysRainfall()->getMillimetres());
         $this->assertNull($testee->getStationName());
         $this->assertNull($testee->getWindChill()->getCelsius());
+        $this->assertNull($testee->getHumidex()->getCelsius());        
 		$this->assertNull($testee->getDailyHighOutdoorTemperature()->getCelsius());
 		$this->assertNull($testee->getDailyLowOutdoorTemperature()->getCelsius());
         $this->assertNull($testee->getMaximumGustSpeed()->getKnots());
         $this->assertNull($testee->getDewPoint()->getCelsius());
+        $this->assertNull($testee->getDailyHighHumidex()->getCelsius());        
+        $this->assertNull($testee->getDailyLowHumidex()->getCelsius());
         $this->assertNull($testee->getDailyHighWindChill()->getCelsius());
         $this->assertNull($testee->getDailyLowWindChill()->getCelsius());
         $this->assertNull($testee->getUv()->getUvi());
@@ -401,6 +447,7 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getDailyLowDewPoint()->getCelsius());
 	    $this->assertNull($testee->getOutdoorTemperatureTrend()->getTrend());
 	    $this->assertNull($testee->getOutdoorHumidityTrend()->getTrend());
+	    $this->assertNull($testee->getHumidexTrend()->getTrend());
         $this->assertNull($testee->getLatitude());
         $this->assertNull($testee->getLongitude());
         $this->assertNull($testee->getDailyHighOutdoorHumidity()->getPercentage());
