@@ -57,7 +57,10 @@ $humidex = array(
     "low" => $clientRaw->getDailyLowHumidex()->getAllMeasures(),
     "trend" => $clientRaw->getHumidexTrend()->getTrend());
 
-$heatIndex = array();
+$heatIndex = array(
+    "current" => $clientRaw->getHeatIndex()->getAllMeasures(),
+    "high" => $clientRaw->getDailyHighHeatIndex()->getAllMeasures(),
+    "low" => $clientRaw->getDailyLowHeatIndex()->getAllMeasures());
 
 $data = array(
     "endpoint" => createEndpoint(),

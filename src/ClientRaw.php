@@ -49,6 +49,9 @@ class ClientRaw
     
     const UV_INDEX = 79;
     
+    const DAILY_HIGH_HEAT_INDEX = 110;
+    const DAILY_LOW_HEAT_INDEX = 111;
+    const HEAT_INDEX = 112;
     const MAXIMUM_AVERAGE_WIND_SPEED = 113;
     
     const AVERAGE_WIND_DIRECTION = 117;
@@ -317,6 +320,41 @@ class ClientRaw
     public function getUV()
     {
         return new Uv(self::readField(self::UV_INDEX));
+    }
+        
+    public function getDailyHighHeatIndex()
+    {
+        $dailyHighHeatIndex = new Temperature(self::readField(self::DAILY_HIGH_HEAT_INDEX));
+        $heatIndex = self::getHeatIndex();
+        
+        if (!is_null($heatIndex->getCelsius()) &&
+            !is_null($dailyHighHeatIndex->getCelsius()) &&
+            $heatIndex->getCelsius() > $dailyHighHeatIndex->getCelsius())
+        {
+            $dailyHighHeatIndex = $heatIndex;
+        }
+        
+        return $dailyHighHeatIndex;
+    }
+    
+    public function getDailyLowHeatIndex()
+    {        
+        $dailyLowHeatIndex = new Temperature(self::readField(self::DAILY_LOW_HEAT_INDEX));
+        $heatIndex = self::getHeatIndex();
+        
+        if (!is_null($heatIndex->getCelsius()) &&
+            !is_null($dailyLowHeatIndex->getCelsius()) &&
+            $heatIndex->getCelsius() < $dailyLowHeatIndex->getCelsius())
+        {
+            $dailyLowHeatIndex = $heatIndex;
+        }
+        
+        return $dailyLowHeatIndex; 
+    }
+    
+    public function getHeatIndex()
+    {
+        return new Temperature(self::readField(self::HEAT_INDEX));
     }
 
     public function getMaximumAverageWindSpeed()

@@ -178,7 +178,7 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $this->assertSame("30.3", $testee->getDailyHighHumidex()->getCelsius());
     }
     
-    public function test_get_daily_high_humidex_when_humidex_lower()
+    public function test_get_daily_high_humidex_when_humidex_higher()
     {
         $testee = self::createClientRawWithFields(
             array(
@@ -210,7 +210,7 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $this->assertSame("17.6", $testee->getDailyHighWindChill()->getCelsius());
     }
     
-    public function test_get_daily_high_wind_chill_when_wind_chill_lower()
+    public function test_get_daily_high_wind_chill_when_wind_chill_higher()
     {
         $testee = self::createClientRawWithFields(
             array(
@@ -240,6 +240,44 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
     {
         $testee = self::createClientRawWithField(new Field(ClientRaw::UV_INDEX, "9.0"));
         $this->assertSame("9.0", $testee->getUv()->getUvi());
+    }
+    
+    public function test_get_daily_high_heat_index()
+    {
+        $testee = self::createClientRawWithField(new Field(ClientRaw::DAILY_HIGH_HEAT_INDEX, "32.4"));
+        $this->assertSame("32.4", $testee->getDailyHighHeatIndex()->getCelsius());
+    }
+    
+    public function test_get_daily_high_heat_index_when_heat_index_higher()
+    {
+        $testee = self::createClientRawWithFields(
+            array(
+                new Field(ClientRaw::DAILY_HIGH_HEAT_INDEX, "32.4"),
+                new Field(ClientRaw::HEAT_INDEX, "32.5")));
+                
+        $this->assertSame("32.5", $testee->getDailyHighHeatIndex()->getCelsius());
+    }
+    
+    public function test_get_daily_low_heat_index()
+    {
+        $testee = self::createClientRawWithField(new Field(ClientRaw::DAILY_LOW_HEAT_INDEX, "17.3"));
+        $this->assertSame("17.3", $testee->getDailyLowHeatIndex()->getCelsius());
+    }
+    
+    public function test_get_daily_low_heat_index_when_heat_index_lower()
+    {
+        $testee = self::createClientRawWithFields(
+            array(
+                new Field(ClientRaw::DAILY_LOW_HEAT_INDEX, "17.3"),
+                new Field(ClientRaw::HEAT_INDEX, "17.2")));
+                
+        $this->assertSame("17.2", $testee->getDailyLowHeatIndex()->getCelsius());
+    }
+        
+    public function test_get_heat_index()
+    {
+        $testee = self::createClientRawWithField(new Field(ClientRaw::HEAT_INDEX, "25.1"));
+        $this->assertSame("25.1", $testee->getHeatIndex()->getCelsius());
     }
 
     public function test_get_maximum_average_wind_speed()
@@ -439,6 +477,9 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getDailyHighWindChill()->getCelsius());
         $this->assertNull($testee->getDailyLowWindChill()->getCelsius());
         $this->assertNull($testee->getUv()->getUvi());
+        $this->assertNull($testee->getDailyHighHeatIndex()->getCelsius());
+        $this->assertNull($testee->getDailyLowHeatIndex()->getCelsius());
+        $this->assertNull($testee->getHeatIndex()->getCelsius());
         $this->assertNull($testee->getMaximumAverageWindSpeed()->getKnots());
         $this->assertNull($testee->getAverageWindDirection()->getCompassDegrees());
         $this->assertNull($testee->getDailyHighSurfacePressure()->getHectopascals());
