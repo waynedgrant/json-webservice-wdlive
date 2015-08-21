@@ -33,7 +33,7 @@ class ClientRaw
     const STATION_NAME = 32;
     
     const WIND_CHILL = 44;
-    
+    const HUMIDEX = 45;
     const DAILY_HIGH_OUTDOOR_TEMPERATURE = 46;
     const DAILY_LOW_OUTDOOR_TEMPERATURE = 47;
     
@@ -42,6 +42,8 @@ class ClientRaw
     const MAXIMUM_GUST_SPEED = 71;
 	const DEW_POINT = 72;
     
+    const DAILY_HIGH_HUMIDEX = 75;
+    const DAILY_LOW_HUMIDEX = 76;
     const DAILY_HIGH_WIND_CHILL = 77;
     const DAILY_LOW_WIND_CHILL = 78;
     
@@ -59,6 +61,7 @@ class ClientRaw
     
     const OUTDOOR_TEMPERATURE_TREND = 143;
 	const OUTDOOR_HUMIDITY_TREND = 144;
+    const HUMIDEX_TREND = 145;
     
     const LATITUDE = 160;
     const LONGITUDE = 161;
@@ -206,6 +209,11 @@ class ClientRaw
         return new Temperature(self::readField(self::WIND_CHILL));        
     }    
     
+    public function getHumidex()
+    {
+        return new Temperature(self::readField(self::HUMIDEX));        
+    }     
+    
     public function getDailyHighOutdoorTemperature()
     {        
         $dailyHighOutdoorTemperature = new Temperature(self::readField(self::DAILY_HIGH_OUTDOOR_TEMPERATURE));
@@ -244,6 +252,36 @@ class ClientRaw
     public function getDewPoint()
     {
         return new Temperature(self::readField(self::DEW_POINT));
+    }
+    
+    public function getDailyHighHumidex()
+    {        
+        $dailyHighHumidex = new Temperature(self::readField(self::DAILY_HIGH_HUMIDEX));
+        $humidex = self::getHumidex();
+        
+        if (!is_null($humidex->getCelsius()) &&
+            !is_null($dailyHighHumidex->getCelsius()) &&
+            $humidex->getCelsius() > $dailyHighHumidex->getCelsius())
+        {
+            $dailyHighHumidex = $humidex;
+        }
+        
+        return $dailyHighHumidex;   
+    }
+    
+    public function getDailyLowHumidex()
+    {        
+        $dailyLowHumidex = new Temperature(self::readField(self::DAILY_LOW_HUMIDEX));
+        $humidex = self::getHumidex();
+        
+        if (!is_null($humidex->getCelsius()) &&
+            !is_null($dailyLowHumidex->getCelsius()) &&
+            $humidex->getCelsius() < $dailyLowHumidex->getCelsius())
+        {
+            $dailyLowHumidex = $humidex;
+        }
+        
+        return $dailyLowHumidex; 
     }
     
     public function getDailyHighWindChill()
@@ -359,6 +397,11 @@ class ClientRaw
     public function getOutdoorHumidityTrend()
     {
         return new Trend(self::readField(self::OUTDOOR_HUMIDITY_TREND));
+    }
+        
+    public function getHumidexTrend()
+    {
+        return new Trend(self::readField(self::HUMIDEX_TREND));
     }
 
     public function getLatitude()
