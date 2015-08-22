@@ -45,10 +45,48 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
         $this->assertSame("25.2", $testee->getMonthlyHighOutdoorTemperature()->getCelsius());
     }
 
+    public function test_get_monthly_high_outdoor_temperature_date_and_time()
+    {
+        $testee = self::createClientRawExtraWithFields(
+            array(
+                new Field(ClientRawExtra::MONTHLY_HIGH_OUTDOOR_TEMPERATURE_YEAR, "2015"),
+                new Field(ClientRawExtra::MONTHLY_HIGH_OUTDOOR_TEMPERATURE_MONTH, "12"),
+                new Field(ClientRawExtra::MONTHLY_HIGH_OUTDOOR_TEMPERATURE_DAY, "31"),
+                new Field(ClientRawExtra::MONTHLY_HIGH_OUTDOOR_TEMPERATURE_HOUR, "23"),
+                new Field(ClientRawExtra::MONTHLY_HIGH_OUTDOOR_TEMPERATURE_MINUTE, "59")));
+
+        $dateAndTime = $testee->getMonthlyHighOutdoorTemperatureDateAndTime();
+
+        $this->assertSame("2015", $dateAndTime->getYear());
+        $this->assertSame("12", $dateAndTime->getMonth());
+        $this->assertSame("31", $dateAndTime->getDay());
+        $this->assertSame("23", $dateAndTime->getHour());
+        $this->assertSame("59", $dateAndTime->getMinute());
+    }
+
     public function test_get_monthly_low_outdoor_temperature()
     {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MONTHLY_LOW_OUTDOOR_TEMPERATURE, "-5.1"));
         $this->assertSame("-5.1", $testee->getMonthlyLowOutdoorTemperature()->getCelsius());
+    }
+
+    public function test_get_monthly_low_outdoor_temperature_date_and_time()
+    {
+        $testee = self::createClientRawExtraWithFields(
+            array(
+                new Field(ClientRawExtra::MONTHLY_LOW_OUTDOOR_TEMPERATURE_YEAR, "2015"),
+                new Field(ClientRawExtra::MONTHLY_LOW_OUTDOOR_TEMPERATURE_MONTH, "12"),
+                new Field(ClientRawExtra::MONTHLY_LOW_OUTDOOR_TEMPERATURE_DAY, "31"),
+                new Field(ClientRawExtra::MONTHLY_LOW_OUTDOOR_TEMPERATURE_HOUR, "23"),
+                new Field(ClientRawExtra::MONTHLY_LOW_OUTDOOR_TEMPERATURE_MINUTE, "59")));
+
+        $dateAndTime = $testee->getMonthlyLowOutdoorTemperatureDateAndTime();
+
+        $this->assertSame("2015", $dateAndTime->getYear());
+        $this->assertSame("12", $dateAndTime->getMonth());
+        $this->assertSame("31", $dateAndTime->getDay());
+        $this->assertSame("23", $dateAndTime->getHour());
+        $this->assertSame("59", $dateAndTime->getMinute());
     }
 
     public function test_when_fields_are_missing()
@@ -56,7 +94,17 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
         $testee = self::createEmptyClientRawExtra();
 
         $this->assertNull($testee->getMonthlyHighOutdoorTemperature()->getCelsius());
+        $this->assertNull($testee->getMonthlyHighOutdoorTemperatureDateAndTime()->getYear());
+        $this->assertNull($testee->getMonthlyHighOutdoorTemperatureDateAndTime()->getMonth());
+        $this->assertNull($testee->getMonthlyHighOutdoorTemperatureDateAndTime()->getDay());
+        $this->assertNull($testee->getMonthlyHighOutdoorTemperatureDateAndTime()->getHour());
+        $this->assertNull($testee->getMonthlyHighOutdoorTemperatureDateAndTime()->getMinute());
         $this->assertNull($testee->getMonthlyLowOutdoorTemperature()->getCelsius());
+        $this->assertNull($testee->getMonthlyLowOutdoorTemperatureDateAndTime()->getYear());
+        $this->assertNull($testee->getMonthlyLowOutdoorTemperatureDateAndTime()->getMonth());
+        $this->assertNull($testee->getMonthlyLowOutdoorTemperatureDateAndTime()->getDay());
+        $this->assertNull($testee->getMonthlyLowOutdoorTemperatureDateAndTime()->getHour());
+        $this->assertNull($testee->getMonthlyLowOutdoorTemperatureDateAndTime()->getMinute());
     }
 }
 
