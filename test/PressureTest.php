@@ -14,7 +14,7 @@ class PressureTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getMillibars());
         $this->assertNull($testee->getMillimetresOfMercury());
     }
-    
+
     public function test_all_measures_values_are_null_when_hectopascals_is_empty()
     {
         $testee = new Pressure("-");

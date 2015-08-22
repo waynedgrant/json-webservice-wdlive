@@ -47,7 +47,7 @@ class Pressure
     {
         return $this->millimetresOfMercury;
     }
-    
+
     public function getAllMeasures()
     {
         return array(

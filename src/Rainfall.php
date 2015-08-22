@@ -26,7 +26,7 @@ class Rainfall
     {
         return $this->millimetres;
     }
-    
+
     public function getAllMeasures()
     {
         return array(

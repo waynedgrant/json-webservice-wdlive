@@ -11,7 +11,7 @@ class RainfallRateTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getInchesPerMinute());
         $this->assertNull($testee->getMillimetresPerMinute());
     }
-    
+
     public function test_all_measures_values_are_null_when_millimetres_per_minute_is_empty()
     {
         $testee = new RainfallRate("-");
@@ -33,7 +33,7 @@ class RainfallRateTest extends PHPUnit_Framework_TestCase
         $this->assertSame("1.990", $testee->getInchesPerMinute());
         $this->assertSame("50.55", $testee->getMillimetresPerMinute());
     }
-    
+
     public function test_all_measures_values_are_correct_when_millimetres_per_minute_is_not_empty()
     {
         $testee = new RainfallRate("0.00");

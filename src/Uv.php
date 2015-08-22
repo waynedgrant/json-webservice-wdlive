@@ -52,7 +52,7 @@ class Uv
 
         return $uviDescription;
     }
-    
+
     public function getAllMeasures()
     {
         return array(

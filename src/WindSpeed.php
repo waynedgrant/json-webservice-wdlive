@@ -102,10 +102,10 @@ class WindSpeed
         {
             $beaufortScale = 12;
         }
-        
+
         return number_format($beaufortScale, 0, '.', '');
     }
-    
+
     public function getAllMeasures()
     {
         return array(

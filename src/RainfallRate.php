@@ -26,7 +26,7 @@ class RainfallRate
     {
         return $this->millimetresPerMinute;
     }
-    
+
     public function getAllMeasures()
     {
         return array(

@@ -15,10 +15,10 @@ class TrendTest extends PHPUnit_Framework_TestCase
     {
         $testee = new Trend("5");
         $this->assertSame("1", $testee->getTrend());
-        
+
         $testee = new Trend("0");
         $this->assertSame("0", $testee->getTrend());
-        
+
         $testee = new Trend("-5");
         $this->assertSame("-1", $testee->getTrend());
     }
