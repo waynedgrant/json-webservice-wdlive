@@ -69,6 +69,19 @@ class DateAndTime
     {
         return $this->timeAndDate;
     }
+
+    public function getAllValues()
+    {
+        return array(
+            "hour" => $this->getHour(),
+            "minute" => $this->getMinute(),
+            "day" => $this->getDay(),
+            "month" => $this->getMonth(),
+            "year" => $this->getYear(),
+            "time" => $this->getTime(),
+            "date" => $this->getDate(),
+            "time_date" => $this->getTimeAndDate());
+    }
 }
 
 ?>

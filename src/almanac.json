@@ -11,11 +11,17 @@ require_once("ClientRawExtra.php");
 $clientRaw = new ClientRaw(CLIENT_RAW_DIRECTORY . "clientraw.txt");
 $clientRawExtra = new ClientRawExtra(CLIENT_RAW_DIRECTORY . "clientrawextra.txt");
 
-$dateAndTime = $clientRaw->getDateAndTime();
+$dateAndTime = $clientRaw->getCurrentDateAndTime();
+
+$monthlyHighOutdoorTemperature = $clientRawExtra->getMonthlyHighOutdoorTemperature()->getAllMeasures();
+$monthlyHighOutdoorTemperature['time'] = $clientRawExtra->getMonthlyHighOutdoorTemperatureDateAndTime()->getAllValues();
+
+$monthlyLowOutdoorTemperature = $clientRawExtra->getMonthlyLowOutdoorTemperature()->getAllMeasures();
+$monthlyLowOutdoorTemperature['time'] = $clientRawExtra->getMonthlyLowOutdoorTemperatureDateAndTime()->getAllValues();
 
 $monthToDateTemperature = array(
-    "high" => $clientRawExtra->getMonthlyHighOutdoorTemperature()->getAllMeasures(),
-    "low" => $clientRawExtra->getMonthlyLowOutdoorTemperature()->getAllMeasures());
+    "high" => $monthlyHighOutdoorTemperature,
+    "low" => $monthlyLowOutdoorTemperature);
 
 $monthToDate = array(
     "month" => $dateAndTime->getMonth(),
@@ -53,7 +59,7 @@ $allTime = array(
 $data = array(
     "endpoint" => createEndpoint(),
     "station" => createStation($clientRaw),
-    "time" => createTime($clientRaw),
+    "time" => $dateAndTime->getAllValues(),
     "month_to_date" => $monthToDate,
     "year_to_date" => $yearToDate,
     "all_time" => $allTime);

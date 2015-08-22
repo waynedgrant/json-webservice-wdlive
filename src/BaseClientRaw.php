@@ -56,6 +56,17 @@ abstract class BaseClientRaw
     {
         return count($this->fields);
     }
+
+    protected function getDateAndTime($yearIndex, $monthIndex, $dayIndex, $hourIndex, $minuteIndex)
+    {
+        $year = self::readField($yearIndex);
+        $month = self::readField($monthIndex);
+        $day = self::readField($dayIndex);
+        $hour = self::readField($hourIndex);
+        $minute = self::readField($minuteIndex);
+
+        return new DateAndTime($year, $month, $day, $hour, $minute, $second);
+    }
 }
 
 ?>

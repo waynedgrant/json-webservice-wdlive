@@ -431,7 +431,7 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $this->assertSame("C10.37Of", $testee->getWdVersion());
     }
 
-    public function test_get_date_and_time()
+    public function test_get_current_date_and_time()
     {
         $testee = self::createClientRawWithFields(
             array(
@@ -441,13 +441,13 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
                 new Field(ClientRaw::HOUR, "23"),
                 new Field(ClientRaw::MINUTE, "59")));
 
-        $dateAndTime = $testee->getDateAndTime();
+        $currentDateAndTime = $testee->getCurrentDateAndTime();
 
-        $this->assertSame("2015", $dateAndTime->getYear());
-        $this->assertSame("12", $dateAndTime->getMonth());
-        $this->assertSame("31", $dateAndTime->getDay());
-        $this->assertSame("23", $dateAndTime->getHour());
-        $this->assertSame("59", $dateAndTime->getMinute());
+        $this->assertSame("2015", $currentDateAndTime->getYear());
+        $this->assertSame("12", $currentDateAndTime->getMonth());
+        $this->assertSame("31", $currentDateAndTime->getDay());
+        $this->assertSame("23", $currentDateAndTime->getHour());
+        $this->assertSame("59", $currentDateAndTime->getMinute());
     }
 
     public function test_when_fields_are_missing()
@@ -497,11 +497,11 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getSurfacePressureTrendPerHour()->getHectopascals());
         $this->assertNull($testee->getWdVersion());
 
-        $this->assertNull($testee->getDateAndTime()->getYear());
-        $this->assertNull($testee->getDateAndTime()->getMonth());
-        $this->assertNull($testee->getDateAndTime()->getDay());
-        $this->assertNull($testee->getDateAndTime()->getHour());
-        $this->assertNull($testee->getDateAndTime()->getMinute());
+        $this->assertNull($testee->getCurrentDateAndTime()->getYear());
+        $this->assertNull($testee->getCurrentDateAndTime()->getMonth());
+        $this->assertNull($testee->getCurrentDateAndTime()->getDay());
+        $this->assertNull($testee->getCurrentDateAndTime()->getHour());
+        $this->assertNull($testee->getCurrentDateAndTime()->getMinute());
     }
 }
 
