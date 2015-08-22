@@ -11,7 +11,7 @@ class TemperatureTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getCelsius());
         $this->assertNull($testee->getFahrenheit());
     }
-    
+
     public function test_all_measures_values_are_null_when_celsius_is_empty()
     {
         $testee = new Temperature("-");
@@ -24,16 +24,16 @@ class TemperatureTest extends PHPUnit_Framework_TestCase
         $testee = new Temperature("-50.5");
         $this->assertSame("-50.5", $testee->getCelsius());
         $this->assertSame("-58.9", $testee->getFahrenheit());
-        
+
         $testee = new Temperature("0.0");
         $this->assertSame("0.0", $testee->getCelsius());
         $this->assertSame("32.0", $testee->getFahrenheit());
-        
+
         $testee = new Temperature("50.5");
         $this->assertSame("50.5", $testee->getCelsius());
         $this->assertSame("122.9", $testee->getFahrenheit());
     }
-    
+
     public function test_all_measures_values_are_correct_when_celsius_is_not_empty()
     {
         $testee = new Temperature("-50.5");

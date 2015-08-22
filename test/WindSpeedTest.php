@@ -14,7 +14,7 @@ class WindSpeedTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getMetresPerSecond());
         $this->assertNull($testee->getMilesPerHour());
     }
-    
+
     public function test_all_measures_values_are_null_when_knots_is_empty()
     {
         $testee = new WindSpeed("-");
@@ -65,7 +65,7 @@ class WindSpeedTest extends PHPUnit_Framework_TestCase
         $testee = new WindSpeed($highKnots);
         $this->assertSame($expectedBeaufortScale, $testee->getBeaufortScale());
     }
-    
+
     public function test_all_measures_values_are_correct_when_knots_is_not_empty()
     {
         $testee = new WindSpeed("0.0");

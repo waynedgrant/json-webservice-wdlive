@@ -26,7 +26,7 @@ class Temperature
     {
         return $this->fahrenheit;
     }
-    
+
     public function getAllMeasures()
     {
         return array(

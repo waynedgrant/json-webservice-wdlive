@@ -11,7 +11,7 @@ class UvTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getUvi());
         $this->assertNull($testee->getUviDescription());
     }
-    
+
     public function test_all_measures_values_are_null_when_uvi_is_empty()
     {
         $testee = new Uv("-");
@@ -57,7 +57,7 @@ class UvTest extends PHPUnit_Framework_TestCase
         $this->assertSame("11.0", $testee->getUvi());
         $this->assertSame("extreme", $testee->getUviDescription());
     }
-    
+
     public function test_all_measurements_values_are_correct_when_uvi_is_not_empty()
     {
         $testee = new Uv("0.0");

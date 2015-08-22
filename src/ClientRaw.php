@@ -3,6 +3,7 @@
 # Copyright 2015 Wayne D Grant (www.waynedgrant.com)
 # Licensed under the MIT License
 
+require_once("BaseClientRaw.php");
 require_once("DateAndTime.php");
 require_once("Humidity.php");
 require_once("Pressure.php");
@@ -14,7 +15,7 @@ require_once("Uv.php");
 require_once("WindDirection.php");
 require_once("WindSpeed.php");
 
-class ClientRaw
+class ClientRaw extends BaseClientRaw
 {
     const AVERAGE_WIND_SPEED = 1;
     const GUST_SPEED = 2;
@@ -27,48 +28,34 @@ class ClientRaw
     const DAILY_MAX_RAINFALL_RATE_PER_MINUTE = 11;
     const INDOOR_TEMPERATURE = 12;
     const INDOOR_HUMIDITY = 13;
-    
     const YESTERDAYS_RAINFALL = 19;
-    
     const STATION_NAME = 32;
-    
     const WIND_CHILL = 44;
     const HUMIDEX = 45;
     const DAILY_HIGH_OUTDOOR_TEMPERATURE = 46;
     const DAILY_LOW_OUTDOOR_TEMPERATURE = 47;
-    
 	const SURFACE_PRESSURE_TREND_PER_HOUR = 50;
-    
     const MAXIMUM_GUST_SPEED = 71;
 	const DEW_POINT = 72;
-    
     const DAILY_HIGH_HUMIDEX = 75;
     const DAILY_LOW_HUMIDEX = 76;
     const DAILY_HIGH_WIND_CHILL = 77;
     const DAILY_LOW_WIND_CHILL = 78;
-    
     const UV_INDEX = 79;
-    
     const DAILY_HIGH_HEAT_INDEX = 110;
     const DAILY_LOW_HEAT_INDEX = 111;
     const HEAT_INDEX = 112;
     const MAXIMUM_AVERAGE_WIND_SPEED = 113;
-    
     const AVERAGE_WIND_DIRECTION = 117;
-    
     const DAILY_HIGH_SURFACE_PRESSURE = 131;
     const DAILY_LOW_SURFACE_PRESSURE = 132;
-    
     const DAILY_HIGH_DEW_POINT = 138;
     const DAILY_LOW_DEW_POINT = 139;
-    
     const OUTDOOR_TEMPERATURE_TREND = 143;
 	const OUTDOOR_HUMIDITY_TREND = 144;
     const HUMIDEX_TREND = 145;
-    
     const LATITUDE = 160;
     const LONGITUDE = 161;
-    
     const DAILY_HIGH_OUTDOOR_HUMIDITY = 163;
     const DAILY_LOW_OUTDOOR_HUMIDITY = 164;
 
@@ -77,53 +64,6 @@ class ClientRaw
     const DAY = 35;
     const HOUR = 29;
     const MINUTE = 30;
-    
-    private $fields;
-
-    public function __construct($path)
-    {
-        $this->fields = self::getFieldsFromPath($path);
-    }
-
-    private function getFieldsFromPath($path)
-    {
-        $fieldDelimiter = ' ';
-        $fields = array();
-
-        if (is_readable($path))
-        {
-            $clientRawFile = fopen($path, 'r');
-
-            if ($clientRawFile)
-            {
-                $clientRawText = '';
-
-                while (!feof($clientRawFile))
-                {
-                    $clientRawText .= fread($clientRawFile, 8192);
-                }
-
-                fclose($clientRawFile);
-
-                if (strlen($clientRawText) != 0)
-                {
-                    $fields = explode($fieldDelimiter, trim($clientRawText));
-                }
-            }
-        }
-
-        return $fields;
-    }
-
-    function readField($index)
-    {
-        if ($index < 0 or $index >= count($this->fields))
-        {
-            return '-';
-        }
-
-        return trim($this->fields[$index]);
-    }
 
     public function getAverageWindSpeed()
     {
@@ -503,7 +443,7 @@ class ClientRaw
 
     public function getWdVersion()
     {
-        $wdVersion = self::readField(count($this->fields) - 1);
+        $wdVersion = self::readField(self::fieldCount() - 1);
 
         if ($wdVersion == '-')
         {

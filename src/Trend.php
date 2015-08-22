@@ -12,7 +12,7 @@ class Trend
         if ($trend != '-')
         {
             $this->celsius = number_format($celsius, 1, '.', '');
-            
+
 			if ($trend > 0)
 			{
 				$this->trend = "1";

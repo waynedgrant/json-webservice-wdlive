@@ -6,12 +6,49 @@
 require_once("config.php");
 require_once("common.php");
 require_once("ClientRaw.php");
+require_once("ClientRawExtra.php");
 
 $clientRaw = new ClientRaw(CLIENT_RAW_DIRECTORY . "clientraw.txt");
+$clientRawExtra = new ClientRawExtra(CLIENT_RAW_DIRECTORY . "clientrawextra.txt");
 
-$monthToDate = array();
-$yearToDate = array();
-$allTime = array();
+$dateAndTime = $clientRaw->getDateAndTime();
+
+$monthToDateTemperature = array(
+    "high" => $clientRawExtra->getMonthlyHighOutdoorTemperature()->getAllMeasures(),
+    "low" => $clientRawExtra->getMonthlyLowOutdoorTemperature()->getAllMeasures());
+
+$monthToDate = array(
+    "month" => $dateAndTime->getMonth(),
+    "year" => $dateAndTime->getYear(),
+    "temperature" => $monthToDateTemperature,
+    "pressure" => array(),
+    "rainfall" => array(),
+    "wind" => array(),
+    "dew_point" => array(),
+    "wind_chill" => array(),
+    "heat_index" => array(),
+    "uv" => array());
+
+$yearToDate = array(
+    "year" => $dateAndTime->getYear(),
+    "temperature" => array(),
+    "pressure" => array(),
+    "rainfall" => array(),
+    "wind" => array(),
+    "dew_point" => array(),
+    "wind_chill" => array(),
+    "heat_index" => array(),
+    "uv" => array());
+
+$allTime = array(
+    "temperature" => array(),
+    "pressure" => array(),
+    "rainfall" => array(),
+    "wind" => array(),
+    "dew_point" => array(),
+    "wind_chill" => array(),
+    "heat_index" => array(),
+    "uv" => array());
 
 $data = array(
     "endpoint" => createEndpoint(),
