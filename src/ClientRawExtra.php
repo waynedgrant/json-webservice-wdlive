@@ -21,6 +21,18 @@ class ClientRawExtra extends BaseClientRaw
     const MONTHLY_LOW_OUTDOOR_TEMPERATURE_DAY = 70;
     const MONTHLY_LOW_OUTDOOR_TEMPERATURE_MONTH = 71;
     const MONTHLY_LOW_OUTDOOR_TEMPERATURE_YEAR = 72;
+    const MONTHLY_LOW_SURFACE_PRESSURE = 85;
+    const MONTHLY_LOW_SURFACE_PRESSURE_HOUR = 86;
+    const MONTHLY_LOW_SURFACE_PRESSURE_MINUTE = 87;
+    const MONTHLY_LOW_SURFACE_PRESSURE_DAY = 88;
+    const MONTHLY_LOW_SURFACE_PRESSURE_MONTH = 89;
+    const MONTHLY_LOW_SURFACE_PRESSURE_YEAR = 90;
+    const MONTHLY_HIGH_SURFACE_PRESSURE = 91;
+    const MONTHLY_HIGH_SURFACE_PRESSURE_HOUR = 92;
+    const MONTHLY_HIGH_SURFACE_PRESSURE_MINUTE = 93;
+    const MONTHLY_HIGH_SURFACE_PRESSURE_DAY = 94;
+    const MONTHLY_HIGH_SURFACE_PRESSURE_MONTH = 95;
+    const MONTHLY_HIGH_SURFACE_PRESSURE_YEAR = 96;
 
     function getMonthlyHighOutdoorTemperature()
     {
@@ -50,6 +62,36 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::MONTHLY_LOW_OUTDOOR_TEMPERATURE_DAY),
             self::readField(self::MONTHLY_LOW_OUTDOOR_TEMPERATURE_HOUR),
             self::readField(self::MONTHLY_LOW_OUTDOOR_TEMPERATURE_MINUTE));
+    }
+
+    function getMonthlyLowSurfacePressure()
+    {
+        return new Pressure(self::readField(self::MONTHLY_LOW_SURFACE_PRESSURE));
+    }
+
+    function getMonthlyLowSurfacePressureDateAndTime()
+    {
+        return new DateAndTime(
+            self::readField(self::MONTHLY_LOW_SURFACE_PRESSURE_YEAR),
+            self::readField(self::MONTHLY_LOW_SURFACE_PRESSURE_MONTH),
+            self::readField(self::MONTHLY_LOW_SURFACE_PRESSURE_DAY),
+            self::readField(self::MONTHLY_LOW_SURFACE_PRESSURE_HOUR),
+            self::readField(self::MONTHLY_LOW_SURFACE_PRESSURE_MINUTE));
+    }
+
+    function getMonthlyHighSurfacePressure()
+    {
+        return new Pressure(self::readField(self::MONTHLY_HIGH_SURFACE_PRESSURE));
+    }
+
+    function getMonthlyHighSurfacePressureDateAndTime()
+    {
+        return new DateAndTime(
+            self::readField(self::MONTHLY_HIGH_SURFACE_PRESSURE_YEAR),
+            self::readField(self::MONTHLY_HIGH_SURFACE_PRESSURE_MONTH),
+            self::readField(self::MONTHLY_HIGH_SURFACE_PRESSURE_DAY),
+            self::readField(self::MONTHLY_HIGH_SURFACE_PRESSURE_HOUR),
+            self::readField(self::MONTHLY_HIGH_SURFACE_PRESSURE_MINUTE));
     }
 }
 

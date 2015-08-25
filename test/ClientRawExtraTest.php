@@ -89,6 +89,56 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
+    public function test_get_monthly_low_surface_pressure()
+    {
+        $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MONTHLY_LOW_SURFACE_PRESSURE, "1001.5"));
+        $this->assertSame("1001.5", $testee->getMonthlyLowSurfacePressure()->getHectopascals());
+    }
+
+    public function test_get_monthly_low_surface_pressure_date_and_time()
+    {
+        $testee = self::createClientRawExtraWithFields(
+            array(
+                new Field(ClientRawExtra::MONTHLY_LOW_SURFACE_PRESSURE_YEAR, "2015"),
+                new Field(ClientRawExtra::MONTHLY_LOW_SURFACE_PRESSURE_MONTH, "12"),
+                new Field(ClientRawExtra::MONTHLY_LOW_SURFACE_PRESSURE_DAY, "31"),
+                new Field(ClientRawExtra::MONTHLY_LOW_SURFACE_PRESSURE_HOUR, "23"),
+                new Field(ClientRawExtra::MONTHLY_LOW_SURFACE_PRESSURE_MINUTE, "59")));
+
+        $dateAndTime = $testee->getMonthlyLowSurfacePressureDateAndTime();
+
+        $this->assertSame("2015", $dateAndTime->getYear());
+        $this->assertSame("12", $dateAndTime->getMonth());
+        $this->assertSame("31", $dateAndTime->getDay());
+        $this->assertSame("23", $dateAndTime->getHour());
+        $this->assertSame("59", $dateAndTime->getMinute());
+    }
+
+    public function test_get_monthly_high_surface_pressure()
+    {
+        $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MONTHLY_HIGH_SURFACE_PRESSURE, "1017.6"));
+        $this->assertSame("1017.6", $testee->getMonthlyHighSurfacePressure()->getHectopascals());
+    }
+
+    public function test_get_monthly_high_surface_pressure_date_and_time()
+    {
+        $testee = self::createClientRawExtraWithFields(
+            array(
+                new Field(ClientRawExtra::MONTHLY_HIGH_SURFACE_PRESSURE_YEAR, "2015"),
+                new Field(ClientRawExtra::MONTHLY_HIGH_SURFACE_PRESSURE_MONTH, "12"),
+                new Field(ClientRawExtra::MONTHLY_HIGH_SURFACE_PRESSURE_DAY, "31"),
+                new Field(ClientRawExtra::MONTHLY_HIGH_SURFACE_PRESSURE_HOUR, "23"),
+                new Field(ClientRawExtra::MONTHLY_HIGH_SURFACE_PRESSURE_MINUTE, "59")));
+
+        $dateAndTime = $testee->getMonthlyHighSurfacePressureDateAndTime();
+
+        $this->assertSame("2015", $dateAndTime->getYear());
+        $this->assertSame("12", $dateAndTime->getMonth());
+        $this->assertSame("31", $dateAndTime->getDay());
+        $this->assertSame("23", $dateAndTime->getHour());
+        $this->assertSame("59", $dateAndTime->getMinute());
+    }
+
     public function test_when_fields_are_missing()
     {
         $testee = self::createEmptyClientRawExtra();
@@ -99,12 +149,27 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getMonthlyHighOutdoorTemperatureDateAndTime()->getDay());
         $this->assertNull($testee->getMonthlyHighOutdoorTemperatureDateAndTime()->getHour());
         $this->assertNull($testee->getMonthlyHighOutdoorTemperatureDateAndTime()->getMinute());
+
         $this->assertNull($testee->getMonthlyLowOutdoorTemperature()->getCelsius());
         $this->assertNull($testee->getMonthlyLowOutdoorTemperatureDateAndTime()->getYear());
         $this->assertNull($testee->getMonthlyLowOutdoorTemperatureDateAndTime()->getMonth());
         $this->assertNull($testee->getMonthlyLowOutdoorTemperatureDateAndTime()->getDay());
         $this->assertNull($testee->getMonthlyLowOutdoorTemperatureDateAndTime()->getHour());
         $this->assertNull($testee->getMonthlyLowOutdoorTemperatureDateAndTime()->getMinute());
+
+        $this->assertNull($testee->getMonthlyLowSurfacePressure()->getHectopascals());
+        $this->assertNull($testee->getMonthlyLowSurfacePressureDateAndTime()->getYear());
+        $this->assertNull($testee->getMonthlyLowSurfacePressureDateAndTime()->getMonth());
+        $this->assertNull($testee->getMonthlyLowSurfacePressureDateAndTime()->getDay());
+        $this->assertNull($testee->getMonthlyLowSurfacePressureDateAndTime()->getHour());
+        $this->assertNull($testee->getMonthlyLowSurfacePressureDateAndTime()->getMinute());
+
+        $this->assertNull($testee->getMonthlyHighSurfacePressure()->getHectopascals());
+        $this->assertNull($testee->getMonthlyHighSurfacePressureDateAndTime()->getYear());
+        $this->assertNull($testee->getMonthlyHighSurfacePressureDateAndTime()->getMonth());
+        $this->assertNull($testee->getMonthlyHighSurfacePressureDateAndTime()->getDay());
+        $this->assertNull($testee->getMonthlyHighSurfacePressureDateAndTime()->getHour());
+        $this->assertNull($testee->getMonthlyHighSurfacePressureDateAndTime()->getMinute());
     }
 }
 

@@ -23,11 +23,21 @@ $monthToDateTemperature = array(
     "high" => $monthlyHighOutdoorTemperature,
     "low" => $monthlyLowOutdoorTemperature);
 
+$monthlyHighPressure = $clientRawExtra->getMonthlyHighSurfacePressure()->getAllMeasures();
+$monthlyHighPressure['time'] = $clientRawExtra->getMonthlyHighSurfacePressureDateAndTime()->getAllValues();
+
+$monthlyLowPressure = $clientRawExtra->getMonthlyLowSurfacePressure()->getAllMeasures();
+$monthlyLowPressure['time'] = $clientRawExtra->getMonthlyLowSurfacePressureDateAndTime()->getAllValues();
+
+$monthToDatePressure = array(
+    "high" => $monthlyHighPressure,
+    "low" => $monthlyLowPressure);
+
 $monthToDate = array(
     "month" => $dateAndTime->getMonth(),
     "year" => $dateAndTime->getYear(),
     "temperature" => $monthToDateTemperature,
-    "pressure" => array(),
+    "pressure" => $monthToDatePressure,
     "rainfall" => array(),
     "wind" => array(),
     "dew_point" => array(),
