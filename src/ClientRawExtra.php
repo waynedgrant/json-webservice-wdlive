@@ -21,6 +21,14 @@ class ClientRawExtra extends BaseClientRaw
     const MONTHLY_LOW_OUTDOOR_TEMPERATURE_DAY = 70;
     const MONTHLY_LOW_OUTDOOR_TEMPERATURE_MONTH = 71;
     const MONTHLY_LOW_OUTDOOR_TEMPERATURE_YEAR = 72;
+
+    const MONTHLY_MAX_RAINFALL_RATE_PER_MINUTE = 79;
+    const MONTHLY_MAX_RAINFALL_RATE_PER_MINUTE_HOUR = 80;
+    const MONTHLY_MAX_RAINFALL_RATE_PER_MINUTE_MINUTE = 81;
+    const MONTHLY_MAX_RAINFALL_RATE_PER_MINUTE_DAY = 82;
+    const MONTHLY_MAX_RAINFALL_RATE_PER_MINUTE_MONTH = 83;
+    const MONTHLY_MAX_RAINFALL_RATE_PER_MINUTE_YEAR = 84;
+
     const MONTHLY_LOW_SURFACE_PRESSURE = 85;
     const MONTHLY_LOW_SURFACE_PRESSURE_HOUR = 86;
     const MONTHLY_LOW_SURFACE_PRESSURE_MINUTE = 87;
@@ -34,7 +42,7 @@ class ClientRawExtra extends BaseClientRaw
     const MONTHLY_HIGH_SURFACE_PRESSURE_MONTH = 95;
     const MONTHLY_HIGH_SURFACE_PRESSURE_YEAR = 96;
 
-    function getMonthlyHighOutdoorTemperature()
+    public function getMonthlyHighOutdoorTemperature()
     {
         return new Temperature(self::readField(self::MONTHLY_HIGH_OUTDOOR_TEMPERATURE));
     }
@@ -49,7 +57,7 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::MONTHLY_HIGH_OUTDOOR_TEMPERATURE_MINUTE));
     }
 
-    function getMonthlyLowOutdoorTemperature()
+    public function getMonthlyLowOutdoorTemperature()
     {
         return new Temperature(self::readField(self::MONTHLY_LOW_OUTDOOR_TEMPERATURE));
     }
@@ -64,12 +72,27 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::MONTHLY_LOW_OUTDOOR_TEMPERATURE_MINUTE));
     }
 
-    function getMonthlyLowSurfacePressure()
+    public function getMonthlyMaxRainfallRatePerMinute()
+    {
+        return new RainfallRate(self::readField(self::MONTHLY_MAX_RAINFALL_RATE_PER_MINUTE));
+    }
+
+    public function getMonthlyMaxRainfallRatePerMinuteDateAndTime()
+    {
+        return new DateAndTime(
+            self::readField(self::MONTHLY_MAX_RAINFALL_RATE_PER_MINUTE_YEAR),
+            self::readField(self::MONTHLY_MAX_RAINFALL_RATE_PER_MINUTE_MONTH),
+            self::readField(self::MONTHLY_MAX_RAINFALL_RATE_PER_MINUTE_DAY),
+            self::readField(self::MONTHLY_MAX_RAINFALL_RATE_PER_MINUTE_HOUR),
+            self::readField(self::MONTHLY_MAX_RAINFALL_RATE_PER_MINUTE_MINUTE));
+    }
+
+    public function getMonthlyLowSurfacePressure()
     {
         return new Pressure(self::readField(self::MONTHLY_LOW_SURFACE_PRESSURE));
     }
 
-    function getMonthlyLowSurfacePressureDateAndTime()
+    public function getMonthlyLowSurfacePressureDateAndTime()
     {
         return new DateAndTime(
             self::readField(self::MONTHLY_LOW_SURFACE_PRESSURE_YEAR),
@@ -79,12 +102,12 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::MONTHLY_LOW_SURFACE_PRESSURE_MINUTE));
     }
 
-    function getMonthlyHighSurfacePressure()
+    public function getMonthlyHighSurfacePressure()
     {
         return new Pressure(self::readField(self::MONTHLY_HIGH_SURFACE_PRESSURE));
     }
 
-    function getMonthlyHighSurfacePressureDateAndTime()
+    public function getMonthlyHighSurfacePressureDateAndTime()
     {
         return new DateAndTime(
             self::readField(self::MONTHLY_HIGH_SURFACE_PRESSURE_YEAR),
