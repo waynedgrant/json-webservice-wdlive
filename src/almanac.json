@@ -33,12 +33,17 @@ $monthToDatePressure = array(
     "high" => $monthlyHighPressure,
     "low" => $monthlyLowPressure);
 
+$monthlyMaxRainfallRatePerMinute = $clientRawExtra->getMonthlyMaxRainfallRatePerMinute()->getAllMeasures();
+$monthlyMaxRainfallRatePerMinute['time'] = $clientRawExtra->getMonthlyMaxRainfallRatePerMinuteDateAndTime()->getAllValues();
+
+$monthToDateRainfall = array("max_rate_per_min" => $monthlyMaxRainfallRatePerMinute);
+
 $monthToDate = array(
     "month" => $dateAndTime->getMonth(),
     "year" => $dateAndTime->getYear(),
     "temperature" => $monthToDateTemperature,
     "pressure" => $monthToDatePressure,
-    "rainfall" => array(),
+    "rainfall" => $monthToDateRainfall,
     "wind" => array(),
     "dew_point" => array(),
     "wind_chill" => array(),
