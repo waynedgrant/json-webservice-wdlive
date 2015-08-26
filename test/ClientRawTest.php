@@ -89,8 +89,8 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
 
     public function test_get_max_rainfall_rate()
     {
-        $testee = self::createClientRawWithField(new Field(ClientRaw::DAILY_MAX_RAINFALL_RATE, "1.05"));
-        $this->assertSame("1.05", $testee->getMaxRainfallRate()->getMillimetresPerMinute());
+        $testee = self::createClientRawWithField(new Field(ClientRaw::DAILY_MAXIMUM_RAINFALL_RATE, "1.05"));
+        $this->assertSame("1.05", $testee->getMaximumRainfallRate()->getMillimetresPerMinute());
     }
 
     public function test_get_indoor_temperature()
@@ -462,7 +462,7 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getSurfacePressure()->getHectopascals());
         $this->assertNull($testee->getDailyRainfall()->getMillimetres());
         $this->assertNull($testee->getRainfallRate()->getMillimetresPerMinute());
-        $this->assertNull($testee->getMaxRainfallRate()->getMillimetresPerMinute());
+        $this->assertNull($testee->getMaximumRainfallRate()->getMillimetresPerMinute());
         $this->assertNull($testee->getIndoorTemperature()->getCelsius());
         $this->assertNull($testee->getIndoorHumidity()->getPercentage());
         $this->assertNull($testee->getYesterdaysRainfall()->getMillimetres());
