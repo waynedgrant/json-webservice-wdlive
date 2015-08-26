@@ -81,16 +81,16 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $this->assertSame("10.21", $testee->getDailyRainfall()->getMillimetres());
     }
 
-    public function test_get_rainfall_rate_per_minute()
+    public function test_get_rainfall_rate()
     {
-        $testee = self::createClientRawWithField(new Field(ClientRaw::RAINFALL_RATE_PER_MINUTE, "0.12"));
-        $this->assertSame("0.12", $testee->getRainfallRatePerMinute()->getMillimetresPerMinute());
+        $testee = self::createClientRawWithField(new Field(ClientRaw::RAINFALL_RATE, "0.12"));
+        $this->assertSame("0.12", $testee->getRainfallRate()->getMillimetresPerMinute());
     }
 
-    public function test_get_max_rainfall_rate_per_minute()
+    public function test_get_max_rainfall_rate()
     {
-        $testee = self::createClientRawWithField(new Field(ClientRaw::DAILY_MAX_RAINFALL_RATE_PER_MINUTE, "1.05"));
-        $this->assertSame("1.05", $testee->getMaxRainfallRatePerMinute()->getMillimetresPerMinute());
+        $testee = self::createClientRawWithField(new Field(ClientRaw::DAILY_MAX_RAINFALL_RATE, "1.05"));
+        $this->assertSame("1.05", $testee->getMaxRainfallRate()->getMillimetresPerMinute());
     }
 
     public function test_get_indoor_temperature()
@@ -461,8 +461,8 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getOutdoorHumidity()->getPercentage());
         $this->assertNull($testee->getSurfacePressure()->getHectopascals());
         $this->assertNull($testee->getDailyRainfall()->getMillimetres());
-        $this->assertNull($testee->getRainfallRatePerMinute()->getMillimetresPerMinute());
-        $this->assertNull($testee->getMaxRainfallRatePerMinute()->getMillimetresPerMinute());
+        $this->assertNull($testee->getRainfallRate()->getMillimetresPerMinute());
+        $this->assertNull($testee->getMaxRainfallRate()->getMillimetresPerMinute());
         $this->assertNull($testee->getIndoorTemperature()->getCelsius());
         $this->assertNull($testee->getIndoorHumidity()->getPercentage());
         $this->assertNull($testee->getYesterdaysRainfall()->getMillimetres());

@@ -91,21 +91,21 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
 
     public function test_get_monthly_max_rainfall_rate()
     {
-        $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MONTHLY_MAX_RAINFALL_RATE_PER_MINUTE, "2.06"));
-        $this->assertSame("2.06", $testee->getMonthlyMaxRainfallratePerMinute()->getMillimetresPerMinute());
+        $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MONTHLY_MAX_RAINFALL_RATE, "2.06"));
+        $this->assertSame("2.06", $testee->getMonthlyMaxRainfallRate()->getMillimetresPerMinute());
     }
 
     public function test_get_monthly_max_rainfall_rate_date_and_time()
     {
         $testee = self::createClientRawExtraWithFields(
             array(
-                new Field(ClientRawExtra::MONTHLY_MAX_RAINFALL_RATE_PER_MINUTE_YEAR, "2015"),
-                new Field(ClientRawExtra::MONTHLY_MAX_RAINFALL_RATE_PER_MINUTE_MONTH, "12"),
-                new Field(ClientRawExtra::MONTHLY_MAX_RAINFALL_RATE_PER_MINUTE_DAY, "31"),
-                new Field(ClientRawExtra::MONTHLY_MAX_RAINFALL_RATE_PER_MINUTE_HOUR, "23"),
-                new Field(ClientRawExtra::MONTHLY_MAX_RAINFALL_RATE_PER_MINUTE_MINUTE, "59")));
+                new Field(ClientRawExtra::MONTHLY_MAX_RAINFALL_RATE_YEAR, "2015"),
+                new Field(ClientRawExtra::MONTHLY_MAX_RAINFALL_RATE_MONTH, "12"),
+                new Field(ClientRawExtra::MONTHLY_MAX_RAINFALL_RATE_DAY, "31"),
+                new Field(ClientRawExtra::MONTHLY_MAX_RAINFALL_RATE_HOUR, "23"),
+                new Field(ClientRawExtra::MONTHLY_MAX_RAINFALL_RATE_MINUTE, "59")));
 
-        $dateAndTime = $testee->getMonthlyMaxRainfallratePerMinuteDateAndTime();
+        $dateAndTime = $testee->getMonthlyMaxRainfallRateDateAndTime();
 
         $this->assertSame("2015", $dateAndTime->getYear());
         $this->assertSame("12", $dateAndTime->getMonth());
@@ -182,12 +182,12 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getMonthlyLowOutdoorTemperatureDateAndTime()->getHour());
         $this->assertNull($testee->getMonthlyLowOutdoorTemperatureDateAndTime()->getMinute());
 
-        $this->assertNull($testee->getMonthlyMaxRainfallRatePerMinute()->getMillimetresPerMinute());
-        $this->assertNull($testee->getMonthlyMaxRainfallRatePerMinuteDateAndTime()->getYear());
-        $this->assertNull($testee->getMonthlyMaxRainfallRatePerMinuteDateAndTime()->getMonth());
-        $this->assertNull($testee->getMonthlyMaxRainfallRatePerMinuteDateAndTime()->getDay());
-        $this->assertNull($testee->getMonthlyMaxRainfallRatePerMinuteDateAndTime()->getHour());
-        $this->assertNull($testee->getMonthlyMaxRainfallRatePerMinuteDateAndTime()->getMinute());
+        $this->assertNull($testee->getMonthlyMaxRainfallRate()->getMillimetresPerMinute());
+        $this->assertNull($testee->getMonthlyMaxRainfallRateDateAndTime()->getYear());
+        $this->assertNull($testee->getMonthlyMaxRainfallRateDateAndTime()->getMonth());
+        $this->assertNull($testee->getMonthlyMaxRainfallRateDateAndTime()->getDay());
+        $this->assertNull($testee->getMonthlyMaxRainfallRateDateAndTime()->getHour());
+        $this->assertNull($testee->getMonthlyMaxRainfallRateDateAndTime()->getMinute());
 
         $this->assertNull($testee->getMonthlyLowSurfacePressure()->getHectopascals());
         $this->assertNull($testee->getMonthlyLowSurfacePressureDateAndTime()->getYear());

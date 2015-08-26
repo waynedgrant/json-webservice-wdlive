@@ -24,8 +24,8 @@ class ClientRaw extends BaseClientRaw
     const OUTDOOR_HUMIDITY = 5;
 	const SURFACE_PRESSURE = 6;
 	const DAILY_RAINFALL = 7;
-	const RAINFALL_RATE_PER_MINUTE = 10;
-    const DAILY_MAX_RAINFALL_RATE_PER_MINUTE = 11;
+	const RAINFALL_RATE = 10;
+    const DAILY_MAX_RAINFALL_RATE = 11;
     const INDOOR_TEMPERATURE = 12;
     const INDOOR_HUMIDITY = 13;
     const YESTERDAYS_RAINFALL = 19;
@@ -100,14 +100,14 @@ class ClientRaw extends BaseClientRaw
         return new Rainfall(self::readField(self::DAILY_RAINFALL));
     }
 
-    public function getRainfallRatePerMinute()
+    public function getRainfallRate()
     {
-        return new RainfallRate(self::readField(self::RAINFALL_RATE_PER_MINUTE));
+        return new RainfallRate(self::readField(self::RAINFALL_RATE));
     }
 
-    public function getMaxRainfallRatePerMinute()
+    public function getMaxRainfallRate()
     {
-        return new RainfallRate(self::readField(self::DAILY_MAX_RAINFALL_RATE_PER_MINUTE));
+        return new RainfallRate(self::readField(self::DAILY_MAX_RAINFALL_RATE));
     }
 
     public function getIndoorTemperature()
