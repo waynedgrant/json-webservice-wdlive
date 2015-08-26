@@ -23,8 +23,8 @@ $pressure = array(
 
 $rainfall = array(
     "daily" => $clientRaw->getDailyRainfall()->getAllMeasures(),
-    "rate_per_min" => $clientRaw->getRainfallRatePerMinute()->getAllMeasures(),
-    "max_rate_per_min" => $clientRaw->getMaxRainfallRatePerMinute()->getAllMeasures(),
+    "rate_per_min" => $clientRaw->getRainfallRate()->getAllMeasures(),
+    "max_rate_per_min" => $clientRaw->getMaxRainfallRate()->getAllMeasures(),
     "yesterday" => $clientRaw->getYesterdaysRainfall()->getAllMeasures());
 
 $wind = array(

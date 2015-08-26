@@ -5,6 +5,8 @@
 
 require_once("BaseClientRaw.php");
 require_once("DateAndTime.php");
+require_once("Pressure.php");
+require_once("RainfallRate.php");
 require_once("Temperature.php");
 
 class ClientRawExtra extends BaseClientRaw
@@ -22,12 +24,12 @@ class ClientRawExtra extends BaseClientRaw
     const MONTHLY_LOW_OUTDOOR_TEMPERATURE_MONTH = 71;
     const MONTHLY_LOW_OUTDOOR_TEMPERATURE_YEAR = 72;
 
-    const MONTHLY_MAX_RAINFALL_RATE_PER_MINUTE = 79;
-    const MONTHLY_MAX_RAINFALL_RATE_PER_MINUTE_HOUR = 80;
-    const MONTHLY_MAX_RAINFALL_RATE_PER_MINUTE_MINUTE = 81;
-    const MONTHLY_MAX_RAINFALL_RATE_PER_MINUTE_DAY = 82;
-    const MONTHLY_MAX_RAINFALL_RATE_PER_MINUTE_MONTH = 83;
-    const MONTHLY_MAX_RAINFALL_RATE_PER_MINUTE_YEAR = 84;
+    const MONTHLY_MAX_RAINFALL_RATE = 79;
+    const MONTHLY_MAX_RAINFALL_RATE_HOUR = 80;
+    const MONTHLY_MAX_RAINFALL_RATE_MINUTE = 81;
+    const MONTHLY_MAX_RAINFALL_RATE_DAY = 82;
+    const MONTHLY_MAX_RAINFALL_RATE_MONTH = 83;
+    const MONTHLY_MAX_RAINFALL_RATE_YEAR = 84;
 
     const MONTHLY_LOW_SURFACE_PRESSURE = 85;
     const MONTHLY_LOW_SURFACE_PRESSURE_HOUR = 86;
@@ -72,19 +74,19 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::MONTHLY_LOW_OUTDOOR_TEMPERATURE_MINUTE));
     }
 
-    public function getMonthlyMaxRainfallRatePerMinute()
+    public function getMonthlyMaxRainfallRate()
     {
-        return new RainfallRate(self::readField(self::MONTHLY_MAX_RAINFALL_RATE_PER_MINUTE));
+        return new RainfallRate(self::readField(self::MONTHLY_MAX_RAINFALL_RATE));
     }
 
-    public function getMonthlyMaxRainfallRatePerMinuteDateAndTime()
+    public function getMonthlyMaxRainfallRateDateAndTime()
     {
         return new DateAndTime(
-            self::readField(self::MONTHLY_MAX_RAINFALL_RATE_PER_MINUTE_YEAR),
-            self::readField(self::MONTHLY_MAX_RAINFALL_RATE_PER_MINUTE_MONTH),
-            self::readField(self::MONTHLY_MAX_RAINFALL_RATE_PER_MINUTE_DAY),
-            self::readField(self::MONTHLY_MAX_RAINFALL_RATE_PER_MINUTE_HOUR),
-            self::readField(self::MONTHLY_MAX_RAINFALL_RATE_PER_MINUTE_MINUTE));
+            self::readField(self::MONTHLY_MAX_RAINFALL_RATE_YEAR),
+            self::readField(self::MONTHLY_MAX_RAINFALL_RATE_MONTH),
+            self::readField(self::MONTHLY_MAX_RAINFALL_RATE_DAY),
+            self::readField(self::MONTHLY_MAX_RAINFALL_RATE_HOUR),
+            self::readField(self::MONTHLY_MAX_RAINFALL_RATE_MINUTE));
     }
 
     public function getMonthlyLowSurfacePressure()
