@@ -13,30 +13,41 @@ $clientRawExtra = new ClientRawExtra(CLIENT_RAW_DIRECTORY . "clientrawextra.txt"
 
 $dateAndTime = $clientRaw->getCurrentDateAndTime();
 
-$monthlyHighOutdoorTemperature = $clientRawExtra->getMonthlyHighOutdoorTemperature()->getAllMeasures();
-$monthlyHighOutdoorTemperature['time'] = $clientRawExtra->getMonthlyHighOutdoorTemperatureDateAndTime()->getAllValues();
+$monthToDateHighOutdoorTemperature = $clientRawExtra->getMonthlyHighOutdoorTemperature()->getAllMeasures();
+$monthToDateHighOutdoorTemperature['time'] = $clientRawExtra->getMonthlyHighOutdoorTemperatureDateAndTime()->getAllValues();
 
-$monthlyLowOutdoorTemperature = $clientRawExtra->getMonthlyLowOutdoorTemperature()->getAllMeasures();
-$monthlyLowOutdoorTemperature['time'] = $clientRawExtra->getMonthlyLowOutdoorTemperatureDateAndTime()->getAllValues();
+$monthToDateLowOutdoorTemperature = $clientRawExtra->getMonthlyLowOutdoorTemperature()->getAllMeasures();
+$monthToDateLowOutdoorTemperature['time'] = $clientRawExtra->getMonthlyLowOutdoorTemperatureDateAndTime()->getAllValues();
 
 $monthToDateTemperature = array(
-    "high" => $monthlyHighOutdoorTemperature,
-    "low" => $monthlyLowOutdoorTemperature);
+    "high" => $monthToDateHighOutdoorTemperature,
+    "low" => $monthToDateLowOutdoorTemperature);
 
-$monthlyHighPressure = $clientRawExtra->getMonthlyHighSurfacePressure()->getAllMeasures();
-$monthlyHighPressure['time'] = $clientRawExtra->getMonthlyHighSurfacePressureDateAndTime()->getAllValues();
+$monthToDateHighPressure = $clientRawExtra->getMonthlyHighSurfacePressure()->getAllMeasures();
+$monthToDateHighPressure['time'] = $clientRawExtra->getMonthlyHighSurfacePressureDateAndTime()->getAllValues();
 
-$monthlyLowPressure = $clientRawExtra->getMonthlyLowSurfacePressure()->getAllMeasures();
-$monthlyLowPressure['time'] = $clientRawExtra->getMonthlyLowSurfacePressureDateAndTime()->getAllValues();
+$monthToDateLowPressure = $clientRawExtra->getMonthlyLowSurfacePressure()->getAllMeasures();
+$monthToDateLowPressure['time'] = $clientRawExtra->getMonthlyLowSurfacePressureDateAndTime()->getAllValues();
 
 $monthToDatePressure = array(
-    "high" => $monthlyHighPressure,
-    "low" => $monthlyLowPressure);
+    "high" => $monthToDateHighPressure,
+    "low" => $monthToDateLowPressure);
 
-$monthlyMaximumRainfallRate = $clientRawExtra->getMonthlyMaximumRainfallRate()->getAllMeasures();
-$monthlyMaximumRainfallRate['time'] = $clientRawExtra->getMonthlyMaximumRainfallRateDateAndTime()->getAllValues();
+$monthToDateMaximumRainfallRate = $clientRawExtra->getMonthlyMaximumRainfallRate()->getAllMeasures();
+$monthToDateMaximumRainfallRate['time'] = $clientRawExtra->getMonthlyMaximumRainfallRateDateAndTime()->getAllValues();
 
-$monthToDateRainfall = array("max_rate_per_min" => $monthlyMaximumRainfallRate);
+$monthToDateRainfall = array("max_rate_per_min" => $monthToDateMaximumRainfallRate);
+
+$monthToDateMaxAverageWindSpeed = array(
+    "speed" => $clientRawExtra->getMonthlyMaximumAverageWindSpeed()->getAllMeasures(),
+    "direction" => $clientRawExtra->getMonthlyMaximumAverageWindSpeedDirection()->getAllMeasures();
+    "time" => $clientRawExtra->getMonthlyMaximumAverageWindSpeedDateAndTime()->getAllValues());
+
+$monthToDateMaxGustSpeed = array();
+
+$monthToDateWind = array(
+    "max_avg" => $monthToDateMaxAverageWindSpeed,
+    "max_gust" => $monthToDateMaxGustSpeed);
 
 $monthToDate = array(
     "month" => $dateAndTime->getMonth(),
@@ -44,7 +55,7 @@ $monthToDate = array(
     "temperature" => $monthToDateTemperature,
     "pressure" => $monthToDatePressure,
     "rainfall" => $monthToDateRainfall,
-    "wind" => array(),
+    "wind" => $monthToDateWind,
     "dew_point" => array(),
     "wind_chill" => array(),
     "heat_index" => array(),
