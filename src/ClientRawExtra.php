@@ -8,6 +8,8 @@ require_once("DateAndTime.php");
 require_once("Pressure.php");
 require_once("RainfallRate.php");
 require_once("Temperature.php");
+require_once("WindDirection.php");
+require_once("WindSpeed.php");
 
 class ClientRawExtra extends BaseClientRaw
 {
@@ -44,12 +46,21 @@ class ClientRawExtra extends BaseClientRaw
     const MONTHLY_HIGH_SURFACE_PRESSURE_MONTH = 95;
     const MONTHLY_HIGH_SURFACE_PRESSURE_YEAR = 96;
 
+    const MONTHLY_MAXIMUM_GUST_SPEED = 73;
+    const MONTHLY_MAXIMUM_GUST_SPEED_HOUR = 74;
+    const MONTHLY_MAXIMUM_GUST_SPEED_MINUTE = 75;
+    const MONTHLY_MAXIMUM_GUST_SPEED_DAY = 76;
+    const MONTHLY_MAXIMUM_GUST_SPEED_MONTH = 77;
+    const MONTHLY_MAXIMUM_GUST_SPEED_YEAR = 78;
+
     const MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED = 109;
     const MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED_HOUR = 110;
     const MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED_MINUTE = 111;
     const MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED_DAY = 112;
     const MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED_MONTH = 113;
     const MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED_YEAR = 114;
+
+    const MONTHLY_MAXIMUM_GUST_SPEED_DIRECTION = 139;
 
     const MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED_DIRECTION = 145;
 
@@ -128,6 +139,21 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::MONTHLY_HIGH_SURFACE_PRESSURE_MINUTE));
     }
 
+    public function getMonthlyMaximumGustSpeed()
+    {
+        return new WindSpeed(self::readField(self::MONTHLY_MAXIMUM_GUST_SPEED));
+    }
+
+    public function getMonthlyMaximumGustSpeedDateAndTime()
+    {
+        return new DateAndTime(
+            self::readField(self::MONTHLY_MAXIMUM_GUST_SPEED_YEAR),
+            self::readField(self::MONTHLY_MAXIMUM_GUST_SPEED_MONTH),
+            self::readField(self::MONTHLY_MAXIMUM_GUST_SPEED_DAY),
+            self::readField(self::MONTHLY_MAXIMUM_GUST_SPEED_HOUR),
+            self::readField(self::MONTHLY_MAXIMUM_GUST_SPEED_MINUTE));
+    }
+
     public function getMonthlyMaximumAverageWindSpeed()
     {
         return new WindSpeed(self::readField(self::MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED));
@@ -136,17 +162,21 @@ class ClientRawExtra extends BaseClientRaw
     public function getMonthlyMaximumAverageWindSpeedDateAndTime()
     {
         return new DateAndTime(
-        self::readField(self::MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED_YEAR),
-        self::readField(self::MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED_MONTH),
-        self::readField(self::MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED_DAY),
-        self::readField(self::MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED_HOUR),
-        self::readField(self::MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED_MINUTE));
+            self::readField(self::MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED_YEAR),
+            self::readField(self::MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED_MONTH),
+            self::readField(self::MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED_DAY),
+            self::readField(self::MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED_HOUR),
+            self::readField(self::MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED_MINUTE));
+    }
+
+    public function getMonthlyMaximumGustSpeedDirection()
+    {
+        return new WindDirection(self::readField(self::MONTHLY_MAXIMUM_GUST_SPEED_DIRECTION));
     }
 
     public function getMonthlyMaximumAverageWindSpeedDirection()
     {
         return new WindDirection(self::readField(self::MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED_DIRECTION));
-
     }
 }
 
