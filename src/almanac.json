@@ -40,12 +40,12 @@ $monthToDateRainfall = array("max_rate_per_min" => $monthToDateMaximumRainfallRa
 
 $monthToDateMaximumAverageWindSpeed = array(
     "speed" => $clientRawExtra->getMonthlyMaximumAverageWindSpeed()->getAllMeasures(),
-    "direction" => $clientRawExtra->getMonthlyMaximumAverageWindSpeedDirection()->getAllMeasures();
+    "direction" => $clientRawExtra->getMonthlyMaximumAverageWindSpeedDirection()->getAllMeasures(),
     "time" => $clientRawExtra->getMonthlyMaximumAverageWindSpeedDateAndTime()->getAllValues());
 
 $monthToDateMaximumGustSpeed = array(
     "speed" => $clientRawExtra->getMonthlyMaximumGustSpeed()->getAllMeasures(),
-    "direction" => $clientRawExtra->getMonthlyMaximumGustSpeedDirection()->getAllMeasures();
+    "direction" => $clientRawExtra->getMonthlyMaximumGustSpeedDirection()->getAllMeasures(),
     "time" => $clientRawExtra->getMonthlyMaximumGustSpeedDateAndTime()->getAllValues());
 
 $monthToDateWind = array(
@@ -62,9 +62,10 @@ $monthToDateDewPoint = array(
     "high" => $monthToDateHighDewPoint,
     "low" => $monthToDateLowDewPoint);
 
-$monthToDateDewPoint = array();
+$monthToDateLowWindChill = $clientRawExtra->getMonthlyLowWindChill()->getAllMeasures();
+$monthToDateLowWindChill['time'] = $clientRawExtra->getMonthlyLowWindChillDateAndTime()->getAllValues();
 
-$monthToDateWindChill = array();
+$monthToDateWindChill = array("low" => $monthToDateLowWindChill);
 
 $monthToDateHeatIndex = array();
 

@@ -214,6 +214,31 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
+    public function test_get_monthly_low_wind_chill()
+    {
+        $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MONTHLY_LOW_WIND_CHILL, "-17.9"));
+        $this->assertSame("-17.9", $testee->getMonthlyLowWindChill()->getCelsius());
+    }
+
+    public function test_get_monthly_low_wind_chill_date_and_time()
+    {
+        $testee = self::createClientRawExtraWithFields(
+            array(
+                new Field(ClientRawExtra::MONTHLY_LOW_WIND_CHILL_YEAR, "2015"),
+                new Field(ClientRawExtra::MONTHLY_LOW_WIND_CHILL_MONTH, "12"),
+                new Field(ClientRawExtra::MONTHLY_LOW_WIND_CHILL_DAY, "31"),
+                new Field(ClientRawExtra::MONTHLY_LOW_WIND_CHILL_HOUR, "23"),
+                new Field(ClientRawExtra::MONTHLY_LOW_WIND_CHILL_MINUTE, "59")));
+
+        $dateAndTime = $testee->getMonthlyLowWindChillDateAndTime();
+
+        $this->assertSame("2015", $dateAndTime->getYear());
+        $this->assertSame("12", $dateAndTime->getMonth());
+        $this->assertSame("31", $dateAndTime->getDay());
+        $this->assertSame("23", $dateAndTime->getHour());
+        $this->assertSame("59", $dateAndTime->getMinute());
+    }
+
     public function test_get_monthly_maximum_gust_speed_direction()
     {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MONTHLY_MAXIMUM_GUST_SPEED_DIRECTION, "90"));
@@ -276,9 +301,6 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-
-
-
     public function test_when_fields_are_missing()
     {
         $testee = self::createEmptyClientRawExtra();
@@ -331,6 +353,13 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getMonthlyMaximumAverageWindSpeedDateAndTime()->getDay());
         $this->assertNull($testee->getMonthlyMaximumAverageWindSpeedDateAndTime()->getHour());
         $this->assertNull($testee->getMonthlyMaximumAverageWindSpeedDateAndTime()->getMinute());
+
+        $this->assertNull($testee->getMonthlyLowWindChill()->getCelsius());
+        $this->assertNull($testee->getMonthlyLowWindChillDateAndTime()->getYear());
+        $this->assertNull($testee->getMonthlyLowWindChillDateAndTime()->getMonth());
+        $this->assertNull($testee->getMonthlyLowWindChillDateAndTime()->getDay());
+        $this->assertNull($testee->getMonthlyLowWindChillDateAndTime()->getHour());
+        $this->assertNull($testee->getMonthlyLowWindChillDateAndTime()->getMinute());
 
         $this->assertNull($testee->getMonthlyMaximumGustSpeedDirection()->getCompassDegrees());
 

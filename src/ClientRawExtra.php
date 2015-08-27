@@ -60,6 +60,12 @@ class ClientRawExtra extends BaseClientRaw
     const MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED_MONTH = 113;
     const MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED_YEAR = 114;
 
+    const MONTHLY_LOW_WIND_CHILL = 133;
+    const MONTHLY_LOW_WIND_CHILL_HOUR = 134;
+    const MONTHLY_LOW_WIND_CHILL_MINUTE = 135;
+    const MONTHLY_LOW_WIND_CHILL_DAY = 136;
+    const MONTHLY_LOW_WIND_CHILL_MONTH = 137;
+    const MONTHLY_LOW_WIND_CHILL_YEAR = 138;
     const MONTHLY_MAXIMUM_GUST_SPEED_DIRECTION = 139;
 
     const MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED_DIRECTION = 145;
@@ -180,6 +186,21 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED_DAY),
             self::readField(self::MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED_HOUR),
             self::readField(self::MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED_MINUTE));
+    }
+
+    public function getMonthlyLowWindChill()
+    {
+        return new Temperature(self::readField(self::MONTHLY_LOW_WIND_CHILL));
+    }
+
+    public function getMonthlyLowWindChillDateAndTime()
+    {
+        return new DateAndTime(
+            self::readField(self::MONTHLY_LOW_WIND_CHILL_YEAR),
+            self::readField(self::MONTHLY_LOW_WIND_CHILL_MONTH),
+            self::readField(self::MONTHLY_LOW_WIND_CHILL_DAY),
+            self::readField(self::MONTHLY_LOW_WIND_CHILL_HOUR),
+            self::readField(self::MONTHLY_LOW_WIND_CHILL_MINUTE));
     }
 
     public function getMonthlyMaximumGustSpeedDirection()
