@@ -38,16 +38,19 @@ $monthToDateMaximumRainfallRate['time'] = $clientRawExtra->getMonthlyMaximumRain
 
 $monthToDateRainfall = array("max_rate_per_min" => $monthToDateMaximumRainfallRate);
 
-$monthToDateMaxAverageWindSpeed = array(
+$monthToDateMaximumAverageWindSpeed = array(
     "speed" => $clientRawExtra->getMonthlyMaximumAverageWindSpeed()->getAllMeasures(),
     "direction" => $clientRawExtra->getMonthlyMaximumAverageWindSpeedDirection()->getAllMeasures();
     "time" => $clientRawExtra->getMonthlyMaximumAverageWindSpeedDateAndTime()->getAllValues());
 
-$monthToDateMaxGustSpeed = array();
+$monthToDateMaximumGustSpeed = array(
+    "speed" => $clientRawExtra->getMonthlyMaximumGustSpeed()->getAllMeasures(),
+    "direction" => $clientRawExtra->getMonthlyMaximumGustSpeedDirection()->getAllMeasures();
+    "time" => $clientRawExtra->getMonthlyMaximumGustSpeedDateAndTime()->getAllValues());
 
 $monthToDateWind = array(
-    "max_avg" => $monthToDateMaxAverageWindSpeed,
-    "max_gust" => $monthToDateMaxGustSpeed);
+    "max_avg" => $monthToDateMaximumAverageWindSpeed,
+    "max_gust" => $monthToDateMaximumGustSpeed);
 
 $monthToDate = array(
     "month" => $dateAndTime->getMonth(),
