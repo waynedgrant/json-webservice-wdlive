@@ -64,6 +64,19 @@ class ClientRawExtra extends BaseClientRaw
 
     const MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED_DIRECTION = 145;
 
+    const MONTHLY_HIGH_DEW_POINT = 729;
+    const MONTHLY_HIGH_DEW_POINT_HOUR = 730;
+    const MONTHLY_HIGH_DEW_POINT_MINUTE = 731;
+    const MONTHLY_HIGH_DEW_POINT_DAY = 732;
+    const MONTHLY_HIGH_DEW_POINT_MONTH = 733;
+    const MONTHLY_HIGH_DEW_POINT_YEAR = 734;
+    const MONTHLY_LOW_DEW_POINT = 735;
+    const MONTHLY_LOW_DEW_POINT_HOUR = 736;
+    const MONTHLY_LOW_DEW_POINT_MINUTE = 737;
+    const MONTHLY_LOW_DEW_POINT_DAY = 738;
+    const MONTHLY_LOW_DEW_POINT_MONTH = 739;
+    const MONTHLY_LOW_DEW_POINT_YEAR = 740;
+
     public function getMonthlyHighOutdoorTemperature()
     {
         return new Temperature(self::readField(self::MONTHLY_HIGH_OUTDOOR_TEMPERATURE));
@@ -177,6 +190,36 @@ class ClientRawExtra extends BaseClientRaw
     public function getMonthlyMaximumAverageWindSpeedDirection()
     {
         return new WindDirection(self::readField(self::MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED_DIRECTION));
+    }
+
+    public function getMonthlyHighDewPoint()
+    {
+        return new Temperature(self::readField(self::MONTHLY_HIGH_DEW_POINT));
+    }
+
+    public function getMonthlyHighDewPointDateAndTime()
+    {
+        return new DateAndTime(
+            self::readField(self::MONTHLY_HIGH_DEW_POINT_YEAR),
+            self::readField(self::MONTHLY_HIGH_DEW_POINT_MONTH),
+            self::readField(self::MONTHLY_HIGH_DEW_POINT_DAY),
+            self::readField(self::MONTHLY_HIGH_DEW_POINT_HOUR),
+            self::readField(self::MONTHLY_HIGH_DEW_POINT_MINUTE));
+    }
+
+    public function getMonthlyLowDewPoint()
+    {
+        return new Temperature(self::readField(self::MONTHLY_LOW_DEW_POINT));
+    }
+
+    public function getMonthlyLowDewPointDateAndTime()
+    {
+        return new DateAndTime(
+            self::readField(self::MONTHLY_LOW_DEW_POINT_YEAR),
+            self::readField(self::MONTHLY_LOW_DEW_POINT_MONTH),
+            self::readField(self::MONTHLY_LOW_DEW_POINT_DAY),
+            self::readField(self::MONTHLY_LOW_DEW_POINT_HOUR),
+            self::readField(self::MONTHLY_LOW_DEW_POINT_MINUTE));
     }
 }
 

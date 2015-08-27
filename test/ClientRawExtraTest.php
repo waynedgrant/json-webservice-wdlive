@@ -226,6 +226,59 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
         $this->assertSame("180", $testee->getMonthlyMaximumAverageWindSpeedDirection()->getCompassDegrees());
     }
 
+    public function test_get_monthly_high_dew_point()
+    {
+        $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MONTHLY_HIGH_DEW_POINT, "22.1"));
+        $this->assertSame("22.1", $testee->getMonthlyHighDewPoint()->getCelsius());
+    }
+
+    public function test_get_monthly_high_dew_point_date_and_time()
+    {
+        $testee = self::createClientRawExtraWithFields(
+            array(
+                new Field(ClientRawExtra::MONTHLY_HIGH_DEW_POINT_YEAR, "2015"),
+                new Field(ClientRawExtra::MONTHLY_HIGH_DEW_POINT_MONTH, "12"),
+                new Field(ClientRawExtra::MONTHLY_HIGH_DEW_POINT_DAY, "31"),
+                new Field(ClientRawExtra::MONTHLY_HIGH_DEW_POINT_HOUR, "23"),
+                new Field(ClientRawExtra::MONTHLY_HIGH_DEW_POINT_MINUTE, "59")));
+
+        $dateAndTime = $testee->getMonthlyHighDewPointDateAndTime();
+
+        $this->assertSame("2015", $dateAndTime->getYear());
+        $this->assertSame("12", $dateAndTime->getMonth());
+        $this->assertSame("31", $dateAndTime->getDay());
+        $this->assertSame("23", $dateAndTime->getHour());
+        $this->assertSame("59", $dateAndTime->getMinute());
+    }
+
+    public function test_get_monthly_low_dew_point()
+    {
+        $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MONTHLY_LOW_DEW_POINT, "1.3"));
+        $this->assertSame("1.3", $testee->getMonthlyLowDewPoint()->getCelsius());
+    }
+
+    public function test_get_monthly_low_dew_point_date_and_time()
+    {
+        $testee = self::createClientRawExtraWithFields(
+            array(
+                new Field(ClientRawExtra::MONTHLY_LOW_DEW_POINT_YEAR, "2015"),
+                new Field(ClientRawExtra::MONTHLY_LOW_DEW_POINT_MONTH, "12"),
+                new Field(ClientRawExtra::MONTHLY_LOW_DEW_POINT_DAY, "31"),
+                new Field(ClientRawExtra::MONTHLY_LOW_DEW_POINT_HOUR, "23"),
+                new Field(ClientRawExtra::MONTHLY_LOW_DEW_POINT_MINUTE, "59")));
+
+        $dateAndTime = $testee->getMonthlyLowDewPointDateAndTime();
+
+        $this->assertSame("2015", $dateAndTime->getYear());
+        $this->assertSame("12", $dateAndTime->getMonth());
+        $this->assertSame("31", $dateAndTime->getDay());
+        $this->assertSame("23", $dateAndTime->getHour());
+        $this->assertSame("59", $dateAndTime->getMinute());
+    }
+
+
+
+
     public function test_when_fields_are_missing()
     {
         $testee = self::createEmptyClientRawExtra();
@@ -282,6 +335,20 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getMonthlyMaximumGustSpeedDirection()->getCompassDegrees());
 
         $this->assertNull($testee->getMonthlyMaximumAverageWindSpeedDirection()->getCompassDegrees());
+
+        $this->assertNull($testee->getMonthlyHighDewPoint()->getCelsius());
+        $this->assertNull($testee->getMonthlyHighDewPointDateAndTime()->getYear());
+        $this->assertNull($testee->getMonthlyHighDewPointDateAndTime()->getMonth());
+        $this->assertNull($testee->getMonthlyHighDewPointDateAndTime()->getDay());
+        $this->assertNull($testee->getMonthlyHighDewPointDateAndTime()->getHour());
+        $this->assertNull($testee->getMonthlyHighDewPointDateAndTime()->getMinute());
+
+        $this->assertNull($testee->getMonthlyLowDewPoint()->getCelsius());
+        $this->assertNull($testee->getMonthlyLowDewPointDateAndTime()->getYear());
+        $this->assertNull($testee->getMonthlyLowDewPointDateAndTime()->getMonth());
+        $this->assertNull($testee->getMonthlyLowDewPointDateAndTime()->getDay());
+        $this->assertNull($testee->getMonthlyLowDewPointDateAndTime()->getHour());
+        $this->assertNull($testee->getMonthlyLowDewPointDateAndTime()->getMinute());
     }
 }
 
