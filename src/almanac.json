@@ -67,7 +67,8 @@ $monthToDateLowWindChill['time'] = $clientRawExtra->getMonthlyLowWindChillDateAn
 
 $monthToDateWindChill = array("low" => $monthToDateLowWindChill);
 
-$monthToDateHeatIndex = array();
+$monthToDateHighHeatIndex = $clientRawExtra->getMonthlyHighHeatIndex()->getAllMeasures();
+$monthToDateHighHeatIndex['time'] = $clientRawExtra->getMonthlyHighHeatIndexDateAndTime()->getAllValues();
 
 $monthToDateUv = array();
 

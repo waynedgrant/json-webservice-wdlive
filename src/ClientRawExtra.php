@@ -70,6 +70,13 @@ class ClientRawExtra extends BaseClientRaw
 
     const MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED_DIRECTION = 145;
 
+    const MONTHLY_HIGH_HEAT_INDEX = 175;
+    const MONTHLY_HIGH_HEAT_INDEX_HOUR = 176;
+    const MONTHLY_HIGH_HEAT_INDEX_MINUTE = 177;
+    const MONTHLY_HIGH_HEAT_INDEX_DAY = 178;
+    const MONTHLY_HIGH_HEAT_INDEX_MONTH = 179;
+    const MONTHLY_HIGH_HEAT_INDEX_YEAR = 180;
+
     const MONTHLY_HIGH_DEW_POINT = 729;
     const MONTHLY_HIGH_DEW_POINT_HOUR = 730;
     const MONTHLY_HIGH_DEW_POINT_MINUTE = 731;
@@ -211,6 +218,21 @@ class ClientRawExtra extends BaseClientRaw
     public function getMonthlyMaximumAverageWindSpeedDirection()
     {
         return new WindDirection(self::readField(self::MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED_DIRECTION));
+    }
+
+    public function getMonthlyHighHeatIndex()
+    {
+        return new Temperature(self::readField(self::MONTHLY_HIGH_HEAT_INDEX));
+    }
+
+    public function getMonthlyHighHeatIndexDateAndTime()
+    {
+        return new DateAndTime(
+            self::readField(self::MONTHLY_HIGH_HEAT_INDEX_YEAR),
+            self::readField(self::MONTHLY_HIGH_HEAT_INDEX_MONTH),
+            self::readField(self::MONTHLY_HIGH_HEAT_INDEX_DAY),
+            self::readField(self::MONTHLY_HIGH_HEAT_INDEX_HOUR),
+            self::readField(self::MONTHLY_HIGH_HEAT_INDEX_MINUTE));
     }
 
     public function getMonthlyHighDewPoint()
