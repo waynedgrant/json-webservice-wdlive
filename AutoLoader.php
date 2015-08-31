@@ -7,9 +7,6 @@ class AutoLoader
 {
     static private $classNames = array();
 
-    /**
-     * Store the filename (sans extension) & full path of all ".php" files found
-     */
     public static function registerDirectory($dirName)
     {
         $di = new DirectoryIterator($dirName);
@@ -19,12 +16,10 @@ class AutoLoader
 
             if ($file->isDir() && !$file->isLink() && !$file->isDot())
             {
-                // recurse into directories other than a few special ones
                 self::registerDirectory($file->getPathname());
             }
             elseif (substr($file->getFilename(), -4) === '.php')
             {
-                // save the class name / path of a .php file found
                 $className = substr($file->getFilename(), 0, -4);
                 AutoLoader::registerClass($className, $file->getPathname());
             }
