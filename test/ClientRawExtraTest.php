@@ -276,6 +276,31 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
+    public function test_get_monthly_high_uv()
+    {
+        $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MONTHLY_HIGH_UV, "9.4"));
+        $this->assertSame("9.4", $testee->getMonthlyHighUv()->getUvi());
+    }
+
+    public function test_get_monthly_high_uv_date_and_time()
+    {
+        $testee = self::createClientRawExtraWithFields(
+            array(
+                new Field(ClientRawExtra::MONTHLY_HIGH_UV_YEAR, "2015"),
+                new Field(ClientRawExtra::MONTHLY_HIGH_UV_MONTH, "12"),
+                new Field(ClientRawExtra::MONTHLY_HIGH_UV_DAY, "31"),
+                new Field(ClientRawExtra::MONTHLY_HIGH_UV_HOUR, "23"),
+                new Field(ClientRawExtra::MONTHLY_HIGH_UV_MINUTE, "59")));
+
+        $dateAndTime = $testee->getMonthlyHighUvDateAndTime();
+
+        $this->assertSame("2015", $dateAndTime->getYear());
+        $this->assertSame("12", $dateAndTime->getMonth());
+        $this->assertSame("31", $dateAndTime->getDay());
+        $this->assertSame("23", $dateAndTime->getHour());
+        $this->assertSame("59", $dateAndTime->getMinute());
+    }
+
     public function test_get_monthly_high_dew_point()
     {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MONTHLY_HIGH_DEW_POINT, "22.1"));
@@ -396,6 +421,13 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getMonthlyHighHeatIndexDateAndTime()->getDay());
         $this->assertNull($testee->getMonthlyHighHeatIndexDateAndTime()->getHour());
         $this->assertNull($testee->getMonthlyHighHeatIndexDateAndTime()->getMinute());
+
+        $this->assertNull($testee->getMonthlyHighUv()->getUvi());
+        $this->assertNull($testee->getMonthlyHighUvDateAndTime()->getYear());
+        $this->assertNull($testee->getMonthlyHighUvDateAndTime()->getMonth());
+        $this->assertNull($testee->getMonthlyHighUvDateAndTime()->getDay());
+        $this->assertNull($testee->getMonthlyHighUvDateAndTime()->getHour());
+        $this->assertNull($testee->getMonthlyHighUvDateAndTime()->getMinute());
 
         $this->assertNull($testee->getMonthlyHighDewPoint()->getCelsius());
         $this->assertNull($testee->getMonthlyHighDewPointDateAndTime()->getYear());

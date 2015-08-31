@@ -77,6 +77,13 @@ class ClientRawExtra extends BaseClientRaw
     const MONTHLY_HIGH_HEAT_INDEX_MONTH = 179;
     const MONTHLY_HIGH_HEAT_INDEX_YEAR = 180;
 
+    const MONTHLY_HIGH_UV = 666;
+    const MONTHLY_HIGH_UV_HOUR = 667;
+    const MONTHLY_HIGH_UV_MINUTE = 668;
+    const MONTHLY_HIGH_UV_DAY = 669;
+    const MONTHLY_HIGH_UV_MONTH = 670;
+    const MONTHLY_HIGH_UV_YEAR = 671;
+
     const MONTHLY_HIGH_DEW_POINT = 729;
     const MONTHLY_HIGH_DEW_POINT_HOUR = 730;
     const MONTHLY_HIGH_DEW_POINT_MINUTE = 731;
@@ -233,6 +240,21 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::MONTHLY_HIGH_HEAT_INDEX_DAY),
             self::readField(self::MONTHLY_HIGH_HEAT_INDEX_HOUR),
             self::readField(self::MONTHLY_HIGH_HEAT_INDEX_MINUTE));
+    }
+
+    public function getMonthlyHighUv()
+    {
+        return new Uv(self::readField(self::MONTHLY_HIGH_UV));
+    }
+
+    public function getMonthlyHighUvDateAndTime()
+    {
+        return new DateAndTime(
+            self::readField(self::MONTHLY_HIGH_UV_YEAR),
+            self::readField(self::MONTHLY_HIGH_UV_MONTH),
+            self::readField(self::MONTHLY_HIGH_UV_DAY),
+            self::readField(self::MONTHLY_HIGH_UV_HOUR),
+            self::readField(self::MONTHLY_HIGH_UV_MINUTE));
     }
 
     public function getMonthlyHighDewPoint()
