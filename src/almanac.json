@@ -15,7 +15,7 @@ function createAlmanacMeasurement($measurement, $measurementTime)
     return $almanacMeasurement;
 }
 
-function createWindAlmanacMeasurement($speedMeasurement, $directionMeasurement, $measurementTime)
+function createAlmanacWindMeasurement($speedMeasurement, $directionMeasurement, $measurementTime)
 {
     return array(
         "speed" => $speedMeasurement->getAllMeasures(),
@@ -40,11 +40,11 @@ function createMonthToDate($clientRawExtra, $dateAndTime)
     $maximumRainfallRate = createAlmanacMeasurement(
         $clientRawExtra->getMonthlyMaximumRainfallRate(), $clientRawExtra->getMonthlyMaximumRainfallRateDateAndTime());
 
-    $maximumAverageWindSpeed = createWindAlmanacMeasurement(
+    $maximumAverageWindSpeed = createAlmanacWindMeasurement(
         $clientRawExtra->getMonthlyMaximumAverageWindSpeed(), $clientRawExtra->getMonthlyMaximumAverageWindSpeedDirection(),
         $clientRawExtra->getMonthlyMaximumAverageWindSpeedDateAndTime());
 
-    $maximumGustSpeed = createWindAlmanacMeasurement(
+    $maximumGustSpeed = createAlmanacWindMeasurement(
         $clientRawExtra->getMonthlyMaximumGustSpeed(), $clientRawExtra->getMonthlyMaximumGustSpeedDirection(),
         $clientRawExtra->getMonthlyMaximumGustSpeedDateAndTime());
 
@@ -78,29 +78,105 @@ function createMonthToDate($clientRawExtra, $dateAndTime)
 
 function createYearToDate($clientRawExtra, $dateAndTime)
 {
+    $highOutdoorTemperature = createAlmanacMeasurement(
+        $clientRawExtra->getYearlyHighOutdoorTemperature(), $clientRawExtra->getYearlyHighOutdoorTemperatureDateAndTime());
+
+    $lowOutdoorTemperature = createAlmanacMeasurement(
+        $clientRawExtra->getYearlyLowOutdoorTemperature(), $clientRawExtra->getYearlyLowOutdoorTemperatureDateAndTime());
+
+    $highPressure = createAlmanacMeasurement(
+        $clientRawExtra->getYearlyHighSurfacePressure(), $clientRawExtra->getYearlyHighSurfacePressureDateAndTime());
+
+    $lowPressure = createAlmanacMeasurement(
+        $clientRawExtra->getYearlyLowSurfacePressure(), $clientRawExtra->getYearlyLowSurfacePressureDateAndTime());
+
+    $maximumRainfallRate = createAlmanacMeasurement(
+        $clientRawExtra->getYearlyMaximumRainfallRate(), $clientRawExtra->getYearlyMaximumRainfallRateDateAndTime());
+
+    $maximumAverageWindSpeed = createAlmanacWindMeasurement(
+        $clientRawExtra->getYearlyMaximumAverageWindSpeed(), $clientRawExtra->getYearlyMaximumAverageWindSpeedDirection(),
+        $clientRawExtra->getYearlyMaximumAverageWindSpeedDateAndTime());
+
+    $maximumGustSpeed = createAlmanacWindMeasurement(
+        $clientRawExtra->getYearlyMaximumGustSpeed(), $clientRawExtra->getYearlyMaximumGustSpeedDirection(),
+        $clientRawExtra->getYearlyMaximumGustSpeedDateAndTime());
+
+    $highDewPoint = createAlmanacMeasurement(
+        $clientRawExtra->getYearlyHighDewPoint(), $clientRawExtra->getYearlyHighDewPointDateAndTime());
+
+    $lowDewPoint = createAlmanacMeasurement(
+        $clientRawExtra->getYearlyLowDewPoint(), $clientRawExtra->getYearlyLowDewPointDateAndTime());
+
+    $lowWindChill = createAlmanacMeasurement(
+        $clientRawExtra->getYearlyLowWindChill(), $clientRawExtra->getYearlyLowWindChillDateAndTime());
+
+    $highHeatIndex = createAlmanacMeasurement(
+        $clientRawExtra->getYearlyHighHeatIndex(), $clientRawExtra->getYearlyHighHeatIndexDateAndTime());
+
+    $highUv = createAlmanacMeasurement(
+        $clientRawExtra->getYearlyHighUv(), $clientRawExtra->getYearlyHighUvDateAndTime());
+
     return array(
         "year" => $dateAndTime->getYear(),
-        "temperature" => array(),
-        "pressure" => array(),
-        "rainfall" => array(),
-        "wind" => array(),
-        "dew_point" => array(),
-        "wind_chill" => array(),
-        "heat_index" => array(),
-        "uv" => array());
+        "temperature" => array("high" => $highOutdoorTemperature, "low" => $lowOutdoorTemperature),
+        "pressure" => array("high" => $highPressure, "low" => $lowPressure),
+        "rainfall" => array("max_rate_per_min" => $maximumRainfallRate),
+        "wind" => array("max_avg" => $maximumAverageWindSpeed, "max_gust" => $maximumGustSpeed),
+        "dew_point" => array("high" => $highDewPoint, "low" => $lowDewPoint),
+        "wind_chill" => array("low" => $lowWindChill),
+        "heat_index" => array("high" => $highHeatIndex),
+        "uv" => array("high" => $highUv));
 }
 
 function createAllTime($clientRawExtra)
 {
+    $highOutdoorTemperature = createAlmanacMeasurement(
+        $clientRawExtra->getAllTimeHighOutdoorTemperature(), $clientRawExtra->getAllTimeHighOutdoorTemperatureDateAndTime());
+
+    $lowOutdoorTemperature = createAlmanacMeasurement(
+        $clientRawExtra->getAllTimeLowOutdoorTemperature(), $clientRawExtra->getAllTimeLowOutdoorTemperatureDateAndTime());
+
+    $highPressure = createAlmanacMeasurement(
+        $clientRawExtra->getAllTimeHighSurfacePressure(), $clientRawExtra->getAllTimeHighSurfacePressureDateAndTime());
+
+    $lowPressure = createAlmanacMeasurement(
+        $clientRawExtra->getAllTimeLowSurfacePressure(), $clientRawExtra->getAllTimeLowSurfacePressureDateAndTime());
+
+    $maximumRainfallRate = createAlmanacMeasurement(
+        $clientRawExtra->getAllTimeMaximumRainfallRate(), $clientRawExtra->getAllTimeMaximumRainfallRateDateAndTime());
+
+    $maximumAverageWindSpeed = createAlmanacWindMeasurement(
+        $clientRawExtra->getAllTimeMaximumAverageWindSpeed(), $clientRawExtra->getAllTimeMaximumAverageWindSpeedDirection(),
+        $clientRawExtra->getAllTimeMaximumAverageWindSpeedDateAndTime());
+
+    $maximumGustSpeed = createAlmanacWindMeasurement(
+        $clientRawExtra->getAllTimeMaximumGustSpeed(), $clientRawExtra->getAllTimeMaximumGustSpeedDirection(),
+        $clientRawExtra->getAllTimeMaximumGustSpeedDateAndTime());
+
+    $highDewPoint = createAlmanacMeasurement(
+        $clientRawExtra->getAllTimeHighDewPoint(), $clientRawExtra->getAllTimeHighDewPointDateAndTime());
+
+    $lowDewPoint = createAlmanacMeasurement(
+        $clientRawExtra->getAllTimeLowDewPoint(), $clientRawExtra->getAllTimeLowDewPointDateAndTime());
+
+    $lowWindChill = createAlmanacMeasurement(
+        $clientRawExtra->getAllTimeLowWindChill(), $clientRawExtra->getAllTimeLowWindChillDateAndTime());
+
+    $highHeatIndex = createAlmanacMeasurement(
+        $clientRawExtra->getAllTimeHighHeatIndex(), $clientRawExtra->getAllTimeHighHeatIndexDateAndTime());
+
+    $highUv = createAlmanacMeasurement(
+        $clientRawExtra->getAllTimeHighUv(), $clientRawExtra->getAllTimeHighUvDateAndTime());
+
     return array(
-        "temperature" => array(),
-        "pressure" => array(),
-        "rainfall" => array(),
-        "wind" => array(),
-        "dew_point" => array(),
-        "wind_chill" => array(),
-        "heat_index" => array(),
-        "uv" => array());
+        "temperature" => array("high" => $highOutdoorTemperature, "low" => $lowOutdoorTemperature),
+        "pressure" => array("high" => $highPressure, "low" => $lowPressure),
+        "rainfall" => array("max_rate_per_min" => $maximumRainfallRate),
+        "wind" => array("max_avg" => $maximumAverageWindSpeed, "max_gust" => $maximumGustSpeed),
+        "dew_point" => array("high" => $highDewPoint, "low" => $lowDewPoint),
+        "wind_chill" => array("low" => $lowWindChill),
+        "heat_index" => array("high" => $highHeatIndex),
+        "uv" => array("high" => $highUv));
 }
 
 $clientRaw = new ClientRaw(CLIENT_RAW_DIRECTORY . "clientraw.txt");
