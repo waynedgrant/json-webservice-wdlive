@@ -1,0 +1,37 @@
+<?php header('content-type: application/json; charset=utf-8');
+
+# Copyright 2015 Wayne D Grant (www.waynedgrant.com)
+# Licensed under the MIT License
+
+require_once("config.php");
+require_once("common.php");
+require_once("ClientRaw.php");
+require_once("ClientRawExtra.php");
+
+$clientRaw = new ClientRaw(CLIENT_RAW_DIRECTORY . "clientraw.txt");
+$clientRawExtra = new ClientRawExtra(CLIENT_RAW_DIRECTORY . "clientrawextra.txt");
+
+$dateAndTime = $clientRaw->getCurrentDateAndTime();
+
+$sun = array(
+    "sunrise" => $clientRawExtra->getSunrise(),
+    "sunset" => $clientRawExtra->getSunset());
+
+$moon = array(
+    "moonrise" => $clientRawExtra->getMoonrise(),
+    "moonset" => $clientRawExtra->getMoonset(),
+    "moon_phase" => $clientRawExtra->getMoonPhase(),
+    "moon_age" => $clientRawExtra->getMoonAge());
+
+$data = array(
+    "endpoint" => createEndpoint(),
+    "station" => createStation($clientRaw),
+    "time" => $dateAndTime->getAllValues(),
+    "sun" => $sun,
+    "moon" => $moon);
+
+$json = json_encode($data);
+
+echo isset($_GET['callback']) ? "{$_GET['callback']}($json)" : $json;
+
+?>

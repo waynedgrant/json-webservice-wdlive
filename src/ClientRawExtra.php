@@ -239,6 +239,13 @@ class ClientRawExtra extends BaseClientRaw
     const ALL_TIME_LOW_DEW_POINT_MONTH = 763;
     const ALL_TIME_LOW_DEW_POINT_YEAR = 764;
 
+    const SUNRISE = 556;
+    const SUNSET = 557;
+    const MOONRISE = 558;
+    const MOONSET = 559;
+    const MOON_PHASE = 560;
+    const MOON_AGE = 561;
+
     public function getMonthlyHighOutdoorTemperature()
     {
         return new Temperature(self::readField(self::MONTHLY_HIGH_OUTDOOR_TEMPERATURE));
@@ -807,6 +814,36 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::ALL_TIME_LOW_DEW_POINT_DAY),
             self::readField(self::ALL_TIME_LOW_DEW_POINT_HOUR),
             self::readField(self::ALL_TIME_LOW_DEW_POINT_MINUTE));
+    }
+
+    public function getSunrise()
+    {
+        return self::readField(self::SUNRISE);
+    }
+
+    public function getSunset()
+    {
+        return self::readField(self::SUNSET);
+    }
+
+    public function getMoonrise()
+    {
+        return self::readField(self::MOONRISE);
+    }
+
+    public function getMoonset()
+    {
+        return self::readField(self::MOONSET);
+    }
+
+    public function getMoonPhase()
+    {
+        return self::readField(self::MOON_PHASE);
+    }
+
+    public function getMoonAge()
+    {
+        return self::readField(self::MOON_AGE);
     }
 }
 
