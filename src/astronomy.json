@@ -14,12 +14,12 @@ $clientRawExtra = new ClientRawExtra(CLIENT_RAW_DIRECTORY . "clientrawextra.txt"
 $dateAndTime = $clientRaw->getCurrentDateAndTime();
 
 $sun = array(
-    "sunrise" => $clientRawExtra->getSunrise(),
-    "sunset" => $clientRawExtra->getSunset());
+    "sunrise_time" => $clientRawExtra->getSunriseTime()->getAllValues(),
+    "sunset_time" => $clientRawExtra->getSunsetTime()->getAllValues());
 
 $moon = array(
-    "moonrise" => $clientRawExtra->getMoonrise(),
-    "moonset" => $clientRawExtra->getMoonset(),
+    "moonrise_time" => $clientRawExtra->getMoonriseTime()->getAllValues(),
+    "moonset_time" => $clientRawExtra->getMoonsetTime()->getAllValues(),
     "moon_phase" => $clientRawExtra->getMoonPhase(),
     "moon_age" => $clientRawExtra->getMoonAge());
 

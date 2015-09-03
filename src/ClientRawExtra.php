@@ -8,6 +8,7 @@ require_once("DateAndTime.php");
 require_once("Pressure.php");
 require_once("RainfallRate.php");
 require_once("Temperature.php");
+require_once("Time.php");
 require_once("Uv.php");
 require_once("WindDirection.php");
 require_once("WindSpeed.php");
@@ -239,10 +240,10 @@ class ClientRawExtra extends BaseClientRaw
     const ALL_TIME_LOW_DEW_POINT_MONTH = 763;
     const ALL_TIME_LOW_DEW_POINT_YEAR = 764;
 
-    const SUNRISE = 556;
-    const SUNSET = 557;
-    const MOONRISE = 558;
-    const MOONSET = 559;
+    const SUNRISE_TIME = 556;
+    const SUNSET_TIME = 557;
+    const MOONRISE_TIME = 558;
+    const MOONSET_TIME = 559;
     const MOON_PHASE = 560;
     const MOON_AGE = 561;
 
@@ -816,24 +817,24 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::ALL_TIME_LOW_DEW_POINT_MINUTE));
     }
 
-    public function getSunrise()
+    public function getSunriseTime()
     {
-        return self::readField(self::SUNRISE);
+        return new Time(self::readField(self::SUNRISE_TIME));
     }
 
-    public function getSunset()
+    public function getSunsetTime()
     {
-        return self::readField(self::SUNSET);
+        return new Time(self::readField(self::SUNSET_TIME));
     }
 
-    public function getMoonrise()
+    public function getMoonriseTime()
     {
-        return self::readField(self::MOONRISE);
+        return new Time(self::readField(self::MOONRISE_TIME));
     }
 
-    public function getMoonset()
+    public function getMoonsetTime()
     {
-        return self::readField(self::MOONSET);
+        return new Time(self::readField(self::MOONSET_TIME));
     }
 
     public function getMoonPhase()
