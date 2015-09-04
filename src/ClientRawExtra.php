@@ -839,12 +839,34 @@ class ClientRawExtra extends BaseClientRaw
 
     public function getMoonPhase()
     {
-        return self::readField(self::MOON_PHASE);
+        $moonPhase = self::readField(self::MOON_PHASE);
+
+        if ($moonPhase == '-')
+        {
+            $moonPhase = null;
+        }
+        else
+        {
+            $moonPhase = number_format($moonPhase, 1, '.', '');
+        }
+
+        return $moonPhase;
     }
 
     public function getMoonAge()
     {
-        return self::readField(self::MOON_AGE);
+        $moonAge = self::readField(self::MOON_AGE);
+
+        if ($moonAge == '-')
+        {
+            $moonAge = null;
+        }
+        else
+        {
+            $moonAge = number_format($moonAge, 0, '.', '');
+        }
+
+        return $moonAge;
     }
 }
 

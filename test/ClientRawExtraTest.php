@@ -1179,10 +1179,16 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
         $this->assertSame("21:45", $testee->getMoonriseTime()->getTime());
     }
 
-    public function test_get_moonset_time()
+    public function test_get_moon_phase()
     {
-        $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MOONSET_TIME, "11:22"));
-        $this->assertSame("11:22", $testee->getMoonsetTime()->getTime());
+        $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MOON_PHASE, "87.2"));
+        $this->assertSame("87.2", $testee->getMoonPhase());
+    }
+
+    public function test_get_moon_age()
+    {
+        $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MOON_AGE, "18"));
+        $this->assertSame("18", $testee->getMoonAge());
     }
 
     public function test_when_all_time_fields_are_missing()
@@ -1281,6 +1287,8 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getSunsetTime()->getTime());
         $this->assertNull($testee->getMoonriseTime()->getTime());
         $this->assertNull($testee->getMoonsetTime()->getTime());
+        $this->assertNull($testee->getMoonPhase());
+        $this->assertNull($testee->getMoonAge());
     }
 }
 
