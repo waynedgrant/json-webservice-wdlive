@@ -1161,6 +1161,36 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
+    public function test_get_sunrise_time()
+    {
+        $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::SUNRISE_TIME, "06:21"));
+        $this->assertSame("06:21", $testee->getSunriseTime()->getTime());
+    }
+
+    public function test_get_sunset_time()
+    {
+        $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::SUNSET_TIME, "20:09"));
+        $this->assertSame("20:09", $testee->getSunsetTime()->getTime());
+    }
+
+    public function test_get_moonrise_time()
+    {
+        $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MOONRISE_TIME, "21:45"));
+        $this->assertSame("21:45", $testee->getMoonriseTime()->getTime());
+    }
+
+    public function test_get_moon_phase()
+    {
+        $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MOON_PHASE, "87.2"));
+        $this->assertSame("87.2", $testee->getMoonPhase());
+    }
+
+    public function test_get_moon_age()
+    {
+        $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MOON_AGE, "18"));
+        $this->assertSame("18", $testee->getMoonAge());
+    }
+
     public function test_when_all_time_fields_are_missing()
     {
         $testee = self::createEmptyClientRawExtra();
@@ -1252,6 +1282,13 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getAllTimeLowDewPointDateAndTime()->getDay());
         $this->assertNull($testee->getAllTimeLowDewPointDateAndTime()->getHour());
         $this->assertNull($testee->getAllTimeLowDewPointDateAndTime()->getMinute());
+
+        $this->assertNull($testee->getSunriseTime()->getTime());
+        $this->assertNull($testee->getSunsetTime()->getTime());
+        $this->assertNull($testee->getMoonriseTime()->getTime());
+        $this->assertNull($testee->getMoonsetTime()->getTime());
+        $this->assertNull($testee->getMoonPhase());
+        $this->assertNull($testee->getMoonAge());
     }
 }
 

@@ -8,6 +8,7 @@ require_once("DateAndTime.php");
 require_once("Pressure.php");
 require_once("RainfallRate.php");
 require_once("Temperature.php");
+require_once("Time.php");
 require_once("Uv.php");
 require_once("WindDirection.php");
 require_once("WindSpeed.php");
@@ -238,6 +239,13 @@ class ClientRawExtra extends BaseClientRaw
     const ALL_TIME_LOW_DEW_POINT_DAY = 762;
     const ALL_TIME_LOW_DEW_POINT_MONTH = 763;
     const ALL_TIME_LOW_DEW_POINT_YEAR = 764;
+
+    const SUNRISE_TIME = 556;
+    const SUNSET_TIME = 557;
+    const MOONRISE_TIME = 558;
+    const MOONSET_TIME = 559;
+    const MOON_PHASE = 560;
+    const MOON_AGE = 561;
 
     public function getMonthlyHighOutdoorTemperature()
     {
@@ -807,6 +815,58 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::ALL_TIME_LOW_DEW_POINT_DAY),
             self::readField(self::ALL_TIME_LOW_DEW_POINT_HOUR),
             self::readField(self::ALL_TIME_LOW_DEW_POINT_MINUTE));
+    }
+
+    public function getSunriseTime()
+    {
+        return new Time(self::readField(self::SUNRISE_TIME));
+    }
+
+    public function getSunsetTime()
+    {
+        return new Time(self::readField(self::SUNSET_TIME));
+    }
+
+    public function getMoonriseTime()
+    {
+        return new Time(self::readField(self::MOONRISE_TIME));
+    }
+
+    public function getMoonsetTime()
+    {
+        return new Time(self::readField(self::MOONSET_TIME));
+    }
+
+    public function getMoonPhase()
+    {
+        $moonPhase = self::readField(self::MOON_PHASE);
+
+        if ($moonPhase == '-')
+        {
+            $moonPhase = null;
+        }
+        else
+        {
+            $moonPhase = number_format($moonPhase, 1, '.', '');
+        }
+
+        return $moonPhase;
+    }
+
+    public function getMoonAge()
+    {
+        $moonAge = self::readField(self::MOON_AGE);
+
+        if ($moonAge == '-')
+        {
+            $moonAge = null;
+        }
+        else
+        {
+            $moonAge = number_format($moonAge, 0, '.', '');
+        }
+
+        return $moonAge;
     }
 }
 
