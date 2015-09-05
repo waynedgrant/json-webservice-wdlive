@@ -65,6 +65,11 @@ For example:
 * JSON: [http://www.waynedgrant.com/weather/api/indoor.json](http://www.waynedgrant.com/weather/api/indoor.json)
 * JSONP: [http://www.waynedgrant.com/weather/api/indoor.json?callback=weatherCallback](http://www.waynedgrant.com/weather/api/indoor.json?callback=weatherCallback)
 
+**Everything URL - everything.json**
+
+* JSON: [http://www.waynedgrant.com/weather/api/everything.json](http://www.waynedgrant.com/weather/api/everything.json)
+* JSONP: [http://www.waynedgrant.com/weather/api/everything.json?callback=weatherCallback](http://www.waynedgrant.com/weather/api/everything.json?callback=weatherCallback)
+
 ## API Documentation
 
 For details of Web Service response fields see Web Service API page at [Wayne's Weather](http://www.waynedgrant.com/weather/api.html).
