@@ -3,25 +3,17 @@
 # Copyright 2015 Wayne D Grant (www.waynedgrant.com)
 # Licensed under the MIT License
 
-require_once("common.php");
 require_once("config.php");
 require_once("AlmanacSource.php");
 require_once("ClientRaw.php");
 require_once("ClientRawExtra.php");
-
 
 $clientRaw = new ClientRaw(CLIENT_RAW_DIRECTORY . "clientraw.txt");
 $clientRawExtra = new ClientRawExtra(CLIENT_RAW_DIRECTORY . "clientrawextra.txt");
 
 $almanacSource = new AlmanacSource($clientRaw, $clientRawExtra);
 
-$data = array(
-    "endpoint" => createEndpoint(),
-    "station" => createStation($clientRaw),
-    "time" => $clientRaw->getCurrentDateAndTime()->getAllValues(),
-    "almanac" => $almanacSource->create());
-
-$json = json_encode($data);
+$json = json_encode($almanacSource->create());
 
 echo isset($_GET['callback']) ? "{$_GET['callback']}($json)" : $json;
 

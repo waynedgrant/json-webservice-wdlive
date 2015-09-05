@@ -3,23 +3,28 @@
 # Copyright 2015 Wayne D Grant (www.waynedgrant.com)
 # Licensed under the MIT License
 
-class AlmanacSource
+require_once("BaseSource.php");
+
+class AlmanacSource extends BaseSource
 {
     private $clientRawExtra;
-    private $dateAndTime;
 
     public function __construct($clientRaw, $clientRawExtra)
     {
-        $this->dateAndTime = $clientRaw->getCurrentDateAndTime();
+        parent::__construct($clientRaw);
         $this->clientRawExtra = $clientRawExtra;
     }
 
     public function create()
     {
-        return array(
+        $data = $this->createBase();
+
+        $data["almanac"] = array(
             "month_to_date" => $this->createMonthToDate(),
             "year_to_date" => $this->createYearToDate(),
             "all_time" => $this->createAllTime());
+
+        return $data;
     }
 
     private function createMonthToDate()
@@ -74,9 +79,11 @@ class AlmanacSource
             $this->clientRawExtra->getMonthlyHighUv(),
             $this->clientRawExtra->getMonthlyHighUvDateAndTime());
 
+        $dateAndTime = $this->clientRaw->getCurrentDateAndTime();
+
         return array(
-            "month" => $this->dateAndTime->getMonth(),
-            "year" => $this->dateAndTime->getYear(),
+            "month" => $dateAndTime->getMonth(),
+            "year" => $dateAndTime->getYear(),
             "temperature" => array("high" => $highOutdoorTemperature, "low" => $lowOutdoorTemperature),
             "pressure" => array("high" => $highPressure, "low" => $lowPressure),
             "rainfall" => array("max_rate_per_min" => $maximumRainfallRate),
@@ -139,8 +146,10 @@ class AlmanacSource
             $this->clientRawExtra->getYearlyHighUv(),
             $this->clientRawExtra->getYearlyHighUvDateAndTime());
 
+        $dateAndTime = $this->clientRaw->getCurrentDateAndTime();
+
         return array(
-            "year" => $this->dateAndTime->getYear(),
+            "year" => $dateAndTime->getYear(),
             "temperature" => array("high" => $highOutdoorTemperature, "low" => $lowOutdoorTemperature),
             "pressure" => array("high" => $highPressure, "low" => $lowPressure),
             "rainfall" => array("max_rate_per_min" => $maximumRainfallRate),
@@ -218,6 +227,7 @@ class AlmanacSource
     {
         $almanacMeasurement = $measurement->getAllMeasures();
         $almanacMeasurement['time'] = $measurementTime->getAllValues();
+
         return $almanacMeasurement;
     }
 

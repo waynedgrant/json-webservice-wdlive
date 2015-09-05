@@ -3,13 +3,13 @@
 # Copyright 2015 Wayne D Grant (www.waynedgrant.com)
 # Licensed under the MIT License
 
-class WeatherSource
-{
-    private $clientRaw;
+require_once("BaseSource.php");
 
+class WeatherSource extends BaseSource
+{
     public function __construct($clientRaw)
     {
-        $this->clientRaw = $clientRaw;
+        parent::__construct($clientRaw);
     }
 
     public function create()
@@ -67,7 +67,9 @@ class WeatherSource
             "high" => $this->clientRaw->getDailyHighHeatIndex()->getAllMeasures(),
             "low" => $this->clientRaw->getDailyLowHeatIndex()->getAllMeasures());
 
-        return array(
+        $data = $this->createBase();
+
+        $data["weather"] = array(
             "temperature" => $temperature,
             "pressure" => $pressure,
             "rainfall" => $rainfall,
@@ -78,6 +80,8 @@ class WeatherSource
             "humidex" => $humidex,
             "heat_index" => $heatIndex,
             "uv" => $this->clientRaw->getUv()->getAllMeasures());
+
+        return $data;
     }
 }
 

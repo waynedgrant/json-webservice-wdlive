@@ -3,7 +3,6 @@
 # Copyright 2015 Wayne D Grant (www.waynedgrant.com)
 # Licensed under the MIT License
 
-require_once("common.php");
 require_once("config.php");
 require_once("ClientRaw.php");
 require_once("WeatherSource.php");
@@ -12,13 +11,7 @@ $clientRaw = new ClientRaw(CLIENT_RAW_DIRECTORY . "clientraw.txt");
 
 $weatherSource = new WeatherSource($clientRaw);
 
-$data = array(
-    "endpoint" => createEndpoint(),
-    "station" => createStation($clientRaw),
-    "time" => $clientRaw->getCurrentDateAndTime()->getAllValues(),
-    "weather" => $weatherSource->create());
-
-$json = json_encode($data);
+$json = json_encode($weatherSource->create());
 
 echo isset($_GET['callback']) ? "{$_GET['callback']}($json)" : $json;
 

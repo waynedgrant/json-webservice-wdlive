@@ -3,13 +3,13 @@
 # Copyright 2015 Wayne D Grant (www.waynedgrant.com)
 # Licensed under the MIT License
 
-class IndoorSource
-{
-    private $clientRaw;
+require_once("BaseSource.php");
 
+class IndoorSource extends BaseSource
+{
     public function __construct($clientRaw)
     {
-        $this->clientRaw = $clientRaw;
+        parent::__construct($clientRaw);
     }
 
     public function create()
@@ -17,7 +17,13 @@ class IndoorSource
         $temperature = $this->clientRaw->getIndoorTemperature()->getAllMeasures();
         $humidity = $this->clientRaw->getIndoorHumidity()->getPercentage();
 
-        return array("temperature" => $temperature, "humidity" => $humidity);
+        $data = $this->createBase();
+
+        $data["indoor"] = array(
+            "temperature" => $temperature,
+            "humidity" => $humidity);
+
+        return $data;
     }
 }
 

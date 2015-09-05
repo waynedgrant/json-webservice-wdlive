@@ -3,7 +3,6 @@
 # Copyright 2015 Wayne D Grant (www.waynedgrant.com)
 # Licensed under the MIT License
 
-require_once("common.php");
 require_once("config.php");
 require_once("AstronomySource.php");
 require_once("ClientRaw.php");
@@ -12,15 +11,9 @@ require_once("ClientRawExtra.php");
 $clientRaw = new ClientRaw(CLIENT_RAW_DIRECTORY . "clientraw.txt");
 $clientRawExtra = new ClientRawExtra(CLIENT_RAW_DIRECTORY . "clientrawextra.txt");
 
-$astronomySource = new AstronomySource($clientRawExtra);
+$astronomySource = new AstronomySource($clientRaw, $clientRawExtra);
 
-$data = array(
-    "endpoint" => createEndpoint(),
-    "station" => createStation($clientRaw),
-    "time" => $clientRaw->getCurrentDateAndTime()->getAllValues(),
-    "astronomy" => $astronomySource->create());
-
-$json = json_encode($data);
+$json = json_encode($astronomySource->create());
 
 echo isset($_GET['callback']) ? "{$_GET['callback']}($json)" : $json;
 
