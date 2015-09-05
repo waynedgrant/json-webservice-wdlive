@@ -4,19 +4,14 @@
 # Licensed under the MIT License
 
 require_once("config.php");
-require_once("common.php");
 require_once("ClientRaw.php");
+require_once("IndoorSource.php");
 
 $clientRaw = new ClientRaw(CLIENT_RAW_DIRECTORY . "clientraw.txt");
 
-$data = array(
-    "endpoint" => createEndpoint(),
-    "station" => createStation($clientRaw),
-    "time" => $clientRaw->getCurrentDateAndTime()->getAllValues(),
-    "temperature" => $clientRaw->getIndoorTemperature()->getAllMeasures(),
-    "humidity" => $clientRaw->getIndoorHumidity()->getPercentage());
+$indoorSource = new IndoorSource($clientRaw);
 
-$json = json_encode($data);
+$json = json_encode($indoorSource->create());
 
 echo isset($_GET['callback']) ? "{$_GET['callback']}($json)" : $json;
 

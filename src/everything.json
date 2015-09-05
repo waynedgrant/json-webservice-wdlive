@@ -4,16 +4,16 @@
 # Licensed under the MIT License
 
 require_once("config.php");
-require_once("AstronomySource.php");
 require_once("ClientRaw.php");
 require_once("ClientRawExtra.php");
+require_once("EverythingSource.php");
 
 $clientRaw = new ClientRaw(CLIENT_RAW_DIRECTORY . "clientraw.txt");
 $clientRawExtra = new ClientRawExtra(CLIENT_RAW_DIRECTORY . "clientrawextra.txt");
 
-$astronomySource = new AstronomySource($clientRaw, $clientRawExtra);
+$everythingSource = new EverythingSource($clientRaw, $clientRawExtra);
 
-$json = json_encode($astronomySource->create());
+$json = json_encode($everythingSource->create());
 
 echo isset($_GET['callback']) ? "{$_GET['callback']}($json)" : $json;
 

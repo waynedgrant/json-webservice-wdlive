@@ -37,7 +37,7 @@ I only expose the data I am interested in for my own purposes (i.e. what my weat
 AddHandler application/x-httpd-php5 .json
 ```
 
-Note: If you want to setup json-webservice-wdlive be in a different directory from your clientraw files than simply edit the **$client_raw_directory** variable in the **common.php** file supplying the appropriate relative path.
+Note: If you want to setup json-webservice-wdlive be in a different directory from your clientraw files than simply edit the **$client_raw_directory** variable in the **config.php** file supplying the appropriate relative path.
 
 ## Execution
 
