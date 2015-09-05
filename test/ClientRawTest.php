@@ -428,7 +428,7 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
     public function test_get_wd_version()
     {
         $testee = self::createClientRawWithField(new Field(167, "!!C10.37Of!!"));
-        $this->assertSame("C10.37Of", $testee->getWdVersion());
+        $this->assertSame("10.37Of", $testee->getWdVersion());
     }
 
     public function test_get_current_date_and_time()
