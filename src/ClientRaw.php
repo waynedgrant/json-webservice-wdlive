@@ -452,6 +452,7 @@ class ClientRaw extends BaseClientRaw
         else
         {
             // Remove leading and trailing '!!' from version
+            $wdVersion = str_replace('!!C', '', $wdVersion);
             $wdVersion = str_replace('!!', '', $wdVersion);
         }
 
