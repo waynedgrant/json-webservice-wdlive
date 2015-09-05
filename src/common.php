@@ -3,7 +3,7 @@
 # Copyright 2015 Wayne D Grant (www.waynedgrant.com)
 # Licensed under the MIT License
 
-define("SERVICE_VERSION", 1.3);
+define("SERVICE_VERSION", 1.4);
 
 function getServiceUrl()
 {

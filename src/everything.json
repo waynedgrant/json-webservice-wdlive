@@ -6,20 +6,28 @@
 require_once("common.php");
 require_once("config.php");
 require_once("AlmanacSource.php");
+require_once("AstronomySource.php");
 require_once("ClientRaw.php");
 require_once("ClientRawExtra.php");
-
+require_once("IndoorSource.php");
+require_once("WeatherSource.php");
 
 $clientRaw = new ClientRaw(CLIENT_RAW_DIRECTORY . "clientraw.txt");
 $clientRawExtra = new ClientRawExtra(CLIENT_RAW_DIRECTORY . "clientrawextra.txt");
 
 $almanacSource = new AlmanacSource($clientRaw, $clientRawExtra);
+$astronomySource = new AstronomySource($clientRawExtra);
+$indoorSource = new IndoorSource($clientRaw);
+$weatherSource = new WeatherSource($clientRaw);
 
 $data = array(
     "endpoint" => createEndpoint(),
     "station" => createStation($clientRaw),
     "time" => $clientRaw->getCurrentDateAndTime()->getAllValues(),
-    "almanac" => $almanacSource->create());
+    "almanac" => $almanacSource->create(),
+    "astronomy" => $astronomySource->create(),
+    "indoor" => $indoorSource->create(),
+    "weather" => $weatherSource->create());
 
 $json = json_encode($data);
 

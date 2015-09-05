@@ -3,18 +3,20 @@
 # Copyright 2015 Wayne D Grant (www.waynedgrant.com)
 # Licensed under the MIT License
 
-require_once("config.php");
 require_once("common.php");
+require_once("config.php");
 require_once("ClientRaw.php");
+require_once("IndoorSource.php");
 
 $clientRaw = new ClientRaw(CLIENT_RAW_DIRECTORY . "clientraw.txt");
+
+$indoorSource = new IndoorSource($clientRaw);
 
 $data = array(
     "endpoint" => createEndpoint(),
     "station" => createStation($clientRaw),
     "time" => $clientRaw->getCurrentDateAndTime()->getAllValues(),
-    "temperature" => $clientRaw->getIndoorTemperature()->getAllMeasures(),
-    "humidity" => $clientRaw->getIndoorHumidity()->getPercentage());
+    "indoor" => $indoorSource->create());
 
 $json = json_encode($data);
 

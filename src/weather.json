@@ -3,79 +3,20 @@
 # Copyright 2015 Wayne D Grant (www.waynedgrant.com)
 # Licensed under the MIT License
 
-require_once("config.php");
 require_once("common.php");
+require_once("config.php");
 require_once("ClientRaw.php");
+require_once("WeatherSource.php");
 
 $clientRaw = new ClientRaw(CLIENT_RAW_DIRECTORY . "clientraw.txt");
 
-$temperature = array(
-    "current" => $clientRaw->getOutdoorTemperature()->getAllMeasures(),
-    "high" => $clientRaw->getDailyHighOutdoorTemperature()->getAllMeasures(),
-    "low" => $clientRaw->getDailyLowOutdoorTemperature()->getAllMeasures(),
-    "trend" => $clientRaw->getOutdoorTemperatureTrend()->getTrend());
-
-$pressure = array(
-    "current" => $clientRaw->getSurfacePressure()->getAllMeasures(),
-    "high" => $clientRaw->getDailyHighSurfacePressure()->getAllMeasures(),
-    "low" => $clientRaw->getDailyLowSurfacePressure()->getAllMeasures(),
-    "trend_per_hr" => $clientRaw->getSurfacePressureTrendPerHour()->getAllMeasures());
-
-$rainfall = array(
-    "daily" => $clientRaw->getDailyRainfall()->getAllMeasures(),
-    "rate_per_min" => $clientRaw->getRainfallRate()->getAllMeasures(),
-    "max_rate_per_min" => $clientRaw->getMaximumRainfallRate()->getAllMeasures(),
-    "yesterday" => $clientRaw->getYesterdaysRainfall()->getAllMeasures());
-
-$wind = array(
-    "direction" => $clientRaw->getWindDirection()->getAllMeasures(),
-    "avg_direction" => $clientRaw->getAverageWindDirection()->getAllMeasures(),
-    "avg_speed" => $clientRaw->getAverageWindSpeed()->getAllMeasures(),
-    "max_avg_speed" => $clientRaw->getMaximumAverageWindSpeed()->getAllMeasures(),
-    "gust_speed" => $clientRaw->getGustSpeed()->getAllMeasures(),
-    "max_gust_speed" => $clientRaw->getMaximumGustSpeed()->getAllMeasures());
-
-$humidity = array(
-    "current" => $clientRaw->getOutdoorHumidity()->getPercentage(),
-    "high" => $clientRaw->getDailyHighOutdoorHumidity()->getPercentage(),
-    "low" => $clientRaw->getDailyLowOutdoorHumidity()->getPercentage(),
-    "trend" => $clientRaw->getOutdoorHumidityTrend()->getTrend());
-
-$dewPoint = array(
-    "current" => $clientRaw->getDewPoint()->getAllMeasures(),
-    "high" => $clientRaw->getDailyHighDewPoint()->getAllMeasures(),
-    "low" => $clientRaw->getDailyLowDewPoint()->getAllMeasures());
-
-$windChill = array(
-    "current" => $clientRaw->getWindChill()->getAllMeasures(),
-    "high" => $clientRaw->getDailyHighWindChill()->getAllMeasures(),
-    "low" => $clientRaw->getDailyLowWindChill()->getAllMeasures());
-
-$humidex = array(
-    "current" => $clientRaw->getHumidex()->getAllMeasures(),
-    "high" => $clientRaw->getDailyHighHumidex()->getAllMeasures(),
-    "low" => $clientRaw->getDailyLowHumidex()->getAllMeasures(),
-    "trend" => $clientRaw->getHumidexTrend()->getTrend());
-
-$heatIndex = array(
-    "current" => $clientRaw->getHeatIndex()->getAllMeasures(),
-    "high" => $clientRaw->getDailyHighHeatIndex()->getAllMeasures(),
-    "low" => $clientRaw->getDailyLowHeatIndex()->getAllMeasures());
+$weatherSource = new WeatherSource($clientRaw);
 
 $data = array(
     "endpoint" => createEndpoint(),
     "station" => createStation($clientRaw),
     "time" => $clientRaw->getCurrentDateAndTime()->getAllValues(),
-    "temperature" => $temperature,
-    "pressure" => $pressure,
-    "rainfall" => $rainfall,
-    "wind" => $wind,
-    "humidity" => $humidity,
-    "dew_point" => $dewPoint,
-    "wind_chill" => $windChill,
-    "humidex" => $humidex,
-    "heat_index" => $heatIndex,
-    "uv" => $clientRaw->getUv()->getAllMeasures());
+    "weather" => $weatherSource->create());
 
 $json = json_encode($data);
 
