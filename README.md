@@ -27,15 +27,13 @@ Besides exposing the data in the default units found in clientraw the responses 
 
 * Upload all **.php** and **.json** files in **json-webservice-wdlive/src** to the same directory as the clientraw files are hosted on your web server
 
-* If you plan to host the **json-webservice-wdlive** in a different directory from the clientraw files then edit the **CLIENT_RAW_DIRECTORY** constant in the **config.php** file accordingly
+* If you plan to host the **json-webservice-wdlive** in a different directory from the clientraw files then edit the **CLIENT_RAW_DIRECTORY** constant in the **config.php** file supplying the appropriate relative path.
 
 * Modify your web server to process **.json** files using PHP. For example, for Apache add the following to your **.htaccess** file:
 
 ```
 AddHandler application/x-httpd-php5 .json
 ```
-
-Note: If you want to setup json-webservice-wdlive be in a different directory from your clientraw files than simply edit the define for **CLIENT_RAW_DIRECTORY** in the **config.php** file supplying the appropriate relative path.
 
 ## Execution
 
