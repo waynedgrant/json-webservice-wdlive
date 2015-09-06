@@ -47,6 +47,8 @@ class ClientRaw extends BaseClientRaw
     const HEAT_INDEX = 112;
     const MAXIMUM_AVERAGE_WIND_SPEED = 113;
     const AVERAGE_WIND_DIRECTION = 117;
+    const DAILY_HIGH_INDOOR_TEMPERATURE = 128;
+    const DAILY_LOW_INDOOR_TEMPERATURE = 129;
     const DAILY_HIGH_SURFACE_PRESSURE = 131;
     const DAILY_LOW_SURFACE_PRESSURE = 132;
     const DAILY_HIGH_DEW_POINT = 138;
@@ -305,6 +307,36 @@ class ClientRaw extends BaseClientRaw
     public function getAverageWindDirection()
     {
         return new WindDirection(self::readField(self::AVERAGE_WIND_DIRECTION));
+    }
+
+    public function getDailyHighIndoorTemperature()
+    {
+        $dailyHighIndoorTemperature = new Temperature(self::readField(self::DAILY_HIGH_INDOOR_TEMPERATURE));
+        $indoorTemperature = self::getIndoorTemperature();
+
+        if (!is_null($indoorTemperature->getCelsius()) &&
+            !is_null($dailyHighIndoorTemperature->getCelsius()) &&
+            $indoorTemperature->getCelsius() > $dailyHighIndoorTemperature->getCelsius())
+        {
+            $dailyHighIndoorTemperature = $indoorTemperature;
+        }
+
+        return $dailyHighIndoorTemperature;
+    }
+
+    public function getDailyLowIndoorTemperature()
+    {
+        $dailyLowIndoorTemperature = new Temperature(self::readField(self::DAILY_LOW_INDOOR_TEMPERATURE));
+        $indoorTemperature = self::getIndoorTemperature();
+
+        if (!is_null($indoorTemperature->getCelsius()) &&
+            !is_null($dailyLowIndoorTemperature->getCelsius()) &&
+            $indoorTemperature->getCelsius() < $dailyLowIndoorTemperature->getCelsius())
+        {
+            $dailyLowIndoorTemperature = $indoorTemperature;
+        }
+
+        return $dailyLowIndoorTemperature;
     }
 
     public function getDailyHighSurfacePressure()

@@ -14,7 +14,11 @@ class IndoorSource extends BaseSource
 
     public function create()
     {
-        $temperature = $this->clientRaw->getIndoorTemperature()->getAllMeasures();
+        $temperature = array(
+            "current" => $this->clientRaw->getIndoorTemperature()->getAllMeasures(),
+            "high" => $this->clientRaw->getDailyHighIndoorTemperature()->getAllMeasures(),
+            "low" => $this->clientRaw->getDailyLowIndoorTemperature()->getAllMeasures());
+
         $humidity = $this->clientRaw->getIndoorHumidity()->getPercentage();
 
         $data = $this->createBase();
