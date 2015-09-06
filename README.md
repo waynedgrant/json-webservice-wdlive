@@ -27,11 +27,11 @@ I only expose the data I am interested in for my own purposes (i.e. what my weat
 
 * Download the source code for the [latest release](https://github.com/waynedgrant/json-webservice-wdlive/releases) and unzip it
 
-* Upload all .php and .json files in json-webservice-wdlive/src to the same directory as the clientraw files are hosted on your web server
+* Upload all **.php** and **.json** files in **json-webservice-wdlive/src** to the same directory as the clientraw files are hosted on your web server
 
-* If you plan to host the .json files in a different directory from the clientraw files then edit the **CLIENT_RAW_DIRECTORY** constant in the config.php file accordingly
+* If you plan to host the **json-webservice-wdlive** in a different directory from the clientraw files then edit the **CLIENT_RAW_DIRECTORY** constant in the **config.php** file accordingly
 
-* Modify your web server to process .json files using PHP. For example, for Apache add the following to your .htaccess file:
+* Modify your web server to process **.json** files using PHP. For example, for Apache add the following to your **.htaccess** file:
 
 ```
 AddHandler application/x-httpd-php5 .json
