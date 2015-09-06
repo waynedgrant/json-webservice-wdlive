@@ -14,8 +14,6 @@ It exposes five URLs. The first returns current weather conditions including Tem
 
 Besides exposing the data in the default units found in clientraw the responses also contain many alternative units. For example, clientraw files store wind speeds in knots. The Web Service responses, on the other hand, respond with Bft, knots, km/h, mph, and m/s.
 
-I only expose the data I am interested in for my own purposes (i.e. what my weather station setup supports). However, it would be a simply matter to expand the service calls to add, say, solar measurements or extend the selection of almanac measurements.
-
 ![alt tag](json-webservice-wdlive.png)
 
 ## Requirements
@@ -27,17 +25,17 @@ I only expose the data I am interested in for my own purposes (i.e. what my weat
 
 * Download the source code for the [latest release](https://github.com/waynedgrant/json-webservice-wdlive/releases) and unzip it
 
-* Upload all .php and .json files in json-webservice-wdlive/src to the same directory as the clientraw files are hosted on your web server
+* Upload all **.php** and **.json** files in **json-webservice-wdlive/src** to the same directory as the clientraw files are hosted on your web server
 
-* If you plan to host the .json files in a different directory from the clientraw files then edit the **CLIENT_RAW_DIRECTORY** constant in the config.php file accordingly
+* If you plan to host the **json-webservice-wdlive** in a different directory from the clientraw files then edit the **CLIENT_RAW_DIRECTORY** constant in the **config.php** file accordingly
 
-* Modify your web server to process .json files using PHP. For example, for Apache add the following to your .htaccess file:
+* Modify your web server to process **.json** files using PHP. For example, for Apache add the following to your **.htaccess** file:
 
 ```
 AddHandler application/x-httpd-php5 .json
 ```
 
-Note: If you want to setup json-webservice-wdlive be in a different directory from your clientraw files than simply edit the **$client_raw_directory** variable in the **config.php** file supplying the appropriate relative path.
+Note: If you want to setup json-webservice-wdlive be in a different directory from your clientraw files than simply edit the define for **CLIENT_RAW_DIRECTORY** in the **config.php** file supplying the appropriate relative path.
 
 ## Execution
 
