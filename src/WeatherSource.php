@@ -28,6 +28,8 @@ class WeatherSource extends BaseSource
 
         $rainfall = array(
             "daily" => $this->clientRaw->getDailyRainfall()->getAllMeasures(),
+            "monthly" => $this->clientRaw->getMonthlyRainfall()->getAllMeasures(),
+            "annual" => $this->clientRaw->getAnnualRainfall()->getAllMeasures(),
             "rate_per_min" => $this->clientRaw->getRainfallRate()->getAllMeasures(),
             "max_rate_per_min" => $this->clientRaw->getMaximumRainfallRate()->getAllMeasures(),
             "yesterday" => $this->clientRaw->getYesterdaysRainfall()->getAllMeasures());

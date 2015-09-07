@@ -81,6 +81,18 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $this->assertSame("10.21", $testee->getDailyRainfall()->getMillimetres());
     }
 
+    public function test_get_monthly_rainfall()
+    {
+        $testee = self::createClientRawWithField(new Field(ClientRaw::MONTHLY_RAINFALL, "50.45"));
+        $this->assertSame("50.45", $testee->getMonthlyRainfall()->getMillimetres());
+    }
+
+    public function test_get_annual_rainfall()
+    {
+        $testee = self::createClientRawWithField(new Field(ClientRaw::ANNUAL_RAINFALL, "167.15"));
+        $this->assertSame("167.15", $testee->getAnnualRainfall()->getMillimetres());
+    }
+
     public function test_get_rainfall_rate()
     {
         $testee = self::createClientRawWithField(new Field(ClientRaw::RAINFALL_RATE, "0.12"));
@@ -493,6 +505,8 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getOutdoorHumidity()->getPercentage());
         $this->assertNull($testee->getSurfacePressure()->getHectopascals());
         $this->assertNull($testee->getDailyRainfall()->getMillimetres());
+        $this->assertNull($testee->getMonthlyRainfall()->getMillimetres());
+        $this->assertNull($testee->getAnnualRainfall()->getMillimetres());
         $this->assertNull($testee->getRainfallRate()->getMillimetresPerMinute());
         $this->assertNull($testee->getMaximumRainfallRate()->getMillimetresPerMinute());
         $this->assertNull($testee->getIndoorTemperature()->getCelsius());
