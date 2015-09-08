@@ -69,6 +69,11 @@ class WeatherSource extends BaseSource
             "high" => $this->clientRaw->getDailyHighHeatIndex()->getAllMeasures(),
             "low" => $this->clientRaw->getDailyLowHeatIndex()->getAllMeasures());
 
+        $apparentTemperature = array(
+            "current" => $this->clientRaw->getApparentTemperature()->getAllMeasures(),
+            "high" => $this->clientRaw->getDailyHighApparentTemperature()->getAllMeasures(),
+            "low" => $this->clientRaw->getDailyLowApparentTemperature()->getAllMeasures());
+
         $data = $this->createBase();
 
         $data["weather"] = array(
@@ -81,6 +86,7 @@ class WeatherSource extends BaseSource
             "wind_chill" => $windChill,
             "humidex" => $humidex,
             "heat_index" => $heatIndex,
+            "apparent_temperature" => $apparentTemperature,
             "uv" => $this->clientRaw->getUv()->getAllMeasures());
 
         return $data;

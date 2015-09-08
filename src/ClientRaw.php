@@ -51,8 +51,11 @@ class ClientRaw extends BaseClientRaw
     const AVERAGE_WIND_DIRECTION = 117;
     const DAILY_HIGH_INDOOR_TEMPERATURE = 128;
     const DAILY_LOW_INDOOR_TEMPERATURE = 129;
+    const APPARENT_TEMPERATURE = 130;
     const DAILY_HIGH_SURFACE_PRESSURE = 131;
     const DAILY_LOW_SURFACE_PRESSURE = 132;
+    const DAILY_HIGH_APPARENT_TEMPERATURE = 136;
+    const DAILY_LOW_APPARENT_TEMPERATURE = 137;
     const DAILY_HIGH_DEW_POINT = 138;
     const DAILY_LOW_DEW_POINT = 139;
     const OUTDOOR_TEMPERATURE_TREND = 143;
@@ -351,6 +354,11 @@ class ClientRaw extends BaseClientRaw
         return $dailyLowIndoorTemperature;
     }
 
+    public function getApparentTemperature()
+    {
+        return new Temperature(self::readField(self::APPARENT_TEMPERATURE));
+    }
+
     public function getDailyHighSurfacePressure()
     {
         $dailyHighSurfacePressure = new Pressure(self::readField(self::DAILY_HIGH_SURFACE_PRESSURE));
@@ -379,6 +387,36 @@ class ClientRaw extends BaseClientRaw
         }
 
         return $dailyLowSurfacePressure;
+    }
+
+    public function getDailyHighApparentTemperature()
+    {
+        $dailyHighApparentTemperature = new Temperature(self::readField(self::DAILY_HIGH_APPARENT_TEMPERATURE));
+        $apparentTemperature = self::getApparentTemperature();
+
+        if (!is_null($apparentTemperature->getCelsius()) &&
+            !is_null($dailyHighApparentTemperature->getCelsius()) &&
+            $apparentTemperature->getCelsius() > $dailyHighApparentTemperature->getCelsius())
+        {
+            $dailyHighApparentTemperature = $apparentTemperature;
+        }
+
+        return $dailyHighApparentTemperature;
+    }
+
+    public function getDailyLowApparentTemperature()
+    {
+        $dailyLowApparentTemperature = new Temperature(self::readField(self::DAILY_LOW_APPARENT_TEMPERATURE));
+        $apparentTemperature = self::getApparentTemperature();
+
+        if (!is_null($apparentTemperature->getCelsius()) &&
+            !is_null($dailyLowApparentTemperature->getCelsius()) &&
+            $apparentTemperature->getCelsius() < $dailyLowApparentTemperature->getCelsius())
+        {
+            $dailyLowApparentTemperature = $apparentTemperature;
+        }
+
+        return $dailyLowApparentTemperature;
     }
 
     public function getDailyHighDewPoint()

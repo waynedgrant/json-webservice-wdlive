@@ -305,7 +305,7 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $this->assertSame("270", $testee->getAverageWindDirection()->getCompassDegrees());
     }
 
-    public function test_get_daily_high_indoor_tempertaure()
+    public function test_get_daily_high_indoor_temperature()
     {
         $testee = self::createClientRawWithField(new Field(ClientRaw::DAILY_HIGH_INDOOR_TEMPERATURE, "28.7"));
         $this->assertSame("28.7", $testee->getDailyHighIndoorTemperature()->getCelsius());
@@ -321,7 +321,7 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $this->assertSame("28.8", $testee->getDailyHighIndoorTemperature()->getCelsius());
     }
 
-    public function test_get_daily_low_indoor_tempertaure()
+    public function test_get_daily_low_indoor_temperature()
     {
         $testee = self::createClientRawWithField(new Field(ClientRaw::DAILY_LOW_INDOOR_TEMPERATURE, "19.6"));
         $this->assertSame("19.6", $testee->getDailyLowIndoorTemperature()->getCelsius());
@@ -335,6 +335,12 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
                 new Field(ClientRaw::INDOOR_TEMPERATURE, "19.2")));
 
         $this->assertSame("19.2", $testee->getDailyLowIndoorTemperature()->getCelsius());
+    }
+
+    public function test_get_apparent_temperature()
+    {
+        $testee = self::createClientRawWithField(new Field(ClientRaw::APPARENT_TEMPERATURE, "26.7"));
+        $this->assertSame("26.7", $testee->getApparentTemperature()->getCelsius());
     }
 
     public function test_get_daily_high_surface_pressure()
@@ -367,6 +373,38 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
                 new Field(ClientRaw::SURFACE_PRESSURE, "1019.2")));
 
         $this->assertSame("1019.2", $testee->getDailyLowSurfacePressure()->getHectopascals());
+    }
+
+    public function test_get_daily_high_apparent_temperature()
+    {
+        $testee = self::createClientRawWithField(new Field(ClientRaw::DAILY_HIGH_APPARENT_TEMPERATURE, "30.0"));
+        $this->assertSame("30.0", $testee->getDailyHighApparentTemperature()->getCelsius());
+    }
+
+    public function test_get_daily_high_apparent_temperature_when_apparent_temperature_higher()
+    {
+        $testee = self::createClientRawWithFields(
+            array(
+                new Field(ClientRaw::DAILY_HIGH_APPARENT_TEMPERATURE, "30.0"),
+                new Field(ClientRaw::APPARENT_TEMPERATURE, "30.1")));
+
+        $this->assertSame("30.1", $testee->getDailyHighApparentTemperature()->getCelsius());
+    }
+
+    public function test_get_daily_low_apparent_temperature()
+    {
+        $testee = self::createClientRawWithField(new Field(ClientRaw::DAILY_LOW_APPARENT_TEMPERATURE, "-5.2"));
+        $this->assertSame("-5.2", $testee->getDailyLowApparentTemperature()->getCelsius());
+    }
+
+    public function test_get_daily_low_apparent_temperature_when_apparent_temperature_lower()
+    {
+        $testee = self::createClientRawWithFields(
+            array(
+                new Field(ClientRaw::DAILY_LOW_APPARENT_TEMPERATURE, "-5.2"),
+                new Field(ClientRaw::APPARENT_TEMPERATURE, "-5.3")));
+
+        $this->assertSame("-5.3", $testee->getDailyLowApparentTemperature()->getCelsius());
     }
 
     public function test_get_daily_high_dew_point()
@@ -531,8 +569,11 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getAverageWindDirection()->getCompassDegrees());
         $this->assertNull($testee->getDailyHighIndoorTemperature()->getCelsius());
         $this->assertNull($testee->getDailyLowIndoorTemperature()->getCelsius());
+        $this->assertNull($testee->getApparentTemperature()->getCelsius());
         $this->assertNull($testee->getDailyHighSurfacePressure()->getHectopascals());
         $this->assertNull($testee->getDailyLowSurfacePressure()->getHectopascals());
+        $this->assertNull($testee->getDailyHighApparentTemperature()->getCelsius());
+        $this->assertNull($testee->getDailyLowApparentTemperature()->getCelsius());
         $this->assertNull($testee->getDailyHighDewPoint()->getCelsius());
         $this->assertNull($testee->getDailyLowDewPoint()->getCelsius());
 	    $this->assertNull($testee->getOutdoorTemperatureTrend()->getTrend());
