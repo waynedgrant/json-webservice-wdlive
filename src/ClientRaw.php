@@ -30,6 +30,7 @@ class ClientRaw extends BaseClientRaw
     const DAILY_MAXIMUM_RAINFALL_RATE = 11;
     const INDOOR_TEMPERATURE = 12;
     const INDOOR_HUMIDITY = 13;
+    const SOIL_TEMPERATURE = 14;
     const YESTERDAYS_RAINFALL = 19;
     const STATION_NAME = 32;
     const WIND_CHILL = 44;
@@ -61,6 +62,7 @@ class ClientRaw extends BaseClientRaw
     const OUTDOOR_TEMPERATURE_TREND = 143;
 	const OUTDOOR_HUMIDITY_TREND = 144;
     const HUMIDEX_TREND = 145;
+    const WET_BULB_TEMPERATURE = 159;
     const LATITUDE = 160;
     const LONGITUDE = 161;
     const DAILY_HIGH_OUTDOOR_HUMIDITY = 163;
@@ -135,6 +137,11 @@ class ClientRaw extends BaseClientRaw
     public function getIndoorHumidity()
     {
         return new Humidity(self::readField(self::INDOOR_HUMIDITY));
+    }
+
+    public function getSoilTemperature()
+    {
+        return new Temperature(self::readField(self::SOIL_TEMPERATURE));
     }
 
     public function getYesterdaysRainfall()
@@ -462,6 +469,11 @@ class ClientRaw extends BaseClientRaw
     public function getHumidexTrend()
     {
         return new Trend(self::readField(self::HUMIDEX_TREND));
+    }
+
+    public function getWetBulbTemperature()
+    {
+        return new Temperature(self::readField(self::WET_BULB_TEMPERATURE));
     }
 
     public function getLatitude()

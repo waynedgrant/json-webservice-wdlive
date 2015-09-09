@@ -74,6 +74,12 @@ class WeatherSource extends BaseSource
             "high" => $this->clientRaw->getDailyHighApparentTemperature()->getAllMeasures(),
             "low" => $this->clientRaw->getDailyLowApparentTemperature()->getAllMeasures());
 
+        $wetBulbTemperature = $this->clientRaw->getWetBulbTemperature();
+
+        $soilTmperature = $this->clientRaw->getSoilTemperature();
+
+        $uv = $this->clientRaw->getUv()->getAllMeasures();
+
         $data = $this->createBase();
 
         $data["weather"] = array(
@@ -87,7 +93,9 @@ class WeatherSource extends BaseSource
             "humidex" => $humidex,
             "heat_index" => $heatIndex,
             "apparent_temperature" => $apparentTemperature,
-            "uv" => $this->clientRaw->getUv()->getAllMeasures());
+            "wet_bulb_temperature" => $wetBulbTemperature,
+            "soil_temperature" => $soilTmperature,
+            "uv" => $uv);
 
         return $data;
     }

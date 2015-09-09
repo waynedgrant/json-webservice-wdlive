@@ -117,6 +117,12 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $this->assertSame("45", $testee->getIndoorHumidity()->getPercentage());
     }
 
+    public function test_get_soil_temperature()
+    {
+        $testee = self::createClientRawWithField(new Field(ClientRaw::SOIL_TEMPERATURE, "4.5"));
+        $this->assertSame("4.5", $testee->getSoilTemperature()->getCelsius());
+    }
+
     public function test_get_yesterdays_rainfall()
     {
         $testee = self::createClientRawWithField(new Field(ClientRaw::YESTERDAYS_RAINFALL, "5.62"));
@@ -457,6 +463,12 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $this->assertSame("1", $testee->getHumidexTrend()->getTrend());
     }
 
+    public function test_get_wet_bulb_temperature()
+    {
+        $testee = self::createClientRawWithField(new Field(ClientRaw::WET_BULB_TEMPERATURE, "35.7"));
+        $this->assertSame("35.7", $testee->getWetBulbTemperature()->getCelsius());
+    }
+
     public function test_get_latitude()
     {
         $testee = self::createClientRawWithField(new Field(ClientRaw::LATITUDE, "40.874444"));
@@ -549,6 +561,7 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getMaximumRainfallRate()->getMillimetresPerMinute());
         $this->assertNull($testee->getIndoorTemperature()->getCelsius());
         $this->assertNull($testee->getIndoorHumidity()->getPercentage());
+        $this->assertNull($testee->getSoilTemperature()->getCelsius());
         $this->assertNull($testee->getYesterdaysRainfall()->getMillimetres());
         $this->assertNull($testee->getStationName());
         $this->assertNull($testee->getWindChill()->getCelsius());
@@ -579,6 +592,7 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
 	    $this->assertNull($testee->getOutdoorTemperatureTrend()->getTrend());
 	    $this->assertNull($testee->getOutdoorHumidityTrend()->getTrend());
 	    $this->assertNull($testee->getHumidexTrend()->getTrend());
+        $this->assertNull($testee->getWetBulbTemperature()->getCelsius());
         $this->assertNull($testee->getLatitude());
         $this->assertNull($testee->getLongitude());
         $this->assertNull($testee->getDailyHighOutdoorHumidity()->getPercentage());
