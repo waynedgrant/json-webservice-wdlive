@@ -214,6 +214,56 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
+    public function test_get_monthly_high_soil_temperature()
+    {
+        $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MONTHLY_HIGH_SOIL_TEMPERATURE, "17.9"));
+        $this->assertSame("17.9", $testee->getMonthlyHighSoilTemperature()->getCelsius());
+    }
+
+    public function test_get_monthly_high_soil_temperature_date_and_time()
+    {
+        $testee = self::createClientRawExtraWithFields(
+            array(
+                new Field(ClientRawExtra::MONTHLY_HIGH_SOIL_TEMPERATURE_YEAR, "2015"),
+                new Field(ClientRawExtra::MONTHLY_HIGH_SOIL_TEMPERATURE_MONTH, "12"),
+                new Field(ClientRawExtra::MONTHLY_HIGH_SOIL_TEMPERATURE_DAY, "31"),
+                new Field(ClientRawExtra::MONTHLY_HIGH_SOIL_TEMPERATURE_HOUR, "23"),
+                new Field(ClientRawExtra::MONTHLY_HIGH_SOIL_TEMPERATURE_MINUTE, "59")));
+
+        $dateAndTime = $testee->getMonthlyHighSoilTemperatureDateAndTime();
+
+        $this->assertSame("2015", $dateAndTime->getYear());
+        $this->assertSame("12", $dateAndTime->getMonth());
+        $this->assertSame("31", $dateAndTime->getDay());
+        $this->assertSame("23", $dateAndTime->getHour());
+        $this->assertSame("59", $dateAndTime->getMinute());
+    }
+
+    public function test_get_monthly_low_soil_temperature()
+    {
+        $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MONTHLY_LOW_SOIL_TEMPERATURE, "-7.2"));
+        $this->assertSame("-7.2", $testee->getMonthlyLowSoilTemperature()->getCelsius());
+    }
+
+    public function test_get_monthly_low_soil_temperature_date_and_time()
+    {
+        $testee = self::createClientRawExtraWithFields(
+            array(
+                new Field(ClientRawExtra::MONTHLY_LOW_SOIL_TEMPERATURE_YEAR, "2015"),
+                new Field(ClientRawExtra::MONTHLY_LOW_SOIL_TEMPERATURE_MONTH, "12"),
+                new Field(ClientRawExtra::MONTHLY_LOW_SOIL_TEMPERATURE_DAY, "31"),
+                new Field(ClientRawExtra::MONTHLY_LOW_SOIL_TEMPERATURE_HOUR, "23"),
+                new Field(ClientRawExtra::MONTHLY_LOW_SOIL_TEMPERATURE_MINUTE, "59")));
+
+        $dateAndTime = $testee->getMonthlyLowSoilTemperatureDateAndTime();
+
+        $this->assertSame("2015", $dateAndTime->getYear());
+        $this->assertSame("12", $dateAndTime->getMonth());
+        $this->assertSame("31", $dateAndTime->getDay());
+        $this->assertSame("23", $dateAndTime->getHour());
+        $this->assertSame("59", $dateAndTime->getMinute());
+    }
+
     public function test_get_monthly_low_wind_chill()
     {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MONTHLY_LOW_WIND_CHILL, "-17.9"));
@@ -403,6 +453,20 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getMonthlyMaximumAverageWindSpeedDateAndTime()->getDay());
         $this->assertNull($testee->getMonthlyMaximumAverageWindSpeedDateAndTime()->getHour());
         $this->assertNull($testee->getMonthlyMaximumAverageWindSpeedDateAndTime()->getMinute());
+
+        $this->assertNull($testee->getMonthlyHighSoilTemperature()->getCelsius());
+        $this->assertNull($testee->getMonthlyHighSoilTemperatureDateAndTime()->getYear());
+        $this->assertNull($testee->getMonthlyHighSoilTemperatureDateAndTime()->getMonth());
+        $this->assertNull($testee->getMonthlyHighSoilTemperatureDateAndTime()->getDay());
+        $this->assertNull($testee->getMonthlyHighSoilTemperatureDateAndTime()->getHour());
+        $this->assertNull($testee->getMonthlyHighSoilTemperatureDateAndTime()->getMinute());
+
+        $this->assertNull($testee->getMonthlyLowSoilTemperature()->getCelsius());
+        $this->assertNull($testee->getMonthlyLowSoilTemperatureDateAndTime()->getYear());
+        $this->assertNull($testee->getMonthlyLowSoilTemperatureDateAndTime()->getMonth());
+        $this->assertNull($testee->getMonthlyLowSoilTemperatureDateAndTime()->getDay());
+        $this->assertNull($testee->getMonthlyLowSoilTemperatureDateAndTime()->getHour());
+        $this->assertNull($testee->getMonthlyLowSoilTemperatureDateAndTime()->getMinute());
 
         $this->assertNull($testee->getMonthlyLowWindChill()->getCelsius());
         $this->assertNull($testee->getMonthlyLowWindChillDateAndTime()->getYear());
@@ -619,6 +683,56 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
+    public function test_get_yearly_high_soil_temperature()
+    {
+        $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::YEARLY_HIGH_SOIL_TEMPERATURE, "19.2"));
+        $this->assertSame("19.2", $testee->getYearlyHighSoilTemperature()->getCelsius());
+    }
+
+    public function test_get_yearly_high_soil_temperature_date_and_time()
+    {
+        $testee = self::createClientRawExtraWithFields(
+            array(
+                new Field(ClientRawExtra::YEARLY_HIGH_SOIL_TEMPERATURE_YEAR, "2015"),
+                new Field(ClientRawExtra::YEARLY_HIGH_SOIL_TEMPERATURE_MONTH, "12"),
+                new Field(ClientRawExtra::YEARLY_HIGH_SOIL_TEMPERATURE_DAY, "31"),
+                new Field(ClientRawExtra::YEARLY_HIGH_SOIL_TEMPERATURE_HOUR, "23"),
+                new Field(ClientRawExtra::YEARLY_HIGH_SOIL_TEMPERATURE_MINUTE, "59")));
+
+        $dateAndTime = $testee->getYearlyHighSoilTemperatureDateAndTime();
+
+        $this->assertSame("2015", $dateAndTime->getYear());
+        $this->assertSame("12", $dateAndTime->getMonth());
+        $this->assertSame("31", $dateAndTime->getDay());
+        $this->assertSame("23", $dateAndTime->getHour());
+        $this->assertSame("59", $dateAndTime->getMinute());
+    }
+
+    public function test_get_yearly_low_soil_temperature()
+    {
+        $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::YEARLY_LOW_SOIL_TEMPERATURE, "-8.6"));
+        $this->assertSame("-8.6", $testee->getYearlyLowSoilTemperature()->getCelsius());
+    }
+
+    public function test_get_yearly_low_soil_temperature_date_and_time()
+    {
+        $testee = self::createClientRawExtraWithFields(
+            array(
+                new Field(ClientRawExtra::YEARLY_LOW_SOIL_TEMPERATURE_YEAR, "2015"),
+                new Field(ClientRawExtra::YEARLY_LOW_SOIL_TEMPERATURE_MONTH, "12"),
+                new Field(ClientRawExtra::YEARLY_LOW_SOIL_TEMPERATURE_DAY, "31"),
+                new Field(ClientRawExtra::YEARLY_LOW_SOIL_TEMPERATURE_HOUR, "23"),
+                new Field(ClientRawExtra::YEARLY_LOW_SOIL_TEMPERATURE_MINUTE, "59")));
+
+        $dateAndTime = $testee->getYearlyLowSoilTemperatureDateAndTime();
+
+        $this->assertSame("2015", $dateAndTime->getYear());
+        $this->assertSame("12", $dateAndTime->getMonth());
+        $this->assertSame("31", $dateAndTime->getDay());
+        $this->assertSame("23", $dateAndTime->getHour());
+        $this->assertSame("59", $dateAndTime->getMinute());
+    }
+
     public function test_get_yearly_low_wind_chill()
     {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::YEARLY_LOW_WIND_CHILL, "-17.9"));
@@ -808,6 +922,20 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getYearlyMaximumAverageWindSpeedDateAndTime()->getDay());
         $this->assertNull($testee->getYearlyMaximumAverageWindSpeedDateAndTime()->getHour());
         $this->assertNull($testee->getYearlyMaximumAverageWindSpeedDateAndTime()->getMinute());
+
+        $this->assertNull($testee->getYearlyHighSoilTemperature()->getCelsius());
+        $this->assertNull($testee->getYearlyHighSoilTemperatureDateAndTime()->getYear());
+        $this->assertNull($testee->getYearlyHighSoilTemperatureDateAndTime()->getMonth());
+        $this->assertNull($testee->getYearlyHighSoilTemperatureDateAndTime()->getDay());
+        $this->assertNull($testee->getYearlyHighSoilTemperatureDateAndTime()->getHour());
+        $this->assertNull($testee->getYearlyHighSoilTemperatureDateAndTime()->getMinute());
+
+        $this->assertNull($testee->getYearlyLowSoilTemperature()->getCelsius());
+        $this->assertNull($testee->getYearlyLowSoilTemperatureDateAndTime()->getYear());
+        $this->assertNull($testee->getYearlyLowSoilTemperatureDateAndTime()->getMonth());
+        $this->assertNull($testee->getYearlyLowSoilTemperatureDateAndTime()->getDay());
+        $this->assertNull($testee->getYearlyLowSoilTemperatureDateAndTime()->getHour());
+        $this->assertNull($testee->getYearlyLowSoilTemperatureDateAndTime()->getMinute());
 
         $this->assertNull($testee->getYearlyLowWindChill()->getCelsius());
         $this->assertNull($testee->getYearlyLowWindChillDateAndTime()->getYear());
@@ -1016,6 +1144,69 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
                 new Field(ClientRawExtra::ALL_TIME_MAXIMUM_AVERAGE_WIND_SPEED_MINUTE, "59")));
 
         $dateAndTime = $testee->getAllTimeMaximumAverageWindSpeedDateAndTime();
+
+        $this->assertSame("2015", $dateAndTime->getYear());
+        $this->assertSame("12", $dateAndTime->getMonth());
+        $this->assertSame("31", $dateAndTime->getDay());
+        $this->assertSame("23", $dateAndTime->getHour());
+        $this->assertSame("59", $dateAndTime->getMinute());
+    }
+
+    // const ALL_TIME_HIGH_SOIL_TEMPERATURE = 373;
+    // const ALL_TIME_HIGH_SOIL_TEMPERATURE_HOUR = 374;
+    // const ALL_TIME_HIGH_SOIL_TEMPERATURE_MINUTE = 375;
+    // const ALL_TIME_HIGH_SOIL_TEMPERATURE_DAY = 376;
+    // const ALL_TIME_HIGH_SOIL_TEMPERATURE_MONTH = 377;
+    // const ALL_TIME_HIGH_SOIL_TEMPERATURE_YEAR = 378;
+    // const ALL_TIME_HIGH_SOIL_TEMPERATURE = 379;
+    // const ALL_TIME_LOW_SOIL_TEMPERATURE_HOUR = 380;
+    // const ALL_TIME_LOW_SOIL_TEMPERATURE_MINUTE = 381;
+    // const ALL_TIME_LOW_SOIL_TEMPERATURE_DAY = 382;
+    // const ALL_TIME_LOW_SOIL_TEMPERATURE_MONTH = 383;
+    // const ALL_TIME_LOW_SOIL_TEMPERATURE_YEAR = 384;
+
+    public function test_get_all_time_high_soil_temperature()
+    {
+        $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::ALL_TIME_HIGH_SOIL_TEMPERATURE, "19.2"));
+        $this->assertSame("19.2", $testee->getAllTimeHighSoilTemperature()->getCelsius());
+    }
+
+    public function test_get_all_time_high_soil_temperature_date_and_time()
+    {
+        $testee = self::createClientRawExtraWithFields(
+            array(
+                new Field(ClientRawExtra::ALL_TIME_HIGH_SOIL_TEMPERATURE_YEAR, "2015"),
+                new Field(ClientRawExtra::ALL_TIME_HIGH_SOIL_TEMPERATURE_MONTH, "12"),
+                new Field(ClientRawExtra::ALL_TIME_HIGH_SOIL_TEMPERATURE_DAY, "31"),
+                new Field(ClientRawExtra::ALL_TIME_HIGH_SOIL_TEMPERATURE_HOUR, "23"),
+                new Field(ClientRawExtra::ALL_TIME_HIGH_SOIL_TEMPERATURE_MINUTE, "59")));
+
+        $dateAndTime = $testee->getAllTimeHighSoilTemperatureDateAndTime();
+
+        $this->assertSame("2015", $dateAndTime->getYear());
+        $this->assertSame("12", $dateAndTime->getMonth());
+        $this->assertSame("31", $dateAndTime->getDay());
+        $this->assertSame("23", $dateAndTime->getHour());
+        $this->assertSame("59", $dateAndTime->getMinute());
+    }
+
+    public function test_get_all_time_low_soil_temperature()
+    {
+        $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::ALL_TIME_LOW_SOIL_TEMPERATURE, "-8.6"));
+        $this->assertSame("-8.6", $testee->getAllTimeLowSoilTemperature()->getCelsius());
+    }
+
+    public function test_get_all_time_low_soil_temperature_date_and_time()
+    {
+        $testee = self::createClientRawExtraWithFields(
+            array(
+                new Field(ClientRawExtra::ALL_TIME_LOW_SOIL_TEMPERATURE_YEAR, "2015"),
+                new Field(ClientRawExtra::ALL_TIME_LOW_SOIL_TEMPERATURE_MONTH, "12"),
+                new Field(ClientRawExtra::ALL_TIME_LOW_SOIL_TEMPERATURE_DAY, "31"),
+                new Field(ClientRawExtra::ALL_TIME_LOW_SOIL_TEMPERATURE_HOUR, "23"),
+                new Field(ClientRawExtra::ALL_TIME_LOW_SOIL_TEMPERATURE_MINUTE, "59")));
+
+        $dateAndTime = $testee->getAllTimeLowSoilTemperatureDateAndTime();
 
         $this->assertSame("2015", $dateAndTime->getYear());
         $this->assertSame("12", $dateAndTime->getMonth());
@@ -1243,6 +1434,20 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getAllTimeMaximumAverageWindSpeedDateAndTime()->getDay());
         $this->assertNull($testee->getAllTimeMaximumAverageWindSpeedDateAndTime()->getHour());
         $this->assertNull($testee->getAllTimeMaximumAverageWindSpeedDateAndTime()->getMinute());
+
+        $this->assertNull($testee->getAllTimeHighSoilTemperature()->getCelsius());
+        $this->assertNull($testee->getAllTimeHighSoilTemperatureDateAndTime()->getYear());
+        $this->assertNull($testee->getAllTimeHighSoilTemperatureDateAndTime()->getMonth());
+        $this->assertNull($testee->getAllTimeHighSoilTemperatureDateAndTime()->getDay());
+        $this->assertNull($testee->getAllTimeHighSoilTemperatureDateAndTime()->getHour());
+        $this->assertNull($testee->getAllTimeHighSoilTemperatureDateAndTime()->getMinute());
+
+        $this->assertNull($testee->getAllTimeLowSoilTemperature()->getCelsius());
+        $this->assertNull($testee->getAllTimeLowSoilTemperatureDateAndTime()->getYear());
+        $this->assertNull($testee->getAllTimeLowSoilTemperatureDateAndTime()->getMonth());
+        $this->assertNull($testee->getAllTimeLowSoilTemperatureDateAndTime()->getDay());
+        $this->assertNull($testee->getAllTimeLowSoilTemperatureDateAndTime()->getHour());
+        $this->assertNull($testee->getAllTimeLowSoilTemperatureDateAndTime()->getMinute());
 
         $this->assertNull($testee->getAllTimeLowWindChill()->getCelsius());
         $this->assertNull($testee->getAllTimeLowWindChillDateAndTime()->getYear());

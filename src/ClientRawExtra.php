@@ -57,6 +57,18 @@ class ClientRawExtra extends BaseClientRaw
     const MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED_DAY = 112;
     const MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED_MONTH = 113;
     const MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED_YEAR = 114;
+    const MONTHLY_HIGH_SOIL_TEMPERATURE = 121;
+    const MONTHLY_HIGH_SOIL_TEMPERATURE_HOUR = 122;
+    const MONTHLY_HIGH_SOIL_TEMPERATURE_MINUTE = 123;
+    const MONTHLY_HIGH_SOIL_TEMPERATURE_DAY = 124;
+    const MONTHLY_HIGH_SOIL_TEMPERATURE_MONTH = 125;
+    const MONTHLY_HIGH_SOIL_TEMPERATURE_YEAR = 126;
+    const MONTHLY_LOW_SOIL_TEMPERATURE = 127;
+    const MONTHLY_LOW_SOIL_TEMPERATURE_HOUR = 128;
+    const MONTHLY_LOW_SOIL_TEMPERATURE_MINUTE = 129;
+    const MONTHLY_LOW_SOIL_TEMPERATURE_DAY = 130;
+    const MONTHLY_LOW_SOIL_TEMPERATURE_MONTH = 131;
+    const MONTHLY_LOW_SOIL_TEMPERATURE_YEAR = 132;
     const MONTHLY_LOW_WIND_CHILL = 133;
     const MONTHLY_LOW_WIND_CHILL_HOUR = 134;
     const MONTHLY_LOW_WIND_CHILL_MINUTE = 135;
@@ -132,6 +144,18 @@ class ClientRawExtra extends BaseClientRaw
     const YEARLY_MAXIMUM_AVERAGE_WIND_SPEED_DAY = 238;
     const YEARLY_MAXIMUM_AVERAGE_WIND_SPEED_MONTH = 239;
     const YEARLY_MAXIMUM_AVERAGE_WIND_SPEED_YEAR = 240;
+    const YEARLY_HIGH_SOIL_TEMPERATURE = 247;
+    const YEARLY_HIGH_SOIL_TEMPERATURE_HOUR = 248;
+    const YEARLY_HIGH_SOIL_TEMPERATURE_MINUTE = 249;
+    const YEARLY_HIGH_SOIL_TEMPERATURE_DAY = 250;
+    const YEARLY_HIGH_SOIL_TEMPERATURE_MONTH = 251;
+    const YEARLY_HIGH_SOIL_TEMPERATURE_YEAR = 252;
+    const YEARLY_LOW_SOIL_TEMPERATURE = 253;
+    const YEARLY_LOW_SOIL_TEMPERATURE_HOUR = 254;
+    const YEARLY_LOW_SOIL_TEMPERATURE_MINUTE = 255;
+    const YEARLY_LOW_SOIL_TEMPERATURE_DAY = 256;
+    const YEARLY_LOW_SOIL_TEMPERATURE_MONTH = 257;
+    const YEARLY_LOW_SOIL_TEMPERATURE_YEAR = 258;
     const YEARLY_LOW_WIND_CHILL = 259;
     const YEARLY_LOW_WIND_CHILL_HOUR = 260;
     const YEARLY_LOW_WIND_CHILL_MINUTE = 261;
@@ -207,6 +231,18 @@ class ClientRawExtra extends BaseClientRaw
     const ALL_TIME_MAXIMUM_AVERAGE_WIND_SPEED_DAY = 364;
     const ALL_TIME_MAXIMUM_AVERAGE_WIND_SPEED_MONTH = 365;
     const ALL_TIME_MAXIMUM_AVERAGE_WIND_SPEED_YEAR = 366;
+    const ALL_TIME_HIGH_SOIL_TEMPERATURE = 373;
+    const ALL_TIME_HIGH_SOIL_TEMPERATURE_HOUR = 374;
+    const ALL_TIME_HIGH_SOIL_TEMPERATURE_MINUTE = 375;
+    const ALL_TIME_HIGH_SOIL_TEMPERATURE_DAY = 376;
+    const ALL_TIME_HIGH_SOIL_TEMPERATURE_MONTH = 377;
+    const ALL_TIME_HIGH_SOIL_TEMPERATURE_YEAR = 378;
+    const ALL_TIME_LOW_SOIL_TEMPERATURE = 379;
+    const ALL_TIME_LOW_SOIL_TEMPERATURE_HOUR = 380;
+    const ALL_TIME_LOW_SOIL_TEMPERATURE_MINUTE = 381;
+    const ALL_TIME_LOW_SOIL_TEMPERATURE_DAY = 382;
+    const ALL_TIME_LOW_SOIL_TEMPERATURE_MONTH = 383;
+    const ALL_TIME_LOW_SOIL_TEMPERATURE_YEAR = 384;
     const ALL_TIME_LOW_WIND_CHILL = 385;
     const ALL_TIME_LOW_WIND_CHILL_HOUR = 386;
     const ALL_TIME_LOW_WIND_CHILL_MINUTE = 387;
@@ -350,6 +386,36 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED_DAY),
             self::readField(self::MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED_HOUR),
             self::readField(self::MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED_MINUTE));
+    }
+
+    public function getMonthlyHighSoilTemperature()
+    {
+        return new Temperature(self::readField(self::MONTHLY_HIGH_SOIL_TEMPERATURE));
+    }
+
+    public function getMonthlyHighSoilTemperatureDateAndTime()
+    {
+        return new DateAndTime(
+            self::readField(self::MONTHLY_HIGH_SOIL_TEMPERATURE_YEAR),
+            self::readField(self::MONTHLY_HIGH_SOIL_TEMPERATURE_MONTH),
+            self::readField(self::MONTHLY_HIGH_SOIL_TEMPERATURE_DAY),
+            self::readField(self::MONTHLY_HIGH_SOIL_TEMPERATURE_HOUR),
+            self::readField(self::MONTHLY_HIGH_SOIL_TEMPERATURE_MINUTE));
+    }
+
+    public function getMonthlyLowSoilTemperature()
+    {
+        return new Temperature(self::readField(self::MONTHLY_LOW_SOIL_TEMPERATURE));
+    }
+
+    public function getMonthlyLowSoilTemperatureDateAndTime()
+    {
+        return new DateAndTime(
+            self::readField(self::MONTHLY_LOW_SOIL_TEMPERATURE_YEAR),
+            self::readField(self::MONTHLY_LOW_SOIL_TEMPERATURE_MONTH),
+            self::readField(self::MONTHLY_LOW_SOIL_TEMPERATURE_DAY),
+            self::readField(self::MONTHLY_LOW_SOIL_TEMPERATURE_HOUR),
+            self::readField(self::MONTHLY_LOW_SOIL_TEMPERATURE_MINUTE));
     }
 
     public function getMonthlyLowWindChill()
@@ -542,6 +608,36 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::YEARLY_MAXIMUM_AVERAGE_WIND_SPEED_MINUTE));
     }
 
+    public function getYearlyHighSoilTemperature()
+    {
+        return new Temperature(self::readField(self::YEARLY_HIGH_SOIL_TEMPERATURE));
+    }
+
+    public function getYearlyHighSoilTemperatureDateAndTime()
+    {
+        return new DateAndTime(
+            self::readField(self::YEARLY_HIGH_SOIL_TEMPERATURE_YEAR),
+            self::readField(self::YEARLY_HIGH_SOIL_TEMPERATURE_MONTH),
+            self::readField(self::YEARLY_HIGH_SOIL_TEMPERATURE_DAY),
+            self::readField(self::YEARLY_HIGH_SOIL_TEMPERATURE_HOUR),
+            self::readField(self::YEARLY_HIGH_SOIL_TEMPERATURE_MINUTE));
+    }
+
+    public function getYearlyLowSoilTemperature()
+    {
+        return new Temperature(self::readField(self::YEARLY_LOW_SOIL_TEMPERATURE));
+    }
+
+    public function getYearlyLowSoilTemperatureDateAndTime()
+    {
+        return new DateAndTime(
+            self::readField(self::YEARLY_LOW_SOIL_TEMPERATURE_YEAR),
+            self::readField(self::YEARLY_LOW_SOIL_TEMPERATURE_MONTH),
+            self::readField(self::YEARLY_LOW_SOIL_TEMPERATURE_DAY),
+            self::readField(self::YEARLY_LOW_SOIL_TEMPERATURE_HOUR),
+            self::readField(self::YEARLY_LOW_SOIL_TEMPERATURE_MINUTE));
+    }
+
     public function getYearlyLowWindChill()
     {
         return new Temperature(self::readField(self::YEARLY_LOW_WIND_CHILL));
@@ -730,6 +826,36 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::ALL_TIME_MAXIMUM_AVERAGE_WIND_SPEED_DAY),
             self::readField(self::ALL_TIME_MAXIMUM_AVERAGE_WIND_SPEED_HOUR),
             self::readField(self::ALL_TIME_MAXIMUM_AVERAGE_WIND_SPEED_MINUTE));
+    }
+
+    public function getAllTimeHighSoilTemperature()
+    {
+        return new Temperature(self::readField(self::ALL_TIME_HIGH_SOIL_TEMPERATURE));
+    }
+
+    public function getAllTimeHighSoilTemperatureDateAndTime()
+    {
+        return new DateAndTime(
+            self::readField(self::ALL_TIME_HIGH_SOIL_TEMPERATURE_YEAR),
+            self::readField(self::ALL_TIME_HIGH_SOIL_TEMPERATURE_MONTH),
+            self::readField(self::ALL_TIME_HIGH_SOIL_TEMPERATURE_DAY),
+            self::readField(self::ALL_TIME_HIGH_SOIL_TEMPERATURE_HOUR),
+            self::readField(self::ALL_TIME_HIGH_SOIL_TEMPERATURE_MINUTE));
+    }
+
+    public function getAllTimeLowSoilTemperature()
+    {
+        return new Temperature(self::readField(self::ALL_TIME_LOW_SOIL_TEMPERATURE));
+    }
+
+    public function getAllTimeLowSoilTemperatureDateAndTime()
+    {
+        return new DateAndTime(
+            self::readField(self::ALL_TIME_LOW_SOIL_TEMPERATURE_YEAR),
+            self::readField(self::ALL_TIME_LOW_SOIL_TEMPERATURE_MONTH),
+            self::readField(self::ALL_TIME_LOW_SOIL_TEMPERATURE_DAY),
+            self::readField(self::ALL_TIME_LOW_SOIL_TEMPERATURE_HOUR),
+            self::readField(self::ALL_TIME_LOW_SOIL_TEMPERATURE_MINUTE));
     }
 
     public function getAllTimeLowWindChill()
