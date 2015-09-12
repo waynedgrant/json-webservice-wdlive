@@ -74,9 +74,9 @@ class WeatherSource extends BaseSource
             "high" => $this->clientRaw->getDailyHighApparentTemperature()->getAllMeasures(),
             "low" => $this->clientRaw->getDailyLowApparentTemperature()->getAllMeasures());
 
-        $wetBulbTemperature = $this->clientRaw->getWetBulbTemperature();
+        $wetBulbTemperature = $this->clientRaw->getWetBulbTemperature()->getAllMeasures();
 
-        $soilTmperature = $this->clientRaw->getSoilTemperature();
+        $soilTmperature = $this->clientRaw->getSoilTemperature()->getAllMeasures();
 
         $uv = $this->clientRaw->getUv()->getAllMeasures();
 
