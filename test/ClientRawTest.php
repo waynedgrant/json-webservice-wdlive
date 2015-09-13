@@ -311,6 +311,12 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $this->assertSame("270", $testee->getAverageWindDirection()->getCompassDegrees());
     }
 
+    public function test_get_solar_irradiance()
+    {
+        $testee = self::createClientRawWithField(new Field(ClientRaw::SOLAR_IRRADIANCE, "713"));
+        $this->assertSame("713", $testee->getSolarIrradiance()->getWattsPerSquareMetre());
+    }
+
     public function test_get_daily_high_indoor_temperature()
     {
         $testee = self::createClientRawWithField(new Field(ClientRaw::DAILY_HIGH_INDOOR_TEMPERATURE, "28.7"));
@@ -580,6 +586,7 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getHeatIndex()->getCelsius());
         $this->assertNull($testee->getMaximumAverageWindSpeed()->getKnots());
         $this->assertNull($testee->getAverageWindDirection()->getCompassDegrees());
+        $this->assertNull($testee->getSolarIrradiance()->getWattsPerSquareMetre());
         $this->assertNull($testee->getDailyHighIndoorTemperature()->getCelsius());
         $this->assertNull($testee->getDailyLowIndoorTemperature()->getCelsius());
         $this->assertNull($testee->getApparentTemperature()->getCelsius());

@@ -78,6 +78,9 @@ class WeatherSource extends BaseSource
 
         $soilTmperature = $this->clientRaw->getSoilTemperature()->getAllMeasures();
 
+        $solar = array(
+            "irradiance" => $this->clientRaw->getSolarIrradiance()->getWattsPerSquareMetre());
+
         $uv = $this->clientRaw->getUv()->getAllMeasures();
 
         $data = $this->createBase();
@@ -95,6 +98,7 @@ class WeatherSource extends BaseSource
             "apparent_temperature" => $apparentTemperature,
             "wet_bulb_temperature" => $wetBulbTemperature,
             "soil_temperature" => $soilTmperature,
+            "solar" => $solar,
             "uv" => $uv);
 
         return $data;

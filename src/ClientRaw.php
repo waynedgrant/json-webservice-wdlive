@@ -6,6 +6,7 @@
 require_once("BaseClientRaw.php");
 require_once("DateAndTime.php");
 require_once("Humidity.php");
+require_once("Irradiance.php");
 require_once("Pressure.php");
 require_once("Rainfall.php");
 require_once("RainfallRate.php");
@@ -50,6 +51,7 @@ class ClientRaw extends BaseClientRaw
     const HEAT_INDEX = 112;
     const MAXIMUM_AVERAGE_WIND_SPEED = 113;
     const AVERAGE_WIND_DIRECTION = 117;
+    const SOLAR_IRRADIANCE = 127;
     const DAILY_HIGH_INDOOR_TEMPERATURE = 128;
     const DAILY_LOW_INDOOR_TEMPERATURE = 129;
     const APPARENT_TEMPERATURE = 130;
@@ -329,6 +331,11 @@ class ClientRaw extends BaseClientRaw
     public function getAverageWindDirection()
     {
         return new WindDirection(self::readField(self::AVERAGE_WIND_DIRECTION));
+    }
+
+    public function getSolarIrradiance()
+    {
+        return new Irradiance(self::readField(self::SOLAR_IRRADIANCE));
     }
 
     public function getDailyHighIndoorTemperature()
