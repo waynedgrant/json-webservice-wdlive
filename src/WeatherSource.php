@@ -7,9 +7,9 @@ require_once("BaseSource.php");
 
 class WeatherSource extends BaseSource
 {
-    public function __construct($clientRaw)
+    public function __construct($clientRaw, $clientRawExtra)
     {
-        parent::__construct($clientRaw);
+        parent::__construct($clientRaw, $clientRawExtra);
     }
 
     public function create()
@@ -79,7 +79,8 @@ class WeatherSource extends BaseSource
         $soilTmperature = $this->clientRaw->getSoilTemperature()->getAllMeasures();
 
         $solar = array(
-            "irradiance" => $this->clientRaw->getSolarIrradiance()->getWattsPerSquareMetre());
+            "irradiance" => $this->clientRaw->getSolarIrradiance()->getWattsPerSquareMetre(),
+            "sunshine_hours" => $this->clientRawExtra->getSunshineHours());
 
         $uv = $this->clientRaw->getUv()->getAllMeasures();
 

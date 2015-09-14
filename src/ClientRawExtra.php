@@ -282,6 +282,7 @@ class ClientRawExtra extends BaseClientRaw
     const MOONSET_TIME = 559;
     const MOON_PHASE = 560;
     const MOON_AGE = 561;
+    const SUNSHINE_HOURS = 696;
 
     public function getMonthlyHighOutdoorTemperature()
     {
@@ -993,6 +994,22 @@ class ClientRawExtra extends BaseClientRaw
         }
 
         return $moonAge;
+    }
+
+    public function getSunshineHours()
+    {
+        $sunshineHours = self::readField(self::SUNSHINE_HOURS);
+
+        if ($sunshineHours == '-')
+        {
+            $sunshineHours = null;
+        }
+        else
+        {
+            $sunshineHours = number_format($sunshineHours, 1, '.', '');
+        }
+
+        return $sunshineHours;
     }
 }
 

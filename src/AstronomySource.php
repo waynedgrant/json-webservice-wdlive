@@ -7,12 +7,9 @@ require_once("BaseSource.php");
 
 class AstronomySource extends BaseSource
 {
-    private $clientRawExtra;
-
     public function __construct($clientRaw, $clientRawExtra)
     {
-        parent::__construct($clientRaw);
-        $this->clientRawExtra = $clientRawExtra;
+        parent::__construct($clientRaw, $clientRawExtra);
     }
 
     public function create()

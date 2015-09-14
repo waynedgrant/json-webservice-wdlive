@@ -11,10 +11,12 @@ abstract class BaseSource
     const COPYRIGHT_NOTICE = "Copyright © 2015 Wayne D Grant (www.waynedgrant.com)";
 
     protected $clientRaw;
+    protected $clientRawExtra;
 
-    public function __construct($clientRaw)
+    protected function __construct($clientRaw, $clientRawExtra = null)
     {
         $this->clientRaw = $clientRaw;
+        $this->clientRawExtra = $clientRawExtra;
     }
 
     protected function createBase()

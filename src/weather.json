@@ -5,11 +5,13 @@
 
 require_once("config.php");
 require_once("ClientRaw.php");
+require_once("ClientRawExtra.php");
 require_once("WeatherSource.php");
 
 $clientRaw = new ClientRaw(CLIENT_RAW_DIRECTORY . "clientraw.txt");
+$clientRawExtra = new ClientRawExtra(CLIENT_RAW_DIRECTORY . "clientrawextra.txt");
 
-$weatherSource = new WeatherSource($clientRaw);
+$weatherSource = new WeatherSource($clientRaw, $clientRawExtra);
 
 $json = json_encode($weatherSource->create());
 
