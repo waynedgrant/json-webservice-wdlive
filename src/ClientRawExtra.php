@@ -83,6 +83,12 @@ class ClientRawExtra extends BaseClientRaw
     const MONTHLY_HIGH_HEAT_INDEX_DAY = 178;
     const MONTHLY_HIGH_HEAT_INDEX_MONTH = 179;
     const MONTHLY_HIGH_HEAT_INDEX_YEAR = 180;
+    const MONTHLY_HIGH_SOLAR_IRRADIANCE = 660;
+    const MONTHLY_HIGH_SOLAR_IRRADIANCE_HOUR = 661;
+    const MONTHLY_HIGH_SOLAR_IRRADIANCE_MINUTE = 662;
+    const MONTHLY_HIGH_SOLAR_IRRADIANCE_DAY = 663;
+    const MONTHLY_HIGH_SOLAR_IRRADIANCE_MONTH = 664;
+    const MONTHLY_HIGH_SOLAR_IRRADIANCE_YEAR = 665;
     const MONTHLY_HIGH_UV = 666;
     const MONTHLY_HIGH_UV_HOUR = 667;
     const MONTHLY_HIGH_UV_MINUTE = 668;
@@ -170,6 +176,12 @@ class ClientRawExtra extends BaseClientRaw
     const YEARLY_HIGH_HEAT_INDEX_DAY = 304;
     const YEARLY_HIGH_HEAT_INDEX_MONTH = 305;
     const YEARLY_HIGH_HEAT_INDEX_YEAR = 306;
+    const YEARLY_HIGH_SOLAR_IRRADIANCE = 672;
+    const YEARLY_HIGH_SOLAR_IRRADIANCE_HOUR = 673;
+    const YEARLY_HIGH_SOLAR_IRRADIANCE_MINUTE = 674;
+    const YEARLY_HIGH_SOLAR_IRRADIANCE_DAY = 675;
+    const YEARLY_HIGH_SOLAR_IRRADIANCE_MONTH = 676;
+    const YEARLY_HIGH_SOLAR_IRRADIANCE_YEAR = 677;
     const YEARLY_HIGH_UV = 678;
     const YEARLY_HIGH_UV_HOUR = 679;
     const YEARLY_HIGH_UV_MINUTE = 680;
@@ -257,6 +269,12 @@ class ClientRawExtra extends BaseClientRaw
     const ALL_TIME_HIGH_HEAT_INDEX_DAY = 430;
     const ALL_TIME_HIGH_HEAT_INDEX_MONTH = 431;
     const ALL_TIME_HIGH_HEAT_INDEX_YEAR = 432;
+    const ALL_TIME_HIGH_SOLAR_IRRADIANCE = 684;
+    const ALL_TIME_HIGH_SOLAR_IRRADIANCE_HOUR = 685;
+    const ALL_TIME_HIGH_SOLAR_IRRADIANCE_MINUTE = 686;
+    const ALL_TIME_HIGH_SOLAR_IRRADIANCE_DAY = 687;
+    const ALL_TIME_HIGH_SOLAR_IRRADIANCE_MONTH = 688;
+    const ALL_TIME_HIGH_SOLAR_IRRADIANCE_YEAR = 689;
     const ALL_TIME_HIGH_UV = 690;
     const ALL_TIME_HIGH_UV_HOUR = 691;
     const ALL_TIME_HIGH_UV_MINUTE = 692;
@@ -457,6 +475,21 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::MONTHLY_HIGH_HEAT_INDEX_DAY),
             self::readField(self::MONTHLY_HIGH_HEAT_INDEX_HOUR),
             self::readField(self::MONTHLY_HIGH_HEAT_INDEX_MINUTE));
+    }
+
+    public function getMonthlyHighSolarIrradiance()
+    {
+        return new Irradiance(self::readField(self::MONTHLY_HIGH_SOLAR_IRRADIANCE));
+    }
+
+    public function getMonthlyHighSolarIrradianceDateAndTime()
+    {
+        return new DateAndTime(
+            self::readField(self::MONTHLY_HIGH_SOLAR_IRRADIANCE_YEAR),
+            self::readField(self::MONTHLY_HIGH_SOLAR_IRRADIANCE_MONTH),
+            self::readField(self::MONTHLY_HIGH_SOLAR_IRRADIANCE_DAY),
+            self::readField(self::MONTHLY_HIGH_SOLAR_IRRADIANCE_HOUR),
+            self::readField(self::MONTHLY_HIGH_SOLAR_IRRADIANCE_MINUTE));
     }
 
     public function getMonthlyHighUv()
@@ -679,6 +712,21 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::YEARLY_HIGH_HEAT_INDEX_MINUTE));
     }
 
+    public function getYearlyHighSolarIrradiance()
+    {
+        return new Irradiance(self::readField(self::YEARLY_HIGH_SOLAR_IRRADIANCE));
+    }
+
+    public function getYearlyHighSolarIrradianceDateAndTime()
+    {
+        return new DateAndTime(
+            self::readField(self::YEARLY_HIGH_SOLAR_IRRADIANCE_YEAR),
+            self::readField(self::YEARLY_HIGH_SOLAR_IRRADIANCE_MONTH),
+            self::readField(self::YEARLY_HIGH_SOLAR_IRRADIANCE_DAY),
+            self::readField(self::YEARLY_HIGH_SOLAR_IRRADIANCE_HOUR),
+            self::readField(self::YEARLY_HIGH_SOLAR_IRRADIANCE_MINUTE));
+    }
+
     public function getYearlyHighUv()
     {
         return new Uv(self::readField(self::YEARLY_HIGH_UV));
@@ -897,6 +945,21 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::ALL_TIME_HIGH_HEAT_INDEX_DAY),
             self::readField(self::ALL_TIME_HIGH_HEAT_INDEX_HOUR),
             self::readField(self::ALL_TIME_HIGH_HEAT_INDEX_MINUTE));
+    }
+
+    public function getAllTimeHighSolarIrradiance()
+    {
+        return new Irradiance(self::readField(self::ALL_TIME_HIGH_SOLAR_IRRADIANCE));
+    }
+
+    public function getAllTimeHighSolarIrradianceDateAndTime()
+    {
+        return new DateAndTime(
+            self::readField(self::ALL_TIME_HIGH_SOLAR_IRRADIANCE_YEAR),
+            self::readField(self::ALL_TIME_HIGH_SOLAR_IRRADIANCE_MONTH),
+            self::readField(self::ALL_TIME_HIGH_SOLAR_IRRADIANCE_DAY),
+            self::readField(self::ALL_TIME_HIGH_SOLAR_IRRADIANCE_HOUR),
+            self::readField(self::ALL_TIME_HIGH_SOLAR_IRRADIANCE_MINUTE));
     }
 
     public function getAllTimeHighUv()

@@ -80,6 +80,10 @@ class AlmanacSource extends BaseSource
             $this->clientRawExtra->getMonthlyLowSoilTemperature(),
             $this->clientRawExtra->getMonthlyLowSoilTemperatureDateAndTime());
 
+        $highSolar = $this->createAlmanacSolarIrradianceMeasurement(
+            $this->clientRawExtra->getMonthlyHighSolarIrradiance(),
+            $this->clientRawExtra->getMonthlyHighSolarIrradianceDateAndTime());
+
         $highUv = $this->createAlmanacMeasurement(
             $this->clientRawExtra->getMonthlyHighUv(),
             $this->clientRawExtra->getMonthlyHighUvDateAndTime());
@@ -97,6 +101,7 @@ class AlmanacSource extends BaseSource
             "wind_chill" => array("low" => $lowWindChill),
             "heat_index" => array("high" => $highHeatIndex),
             "soil_temperature" => array("high" => $highSoilTemperature, "low" => $lowSoilTemperature),
+            "solar" => array("high" => $highSolar),
             "uv" => array("high" => $highUv));
     }
 
@@ -156,6 +161,10 @@ class AlmanacSource extends BaseSource
             $this->clientRawExtra->getYearlyLowSoilTemperature(),
             $this->clientRawExtra->getYearlyLowSoilTemperatureDateAndTime());
 
+        $highSolar = $this->createAlmanacSolarIrradianceMeasurement(
+            $this->clientRawExtra->getYearlyHighSolarIrradiance(),
+            $this->clientRawExtra->getYearlyHighSolarIrradianceDateAndTime());
+
         $highUv = $this->createAlmanacMeasurement(
             $this->clientRawExtra->getYearlyHighUv(),
             $this->clientRawExtra->getYearlyHighUvDateAndTime());
@@ -172,6 +181,7 @@ class AlmanacSource extends BaseSource
             "wind_chill" => array("low" => $lowWindChill),
             "heat_index" => array("high" => $highHeatIndex),
             "soil_temperature" => array("high" => $highSoilTemperature, "low" => $lowSoilTemperature),
+            "solar" => array("high" => $highSolar),
             "uv" => array("high" => $highUv));
     }
 
@@ -231,6 +241,10 @@ class AlmanacSource extends BaseSource
             $this->clientRawExtra->getAllTimeLowSoilTemperature(),
             $this->clientRawExtra->getAllTimeLowSoilTemperatureDateAndTime());
 
+        $highSolar = $this->createAlmanacSolarIrradianceMeasurement(
+            $this->clientRawExtra->getAllTimeHighSolarIrradiance(),
+            $this->clientRawExtra->getAllTimeHighSolarIrradianceDateAndTime());
+
         $highUv = $this->createAlmanacMeasurement(
             $this->clientRawExtra->getAllTimeHighUv(),
             $this->clientRawExtra->getAllTimeHighUvDateAndTime());
@@ -244,6 +258,7 @@ class AlmanacSource extends BaseSource
             "wind_chill" => array("low" => $lowWindChill),
             "heat_index" => array("high" => $highHeatIndex),
             "soil_temperature" => array("high" => $highSoilTemperature, "low" => $lowSoilTemperature),
+            "solar" => array("high" => $highSolar),
             "uv" => array("high" => $highUv));
     }
 
@@ -260,6 +275,13 @@ class AlmanacSource extends BaseSource
         return array(
             "speed" => $speedMeasurement->getAllMeasures(),
             "direction" => $directionMeasurement->getAllMeasures(),
+            "time" => $measurementTime->getAllValues());
+    }
+
+    private function createAlmanacSolarIrradianceMeasurement($solarIrradianceMeasurement, $measurementTime)
+    {
+        return array(
+            "irradiance" => $solarIrradianceMeasurement->getAllMeasures(),
             "time" => $measurementTime->getAllValues());
     }
 }

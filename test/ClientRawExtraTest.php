@@ -326,6 +326,31 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
+    public function test_get_monthly_high_solar_irradiance()
+    {
+        $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MONTHLY_HIGH_SOLAR_IRRADIANCE, "817"));
+        $this->assertSame("817", $testee->getMonthlyHighSolarIrradiance()->getWattsPerSquareMetre());
+    }
+
+    public function test_get_monthly_high_solar_irradiance_date_and_time()
+    {
+        $testee = self::createClientRawExtraWithFields(
+            array(
+                new Field(ClientRawExtra::MONTHLY_HIGH_SOLAR_IRRADIANCE_YEAR, "2015"),
+                new Field(ClientRawExtra::MONTHLY_HIGH_SOLAR_IRRADIANCE_MONTH, "12"),
+                new Field(ClientRawExtra::MONTHLY_HIGH_SOLAR_IRRADIANCE_DAY, "31"),
+                new Field(ClientRawExtra::MONTHLY_HIGH_SOLAR_IRRADIANCE_HOUR, "23"),
+                new Field(ClientRawExtra::MONTHLY_HIGH_SOLAR_IRRADIANCE_MINUTE, "59")));
+
+        $dateAndTime = $testee->getMonthlyHighSolarIrradianceDateAndTime();
+
+        $this->assertSame("2015", $dateAndTime->getYear());
+        $this->assertSame("12", $dateAndTime->getMonth());
+        $this->assertSame("31", $dateAndTime->getDay());
+        $this->assertSame("23", $dateAndTime->getHour());
+        $this->assertSame("59", $dateAndTime->getMinute());
+    }
+
     public function test_get_monthly_high_uv()
     {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MONTHLY_HIGH_UV, "9.4"));
@@ -485,6 +510,13 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getMonthlyHighHeatIndexDateAndTime()->getDay());
         $this->assertNull($testee->getMonthlyHighHeatIndexDateAndTime()->getHour());
         $this->assertNull($testee->getMonthlyHighHeatIndexDateAndTime()->getMinute());
+
+        $this->assertNull($testee->getMonthlyHighSolarIrradiance()->getWattsPerSquareMetre());
+        $this->assertNull($testee->getMonthlyHighSolarIrradianceDateAndTime()->getYear());
+        $this->assertNull($testee->getMonthlyHighSolarIrradianceDateAndTime()->getMonth());
+        $this->assertNull($testee->getMonthlyHighSolarIrradianceDateAndTime()->getDay());
+        $this->assertNull($testee->getMonthlyHighSolarIrradianceDateAndTime()->getHour());
+        $this->assertNull($testee->getMonthlyHighSolarIrradianceDateAndTime()->getMinute());
 
         $this->assertNull($testee->getMonthlyHighUv()->getUvi());
         $this->assertNull($testee->getMonthlyHighUvDateAndTime()->getYear());
@@ -795,6 +827,31 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
+    public function test_get_yearly_high_solar_irradiance()
+    {
+        $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::YEARLY_HIGH_SOLAR_IRRADIANCE, "987"));
+        $this->assertSame("987", $testee->getYearlyHighSolarIrradiance()->getWattsPerSquareMetre());
+    }
+
+    public function test_get_yearly_high_solar_irradiance_date_and_time()
+    {
+        $testee = self::createClientRawExtraWithFields(
+            array(
+                new Field(ClientRawExtra::YEARLY_HIGH_SOLAR_IRRADIANCE_YEAR, "2015"),
+                new Field(ClientRawExtra::YEARLY_HIGH_SOLAR_IRRADIANCE_MONTH, "12"),
+                new Field(ClientRawExtra::YEARLY_HIGH_SOLAR_IRRADIANCE_DAY, "31"),
+                new Field(ClientRawExtra::YEARLY_HIGH_SOLAR_IRRADIANCE_HOUR, "23"),
+                new Field(ClientRawExtra::YEARLY_HIGH_SOLAR_IRRADIANCE_MINUTE, "59")));
+
+        $dateAndTime = $testee->getYearlyHighSolarIrradianceDateAndTime();
+
+        $this->assertSame("2015", $dateAndTime->getYear());
+        $this->assertSame("12", $dateAndTime->getMonth());
+        $this->assertSame("31", $dateAndTime->getDay());
+        $this->assertSame("23", $dateAndTime->getHour());
+        $this->assertSame("59", $dateAndTime->getMinute());
+    }
+
     public function test_get_yearly_high_uv()
     {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::YEARLY_HIGH_UV, "9.4"));
@@ -954,6 +1011,13 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getYearlyHighHeatIndexDateAndTime()->getDay());
         $this->assertNull($testee->getYearlyHighHeatIndexDateAndTime()->getHour());
         $this->assertNull($testee->getYearlyHighHeatIndexDateAndTime()->getMinute());
+
+        $this->assertNull($testee->getYearlyHighSolarIrradiance()->getWattsPerSquareMetre());
+        $this->assertNull($testee->getYearlyHighSolarIrradianceDateAndTime()->getYear());
+        $this->assertNull($testee->getYearlyHighSolarIrradianceDateAndTime()->getMonth());
+        $this->assertNull($testee->getYearlyHighSolarIrradianceDateAndTime()->getDay());
+        $this->assertNull($testee->getYearlyHighSolarIrradianceDateAndTime()->getHour());
+        $this->assertNull($testee->getYearlyHighSolarIrradianceDateAndTime()->getMinute());
 
         $this->assertNull($testee->getYearlyHighUv()->getUvi());
         $this->assertNull($testee->getYearlyHighUvDateAndTime()->getYear());
@@ -1152,19 +1216,6 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    // const ALL_TIME_HIGH_SOIL_TEMPERATURE = 373;
-    // const ALL_TIME_HIGH_SOIL_TEMPERATURE_HOUR = 374;
-    // const ALL_TIME_HIGH_SOIL_TEMPERATURE_MINUTE = 375;
-    // const ALL_TIME_HIGH_SOIL_TEMPERATURE_DAY = 376;
-    // const ALL_TIME_HIGH_SOIL_TEMPERATURE_MONTH = 377;
-    // const ALL_TIME_HIGH_SOIL_TEMPERATURE_YEAR = 378;
-    // const ALL_TIME_HIGH_SOIL_TEMPERATURE = 379;
-    // const ALL_TIME_LOW_SOIL_TEMPERATURE_HOUR = 380;
-    // const ALL_TIME_LOW_SOIL_TEMPERATURE_MINUTE = 381;
-    // const ALL_TIME_LOW_SOIL_TEMPERATURE_DAY = 382;
-    // const ALL_TIME_LOW_SOIL_TEMPERATURE_MONTH = 383;
-    // const ALL_TIME_LOW_SOIL_TEMPERATURE_YEAR = 384;
-
     public function test_get_all_time_high_soil_temperature()
     {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::ALL_TIME_HIGH_SOIL_TEMPERATURE, "19.2"));
@@ -1269,6 +1320,31 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
                 new Field(ClientRawExtra::ALL_TIME_HIGH_HEAT_INDEX_MINUTE, "59")));
 
         $dateAndTime = $testee->getAllTimeHighHeatIndexDateAndTime();
+
+        $this->assertSame("2015", $dateAndTime->getYear());
+        $this->assertSame("12", $dateAndTime->getMonth());
+        $this->assertSame("31", $dateAndTime->getDay());
+        $this->assertSame("23", $dateAndTime->getHour());
+        $this->assertSame("59", $dateAndTime->getMinute());
+    }
+
+    public function test_get_all_time_high_solar_irradiance()
+    {
+        $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::ALL_TIME_HIGH_SOLAR_IRRADIANCE, "1399"));
+        $this->assertSame("1399", $testee->getAllTimeHighSolarIrradiance()->getWattsPerSquareMetre());
+    }
+
+    public function test_get_all_time_high_solar_irradiance_date_and_time()
+    {
+        $testee = self::createClientRawExtraWithFields(
+            array(
+                new Field(ClientRawExtra::ALL_TIME_HIGH_SOLAR_IRRADIANCE_YEAR, "2015"),
+                new Field(ClientRawExtra::ALL_TIME_HIGH_SOLAR_IRRADIANCE_MONTH, "12"),
+                new Field(ClientRawExtra::ALL_TIME_HIGH_SOLAR_IRRADIANCE_DAY, "31"),
+                new Field(ClientRawExtra::ALL_TIME_HIGH_SOLAR_IRRADIANCE_HOUR, "23"),
+                new Field(ClientRawExtra::ALL_TIME_HIGH_SOLAR_IRRADIANCE_MINUTE, "59")));
+
+        $dateAndTime = $testee->getAllTimeHighSolarIrradianceDateAndTime();
 
         $this->assertSame("2015", $dateAndTime->getYear());
         $this->assertSame("12", $dateAndTime->getMonth());
@@ -1472,6 +1548,13 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getAllTimeHighHeatIndexDateAndTime()->getDay());
         $this->assertNull($testee->getAllTimeHighHeatIndexDateAndTime()->getHour());
         $this->assertNull($testee->getAllTimeHighHeatIndexDateAndTime()->getMinute());
+
+        $this->assertNull($testee->getAllTimeHighSolarIrradiance()->getWattsPerSquareMetre());
+        $this->assertNull($testee->getAllTimeHighSolarIrradianceDateAndTime()->getYear());
+        $this->assertNull($testee->getAllTimeHighSolarIrradianceDateAndTime()->getMonth());
+        $this->assertNull($testee->getAllTimeHighSolarIrradianceDateAndTime()->getDay());
+        $this->assertNull($testee->getAllTimeHighSolarIrradianceDateAndTime()->getHour());
+        $this->assertNull($testee->getAllTimeHighSolarIrradianceDateAndTime()->getMinute());
 
         $this->assertNull($testee->getAllTimeHighUv()->getUvi());
         $this->assertNull($testee->getAllTimeHighUvDateAndTime()->getYear());
