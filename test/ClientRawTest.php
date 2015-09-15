@@ -135,6 +135,12 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $this->assertSame("Clifton, NJ, USA", $testee->getStationName());
     }
 
+    public function test_get_solar_percentage()
+    {
+        $testee = self::createClientRawWithField(new Field(ClientRaw::SOLAR_PERCENTAGE, "56"));
+        $this->assertSame("56", $testee->getSolarPercentage());
+    }
+
     public function test_get_wind_chill()
     {
         $testee = self::createClientRawWithField(new Field(ClientRaw::WIND_CHILL, "3.2"));
@@ -570,6 +576,7 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getSoilTemperature()->getCelsius());
         $this->assertNull($testee->getYesterdaysRainfall()->getMillimetres());
         $this->assertNull($testee->getStationName());
+        $this->assertNull($testee->getSolarPercentage());
         $this->assertNull($testee->getWindChill()->getCelsius());
         $this->assertNull($testee->getHumidex()->getCelsius());
 		$this->assertNull($testee->getDailyHighOutdoorTemperature()->getCelsius());

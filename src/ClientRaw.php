@@ -34,6 +34,7 @@ class ClientRaw extends BaseClientRaw
     const SOIL_TEMPERATURE = 14;
     const YESTERDAYS_RAINFALL = 19;
     const STATION_NAME = 32;
+    const SOLAR_PERCENTAGE = 34;
     const WIND_CHILL = 44;
     const HUMIDEX = 45;
     const DAILY_HIGH_OUTDOOR_TEMPERATURE = 46;
@@ -171,6 +172,22 @@ class ClientRaw extends BaseClientRaw
         }
 
         return $stationName;
+    }
+
+    public function getSolarPercentage()
+    {
+        $solarPercentage = self::readField(self::SOLAR_PERCENTAGE);
+
+        if ($solarPercentage == '-')
+        {
+            $solarPercentage = null;
+        }
+        else
+        {
+            $solarPercentage = number_format($solarPercentage, 0, '.', '');
+        }
+
+        return $solarPercentage;
     }
 
     public function getWindChill()
