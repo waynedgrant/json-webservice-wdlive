@@ -3,6 +3,7 @@
 # Copyright 2015 Wayne D Grant (www.waynedgrant.com)
 # Licensed under the MIT License
 
+require_once("Altitude.php");
 require_once("BaseClientRaw.php");
 require_once("DateAndTime.php");
 require_once("Humidity.php");
@@ -42,6 +43,7 @@ class ClientRaw extends BaseClientRaw
 	const SURFACE_PRESSURE_TREND_PER_HOUR = 50;
     const MAXIMUM_GUST_SPEED = 71;
 	const DEW_POINT = 72;
+    const CLOUD_FORMATION_ALTITUDE = 73;
     const DAILY_HIGH_HUMIDEX = 75;
     const DAILY_LOW_HUMIDEX = 76;
     const DAILY_HIGH_WIND_CHILL = 77;
@@ -60,7 +62,7 @@ class ClientRaw extends BaseClientRaw
     const DAILY_LOW_SURFACE_PRESSURE = 132;
     const DAILY_HIGH_APPARENT_TEMPERATURE = 136;
     const DAILY_LOW_APPARENT_TEMPERATURE = 137;
-    const DAILY_HIGH_DEW_POINT = 138;
+    const DAILY_HIGH_DEW_POINT= 138;
     const DAILY_LOW_DEW_POINT = 139;
     const OUTDOOR_TEMPERATURE_TREND = 143;
 	const OUTDOOR_HUMIDITY_TREND = 144;
@@ -238,6 +240,11 @@ class ClientRaw extends BaseClientRaw
     public function getDewPoint()
     {
         return new Temperature(self::readField(self::DEW_POINT));
+    }
+
+    public function getCloudFormationAltitude()
+    {
+        return new Altitude(self::readField(self::CLOUD_FORMATION_ALTITUDE));
     }
 
     public function getDailyHighHumidex()

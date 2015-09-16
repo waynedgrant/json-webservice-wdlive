@@ -197,6 +197,12 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $this->assertSame("2.9", $testee->getDewPoint()->getCelsius());
     }
 
+    public function test_get_cloud_formation_altitude()
+    {
+        $testee = self::createClientRawWithField(new Field(ClientRaw::CLOUD_FORMATION_ALTITUDE, "3251"));
+        $this->assertSame("3251", $testee->getCloudFormationAltitude()->getFeet());
+    }
+
     public function test_get_daily_high_humidex()
     {
         $testee = self::createClientRawWithField(new Field(ClientRaw::DAILY_HIGH_HUMIDEX, "30.3"));
@@ -583,6 +589,7 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
 		$this->assertNull($testee->getDailyLowOutdoorTemperature()->getCelsius());
         $this->assertNull($testee->getMaximumGustSpeed()->getKnots());
         $this->assertNull($testee->getDewPoint()->getCelsius());
+        $this->assertNull($testee->getCloudFormationAltitude()->getFeet());
         $this->assertNull($testee->getDailyHighHumidex()->getCelsius());
         $this->assertNull($testee->getDailyLowHumidex()->getCelsius());
         $this->assertNull($testee->getDailyHighWindChill()->getCelsius());

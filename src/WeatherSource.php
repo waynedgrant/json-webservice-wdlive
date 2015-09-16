@@ -85,6 +85,8 @@ class WeatherSource extends BaseSource
 
         $uv = $this->clientRaw->getUv()->getAllMeasures();
 
+        $cloudFormationAltitude = $this->clientRaw->getCloudFormationHeight()->getAllMeasures();
+
         $data = $this->createBase();
 
         $data["weather"] = array(
@@ -101,7 +103,8 @@ class WeatherSource extends BaseSource
             "wet_bulb_temperature" => $wetBulbTemperature,
             "soil_temperature" => $soilTmperature,
             "solar" => $solar,
-            "uv" => $uv);
+            "uv" => $uv,
+            "cloud_formation_altitude" => $cloudFormationAltitude);
 
         return $data;
     }
