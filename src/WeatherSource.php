@@ -85,7 +85,7 @@ class WeatherSource extends BaseSource
 
         $uv = $this->clientRaw->getUv()->getAllMeasures();
 
-        $cloudFormationAltitude = $this->clientRaw->getCloudFormationHeight()->getAllMeasures();
+        $cloudFormationAltitude = $this->clientRaw->getCloudFormationAltitude()->getAllMeasures();
 
         $data = $this->createBase();
 
