@@ -281,7 +281,7 @@ class AlmanacSource extends BaseSource
     private function createAlmanacSolarIrradianceMeasurement($solarIrradianceMeasurement, $measurementTime)
     {
         return array(
-            "irradiance" => $solarIrradianceMeasurement->getWattsPerSquareMetre(),
+            "irradiance" => $solarIrradianceMeasurement->getAllMeasures(),
             "time" => $measurementTime->getAllValues());
     }
 }

@@ -79,7 +79,7 @@ class WeatherSource extends BaseSource
         $soilTmperature = $this->clientRaw->getSoilTemperature()->getAllMeasures();
 
         $solar = array(
-            "irradiance" => $this->clientRaw->getSolarIrradiance()->getWattsPerSquareMetre(),
+            "irradiance" => $this->clientRaw->getSolarIrradiance()->getAllMeasures(),
             "percentage" => $this->clientRaw->getSolarPercentage(),
             "sunshine_hours" => $this->clientRawExtra->getSunshineHours());
 

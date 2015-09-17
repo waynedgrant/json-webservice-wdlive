@@ -10,7 +10,7 @@ JSON formatted Web Service API to expose [Weather Display Live](http://www.weath
 
 json-webservice-wdlive exposes much of a weather station's Weather Display Live (WD Live) data as a simple JSON formatted Web Service API.
 
-It exposes five URLs. The first returns current weather conditions including Temperature, Pressure, Rainfall, Wind, Humidity, Dew Point, Wind Chill, Humidex, Heat Index and UV. The second returns a weather almanac for Month-to-Date, Year-to-Date and All Time records. The third returns astronomical information covering times for sunrise, sunset, moonrise and moonset as well as moon phase and age. The fourth returns the current indoor conditions for Temperature and Humidity. The final URL combines all other URLs into a single 'everything' URL.
+It exposes five URLs. The first returns current weather conditions including Temperature, Pressure, Rainfall, Wind, Humidity, Dew Point, Wind Chill, Humidex, Heat Index, Solar and UV. The second returns a weather almanac for Month-to-Date, Year-to-Date and All Time records. The third returns astronomical information covering times for sunrise, sunset, moonrise and moonset as well as moon phase and age. The fourth returns the current indoor conditions for Temperature and Humidity. The final URL combines all other URLs into a single 'everything' URL.
 
 Besides exposing the data in the default units found in clientraw the responses also contain many alternative units. For example, clientraw files store wind speeds in knots. The Web Service responses, on the other hand, respond with Bft, knots, km/h, mph, and m/s.
 
