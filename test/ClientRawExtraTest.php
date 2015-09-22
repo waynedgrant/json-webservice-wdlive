@@ -189,6 +189,31 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
+    public function test_get_monthly_highest_daily_rainfall()
+    {
+        $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MONTHLY_HIGHEST_DAILY_RAINFALL, "10.56"));
+        $this->assertSame("10.56", $testee->getMonthlyHighestDailyRainfall()->getMillimetres());
+    }
+
+    public function test_get_monthly_highest_daily_rainfall_date_and_time()
+    {
+        $testee = self::createClientRawExtraWithFields(
+            array(
+                new Field(ClientRawExtra::MONTHLY_HIGHEST_DAILY_RAINFALL_YEAR, "2015"),
+                new Field(ClientRawExtra::MONTHLY_HIGHEST_DAILY_RAINFALL_MONTH, "12"),
+                new Field(ClientRawExtra::MONTHLY_HIGHEST_DAILY_RAINFALL_DAY, "31"),
+                new Field(ClientRawExtra::MONTHLY_HIGHEST_DAILY_RAINFALL_HOUR, "23"),
+                new Field(ClientRawExtra::MONTHLY_HIGHEST_DAILY_RAINFALL_MINUTE, "59")));
+
+        $dateAndTime = $testee->getMonthlyHighestDailyRainfallDateAndTime();
+
+        $this->assertSame("2015", $dateAndTime->getYear());
+        $this->assertSame("12", $dateAndTime->getMonth());
+        $this->assertSame("31", $dateAndTime->getDay());
+        $this->assertSame("23", $dateAndTime->getHour());
+        $this->assertSame("59", $dateAndTime->getMinute());
+    }
+
     public function test_get_monthly_maximum_average_wind_speed()
     {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED, "26.4"));
@@ -472,6 +497,13 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getMonthlyHighSurfacePressureDateAndTime()->getHour());
         $this->assertNull($testee->getMonthlyHighSurfacePressureDateAndTime()->getMinute());
 
+        $this->assertNull($testee->getMonthlyHighestDailyRainfall()->getMillimetres());
+        $this->assertNull($testee->getMonthlyHighestDailyRainfallDateAndTime()->getYear());
+        $this->assertNull($testee->getMonthlyHighestDailyRainfallDateAndTime()->getMonth());
+        $this->assertNull($testee->getMonthlyHighestDailyRainfallDateAndTime()->getDay());
+        $this->assertNull($testee->getMonthlyHighestDailyRainfallDateAndTime()->getHour());
+        $this->assertNull($testee->getMonthlyHighestDailyRainfallDateAndTime()->getMinute());
+
         $this->assertNull($testee->getMonthlyMaximumAverageWindSpeed()->getKnots());
         $this->assertNull($testee->getMonthlyMaximumAverageWindSpeedDateAndTime()->getYear());
         $this->assertNull($testee->getMonthlyMaximumAverageWindSpeedDateAndTime()->getMonth());
@@ -682,6 +714,31 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
                 new Field(ClientRawExtra::YEARLY_HIGH_SURFACE_PRESSURE_MINUTE, "59")));
 
         $dateAndTime = $testee->getYearlyHighSurfacePressureDateAndTime();
+
+        $this->assertSame("2015", $dateAndTime->getYear());
+        $this->assertSame("12", $dateAndTime->getMonth());
+        $this->assertSame("31", $dateAndTime->getDay());
+        $this->assertSame("23", $dateAndTime->getHour());
+        $this->assertSame("59", $dateAndTime->getMinute());
+    }
+
+    public function test_get_yearly_highest_daily_rainfall()
+    {
+        $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::YEARLY_HIGHEST_DAILY_RAINFALL, "22.12"));
+        $this->assertSame("22.12", $testee->getYearlyHighestDailyRainfall()->getMillimetres());
+    }
+
+    public function test_get_yearly_highest_daily_rainfall_date_and_time()
+    {
+        $testee = self::createClientRawExtraWithFields(
+            array(
+                new Field(ClientRawExtra::YEARLY_HIGHEST_DAILY_RAINFALL_YEAR, "2015"),
+                new Field(ClientRawExtra::YEARLY_HIGHEST_DAILY_RAINFALL_MONTH, "12"),
+                new Field(ClientRawExtra::YEARLY_HIGHEST_DAILY_RAINFALL_DAY, "31"),
+                new Field(ClientRawExtra::YEARLY_HIGHEST_DAILY_RAINFALL_HOUR, "23"),
+                new Field(ClientRawExtra::YEARLY_HIGHEST_DAILY_RAINFALL_MINUTE, "59")));
+
+        $dateAndTime = $testee->getYearlyHighestDailyRainfallDateAndTime();
 
         $this->assertSame("2015", $dateAndTime->getYear());
         $this->assertSame("12", $dateAndTime->getMonth());
@@ -973,6 +1030,13 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getYearlyHighSurfacePressureDateAndTime()->getHour());
         $this->assertNull($testee->getYearlyHighSurfacePressureDateAndTime()->getMinute());
 
+        $this->assertNull($testee->getYearlyHighestDailyRainfall()->getMillimetres());
+        $this->assertNull($testee->getYearlyHighestDailyRainfallDateAndTime()->getYear());
+        $this->assertNull($testee->getYearlyHighestDailyRainfallDateAndTime()->getMonth());
+        $this->assertNull($testee->getYearlyHighestDailyRainfallDateAndTime()->getDay());
+        $this->assertNull($testee->getYearlyHighestDailyRainfallDateAndTime()->getHour());
+        $this->assertNull($testee->getYearlyHighestDailyRainfallDateAndTime()->getMinute());
+
         $this->assertNull($testee->getYearlyMaximumAverageWindSpeed()->getKnots());
         $this->assertNull($testee->getYearlyMaximumAverageWindSpeedDateAndTime()->getYear());
         $this->assertNull($testee->getYearlyMaximumAverageWindSpeedDateAndTime()->getMonth());
@@ -1183,6 +1247,31 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
                 new Field(ClientRawExtra::ALL_TIME_HIGH_SURFACE_PRESSURE_MINUTE, "59")));
 
         $dateAndTime = $testee->getAllTimeHighSurfacePressureDateAndTime();
+
+        $this->assertSame("2015", $dateAndTime->getYear());
+        $this->assertSame("12", $dateAndTime->getMonth());
+        $this->assertSame("31", $dateAndTime->getDay());
+        $this->assertSame("23", $dateAndTime->getHour());
+        $this->assertSame("59", $dateAndTime->getMinute());
+    }
+
+    public function test_get_all_time_highest_daily_rainfall()
+    {
+        $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::ALL_TIME_HIGHEST_DAILY_RAINFALL, "35.67"));
+        $this->assertSame("35.67", $testee->getAllTimeHighestDailyRainfall()->getMillimetres());
+    }
+
+    public function test_get_all_time_highest_daily_rainfall_date_and_time()
+    {
+        $testee = self::createClientRawExtraWithFields(
+            array(
+                new Field(ClientRawExtra::ALL_TIME_HIGHEST_DAILY_RAINFALL_YEAR, "2015"),
+                new Field(ClientRawExtra::ALL_TIME_HIGHEST_DAILY_RAINFALL_MONTH, "12"),
+                new Field(ClientRawExtra::ALL_TIME_HIGHEST_DAILY_RAINFALL_DAY, "31"),
+                new Field(ClientRawExtra::ALL_TIME_HIGHEST_DAILY_RAINFALL_HOUR, "23"),
+                new Field(ClientRawExtra::ALL_TIME_HIGHEST_DAILY_RAINFALL_MINUTE, "59")));
+
+        $dateAndTime = $testee->getAllTimeHighestDailyRainfallDateAndTime();
 
         $this->assertSame("2015", $dateAndTime->getYear());
         $this->assertSame("12", $dateAndTime->getMonth());
@@ -1509,6 +1598,13 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getAllTimeHighSurfacePressureDateAndTime()->getDay());
         $this->assertNull($testee->getAllTimeHighSurfacePressureDateAndTime()->getHour());
         $this->assertNull($testee->getAllTimeHighSurfacePressureDateAndTime()->getMinute());
+
+        $this->assertNull($testee->getAllTimeHighestDailyRainfall()->getMillimetres());
+        $this->assertNull($testee->getAllTimeHighestDailyRainfallDateAndTime()->getYear());
+        $this->assertNull($testee->getAllTimeHighestDailyRainfallDateAndTime()->getMonth());
+        $this->assertNull($testee->getAllTimeHighestDailyRainfallDateAndTime()->getDay());
+        $this->assertNull($testee->getAllTimeHighestDailyRainfallDateAndTime()->getHour());
+        $this->assertNull($testee->getAllTimeHighestDailyRainfallDateAndTime()->getMinute());
 
         $this->assertNull($testee->getAllTimeMaximumAverageWindSpeed()->getKnots());
         $this->assertNull($testee->getAllTimeMaximumAverageWindSpeedDateAndTime()->getYear());

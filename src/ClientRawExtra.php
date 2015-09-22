@@ -51,6 +51,12 @@ class ClientRawExtra extends BaseClientRaw
     const MONTHLY_HIGH_SURFACE_PRESSURE_DAY = 94;
     const MONTHLY_HIGH_SURFACE_PRESSURE_MONTH = 95;
     const MONTHLY_HIGH_SURFACE_PRESSURE_YEAR = 96;
+    const MONTHLY_HIGHEST_DAILY_RAINFALL = 97;
+    const MONTHLY_HIGHEST_DAILY_RAINFALL_HOUR = 98;
+    const MONTHLY_HIGHEST_DAILY_RAINFALL_MINUTE = 99;
+    const MONTHLY_HIGHEST_DAILY_RAINFALL_DAY = 100;
+    const MONTHLY_HIGHEST_DAILY_RAINFALL_MONTH = 101;
+    const MONTHLY_HIGHEST_DAILY_RAINFALL_YEAR = 102;
     const MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED = 109;
     const MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED_HOUR = 110;
     const MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED_MINUTE = 111;
@@ -144,6 +150,12 @@ class ClientRawExtra extends BaseClientRaw
     const YEARLY_HIGH_SURFACE_PRESSURE_DAY = 220;
     const YEARLY_HIGH_SURFACE_PRESSURE_MONTH = 221;
     const YEARLY_HIGH_SURFACE_PRESSURE_YEAR = 222;
+    const YEARLY_HIGHEST_DAILY_RAINFALL = 223;
+    const YEARLY_HIGHEST_DAILY_RAINFALL_HOUR = 224;
+    const YEARLY_HIGHEST_DAILY_RAINFALL_MINUTE = 225;
+    const YEARLY_HIGHEST_DAILY_RAINFALL_DAY = 226;
+    const YEARLY_HIGHEST_DAILY_RAINFALL_MONTH = 227;
+    const YEARLY_HIGHEST_DAILY_RAINFALL_YEAR = 228;
     const YEARLY_MAXIMUM_AVERAGE_WIND_SPEED = 235;
     const YEARLY_MAXIMUM_AVERAGE_WIND_SPEED_HOUR = 236;
     const YEARLY_MAXIMUM_AVERAGE_WIND_SPEED_MINUTE = 237;
@@ -237,6 +249,12 @@ class ClientRawExtra extends BaseClientRaw
     const ALL_TIME_HIGH_SURFACE_PRESSURE_DAY = 346;
     const ALL_TIME_HIGH_SURFACE_PRESSURE_MONTH = 347;
     const ALL_TIME_HIGH_SURFACE_PRESSURE_YEAR = 348;
+    const ALL_TIME_HIGHEST_DAILY_RAINFALL = 349;
+    const ALL_TIME_HIGHEST_DAILY_RAINFALL_HOUR = 350;
+    const ALL_TIME_HIGHEST_DAILY_RAINFALL_MINUTE = 351;
+    const ALL_TIME_HIGHEST_DAILY_RAINFALL_DAY = 352;
+    const ALL_TIME_HIGHEST_DAILY_RAINFALL_MONTH = 353;
+    const ALL_TIME_HIGHEST_DAILY_RAINFALL_YEAR = 354;
     const ALL_TIME_MAXIMUM_AVERAGE_WIND_SPEED = 361;
     const ALL_TIME_MAXIMUM_AVERAGE_WIND_SPEED_HOUR = 362;
     const ALL_TIME_MAXIMUM_AVERAGE_WIND_SPEED_MINUTE = 363;
@@ -390,6 +408,21 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::MONTHLY_HIGH_SURFACE_PRESSURE_DAY),
             self::readField(self::MONTHLY_HIGH_SURFACE_PRESSURE_HOUR),
             self::readField(self::MONTHLY_HIGH_SURFACE_PRESSURE_MINUTE));
+    }
+
+    public function getMonthlyHighestDailyRainfall()
+    {
+        return new Rainfall(self::readField(self::MONTHLY_HIGHEST_DAILY_RAINFALL));
+    }
+
+    public function getMonthlyHighestDailyRainfallDateAndTime()
+    {
+        return new DateAndTime(
+            self::readField(self::MONTHLY_HIGHEST_DAILY_RAINFALL_YEAR),
+            self::readField(self::MONTHLY_HIGHEST_DAILY_RAINFALL_MONTH),
+            self::readField(self::MONTHLY_HIGHEST_DAILY_RAINFALL_DAY),
+            self::readField(self::MONTHLY_HIGHEST_DAILY_RAINFALL_HOUR),
+            self::readField(self::MONTHLY_HIGHEST_DAILY_RAINFALL_MINUTE));
     }
 
     public function getMonthlyMaximumAverageWindSpeed()
@@ -627,6 +660,21 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::YEARLY_HIGH_SURFACE_PRESSURE_MINUTE));
     }
 
+    public function getYearlyHighestDailyRainfall()
+    {
+        return new Rainfall(self::readField(self::YEARLY_HIGHEST_DAILY_RAINFALL));
+    }
+
+    public function getYearlyHighestDailyRainfallDateAndTime()
+    {
+        return new DateAndTime(
+            self::readField(self::YEARLY_HIGHEST_DAILY_RAINFALL_YEAR),
+            self::readField(self::YEARLY_HIGHEST_DAILY_RAINFALL_MONTH),
+            self::readField(self::YEARLY_HIGHEST_DAILY_RAINFALL_DAY),
+            self::readField(self::YEARLY_HIGHEST_DAILY_RAINFALL_HOUR),
+            self::readField(self::YEARLY_HIGHEST_DAILY_RAINFALL_MINUTE));
+    }
+
     public function getYearlyMaximumAverageWindSpeed()
     {
         return new WindSpeed(self::readField(self::YEARLY_MAXIMUM_AVERAGE_WIND_SPEED));
@@ -860,6 +908,21 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::ALL_TIME_HIGH_SURFACE_PRESSURE_DAY),
             self::readField(self::ALL_TIME_HIGH_SURFACE_PRESSURE_HOUR),
             self::readField(self::ALL_TIME_HIGH_SURFACE_PRESSURE_MINUTE));
+    }
+
+    public function getAllTimeHighestDailyRainfall()
+    {
+        return new Rainfall(self::readField(self::ALL_TIME_HIGHEST_DAILY_RAINFALL));
+    }
+
+    public function getAllTimeHighestDailyRainfallDateAndTime()
+    {
+        return new DateAndTime(
+            self::readField(self::ALL_TIME_HIGHEST_DAILY_RAINFALL_YEAR),
+            self::readField(self::ALL_TIME_HIGHEST_DAILY_RAINFALL_MONTH),
+            self::readField(self::ALL_TIME_HIGHEST_DAILY_RAINFALL_DAY),
+            self::readField(self::ALL_TIME_HIGHEST_DAILY_RAINFALL_HOUR),
+            self::readField(self::ALL_TIME_HIGHEST_DAILY_RAINFALL_MINUTE));
     }
 
     public function getAllTimeMaximumAverageWindSpeed()
