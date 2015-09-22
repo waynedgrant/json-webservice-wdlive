@@ -27,6 +27,12 @@ class ClientRawExtra extends BaseClientRaw
     const MONTHLY_LOW_OUTDOOR_TEMPERATURE_DAY = 70;
     const MONTHLY_LOW_OUTDOOR_TEMPERATURE_MONTH = 71;
     const MONTHLY_LOW_OUTDOOR_TEMPERATURE_YEAR = 72;
+    const MONTHLY_MAXIMUM_GUST_SPEED = 73;
+    const MONTHLY_MAXIMUM_GUST_SPEED_HOUR = 74;
+    const MONTHLY_MAXIMUM_GUST_SPEED_MINUTE = 75;
+    const MONTHLY_MAXIMUM_GUST_SPEED_DAY = 76;
+    const MONTHLY_MAXIMUM_GUST_SPEED_MONTH = 77;
+    const MONTHLY_MAXIMUM_GUST_SPEED_YEAR = 78;
     const MONTHLY_MAXIMUM_RAINFALL_RATE = 79;
     const MONTHLY_MAXIMUM_RAINFALL_RATE_HOUR = 80;
     const MONTHLY_MAXIMUM_RAINFALL_RATE_MINUTE = 81;
@@ -45,12 +51,6 @@ class ClientRawExtra extends BaseClientRaw
     const MONTHLY_HIGH_SURFACE_PRESSURE_DAY = 94;
     const MONTHLY_HIGH_SURFACE_PRESSURE_MONTH = 95;
     const MONTHLY_HIGH_SURFACE_PRESSURE_YEAR = 96;
-    const MONTHLY_MAXIMUM_GUST_SPEED = 73;
-    const MONTHLY_MAXIMUM_GUST_SPEED_HOUR = 74;
-    const MONTHLY_MAXIMUM_GUST_SPEED_MINUTE = 75;
-    const MONTHLY_MAXIMUM_GUST_SPEED_DAY = 76;
-    const MONTHLY_MAXIMUM_GUST_SPEED_MONTH = 77;
-    const MONTHLY_MAXIMUM_GUST_SPEED_YEAR = 78;
     const MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED = 109;
     const MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED_HOUR = 110;
     const MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED_MINUTE = 111;
@@ -120,6 +120,12 @@ class ClientRawExtra extends BaseClientRaw
     const YEARLY_LOW_OUTDOOR_TEMPERATURE_DAY = 196;
     const YEARLY_LOW_OUTDOOR_TEMPERATURE_MONTH = 197;
     const YEARLY_LOW_OUTDOOR_TEMPERATURE_YEAR = 198;
+    const YEARLY_MAXIMUM_GUST_SPEED = 199;
+    const YEARLY_MAXIMUM_GUST_SPEED_HOUR = 200;
+    const YEARLY_MAXIMUM_GUST_SPEED_MINUTE = 201;
+    const YEARLY_MAXIMUM_GUST_SPEED_DAY = 202;
+    const YEARLY_MAXIMUM_GUST_SPEED_MONTH = 203;
+    const YEARLY_MAXIMUM_GUST_SPEED_YEAR = 204;
     const YEARLY_MAXIMUM_RAINFALL_RATE = 205;
     const YEARLY_MAXIMUM_RAINFALL_RATE_HOUR = 206;
     const YEARLY_MAXIMUM_RAINFALL_RATE_MINUTE = 207;
@@ -138,12 +144,6 @@ class ClientRawExtra extends BaseClientRaw
     const YEARLY_HIGH_SURFACE_PRESSURE_DAY = 220;
     const YEARLY_HIGH_SURFACE_PRESSURE_MONTH = 221;
     const YEARLY_HIGH_SURFACE_PRESSURE_YEAR = 222;
-    const YEARLY_MAXIMUM_GUST_SPEED = 199;
-    const YEARLY_MAXIMUM_GUST_SPEED_HOUR = 200;
-    const YEARLY_MAXIMUM_GUST_SPEED_MINUTE = 201;
-    const YEARLY_MAXIMUM_GUST_SPEED_DAY = 202;
-    const YEARLY_MAXIMUM_GUST_SPEED_MONTH = 203;
-    const YEARLY_MAXIMUM_GUST_SPEED_YEAR = 204;
     const YEARLY_MAXIMUM_AVERAGE_WIND_SPEED = 235;
     const YEARLY_MAXIMUM_AVERAGE_WIND_SPEED_HOUR = 236;
     const YEARLY_MAXIMUM_AVERAGE_WIND_SPEED_MINUTE = 237;
@@ -213,6 +213,12 @@ class ClientRawExtra extends BaseClientRaw
     const ALL_TIME_LOW_OUTDOOR_TEMPERATURE_DAY = 322;
     const ALL_TIME_LOW_OUTDOOR_TEMPERATURE_MONTH = 323;
     const ALL_TIME_LOW_OUTDOOR_TEMPERATURE_YEAR = 324;
+    const ALL_TIME_MAXIMUM_GUST_SPEED = 325;
+    const ALL_TIME_MAXIMUM_GUST_SPEED_HOUR = 326;
+    const ALL_TIME_MAXIMUM_GUST_SPEED_MINUTE = 327;
+    const ALL_TIME_MAXIMUM_GUST_SPEED_DAY = 328;
+    const ALL_TIME_MAXIMUM_GUST_SPEED_MONTH = 329;
+    const ALL_TIME_MAXIMUM_GUST_SPEED_YEAR = 330;
     const ALL_TIME_MAXIMUM_RAINFALL_RATE = 331;
     const ALL_TIME_MAXIMUM_RAINFALL_RATE_HOUR = 332;
     const ALL_TIME_MAXIMUM_RAINFALL_RATE_MINUTE = 333;
@@ -231,12 +237,6 @@ class ClientRawExtra extends BaseClientRaw
     const ALL_TIME_HIGH_SURFACE_PRESSURE_DAY = 346;
     const ALL_TIME_HIGH_SURFACE_PRESSURE_MONTH = 347;
     const ALL_TIME_HIGH_SURFACE_PRESSURE_YEAR = 348;
-    const ALL_TIME_MAXIMUM_GUST_SPEED = 325;
-    const ALL_TIME_MAXIMUM_GUST_SPEED_HOUR = 326;
-    const ALL_TIME_MAXIMUM_GUST_SPEED_MINUTE = 327;
-    const ALL_TIME_MAXIMUM_GUST_SPEED_DAY = 328;
-    const ALL_TIME_MAXIMUM_GUST_SPEED_MONTH = 329;
-    const ALL_TIME_MAXIMUM_GUST_SPEED_YEAR = 330;
     const ALL_TIME_MAXIMUM_AVERAGE_WIND_SPEED = 361;
     const ALL_TIME_MAXIMUM_AVERAGE_WIND_SPEED_HOUR = 362;
     const ALL_TIME_MAXIMUM_AVERAGE_WIND_SPEED_MINUTE = 363;
@@ -332,6 +332,21 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::MONTHLY_LOW_OUTDOOR_TEMPERATURE_MINUTE));
     }
 
+    public function getMonthlyMaximumGustSpeed()
+    {
+        return new WindSpeed(self::readField(self::MONTHLY_MAXIMUM_GUST_SPEED));
+    }
+
+    public function getMonthlyMaximumGustSpeedDateAndTime()
+    {
+        return new DateAndTime(
+            self::readField(self::MONTHLY_MAXIMUM_GUST_SPEED_YEAR),
+            self::readField(self::MONTHLY_MAXIMUM_GUST_SPEED_MONTH),
+            self::readField(self::MONTHLY_MAXIMUM_GUST_SPEED_DAY),
+            self::readField(self::MONTHLY_MAXIMUM_GUST_SPEED_HOUR),
+            self::readField(self::MONTHLY_MAXIMUM_GUST_SPEED_MINUTE));
+    }
+
     public function getMonthlyMaximumRainfallRate()
     {
         return new RainfallRate(self::readField(self::MONTHLY_MAXIMUM_RAINFALL_RATE));
@@ -375,21 +390,6 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::MONTHLY_HIGH_SURFACE_PRESSURE_DAY),
             self::readField(self::MONTHLY_HIGH_SURFACE_PRESSURE_HOUR),
             self::readField(self::MONTHLY_HIGH_SURFACE_PRESSURE_MINUTE));
-    }
-
-    public function getMonthlyMaximumGustSpeed()
-    {
-        return new WindSpeed(self::readField(self::MONTHLY_MAXIMUM_GUST_SPEED));
-    }
-
-    public function getMonthlyMaximumGustSpeedDateAndTime()
-    {
-        return new DateAndTime(
-            self::readField(self::MONTHLY_MAXIMUM_GUST_SPEED_YEAR),
-            self::readField(self::MONTHLY_MAXIMUM_GUST_SPEED_MONTH),
-            self::readField(self::MONTHLY_MAXIMUM_GUST_SPEED_DAY),
-            self::readField(self::MONTHLY_MAXIMUM_GUST_SPEED_HOUR),
-            self::readField(self::MONTHLY_MAXIMUM_GUST_SPEED_MINUTE));
     }
 
     public function getMonthlyMaximumAverageWindSpeed()
@@ -567,6 +567,21 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::YEARLY_LOW_OUTDOOR_TEMPERATURE_MINUTE));
     }
 
+    public function getYearlyMaximumGustSpeed()
+    {
+        return new WindSpeed(self::readField(self::YEARLY_MAXIMUM_GUST_SPEED));
+    }
+
+    public function getYearlyMaximumGustSpeedDateAndTime()
+    {
+        return new DateAndTime(
+            self::readField(self::YEARLY_MAXIMUM_GUST_SPEED_YEAR),
+            self::readField(self::YEARLY_MAXIMUM_GUST_SPEED_MONTH),
+            self::readField(self::YEARLY_MAXIMUM_GUST_SPEED_DAY),
+            self::readField(self::YEARLY_MAXIMUM_GUST_SPEED_HOUR),
+            self::readField(self::YEARLY_MAXIMUM_GUST_SPEED_MINUTE));
+    }
+
     public function getYearlyMaximumRainfallRate()
     {
         return new RainfallRate(self::readField(self::YEARLY_MAXIMUM_RAINFALL_RATE));
@@ -610,21 +625,6 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::YEARLY_HIGH_SURFACE_PRESSURE_DAY),
             self::readField(self::YEARLY_HIGH_SURFACE_PRESSURE_HOUR),
             self::readField(self::YEARLY_HIGH_SURFACE_PRESSURE_MINUTE));
-    }
-
-    public function getYearlyMaximumGustSpeed()
-    {
-        return new WindSpeed(self::readField(self::YEARLY_MAXIMUM_GUST_SPEED));
-    }
-
-    public function getYearlyMaximumGustSpeedDateAndTime()
-    {
-        return new DateAndTime(
-            self::readField(self::YEARLY_MAXIMUM_GUST_SPEED_YEAR),
-            self::readField(self::YEARLY_MAXIMUM_GUST_SPEED_MONTH),
-            self::readField(self::YEARLY_MAXIMUM_GUST_SPEED_DAY),
-            self::readField(self::YEARLY_MAXIMUM_GUST_SPEED_HOUR),
-            self::readField(self::YEARLY_MAXIMUM_GUST_SPEED_MINUTE));
     }
 
     public function getYearlyMaximumAverageWindSpeed()
@@ -802,6 +802,21 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::ALL_TIME_LOW_OUTDOOR_TEMPERATURE_MINUTE));
     }
 
+    public function getAllTimeMaximumGustSpeed()
+    {
+        return new WindSpeed(self::readField(self::ALL_TIME_MAXIMUM_GUST_SPEED));
+    }
+
+    public function getAllTimeMaximumGustSpeedDateAndTime()
+    {
+        return new DateAndTime(
+            self::readField(self::ALL_TIME_MAXIMUM_GUST_SPEED_YEAR),
+            self::readField(self::ALL_TIME_MAXIMUM_GUST_SPEED_MONTH),
+            self::readField(self::ALL_TIME_MAXIMUM_GUST_SPEED_DAY),
+            self::readField(self::ALL_TIME_MAXIMUM_GUST_SPEED_HOUR),
+            self::readField(self::ALL_TIME_MAXIMUM_GUST_SPEED_MINUTE));
+    }
+
     public function getAllTimeMaximumRainfallRate()
     {
         return new RainfallRate(self::readField(self::ALL_TIME_MAXIMUM_RAINFALL_RATE));
@@ -845,21 +860,6 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::ALL_TIME_HIGH_SURFACE_PRESSURE_DAY),
             self::readField(self::ALL_TIME_HIGH_SURFACE_PRESSURE_HOUR),
             self::readField(self::ALL_TIME_HIGH_SURFACE_PRESSURE_MINUTE));
-    }
-
-    public function getAllTimeMaximumGustSpeed()
-    {
-        return new WindSpeed(self::readField(self::ALL_TIME_MAXIMUM_GUST_SPEED));
-    }
-
-    public function getAllTimeMaximumGustSpeedDateAndTime()
-    {
-        return new DateAndTime(
-            self::readField(self::ALL_TIME_MAXIMUM_GUST_SPEED_YEAR),
-            self::readField(self::ALL_TIME_MAXIMUM_GUST_SPEED_MONTH),
-            self::readField(self::ALL_TIME_MAXIMUM_GUST_SPEED_DAY),
-            self::readField(self::ALL_TIME_MAXIMUM_GUST_SPEED_HOUR),
-            self::readField(self::ALL_TIME_MAXIMUM_GUST_SPEED_MINUTE));
     }
 
     public function getAllTimeMaximumAverageWindSpeed()

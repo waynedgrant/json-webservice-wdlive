@@ -89,6 +89,31 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
+    public function test_get_monthly_maximum_gust_speed()
+    {
+        $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MONTHLY_MAXIMUM_GUST_SPEED, "30.7"));
+        $this->assertSame("30.7", $testee->getMonthlyMaximumGustSpeed()->getKnots());
+    }
+
+    public function test_get_monthly_maximum_gust_speed_date_and_time()
+    {
+        $testee = self::createClientRawExtraWithFields(
+            array(
+                new Field(ClientRawExtra::MONTHLY_MAXIMUM_GUST_SPEED_YEAR, "2015"),
+                new Field(ClientRawExtra::MONTHLY_MAXIMUM_GUST_SPEED_MONTH, "12"),
+                new Field(ClientRawExtra::MONTHLY_MAXIMUM_GUST_SPEED_DAY, "31"),
+                new Field(ClientRawExtra::MONTHLY_MAXIMUM_GUST_SPEED_HOUR, "23"),
+                new Field(ClientRawExtra::MONTHLY_MAXIMUM_GUST_SPEED_MINUTE, "59")));
+
+        $dateAndTime = $testee->getMonthlyMaximumGustSpeedDateAndTime();
+
+        $this->assertSame("2015", $dateAndTime->getYear());
+        $this->assertSame("12", $dateAndTime->getMonth());
+        $this->assertSame("31", $dateAndTime->getDay());
+        $this->assertSame("23", $dateAndTime->getHour());
+        $this->assertSame("59", $dateAndTime->getMinute());
+    }
+
     public function test_get_monthly_maximum_rainfall_rate()
     {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MONTHLY_MAXIMUM_RAINFALL_RATE, "2.06"));
@@ -156,31 +181,6 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
                 new Field(ClientRawExtra::MONTHLY_HIGH_SURFACE_PRESSURE_MINUTE, "59")));
 
         $dateAndTime = $testee->getMonthlyHighSurfacePressureDateAndTime();
-
-        $this->assertSame("2015", $dateAndTime->getYear());
-        $this->assertSame("12", $dateAndTime->getMonth());
-        $this->assertSame("31", $dateAndTime->getDay());
-        $this->assertSame("23", $dateAndTime->getHour());
-        $this->assertSame("59", $dateAndTime->getMinute());
-    }
-
-    public function test_get_monthly_maximum_gust_speed()
-    {
-        $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MONTHLY_MAXIMUM_GUST_SPEED, "30.7"));
-        $this->assertSame("30.7", $testee->getMonthlyMaximumGustSpeed()->getKnots());
-    }
-
-    public function test_get_monthly_maximum_gust_speed_date_and_time()
-    {
-        $testee = self::createClientRawExtraWithFields(
-            array(
-                new Field(ClientRawExtra::MONTHLY_MAXIMUM_GUST_SPEED_YEAR, "2015"),
-                new Field(ClientRawExtra::MONTHLY_MAXIMUM_GUST_SPEED_MONTH, "12"),
-                new Field(ClientRawExtra::MONTHLY_MAXIMUM_GUST_SPEED_DAY, "31"),
-                new Field(ClientRawExtra::MONTHLY_MAXIMUM_GUST_SPEED_HOUR, "23"),
-                new Field(ClientRawExtra::MONTHLY_MAXIMUM_GUST_SPEED_MINUTE, "59")));
-
-        $dateAndTime = $testee->getMonthlyMaximumGustSpeedDateAndTime();
 
         $this->assertSame("2015", $dateAndTime->getYear());
         $this->assertSame("12", $dateAndTime->getMonth());
@@ -444,6 +444,13 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getMonthlyLowOutdoorTemperatureDateAndTime()->getHour());
         $this->assertNull($testee->getMonthlyLowOutdoorTemperatureDateAndTime()->getMinute());
 
+        $this->assertNull($testee->getMonthlyMaximumGustSpeed()->getKnots());
+        $this->assertNull($testee->getMonthlyMaximumGustSpeedDateAndTime()->getYear());
+        $this->assertNull($testee->getMonthlyMaximumGustSpeedDateAndTime()->getMonth());
+        $this->assertNull($testee->getMonthlyMaximumGustSpeedDateAndTime()->getDay());
+        $this->assertNull($testee->getMonthlyMaximumGustSpeedDateAndTime()->getHour());
+        $this->assertNull($testee->getMonthlyMaximumGustSpeedDateAndTime()->getMinute());
+
         $this->assertNull($testee->getMonthlyMaximumRainfallRate()->getMillimetresPerMinute());
         $this->assertNull($testee->getMonthlyMaximumRainfallRateDateAndTime()->getYear());
         $this->assertNull($testee->getMonthlyMaximumRainfallRateDateAndTime()->getMonth());
@@ -464,13 +471,6 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getMonthlyHighSurfacePressureDateAndTime()->getDay());
         $this->assertNull($testee->getMonthlyHighSurfacePressureDateAndTime()->getHour());
         $this->assertNull($testee->getMonthlyHighSurfacePressureDateAndTime()->getMinute());
-
-        $this->assertNull($testee->getMonthlyMaximumGustSpeed()->getKnots());
-        $this->assertNull($testee->getMonthlyMaximumGustSpeedDateAndTime()->getYear());
-        $this->assertNull($testee->getMonthlyMaximumGustSpeedDateAndTime()->getMonth());
-        $this->assertNull($testee->getMonthlyMaximumGustSpeedDateAndTime()->getDay());
-        $this->assertNull($testee->getMonthlyMaximumGustSpeedDateAndTime()->getHour());
-        $this->assertNull($testee->getMonthlyMaximumGustSpeedDateAndTime()->getMinute());
 
         $this->assertNull($testee->getMonthlyMaximumAverageWindSpeed()->getKnots());
         $this->assertNull($testee->getMonthlyMaximumAverageWindSpeedDateAndTime()->getYear());
@@ -590,6 +590,31 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
+    public function test_get_yearly_maximum_gust_speed()
+    {
+        $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::YEARLY_MAXIMUM_GUST_SPEED, "30.7"));
+        $this->assertSame("30.7", $testee->getYearlyMaximumGustSpeed()->getKnots());
+    }
+
+    public function test_get_yearly_maximum_gust_speed_date_and_time()
+    {
+        $testee = self::createClientRawExtraWithFields(
+            array(
+                new Field(ClientRawExtra::YEARLY_MAXIMUM_GUST_SPEED_YEAR, "2015"),
+                new Field(ClientRawExtra::YEARLY_MAXIMUM_GUST_SPEED_MONTH, "12"),
+                new Field(ClientRawExtra::YEARLY_MAXIMUM_GUST_SPEED_DAY, "31"),
+                new Field(ClientRawExtra::YEARLY_MAXIMUM_GUST_SPEED_HOUR, "23"),
+                new Field(ClientRawExtra::YEARLY_MAXIMUM_GUST_SPEED_MINUTE, "59")));
+
+        $dateAndTime = $testee->getYearlyMaximumGustSpeedDateAndTime();
+
+        $this->assertSame("2015", $dateAndTime->getYear());
+        $this->assertSame("12", $dateAndTime->getMonth());
+        $this->assertSame("31", $dateAndTime->getDay());
+        $this->assertSame("23", $dateAndTime->getHour());
+        $this->assertSame("59", $dateAndTime->getMinute());
+    }
+
     public function test_get_yearly_maximum_rainfall_rate()
     {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::YEARLY_MAXIMUM_RAINFALL_RATE, "2.06"));
@@ -657,31 +682,6 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
                 new Field(ClientRawExtra::YEARLY_HIGH_SURFACE_PRESSURE_MINUTE, "59")));
 
         $dateAndTime = $testee->getYearlyHighSurfacePressureDateAndTime();
-
-        $this->assertSame("2015", $dateAndTime->getYear());
-        $this->assertSame("12", $dateAndTime->getMonth());
-        $this->assertSame("31", $dateAndTime->getDay());
-        $this->assertSame("23", $dateAndTime->getHour());
-        $this->assertSame("59", $dateAndTime->getMinute());
-    }
-
-    public function test_get_yearly_maximum_gust_speed()
-    {
-        $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::YEARLY_MAXIMUM_GUST_SPEED, "30.7"));
-        $this->assertSame("30.7", $testee->getYearlyMaximumGustSpeed()->getKnots());
-    }
-
-    public function test_get_yearly_maximum_gust_speed_date_and_time()
-    {
-        $testee = self::createClientRawExtraWithFields(
-            array(
-                new Field(ClientRawExtra::YEARLY_MAXIMUM_GUST_SPEED_YEAR, "2015"),
-                new Field(ClientRawExtra::YEARLY_MAXIMUM_GUST_SPEED_MONTH, "12"),
-                new Field(ClientRawExtra::YEARLY_MAXIMUM_GUST_SPEED_DAY, "31"),
-                new Field(ClientRawExtra::YEARLY_MAXIMUM_GUST_SPEED_HOUR, "23"),
-                new Field(ClientRawExtra::YEARLY_MAXIMUM_GUST_SPEED_MINUTE, "59")));
-
-        $dateAndTime = $testee->getYearlyMaximumGustSpeedDateAndTime();
 
         $this->assertSame("2015", $dateAndTime->getYear());
         $this->assertSame("12", $dateAndTime->getMonth());
@@ -945,6 +945,13 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getYearlyLowOutdoorTemperatureDateAndTime()->getHour());
         $this->assertNull($testee->getYearlyLowOutdoorTemperatureDateAndTime()->getMinute());
 
+        $this->assertNull($testee->getYearlyMaximumGustSpeed()->getKnots());
+        $this->assertNull($testee->getYearlyMaximumGustSpeedDateAndTime()->getYear());
+        $this->assertNull($testee->getYearlyMaximumGustSpeedDateAndTime()->getMonth());
+        $this->assertNull($testee->getYearlyMaximumGustSpeedDateAndTime()->getDay());
+        $this->assertNull($testee->getYearlyMaximumGustSpeedDateAndTime()->getHour());
+        $this->assertNull($testee->getYearlyMaximumGustSpeedDateAndTime()->getMinute());
+
         $this->assertNull($testee->getYearlyMaximumRainfallRate()->getMillimetresPerMinute());
         $this->assertNull($testee->getYearlyMaximumRainfallRateDateAndTime()->getYear());
         $this->assertNull($testee->getYearlyMaximumRainfallRateDateAndTime()->getMonth());
@@ -965,13 +972,6 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getYearlyHighSurfacePressureDateAndTime()->getDay());
         $this->assertNull($testee->getYearlyHighSurfacePressureDateAndTime()->getHour());
         $this->assertNull($testee->getYearlyHighSurfacePressureDateAndTime()->getMinute());
-
-        $this->assertNull($testee->getYearlyMaximumGustSpeed()->getKnots());
-        $this->assertNull($testee->getYearlyMaximumGustSpeedDateAndTime()->getYear());
-        $this->assertNull($testee->getYearlyMaximumGustSpeedDateAndTime()->getMonth());
-        $this->assertNull($testee->getYearlyMaximumGustSpeedDateAndTime()->getDay());
-        $this->assertNull($testee->getYearlyMaximumGustSpeedDateAndTime()->getHour());
-        $this->assertNull($testee->getYearlyMaximumGustSpeedDateAndTime()->getMinute());
 
         $this->assertNull($testee->getYearlyMaximumAverageWindSpeed()->getKnots());
         $this->assertNull($testee->getYearlyMaximumAverageWindSpeedDateAndTime()->getYear());
@@ -1091,6 +1091,31 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
+    public function test_get_all_time_maximum_gust_speed()
+    {
+        $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::ALL_TIME_MAXIMUM_GUST_SPEED, "30.7"));
+        $this->assertSame("30.7", $testee->getAllTimeMaximumGustSpeed()->getKnots());
+    }
+
+    public function test_get_all_time_maximum_gust_speed_date_and_time()
+    {
+        $testee = self::createClientRawExtraWithFields(
+            array(
+                new Field(ClientRawExtra::ALL_TIME_MAXIMUM_GUST_SPEED_YEAR, "2015"),
+                new Field(ClientRawExtra::ALL_TIME_MAXIMUM_GUST_SPEED_MONTH, "12"),
+                new Field(ClientRawExtra::ALL_TIME_MAXIMUM_GUST_SPEED_DAY, "31"),
+                new Field(ClientRawExtra::ALL_TIME_MAXIMUM_GUST_SPEED_HOUR, "23"),
+                new Field(ClientRawExtra::ALL_TIME_MAXIMUM_GUST_SPEED_MINUTE, "59")));
+
+        $dateAndTime = $testee->getAllTimeMaximumGustSpeedDateAndTime();
+
+        $this->assertSame("2015", $dateAndTime->getYear());
+        $this->assertSame("12", $dateAndTime->getMonth());
+        $this->assertSame("31", $dateAndTime->getDay());
+        $this->assertSame("23", $dateAndTime->getHour());
+        $this->assertSame("59", $dateAndTime->getMinute());
+    }
+
     public function test_get_all_time_maximum_rainfall_rate()
     {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::ALL_TIME_MAXIMUM_RAINFALL_RATE, "2.06"));
@@ -1158,31 +1183,6 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
                 new Field(ClientRawExtra::ALL_TIME_HIGH_SURFACE_PRESSURE_MINUTE, "59")));
 
         $dateAndTime = $testee->getAllTimeHighSurfacePressureDateAndTime();
-
-        $this->assertSame("2015", $dateAndTime->getYear());
-        $this->assertSame("12", $dateAndTime->getMonth());
-        $this->assertSame("31", $dateAndTime->getDay());
-        $this->assertSame("23", $dateAndTime->getHour());
-        $this->assertSame("59", $dateAndTime->getMinute());
-    }
-
-    public function test_get_all_time_maximum_gust_speed()
-    {
-        $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::ALL_TIME_MAXIMUM_GUST_SPEED, "30.7"));
-        $this->assertSame("30.7", $testee->getAllTimeMaximumGustSpeed()->getKnots());
-    }
-
-    public function test_get_all_time_maximum_gust_speed_date_and_time()
-    {
-        $testee = self::createClientRawExtraWithFields(
-            array(
-                new Field(ClientRawExtra::ALL_TIME_MAXIMUM_GUST_SPEED_YEAR, "2015"),
-                new Field(ClientRawExtra::ALL_TIME_MAXIMUM_GUST_SPEED_MONTH, "12"),
-                new Field(ClientRawExtra::ALL_TIME_MAXIMUM_GUST_SPEED_DAY, "31"),
-                new Field(ClientRawExtra::ALL_TIME_MAXIMUM_GUST_SPEED_HOUR, "23"),
-                new Field(ClientRawExtra::ALL_TIME_MAXIMUM_GUST_SPEED_MINUTE, "59")));
-
-        $dateAndTime = $testee->getAllTimeMaximumGustSpeedDateAndTime();
 
         $this->assertSame("2015", $dateAndTime->getYear());
         $this->assertSame("12", $dateAndTime->getMonth());
@@ -1482,6 +1482,13 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getAllTimeLowOutdoorTemperatureDateAndTime()->getHour());
         $this->assertNull($testee->getAllTimeLowOutdoorTemperatureDateAndTime()->getMinute());
 
+        $this->assertNull($testee->getAllTimeMaximumGustSpeed()->getKnots());
+        $this->assertNull($testee->getAllTimeMaximumGustSpeedDateAndTime()->getYear());
+        $this->assertNull($testee->getAllTimeMaximumGustSpeedDateAndTime()->getMonth());
+        $this->assertNull($testee->getAllTimeMaximumGustSpeedDateAndTime()->getDay());
+        $this->assertNull($testee->getAllTimeMaximumGustSpeedDateAndTime()->getHour());
+        $this->assertNull($testee->getAllTimeMaximumGustSpeedDateAndTime()->getMinute());
+
         $this->assertNull($testee->getAllTimeMaximumRainfallRate()->getMillimetresPerMinute());
         $this->assertNull($testee->getAllTimeMaximumRainfallRateDateAndTime()->getYear());
         $this->assertNull($testee->getAllTimeMaximumRainfallRateDateAndTime()->getMonth());
@@ -1502,13 +1509,6 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getAllTimeHighSurfacePressureDateAndTime()->getDay());
         $this->assertNull($testee->getAllTimeHighSurfacePressureDateAndTime()->getHour());
         $this->assertNull($testee->getAllTimeHighSurfacePressureDateAndTime()->getMinute());
-
-        $this->assertNull($testee->getAllTimeMaximumGustSpeed()->getKnots());
-        $this->assertNull($testee->getAllTimeMaximumGustSpeedDateAndTime()->getYear());
-        $this->assertNull($testee->getAllTimeMaximumGustSpeedDateAndTime()->getMonth());
-        $this->assertNull($testee->getAllTimeMaximumGustSpeedDateAndTime()->getDay());
-        $this->assertNull($testee->getAllTimeMaximumGustSpeedDateAndTime()->getHour());
-        $this->assertNull($testee->getAllTimeMaximumGustSpeedDateAndTime()->getMinute());
 
         $this->assertNull($testee->getAllTimeMaximumAverageWindSpeed()->getKnots());
         $this->assertNull($testee->getAllTimeMaximumAverageWindSpeedDateAndTime()->getYear());
