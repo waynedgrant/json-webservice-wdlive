@@ -46,6 +46,14 @@ class AlmanacSource extends BaseSource
             $this->clientRawExtra->getMonthlyMaximumRainfallRate(),
             $this->clientRawExtra->getMonthlyMaximumRainfallRateDateAndTime());
 
+        $highestDailyRainfall = $this->createAlmanacMeasurement(
+            $this->clientRawExtra->getMonthlyHighestDailyRainfall(),
+            $this->clientRawExtra->getMonthlyHighestDailyRainfallDateAndTime());
+
+        $highestDailyRainfallInAnHour = $this->createAlmanacMeasurement(
+            $this->clientRawExtra->getMonthlyHighestRainfallInAnHour(),
+            $this->clientRawExtra->getMonthlyHighestRainfallInAnHourDateAndTime());
+
         $maximumAverageWindSpeed = $this->createAlmanacWindMeasurement(
             $this->clientRawExtra->getMonthlyMaximumAverageWindSpeed(),
             $this->clientRawExtra->getMonthlyMaximumAverageWindSpeedDirection(),
@@ -95,7 +103,7 @@ class AlmanacSource extends BaseSource
             "year" => $dateAndTime->getYear(),
             "temperature" => array("high" => $highOutdoorTemperature, "low" => $lowOutdoorTemperature),
             "pressure" => array("high" => $highPressure, "low" => $lowPressure),
-            "rainfall" => array("max_rate_per_min" => $maximumRainfallRate),
+            "rainfall" => array("max_rate_per_min" => $maximumRainfallRate, "highest_daily_rainfall" => $highestDailyRainfall, "highest_rainfall_1hr" => $highestDailyRainfallInAnHour),
             "wind" => array("max_avg" => $maximumAverageWindSpeed, "max_gust" => $maximumGustSpeed),
             "dew_point" => array("high" => $highDewPoint, "low" => $lowDewPoint),
             "wind_chill" => array("low" => $lowWindChill),
@@ -126,6 +134,14 @@ class AlmanacSource extends BaseSource
         $maximumRainfallRate = $this->createAlmanacMeasurement(
             $this->clientRawExtra->getYearlyMaximumRainfallRate(),
             $this->clientRawExtra->getYearlyMaximumRainfallRateDateAndTime());
+
+        $highestDailyRainfall = $this->createAlmanacMeasurement(
+            $this->clientRawExtra->getYearlyHighestDailyRainfall(),
+            $this->clientRawExtra->getYearlyHighestDailyRainfallDateAndTime());
+
+        $highestDailyRainfallInAnHour = $this->createAlmanacMeasurement(
+            $this->clientRawExtra->getYearlyHighestRainfallInAnHour(),
+            $this->clientRawExtra->getYearlyHighestRainfallInAnHourDateAndTime());
 
         $maximumAverageWindSpeed = $this->createAlmanacWindMeasurement(
             $this->clientRawExtra->getYearlyMaximumAverageWindSpeed(),
@@ -175,7 +191,7 @@ class AlmanacSource extends BaseSource
             "year" => $dateAndTime->getYear(),
             "temperature" => array("high" => $highOutdoorTemperature, "low" => $lowOutdoorTemperature),
             "pressure" => array("high" => $highPressure, "low" => $lowPressure),
-            "rainfall" => array("max_rate_per_min" => $maximumRainfallRate),
+            "rainfall" => array("max_rate_per_min" => $maximumRainfallRate, "highest_daily_rainfall" => $highestDailyRainfall, "highest_rainfall_1hr" => $highestDailyRainfallInAnHour),
             "wind" => array("max_avg" => $maximumAverageWindSpeed, "max_gust" => $maximumGustSpeed),
             "dew_point" => array("high" => $highDewPoint, "low" => $lowDewPoint),
             "wind_chill" => array("low" => $lowWindChill),
@@ -206,6 +222,14 @@ class AlmanacSource extends BaseSource
         $maximumRainfallRate = $this->createAlmanacMeasurement(
             $this->clientRawExtra->getAllTimeMaximumRainfallRate(),
             $this->clientRawExtra->getAllTimeMaximumRainfallRateDateAndTime());
+
+        $highestDailyRainfall = $this->createAlmanacMeasurement(
+            $this->clientRawExtra->getAllTimeHighestDailyRainfall(),
+            $this->clientRawExtra->getAllTimeHighestDailyRainfallDateAndTime());
+
+        $highestDailyRainfallInAnHour = $this->createAlmanacMeasurement(
+            $this->clientRawExtra->getAllTimeHighestRainfallInAnHour(),
+            $this->clientRawExtra->getAllTimeHighestRainfallInAnHourDateAndTime());
 
         $maximumAverageWindSpeed = $this->createAlmanacWindMeasurement(
             $this->clientRawExtra->getAllTimeMaximumAverageWindSpeed(),
@@ -252,7 +276,7 @@ class AlmanacSource extends BaseSource
         return array(
             "temperature" => array("high" => $highOutdoorTemperature, "low" => $lowOutdoorTemperature),
             "pressure" => array("high" => $highPressure, "low" => $lowPressure),
-            "rainfall" => array("max_rate_per_min" => $maximumRainfallRate),
+            "rainfall" => array("max_rate_per_min" => $maximumRainfallRate, "highest_daily_rainfall" => $highestDailyRainfall, "highest_rainfall_1hr" => $highestDailyRainfallInAnHour),
             "wind" => array("max_avg" => $maximumAverageWindSpeed, "max_gust" => $maximumGustSpeed),
             "dew_point" => array("high" => $highDewPoint, "low" => $lowDewPoint),
             "wind_chill" => array("low" => $lowWindChill),
