@@ -600,6 +600,66 @@ class ClientRawExtra extends BaseClientRaw
         return new WindDirection(self::readField(self::MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED_DIRECTION));
     }
 
+    public function getMonthlyWarmestDay()
+    {
+        return new Temperature(self::readField(self::MONTHLY_WARMEST_DAY));
+    }
+
+    public function getMonthlyWarmestDayDateAndTime()
+    {
+        return new DateAndTime(
+            self::readField(self::MONTHLY_WARMEST_DAY_YEAR),
+            self::readField(self::MONTHLY_WARMEST_DAY_MONTH),
+            self::readField(self::MONTHLY_WARMEST_DAY_DAY),
+            self::readField(self::MONTHLY_WARMEST_DAY_HOUR),
+            self::readField(self::MONTHLY_WARMEST_DAY_MINUTE));
+    }
+
+    public function getMonthlyColdestNight()
+    {
+        return new Temperature(self::readField(self::MONTHLY_COLDEST_NIGHT));
+    }
+
+    public function getMonthlyColdestNightDateAndTime()
+    {
+        return new DateAndTime(
+            self::readField(self::MONTHLY_COLDEST_NIGHT_YEAR),
+            self::readField(self::MONTHLY_COLDEST_NIGHT_MONTH),
+            self::readField(self::MONTHLY_COLDEST_NIGHT_DAY),
+            self::readField(self::MONTHLY_COLDEST_NIGHT_HOUR),
+            self::readField(self::MONTHLY_COLDEST_NIGHT_MINUTE));
+    }
+
+    public function getMonthlyColdestDay()
+    {
+        return new Temperature(self::readField(self::MONTHLY_COLDEST_DAY));
+    }
+
+    public function getMonthlyColdestDayDateAndTime()
+    {
+        return new DateAndTime(
+            self::readField(self::MONTHLY_COLDEST_DAY_YEAR),
+            self::readField(self::MONTHLY_COLDEST_DAY_MONTH),
+            self::readField(self::MONTHLY_COLDEST_DAY_DAY),
+            self::readField(self::MONTHLY_COLDEST_DAY_HOUR),
+            self::readField(self::MONTHLY_COLDEST_DAY_MINUTE));
+    }
+
+    public function getMonthlyWarmestNight()
+    {
+        return new Temperature(self::readField(self::MONTHLY_WARMEST_NIGHT));
+    }
+
+    public function getMonthlyWarmestNightDateAndTime()
+    {
+        return new DateAndTime(
+            self::readField(self::MONTHLY_WARMEST_NIGHT_YEAR),
+            self::readField(self::MONTHLY_WARMEST_NIGHT_MONTH),
+            self::readField(self::MONTHLY_WARMEST_NIGHT_DAY),
+            self::readField(self::MONTHLY_WARMEST_NIGHT_HOUR),
+            self::readField(self::MONTHLY_WARMEST_NIGHT_MINUTE));
+    }
+
     public function getMonthlyHighHeatIndex()
     {
         return new Temperature(self::readField(self::MONTHLY_HIGH_HEAT_INDEX));
