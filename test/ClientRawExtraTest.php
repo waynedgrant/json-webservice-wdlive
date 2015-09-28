@@ -1044,6 +1044,106 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
         $this->assertSame("180", $testee->getYearlyMaximumAverageWindSpeedDirection()->getCompassDegrees());
     }
 
+    public function test_get_yearly_warmest_day()
+    {
+        $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::YEARLY_WARMEST_DAY, "27.5"));
+        $this->assertSame("27.5", $testee->getYearlyWarmestDay()->getCelsius());
+    }
+
+    public function test_get_yearly_warmest_day_date_and_time()
+    {
+        $testee = self::createClientRawExtraWithFields(
+            array(
+                new Field(ClientRawExtra::YEARLY_WARMEST_DAY_YEAR, "2015"),
+                new Field(ClientRawExtra::YEARLY_WARMEST_DAY_MONTH, "12"),
+                new Field(ClientRawExtra::YEARLY_WARMEST_DAY_DAY, "31"),
+                new Field(ClientRawExtra::YEARLY_WARMEST_DAY_HOUR, "23"),
+                new Field(ClientRawExtra::YEARLY_WARMEST_DAY_MINUTE, "59")));
+
+        $dateAndTime = $testee->getYearlyWarmestDayDateAndTime();
+
+        $this->assertSame("2015", $dateAndTime->getYear());
+        $this->assertSame("12", $dateAndTime->getMonth());
+        $this->assertSame("31", $dateAndTime->getDay());
+        $this->assertSame("23", $dateAndTime->getHour());
+        $this->assertSame("59", $dateAndTime->getMinute());
+    }
+
+    public function test_get_yearly_coldest_night()
+    {
+        $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::YEARLY_COLDEST_NIGHT, "3.2"));
+        $this->assertSame("3.2", $testee->getYearlyColdestNight()->getCelsius());
+    }
+
+    public function test_get_yearly_coldest_night_date_and_time()
+    {
+        $testee = self::createClientRawExtraWithFields(
+            array(
+                new Field(ClientRawExtra::YEARLY_COLDEST_NIGHT_YEAR, "2015"),
+                new Field(ClientRawExtra::YEARLY_COLDEST_NIGHT_MONTH, "12"),
+                new Field(ClientRawExtra::YEARLY_COLDEST_NIGHT_DAY, "31"),
+                new Field(ClientRawExtra::YEARLY_COLDEST_NIGHT_HOUR, "23"),
+                new Field(ClientRawExtra::YEARLY_COLDEST_NIGHT_MINUTE, "59")));
+
+        $dateAndTime = $testee->getYearlyColdestNightDateAndTime();
+
+        $this->assertSame("2015", $dateAndTime->getYear());
+        $this->assertSame("12", $dateAndTime->getMonth());
+        $this->assertSame("31", $dateAndTime->getDay());
+        $this->assertSame("23", $dateAndTime->getHour());
+        $this->assertSame("59", $dateAndTime->getMinute());
+    }
+
+    public function test_get_yearly_coldest_day()
+    {
+        $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::YEARLY_COLDEST_DAY, "-0.4"));
+        $this->assertSame("-0.4", $testee->getYearlyColdestDay()->getCelsius());
+    }
+
+    public function test_get_yearly_coldest_day_date_and_time()
+    {
+        $testee = self::createClientRawExtraWithFields(
+            array(
+                new Field(ClientRawExtra::YEARLY_COLDEST_DAY_YEAR, "2015"),
+                new Field(ClientRawExtra::YEARLY_COLDEST_DAY_MONTH, "12"),
+                new Field(ClientRawExtra::YEARLY_COLDEST_DAY_DAY, "31"),
+                new Field(ClientRawExtra::YEARLY_COLDEST_DAY_HOUR, "23"),
+                new Field(ClientRawExtra::YEARLY_COLDEST_DAY_MINUTE, "59")));
+
+        $dateAndTime = $testee->getYearlyColdestDayDateAndTime();
+
+        $this->assertSame("2015", $dateAndTime->getYear());
+        $this->assertSame("12", $dateAndTime->getMonth());
+        $this->assertSame("31", $dateAndTime->getDay());
+        $this->assertSame("23", $dateAndTime->getHour());
+        $this->assertSame("59", $dateAndTime->getMinute());
+    }
+
+    public function test_get_yearly_warmest_night()
+    {
+        $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::YEARLY_WARMEST_NIGHT, "26.1"));
+        $this->assertSame("26.1", $testee->getYearlyWarmestNight()->getCelsius());
+    }
+
+    public function test_get_yearly_warmest_night_date_and_time()
+    {
+        $testee = self::createClientRawExtraWithFields(
+            array(
+                new Field(ClientRawExtra::YEARLY_WARMEST_NIGHT_YEAR, "2015"),
+                new Field(ClientRawExtra::YEARLY_WARMEST_NIGHT_MONTH, "12"),
+                new Field(ClientRawExtra::YEARLY_WARMEST_NIGHT_DAY, "31"),
+                new Field(ClientRawExtra::YEARLY_WARMEST_NIGHT_HOUR, "23"),
+                new Field(ClientRawExtra::YEARLY_WARMEST_NIGHT_MINUTE, "59")));
+
+        $dateAndTime = $testee->getYearlyWarmestNightDateAndTime();
+
+        $this->assertSame("2015", $dateAndTime->getYear());
+        $this->assertSame("12", $dateAndTime->getMonth());
+        $this->assertSame("31", $dateAndTime->getDay());
+        $this->assertSame("23", $dateAndTime->getHour());
+        $this->assertSame("59", $dateAndTime->getMinute());
+    }
+
     public function test_get_yearly_high_heat_index()
     {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::YEARLY_HIGH_HEAT_INDEX, "35.7"));
@@ -1260,6 +1360,34 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getYearlyMaximumGustSpeedDirection()->getCompassDegrees());
 
         $this->assertNull($testee->getYearlyMaximumAverageWindSpeedDirection()->getCompassDegrees());
+
+        $this->assertNull($testee->getYearlyWarmestDay()->getCelsius());
+        $this->assertNull($testee->getYearlyWarmestDayDateAndTime()->getYear());
+        $this->assertNull($testee->getYearlyWarmestDayDateAndTime()->getMonth());
+        $this->assertNull($testee->getYearlyWarmestDayDateAndTime()->getDay());
+        $this->assertNull($testee->getYearlyWarmestDayDateAndTime()->getHour());
+        $this->assertNull($testee->getYearlyWarmestDayDateAndTime()->getMinute());
+
+        $this->assertNull($testee->getYearlyColdestNight()->getCelsius());
+        $this->assertNull($testee->getYearlyColdestNightDateAndTime()->getYear());
+        $this->assertNull($testee->getYearlyColdestNightDateAndTime()->getMonth());
+        $this->assertNull($testee->getYearlyColdestNightDateAndTime()->getDay());
+        $this->assertNull($testee->getYearlyColdestNightDateAndTime()->getHour());
+        $this->assertNull($testee->getYearlyColdestNightDateAndTime()->getMinute());
+
+        $this->assertNull($testee->getYearlyColdestDay()->getCelsius());
+        $this->assertNull($testee->getYearlyColdestDayDateAndTime()->getYear());
+        $this->assertNull($testee->getYearlyColdestDayDateAndTime()->getMonth());
+        $this->assertNull($testee->getYearlyColdestDayDateAndTime()->getDay());
+        $this->assertNull($testee->getYearlyColdestDayDateAndTime()->getHour());
+        $this->assertNull($testee->getYearlyColdestDayDateAndTime()->getMinute());
+
+        $this->assertNull($testee->getYearlyWarmestNight()->getCelsius());
+        $this->assertNull($testee->getYearlyWarmestNightDateAndTime()->getYear());
+        $this->assertNull($testee->getYearlyWarmestNightDateAndTime()->getMonth());
+        $this->assertNull($testee->getYearlyWarmestNightDateAndTime()->getday());
+        $this->assertNull($testee->getYearlyWarmestNightDateAndTime()->getHour());
+        $this->assertNull($testee->getYearlyWarmestNightDateAndTime()->getMinute());
 
         $this->assertNull($testee->getYearlyHighHeatIndex()->getCelsius());
         $this->assertNull($testee->getYearlyHighHeatIndexDateAndTime()->getYear());
