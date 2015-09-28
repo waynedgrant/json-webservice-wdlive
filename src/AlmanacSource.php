@@ -88,6 +88,22 @@ class AlmanacSource extends BaseSource
             $this->clientRawExtra->getMonthlyLowSoilTemperature(),
             $this->clientRawExtra->getMonthlyLowSoilTemperatureDateAndTime());
 
+        $warmestDay = $this->createAlmanacMeasurement(
+            $this->clientRawExtra->getMonthlyWarmestDay(),
+            $this->clientRawExtra->getMonthlyWarmestDayDateAndTime());
+
+        $warmestNight = $this->createAlmanacMeasurement(
+            $this->clientRawExtra->getMonthlyWarmestNight(),
+            $this->clientRawExtra->getMonthlyWarmestNightDateAndTime());
+
+        $coldestDay = $this->createAlmanacMeasurement(
+            $this->clientRawExtra->getMonthlyColdestDay(),
+            $this->clientRawExtra->getMonthlyColdestDayDateAndTime());
+
+        $coldestNight = $this->createAlmanacMeasurement(
+            $this->clientRawExtra->getMonthlyColdestNight(),
+            $this->clientRawExtra->getMonthlyColdestNightDateAndTime());
+
         $highSolar = $this->createAlmanacSolarIrradianceMeasurement(
             $this->clientRawExtra->getMonthlyHighSolarIrradiance(),
             $this->clientRawExtra->getMonthlyHighSolarIrradianceDateAndTime());
@@ -109,6 +125,8 @@ class AlmanacSource extends BaseSource
             "wind_chill" => array("low" => $lowWindChill),
             "heat_index" => array("high" => $highHeatIndex),
             "soil_temperature" => array("high" => $highSoilTemperature, "low" => $lowSoilTemperature),
+            "warmest" => array("day" => $warmestDay, "night" => $warmestNight),
+            "coldest" => array("day" => $coldestDay, "night" => $coldestNight),
             "solar" => array("high" => $highSolar),
             "uv" => array("high" => $highUv));
     }
@@ -177,6 +195,22 @@ class AlmanacSource extends BaseSource
             $this->clientRawExtra->getYearlyLowSoilTemperature(),
             $this->clientRawExtra->getYearlyLowSoilTemperatureDateAndTime());
 
+        $warmestDay = $this->createAlmanacMeasurement(
+            $this->clientRawExtra->getYearlyWarmestDay(),
+            $this->clientRawExtra->getYearlyWarmestDayDateAndTime());
+
+        $warmestNight = $this->createAlmanacMeasurement(
+            $this->clientRawExtra->getYearlyWarmestNight(),
+            $this->clientRawExtra->getYearlyWarmestNightDateAndTime());
+
+        $coldestDay = $this->createAlmanacMeasurement(
+            $this->clientRawExtra->getYearlyColdestDay(),
+            $this->clientRawExtra->getYearlyColdestDayDateAndTime());
+
+        $coldestNight = $this->createAlmanacMeasurement(
+            $this->clientRawExtra->getYearlyColdestNight(),
+            $this->clientRawExtra->getYearlyColdestNightDateAndTime());
+
         $highSolar = $this->createAlmanacSolarIrradianceMeasurement(
             $this->clientRawExtra->getYearlyHighSolarIrradiance(),
             $this->clientRawExtra->getYearlyHighSolarIrradianceDateAndTime());
@@ -197,6 +231,8 @@ class AlmanacSource extends BaseSource
             "wind_chill" => array("low" => $lowWindChill),
             "heat_index" => array("high" => $highHeatIndex),
             "soil_temperature" => array("high" => $highSoilTemperature, "low" => $lowSoilTemperature),
+            "warmest" => array("day" => $warmestDay, "night" => $warmestNight),
+            "coldest" => array("day" => $coldestDay, "night" => $coldestNight),
             "solar" => array("high" => $highSolar),
             "uv" => array("high" => $highUv));
     }
@@ -265,6 +301,22 @@ class AlmanacSource extends BaseSource
             $this->clientRawExtra->getAllTimeLowSoilTemperature(),
             $this->clientRawExtra->getAllTimeLowSoilTemperatureDateAndTime());
 
+        $warmestDay = $this->createAlmanacMeasurement(
+            $this->clientRawExtra->getAllTimeWarmestDay(),
+            $this->clientRawExtra->getAllTimeWarmestDayDateAndTime());
+
+        $warmestNight = $this->createAlmanacMeasurement(
+            $this->clientRawExtra->getAllTimeWarmestNight(),
+            $this->clientRawExtra->getAllTimeWarmestNightDateAndTime());
+
+        $coldestDay = $this->createAlmanacMeasurement(
+            $this->clientRawExtra->getAllTimeColdestDay(),
+            $this->clientRawExtra->getAllTimeColdestDayDateAndTime());
+
+        $coldestNight = $this->createAlmanacMeasurement(
+            $this->clientRawExtra->getAllTimeColdestNight(),
+            $this->clientRawExtra->getAllTimeColdestNightDateAndTime());
+
         $highSolar = $this->createAlmanacSolarIrradianceMeasurement(
             $this->clientRawExtra->getAllTimeHighSolarIrradiance(),
             $this->clientRawExtra->getAllTimeHighSolarIrradianceDateAndTime());
@@ -282,6 +334,8 @@ class AlmanacSource extends BaseSource
             "wind_chill" => array("low" => $lowWindChill),
             "heat_index" => array("high" => $highHeatIndex),
             "soil_temperature" => array("high" => $highSoilTemperature, "low" => $lowSoilTemperature),
+            "warmest" => array("day" => $warmestDay, "night" => $warmestNight),
+            "coldest" => array("day" => $coldestDay, "night" => $coldestNight),
             "solar" => array("high" => $highSolar),
             "uv" => array("high" => $highUv));
     }
