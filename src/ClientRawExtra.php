@@ -1250,6 +1250,66 @@ class ClientRawExtra extends BaseClientRaw
         return new WindDirection(self::readField(self::ALL_TIME_MAXIMUM_AVERAGE_WIND_SPEED_DIRECTION));
     }
 
+    public function getAllTimeWarmestDay()
+    {
+        return new Temperature(self::readField(self::ALL_TIME_WARMEST_DAY));
+    }
+
+    public function getAllTimeWarmestDayDateAndTime()
+    {
+        return new DateAndTime(
+            self::readField(self::ALL_TIME_WARMEST_DAY_YEAR),
+            self::readField(self::ALL_TIME_WARMEST_DAY_MONTH),
+            self::readField(self::ALL_TIME_WARMEST_DAY_DAY),
+            self::readField(self::ALL_TIME_WARMEST_DAY_HOUR),
+            self::readField(self::ALL_TIME_WARMEST_DAY_MINUTE));
+    }
+
+    public function getAllTimeColdestNight()
+    {
+        return new Temperature(self::readField(self::ALL_TIME_COLDEST_NIGHT));
+    }
+
+    public function getAllTimeColdestNightDateAndTime()
+    {
+        return new DateAndTime(
+           self::readField(self::ALL_TIME_COLDEST_NIGHT_YEAR),
+           self::readField(self::ALL_TIME_COLDEST_NIGHT_MONTH),
+           self::readField(self::ALL_TIME_COLDEST_NIGHT_DAY),
+           self::readField(self::ALL_TIME_COLDEST_NIGHT_HOUR),
+           self::readField(self::ALL_TIME_COLDEST_NIGHT_MINUTE));
+    }
+
+    public function getAllTimeColdestDay()
+    {
+        return new Temperature(self::readField(self::ALL_TIME_COLDEST_DAY));
+    }
+
+    public function getAllTimeColdestDayDateAndTime()
+    {
+        return new DateAndTime(
+            self::readField(self::ALL_TIME_COLDEST_DAY_YEAR),
+            self::readField(self::ALL_TIME_COLDEST_DAY_MONTH),
+            self::readField(self::ALL_TIME_COLDEST_DAY_DAY),
+            self::readField(self::ALL_TIME_COLDEST_DAY_HOUR),
+            self::readField(self::ALL_TIME_COLDEST_DAY_MINUTE));
+    }
+
+    public function getAllTimeWarmestNight()
+    {
+        return new Temperature(self::readField(self::ALL_TIME_WARMEST_NIGHT));
+    }
+
+    public function getAllTimeWarmestNightDateAndTime()
+    {
+        return new DateAndTime(
+            self::readField(self::ALL_TIME_WARMEST_NIGHT_YEAR),
+            self::readField(self::ALL_TIME_WARMEST_NIGHT_MONTH),
+            self::readField(self::ALL_TIME_WARMEST_NIGHT_DAY),
+            self::readField(self::ALL_TIME_WARMEST_NIGHT_HOUR),
+            self::readField(self::ALL_TIME_WARMEST_NIGHT_MINUTE));
+    }
+
     public function getAllTimeHighHeatIndex()
     {
         return new Temperature(self::readField(self::ALL_TIME_HIGH_HEAT_INDEX));
