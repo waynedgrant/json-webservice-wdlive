@@ -6,6 +6,7 @@
 require_once("AlmanacSource.php");
 require_once("BaseSource.php");
 require_once("AstronomySource.php");
+require_once("ForecastSource.php");
 require_once("IndoorSource.php");
 require_once("WeatherSource.php");
 
@@ -20,6 +21,7 @@ class EverythingSource extends BaseSource
     {
         $almanacSource = new AlmanacSource($this->clientRaw, $this->clientRawExtra);
         $astronomySource = new AstronomySource($this->clientRaw, $this->clientRawExtra);
+        $forecastSource = new ForecastSource($this->clientRaw, $this->clientRawExtra);
         $indoorSource = new IndoorSource($this->clientRaw);
         $weatherSource = new WeatherSource($this->clientRaw, $this->clientRawExtra);
 
@@ -28,6 +30,7 @@ class EverythingSource extends BaseSource
         $data["everything"] = array(
             "almanac" => $almanacSource->create()["almanac"],
             "astronomy" => $astronomySource->create()["astronomy"],
+            "forecast" => $forecastSource->create()["forecast"],
             "indoor" => $indoorSource->create()["indoor"],
             "weather" => $weatherSource->create()["weather"]);
 

@@ -1,0 +1,20 @@
+<?php header('content-type: application/json; charset=utf-8');
+
+# Copyright 2015 Wayne D Grant (www.waynedgrant.com)
+# Licensed under the MIT License
+
+require_once("config.php");
+require_once("ClientRaw.php");
+require_once("ClientRawExtra.php");
+require_once("ForecastSource.php");
+
+$clientRaw = new ClientRaw(CLIENT_RAW_DIRECTORY . "clientraw.txt");
+$clientRawExtra = new ClientRawExtra(CLIENT_RAW_DIRECTORY . "clientrawextra.txt");
+
+$forecastSource = new ForecastSource($clientRaw, $clientRawExtra);
+
+$json = json_encode($forecastSource->create());
+
+echo isset($_GET['callback']) ? "{$_GET['callback']}($json)" : $json;
+
+?>
