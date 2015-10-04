@@ -53,7 +53,7 @@ For example:
 * JSON: [http://www.waynedgrant.com/weather/api/weather.json](http://www.waynedgrant.com/weather/api/weather.json)
 * JSONP: [http://www.waynedgrant.com/weather/api/weather.json?callback=weatherCallback](http://www.waynedgrant.com/weather/api/weather.json?callback=weatherCallback)
 
-**Weather Forecasr URL - forecast.json**
+**Weather Forecast URL - forecast.json**
 
 * JSON: [http://www.waynedgrant.com/weather/api/forecast.json](http://www.waynedgrant.com/weather/api/forecast.json)
 * JSONP: [http://www.waynedgrant.com/weather/api/forecast.json?callback=weatherCallback](http://www.waynedgrant.com/weather/api/forecast.json?callback=weatherCallback)
