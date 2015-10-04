@@ -16,7 +16,12 @@ class ForecastSource extends BaseSource
     {
         $data = $this->createBase();
 
-        $data["forecast"] = array();
+        $forecastIcon = $this->clientRaw->getForecast();
+
+        $data["forecast"] = array(
+            "code" => $forecastIcon->getCode(),
+            "text" => $forecastIcon->getText()
+        );
 
         return $data;
     }

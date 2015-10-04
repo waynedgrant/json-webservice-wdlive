@@ -10,7 +10,14 @@ JSON formatted Web Service API to expose [Weather Display Live](http://www.weath
 
 json-webservice-wdlive exposes much of a weather station's Weather Display Live (WD Live) data as a simple JSON formatted Web Service API.
 
-It exposes five URLs. The first returns current weather conditions including Temperature, Pressure, Rainfall, Wind, Humidity, Dew Point, Wind Chill, Humidex, Heat Index, Solar and UV. The second returns a weather almanac for Month-to-Date, Year-to-Date and All Time records. The third returns astronomical information covering times for sunrise, sunset, moonrise and moonset as well as moon phase and age. The fourth returns the current indoor conditions for Temperature and Humidity. The final URL combines all other URLs into a single 'everything' URL.
+It does this via several URLs:
+
+* *weather.json*: Current weather conditions including Temperature, Pressure, Rainfall, Wind, Humidity, Dew Point, Wind Chill, Humidex, Heat Index, Solar and UV.
+* *forecast.json*: Weather forecasts.
+* *almanac.json*: Weather almanac for Month-to-Date, Year-to-Date and All Time records.
+* *astronomy.json*: Astronomical information covering times for sunrise, sunset, moonrise and moonset as well as moon phase and age.
+* *indoor.json*: Current indoor conditions including Temperature and Humidity.
+* *everything.json*: A combination of the content of all other endpoints available in one hit.
 
 Besides exposing the data in the default units found in clientraw the responses also contain many alternative units. For example, clientraw files store wind speeds in knots. The Web Service responses, on the other hand, respond with Bft, knots, km/h, mph, and m/s.
 
@@ -45,6 +52,11 @@ For example:
 
 * JSON: [http://www.waynedgrant.com/weather/api/weather.json](http://www.waynedgrant.com/weather/api/weather.json)
 * JSONP: [http://www.waynedgrant.com/weather/api/weather.json?callback=weatherCallback](http://www.waynedgrant.com/weather/api/weather.json?callback=weatherCallback)
+
+**Weather Forecasr URL - forecast.json**
+
+* JSON: [http://www.waynedgrant.com/weather/api/forecast.json](http://www.waynedgrant.com/weather/api/forecast.json)
+* JSONP: [http://www.waynedgrant.com/weather/api/forecast.json?callback=weatherCallback](http://www.waynedgrant.com/weather/api/forecast.json?callback=weatherCallback)
 
 **Weather Almanac URL - almanac.json**
 

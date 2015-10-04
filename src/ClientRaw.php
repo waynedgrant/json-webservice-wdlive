@@ -6,6 +6,7 @@
 require_once("Altitude.php");
 require_once("BaseClientRaw.php");
 require_once("DateAndTime.php");
+require_once("Forecast.php");
 require_once("Humidity.php");
 require_once("Irradiance.php");
 require_once("Pressure.php");
@@ -33,6 +34,7 @@ class ClientRaw extends BaseClientRaw
     const INDOOR_TEMPERATURE = 12;
     const INDOOR_HUMIDITY = 13;
     const SOIL_TEMPERATURE = 14;
+    const FORECAST_ICON = 15;
     const YESTERDAYS_RAINFALL = 19;
     const STATION_NAME = 32;
     const SOLAR_PERCENTAGE = 34;
@@ -147,6 +149,11 @@ class ClientRaw extends BaseClientRaw
     public function getSoilTemperature()
     {
         return new Temperature(self::readField(self::SOIL_TEMPERATURE));
+    }
+
+    public function getForecast() // TODO - test
+    {
+        return new Forecast(self::readField(self::FORECAST_ICON));
     }
 
     public function getYesterdaysRainfall()
