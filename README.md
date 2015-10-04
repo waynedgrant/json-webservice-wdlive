@@ -12,12 +12,12 @@ json-webservice-wdlive exposes much of a weather station's Weather Display Live 
 
 It does this via several URLs:
 
-* *weather.json*: Current weather conditions including Temperature, Pressure, Rainfall, Wind, Humidity, Dew Point, Wind Chill, Humidex, Heat Index, Solar and UV.
-* *forecast.json*: Weather forecasts.
-* *almanac.json*: Weather almanac for Month-to-Date, Year-to-Date and All Time records.
-* *astronomy.json*: Astronomical information covering times for sunrise, sunset, moonrise and moonset as well as moon phase and age.
-* *indoor.json*: Current indoor conditions including Temperature and Humidity.
-* *everything.json*: A combination of the content of all other endpoints available in one hit.
+* __weather.json__ Current weather conditions including Temperature, Pressure, Rainfall, Wind, Humidity, Dew Point, Wind Chill, Humidex, Heat Index, Solar and UV.
+* __forecast.json__ Weather forecasts.
+* __almanac.json__ Weather almanac for Month-to-Date, Year-to-Date and All Time records.
+* __astronomy.json__ Astronomical information covering times for sunrise, sunset, moonrise and moonset as well as moon phase and age.
+* __indoor.json__ Current indoor conditions including Temperature and Humidity.
+* __everything.json__ A combination of the content of all other endpoints available in one hit.
 
 Besides exposing the data in the default units found in clientraw the responses also contain many alternative units. For example, clientraw files store wind speeds in knots. The Web Service responses, on the other hand, respond with Bft, knots, km/h, mph, and m/s.
 
