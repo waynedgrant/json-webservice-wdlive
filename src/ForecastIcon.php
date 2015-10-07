@@ -3,7 +3,7 @@
 # Copyright 2015 Wayne D Grant (www.waynedgrant.com)
 # Licensed under the MIT License
 
-class ForecastIcon // TODO - test
+class ForecastIcon
 {
     private $code;
     private $text;

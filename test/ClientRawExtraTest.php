@@ -1963,6 +1963,11 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
+    public function test_get_davis_forecast()
+    {
+        $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::DAVIS_FORECAST, "PARTLY_SUNNY_WITH_A_SLIGHT_CHANCE_OF_SHOWERS"));
+        $this->assertSame("PARTLY SUNNY WITH A SLIGHT CHANCE OF SHOWERS", $testee->getDavisForecast());
+    }
     public function test_get_sunrise_time()
     {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::SUNRISE_TIME, "06:21"));
@@ -2154,6 +2159,7 @@ class ClientRawExtraTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getAllTimeLowDewPointDateAndTime()->getHour());
         $this->assertNull($testee->getAllTimeLowDewPointDateAndTime()->getMinute());
 
+        $this->assertNull($testee->getDavisForecast());
         $this->assertNull($testee->getSunriseTime()->getTime());
         $this->assertNull($testee->getSunsetTime()->getTime());
         $this->assertNull($testee->getMoonriseTime()->getTime());

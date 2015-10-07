@@ -34,6 +34,7 @@ class ClientRaw extends BaseClientRaw
     const INDOOR_TEMPERATURE = 12;
     const INDOOR_HUMIDITY = 13;
     const SOIL_TEMPERATURE = 14;
+    const FORECAST_ICON = 15;
     const YESTERDAYS_RAINFALL = 19;
     const STATION_NAME = 32;
     const SOLAR_PERCENTAGE = 34;
@@ -41,7 +42,6 @@ class ClientRaw extends BaseClientRaw
     const HUMIDEX = 45;
     const DAILY_HIGH_OUTDOOR_TEMPERATURE = 46;
     const DAILY_LOW_OUTDOOR_TEMPERATURE = 47;
-    const FORECAST_ICON = 48;
 	const SURFACE_PRESSURE_TREND_PER_HOUR = 50;
     const MAXIMUM_GUST_SPEED = 71;
 	const DEW_POINT = 72;
@@ -151,6 +151,11 @@ class ClientRaw extends BaseClientRaw
         return new Temperature(self::readField(self::SOIL_TEMPERATURE));
     }
 
+    public function getForecastIcon()
+    {
+        return new ForecastIcon(self::readField(self::FORECAST_ICON));
+    }
+
     public function getYesterdaysRainfall()
     {
         return new Rainfall(self::readField(self::YESTERDAYS_RAINFALL));
@@ -232,11 +237,6 @@ class ClientRaw extends BaseClientRaw
         }
 
         return $dailyLowOutdoorTemperature;
-    }
-
-    public function getForecastIcon() // TODO - test
-    {
-        return new ForecastIcon(self::readField(self::FORECAST_ICON));
     }
 
     public function getMaximumGustSpeed()
