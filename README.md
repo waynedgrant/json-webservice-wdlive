@@ -80,7 +80,7 @@ For example:
 
 ## API Documentation
 
-For details of Web Service response fields see Web Service API page at [Wayne's Weather](http://www.waynedgrant.com/weather/api.html).
+For details of Web Service response elements see Web Service API page at [Wayne's Weather](http://www.waynedgrant.com/weather/api.html).
 
 ## Unit Testing
 
