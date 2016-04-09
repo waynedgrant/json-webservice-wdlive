@@ -402,6 +402,7 @@ class ClientRawExtra extends BaseClientRaw
     const ALL_TIME_LOW_DEW_POINT_MONTH = 763;
     const ALL_TIME_LOW_DEW_POINT_YEAR = 764;
 
+    const DAVIS_FORECAST = 531;
     const SUNRISE_TIME = 556;
     const SUNSET_TIME = 557;
     const MOONRISE_TIME = 558;
@@ -1383,6 +1384,22 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::ALL_TIME_LOW_DEW_POINT_DAY),
             self::readField(self::ALL_TIME_LOW_DEW_POINT_HOUR),
             self::readField(self::ALL_TIME_LOW_DEW_POINT_MINUTE));
+    }
+
+    public function getDavisForecast()
+    {
+        $davisForecast = self::readField(self::DAVIS_FORECAST);
+
+        if ($davisForecast == '-')
+        {
+            $davisForecast = null;
+        }
+        else
+        {
+            $davisForecast = str_replace('_', ' ', $davisForecast); // Unescape '_' that represent spaces
+        }
+
+        return $davisForecast;
     }
 
     public function getSunriseTime()

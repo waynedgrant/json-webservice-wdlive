@@ -16,7 +16,13 @@ class ForecastSource extends BaseSource
     {
         $data = $this->createBase();
 
-        $data["forecast"] = array();
+        $forecastIcon = $this->clientRaw->getForecastIcon();
+        $davisForecast = $this->clientRawExtra->getDavisForecast();
+
+        $data["forecast"] = array(
+            "icon" => $forecastIcon->getAllMeasures(),
+            "davis_forecast" => $davisForecast
+        );
 
         return $data;
     }

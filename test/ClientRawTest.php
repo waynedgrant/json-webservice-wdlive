@@ -123,6 +123,12 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $this->assertSame("4.5", $testee->getSoilTemperature()->getCelsius());
     }
 
+    public function test_get_forecast_icon()
+    {
+        $testee = self::createClientRawWithField(new Field(ClientRaw::FORECAST_ICON, "22"));
+        $this->assertSame("22", $testee->getForecastIcon()->getCode());
+    }
+
     public function test_get_yesterdays_rainfall()
     {
         $testee = self::createClientRawWithField(new Field(ClientRaw::YESTERDAYS_RAINFALL, "5.62"));
@@ -580,6 +586,7 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getIndoorTemperature()->getCelsius());
         $this->assertNull($testee->getIndoorHumidity()->getPercentage());
         $this->assertNull($testee->getSoilTemperature()->getCelsius());
+        $this->assertNull($testee->getForecastIcon()->getCode());
         $this->assertNull($testee->getYesterdaysRainfall()->getMillimetres());
         $this->assertNull($testee->getStationName());
         $this->assertNull($testee->getSolarPercentage());
