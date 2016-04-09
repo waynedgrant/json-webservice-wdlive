@@ -5,7 +5,7 @@
 
 abstract class BaseSource
 {
-	const SERVICE_VERSION = 1.6;
+    const SERVICE_VERSION = 1.6;
     const API_DOCUMENTATION_LINK = "http://www.waynedgrant.com/weather/api.html";
     const GITHUB_PROJECT_LINK = "https://github.com/waynedgrant/json-webservice-wdlive";
     const COPYRIGHT_NOTICE = "Copyright © 2015 Wayne D Grant (www.waynedgrant.com)";

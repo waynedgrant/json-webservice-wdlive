@@ -24,11 +24,11 @@ class ClientRaw extends BaseClientRaw
     const WIND_DIRECTION = 3;
     const OUTDOOR_TEMPERATURE = 4;
     const OUTDOOR_HUMIDITY = 5;
-	const SURFACE_PRESSURE = 6;
-	const DAILY_RAINFALL = 7;
+    const SURFACE_PRESSURE = 6;
+    const DAILY_RAINFALL = 7;
     const MONTHLY_RAINFALL = 8;
     const ANNUAL_RAINFALL = 9;
-	const RAINFALL_RATE = 10;
+    const RAINFALL_RATE = 10;
     const DAILY_MAXIMUM_RAINFALL_RATE = 11;
     const INDOOR_TEMPERATURE = 12;
     const INDOOR_HUMIDITY = 13;
@@ -40,9 +40,9 @@ class ClientRaw extends BaseClientRaw
     const HUMIDEX = 45;
     const DAILY_HIGH_OUTDOOR_TEMPERATURE = 46;
     const DAILY_LOW_OUTDOOR_TEMPERATURE = 47;
-	const SURFACE_PRESSURE_TREND_PER_HOUR = 50;
+    const SURFACE_PRESSURE_TREND_PER_HOUR = 50;
     const MAXIMUM_GUST_SPEED = 71;
-	const DEW_POINT = 72;
+    const DEW_POINT = 72;
     const CLOUD_FORMATION_ALTITUDE = 73;
     const DAILY_HIGH_HUMIDEX = 75;
     const DAILY_LOW_HUMIDEX = 76;
@@ -65,7 +65,7 @@ class ClientRaw extends BaseClientRaw
     const DAILY_HIGH_DEW_POINT= 138;
     const DAILY_LOW_DEW_POINT = 139;
     const OUTDOOR_TEMPERATURE_TREND = 143;
-	const OUTDOOR_HUMIDITY_TREND = 144;
+    const OUTDOOR_HUMIDITY_TREND = 144;
     const HUMIDEX_TREND = 145;
     const WET_BULB_TEMPERATURE = 159;
     const LATITUDE = 160;

@@ -6,10 +6,10 @@
 class WindSpeed
 {
     private $beaufortScale;
-	private $kilometresPerHour;
-	private $knots;
-	private $metresPerSecond;
-	private $milesPerHour;
+    private $kilometresPerHour;
+    private $knots;
+    private $metresPerSecond;
+    private $milesPerHour;
 
     public function __construct($knots)
     {
@@ -55,13 +55,13 @@ class WindSpeed
         $beaufortScale = 0;
 
         if ($rounded_knots >= 1 && $rounded_knots <= 3)
-	    {
-	        $beaufortScale = 1;
-	    }
-	    elseif ($rounded_knots >= 4 && $rounded_knots <= 6)
-	    {
-	        $beaufortScale = 2;
-	    }
+        {
+            $beaufortScale = 1;
+        }
+        elseif ($rounded_knots >= 4 && $rounded_knots <= 6)
+        {
+            $beaufortScale = 2;
+        }
         elseif ($rounded_knots >= 7 && $rounded_knots <= 10)
         {
             $beaufortScale = 3;

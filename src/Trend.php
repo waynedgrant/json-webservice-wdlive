@@ -13,18 +13,18 @@ class Trend
         {
             $this->celsius = number_format($celsius, 1, '.', '');
 
-			if ($trend > 0)
-			{
-				$this->trend = "1";
-			}
-			else if ($trend < 0)
-			{
-				$this->trend = "-1";
-			}
-			else
-			{
-				$this->trend = "0";
-			}
+            if ($trend > 0)
+            {
+                $this->trend = "1";
+            }
+            else if ($trend < 0)
+            {
+                $this->trend = "-1";
+            }
+            else
+            {
+                $this->trend = "0";
+            }
         }
     }
 

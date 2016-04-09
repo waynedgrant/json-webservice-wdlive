@@ -585,8 +585,8 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getSolarPercentage());
         $this->assertNull($testee->getWindChill()->getCelsius());
         $this->assertNull($testee->getHumidex()->getCelsius());
-		$this->assertNull($testee->getDailyHighOutdoorTemperature()->getCelsius());
-		$this->assertNull($testee->getDailyLowOutdoorTemperature()->getCelsius());
+        $this->assertNull($testee->getDailyHighOutdoorTemperature()->getCelsius());
+        $this->assertNull($testee->getDailyLowOutdoorTemperature()->getCelsius());
         $this->assertNull($testee->getMaximumGustSpeed()->getKnots());
         $this->assertNull($testee->getDewPoint()->getCelsius());
         $this->assertNull($testee->getCloudFormationAltitude()->getFeet());
@@ -610,9 +610,9 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getDailyLowApparentTemperature()->getCelsius());
         $this->assertNull($testee->getDailyHighDewPoint()->getCelsius());
         $this->assertNull($testee->getDailyLowDewPoint()->getCelsius());
-	    $this->assertNull($testee->getOutdoorTemperatureTrend()->getTrend());
-	    $this->assertNull($testee->getOutdoorHumidityTrend()->getTrend());
-	    $this->assertNull($testee->getHumidexTrend()->getTrend());
+        $this->assertNull($testee->getOutdoorTemperatureTrend()->getTrend());
+        $this->assertNull($testee->getOutdoorHumidityTrend()->getTrend());
+        $this->assertNull($testee->getHumidexTrend()->getTrend());
         $this->assertNull($testee->getWetBulbTemperature()->getCelsius());
         $this->assertNull($testee->getLatitude());
         $this->assertNull($testee->getLongitude());
