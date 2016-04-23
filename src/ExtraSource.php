@@ -17,24 +17,24 @@ class ExtraSource extends BaseSource
         $data = $this->createBase();
 
         $temperature = array(
-            "1" => $this->clientRaw->getExtraTemperature1()->getAllMeasures(),
-            "2" => $this->clientRaw->getExtraTemperature2()->getAllMeasures(),
-            "3" => $this->clientRaw->getExtraTemperature3()->getAllMeasures(),
-            "4" => $this->clientRaw->getExtraTemperature4()->getAllMeasures(),
-            "5" => $this->clientRaw->getExtraTemperature5()->getAllMeasures(),
-            "6" => $this->clientRaw->getExtraTemperature6()->getAllMeasures(),
-            "7" => $this->clientRaw->getExtraTemperature7()->getAllMeasures(),
-            "8" => $this->clientRaw->getExtraTemperature8()->getAllMeasures());
+            $this->clientRaw->getExtraTemperature1()->getAllMeasures(),
+            $this->clientRaw->getExtraTemperature2()->getAllMeasures(),
+            $this->clientRaw->getExtraTemperature3()->getAllMeasures(),
+            $this->clientRaw->getExtraTemperature4()->getAllMeasures(),
+            $this->clientRaw->getExtraTemperature5()->getAllMeasures(),
+            $this->clientRaw->getExtraTemperature6()->getAllMeasures(),
+            $this->clientRaw->getExtraTemperature7()->getAllMeasures(),
+            $this->clientRaw->getExtraTemperature8()->getAllMeasures());
 
         $humidity = array(
-            "1" => $this->clientRaw->getExtraHumidity1()->getPercentage(),
-            "2" => $this->clientRaw->getExtraHumidity2()->getPercentage(),
-            "3" => $this->clientRaw->getExtraHumidity3()->getPercentage(),
-            "4" => $this->clientRaw->getExtraHumidity4()->getPercentage(),
-            "5" => $this->clientRaw->getExtraHumidity5()->getPercentage(),
-            "6" => $this->clientRaw->getExtraHumidity6()->getPercentage(),
-            "7" => $this->clientRaw->getExtraHumidity7()->getPercentage(),
-            "8" => $this->clientRaw->getExtraHumidity8()->getPercentage());
+            $this->clientRaw->getExtraHumidity1()->getPercentage(),
+            $this->clientRaw->getExtraHumidity2()->getPercentage(),
+            $this->clientRaw->getExtraHumidity3()->getPercentage(),
+            $this->clientRaw->getExtraHumidity4()->getPercentage(),
+            $this->clientRaw->getExtraHumidity5()->getPercentage(),
+            $this->clientRaw->getExtraHumidity6()->getPercentage(),
+            $this->clientRaw->getExtraHumidity7()->getPercentage(),
+            $this->clientRaw->getExtraHumidity8()->getPercentage());
 
         $data["extra"] = array(
             "temperature" => $temperature,
