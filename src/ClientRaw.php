@@ -75,6 +75,23 @@ class ClientRaw extends BaseClientRaw
     const DAILY_HIGH_OUTDOOR_HUMIDITY = 163;
     const DAILY_LOW_OUTDOOR_HUMIDITY = 164;
 
+    const EXTRA_TEMPERATURE_1 = 20;
+    const EXTRA_TEMPERATURE_2 = 21;
+    const EXTRA_TEMPERATURE_3 = 22;
+    const EXTRA_TEMPERATURE_4 = 23;
+    const EXTRA_TEMPERATURE_5 = 24;
+    const EXTRA_TEMPERATURE_6 = 25;
+    const EXTRA_TEMPERATURE_7 = 120;
+    const EXTRA_TEMPERATURE_8 = 121;
+    const EXTRA_HUMIDITY_1 = 26;
+    const EXTRA_HUMIDITY_2 = 27;
+    const EXTRA_HUMIDITY_3 = 28;
+    const EXTRA_HUMIDITY_4 = 122;
+    const EXTRA_HUMIDITY_5 = 123;
+    const EXTRA_HUMIDITY_6 = 124;
+    const EXTRA_HUMIDITY_7 = 125;
+    const EXTRA_HUMIDITY_8 = 126;
+
     const YEAR = 141;
     const MONTH = 36;
     const DAY = 35;
@@ -237,6 +254,11 @@ class ClientRaw extends BaseClientRaw
         }
 
         return $dailyLowOutdoorTemperature;
+    }
+
+    public function getSurfacePressureTrendPerHour()
+    {
+        return new Pressure(self::readField(self::SURFACE_PRESSURE_TREND_PER_HOUR));
     }
 
     public function getMaximumGustSpeed()
@@ -568,9 +590,94 @@ class ClientRaw extends BaseClientRaw
         return $dailyLowOutdoorHumidity;
     }
 
-    public function getSurfacePressureTrendPerHour()
+    public function getExtraTemperature1()
     {
-        return new Pressure(self::readField(self::SURFACE_PRESSURE_TREND_PER_HOUR));
+        return new Temperature(self::readField(self::EXTRA_TEMPERATURE_1));
+    }
+
+    public function getExtraTemperature2()
+    {
+        return new Temperature(self::readField(self::EXTRA_TEMPERATURE_2));
+    }
+
+    public function getExtraTemperature3()
+    {
+        return new Temperature(self::readField(self::EXTRA_TEMPERATURE_3));
+    }
+
+    public function getExtraTemperature4()
+    {
+        return new Temperature(self::readField(self::EXTRA_TEMPERATURE_4));
+    }
+
+    public function getExtraTemperature5()
+    {
+        return new Temperature(self::readField(self::EXTRA_TEMPERATURE_5));
+    }
+
+    public function getExtraTemperature6()
+    {
+        return new Temperature(self::readField(self::EXTRA_TEMPERATURE_6));
+    }
+
+    public function getExtraTemperature7()
+    {
+        return new Temperature(self::readField(self::EXTRA_TEMPERATURE_7));
+    }
+
+    public function getExtraTemperature8()
+    {
+        return new Temperature(self::readField(self::EXTRA_TEMPERATURE_8));
+    }
+
+    public function getExtraHumidity1()
+    {
+        return new Humidity(self::readField(self::EXTRA_HUMIDITY_1));
+    }
+
+    public function getExtraHumidity2()
+    {
+        return new Humidity(self::readField(self::EXTRA_HUMIDITY_2));
+    }
+
+    public function getExtraHumidity3()
+    {
+        return new Humidity(self::readField(self::EXTRA_HUMIDITY_3));
+    }
+
+    public function getExtraHumidity4()
+    {
+        return new Humidity(self::readField(self::EXTRA_HUMIDITY_4));
+    }
+
+    public function getExtraHumidity5()
+    {
+        return new Humidity(self::readField(self::EXTRA_HUMIDITY_5));
+    }
+
+    public function getExtraHumidity6()
+    {
+        return new Humidity(self::readField(self::EXTRA_HUMIDITY_6));
+    }
+
+    public function getExtraHumidity7()
+    {
+        return new Humidity(self::readField(self::EXTRA_HUMIDITY_7));
+    }
+
+    public function getExtraHumidity8()
+    {
+        return new Humidity(self::readField(self::EXTRA_HUMIDITY_8));
+    }
+
+    public function getCurrentDateAndTime()
+    {
+        return new DateAndTime(
+            self::readField(self::YEAR),
+            self::readField(self::MONTH),
+            self::readField(self::DAY),
+            self::readField(self::HOUR),
+            self::readField(self::MINUTE));
     }
 
     public function getWdVersion()
@@ -589,16 +696,6 @@ class ClientRaw extends BaseClientRaw
         }
 
         return $wdVersion;
-    }
-
-    public function getCurrentDateAndTime()
-    {
-        return new DateAndTime(
-            self::readField(self::YEAR),
-            self::readField(self::MONTH),
-            self::readField(self::DAY),
-            self::readField(self::HOUR),
-            self::readField(self::MINUTE));
     }
 }
 

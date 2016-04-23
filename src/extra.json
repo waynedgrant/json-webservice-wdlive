@@ -1,0 +1,18 @@
+<?php header('content-type: application/json; charset=utf-8');
+
+# Copyright 2015 Wayne D Grant (www.waynedgrant.com)
+# Licensed under the MIT License
+
+require_once("config.php");
+require_once("ClientRaw.php");
+require_once("ExtraSource.php");
+
+$clientRaw = new ClientRaw(CLIENT_RAW_DIRECTORY . "clientraw.txt");
+
+$extraSource = new ExtraSource($clientRaw);
+
+$json = json_encode($extraSource->create());
+
+echo isset($_GET['callback']) ? "{$_GET['callback']}($json)" : $json;
+
+?>

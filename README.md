@@ -16,6 +16,7 @@ It does this via several URLs:
 * __forecast.json__ Weather forecasts.
 * __almanac.json__ Weather almanac for Month-to-Date, Year-to-Date and All Time records.
 * __astronomy.json__ Astronomical information covering times for sunrise, sunset, moonrise and moonset as well as moon phase and age.
+* __extra.json__ Up to eight extra Temperature and Humidity sensors.
 * __indoor.json__ Current indoor conditions including Temperature and Humidity.
 * __everything.json__ A combination of the content of all other endpoints available in one hit.
 
@@ -67,6 +68,11 @@ For example:
 
 * JSON: [http://www.waynedgrant.com/weather/api/astronomy.json](http://www.waynedgrant.com/weather/api/astronomy.json)
 * JSONP: [http://www.waynedgrant.com/weather/api/astronomy.json?callback=weatherCallback](http://www.waynedgrant.com/weather/api/astronomy.json?callback=weatherCallback)
+
+**Extra Sensors URL - extra.json**
+
+* JSON: [http://www.waynedgrant.com/weather/api/extra.json](http://www.waynedgrant.com/weather/api/extra.json)
+* JSONP: [http://www.waynedgrant.com/weather/api/extra.json?callback=weatherCallback](http://www.waynedgrant.com/weather/api/extra.json?callback=weatherCallback)
 
 **Current Indoor Conditions URL - indoor.json**
 

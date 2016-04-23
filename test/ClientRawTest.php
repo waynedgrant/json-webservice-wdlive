@@ -191,6 +191,12 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $this->assertSame("-13.4", $testee->getDailyLowOutdoorTemperature()->getCelsius());
     }
 
+    public function test_get_surface_pressure_trend_per_hour()
+    {
+        $testee = self::createClientRawWithField(new Field(ClientRaw::SURFACE_PRESSURE_TREND_PER_HOUR, "-1.0"));
+        $this->assertSame("-1.0", $testee->getSurfacePressureTrendPerHour()->getHectopascals());
+    }
+
     public function test_get_maximum_gust_speed()
     {
         $testee = self::createClientRawWithField(new Field(ClientRaw::MAXIMUM_GUST_SPEED, "15.5"));
@@ -537,16 +543,100 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $this->assertSame("25", $testee->getDailyLowOutdoorHumidity()->getPercentage());
     }
 
-    public function test_get_surface_pressure_trend_per_hour()
+    public function test_get_extra_temperature_1()
     {
-        $testee = self::createClientRawWithField(new Field(ClientRaw::SURFACE_PRESSURE_TREND_PER_HOUR, "-1.0"));
-        $this->assertSame("-1.0", $testee->getSurfacePressureTrendPerHour()->getHectopascals());
+        $testee = self::createClientRawWithField(new Field(ClientRaw::EXTRA_TEMPERATURE_1, "1.5"));
+        $this->assertSame("1.5", $testee->getExtraTemperature1()->getCelsius());
     }
 
-    public function test_get_wd_version()
+    public function test_get_extra_temperature_2()
     {
-        $testee = self::createClientRawWithField(new Field(167, "!!C10.37Of!!"));
-        $this->assertSame("10.37Of", $testee->getWdVersion());
+        $testee = self::createClientRawWithField(new Field(ClientRaw::EXTRA_TEMPERATURE_2, "2.5"));
+        $this->assertSame("2.5", $testee->getExtraTemperature2()->getCelsius());
+    }
+
+    public function test_get_extra_temperature_3()
+    {
+        $testee = self::createClientRawWithField(new Field(ClientRaw::EXTRA_TEMPERATURE_3, "3.5"));
+        $this->assertSame("3.5", $testee->getExtraTemperature3()->getCelsius());
+    }
+
+    public function test_get_extra_temperature_4()
+    {
+        $testee = self::createClientRawWithField(new Field(ClientRaw::EXTRA_TEMPERATURE_4, "4.5"));
+        $this->assertSame("4.5", $testee->getExtraTemperature4()->getCelsius());
+    }
+
+    public function test_get_extra_temperature_5()
+    {
+        $testee = self::createClientRawWithField(new Field(ClientRaw::EXTRA_TEMPERATURE_5, "5.5"));
+        $this->assertSame("5.5", $testee->getExtraTemperature5()->getCelsius());
+    }
+
+    public function test_get_extra_temperature_6()
+    {
+        $testee = self::createClientRawWithField(new Field(ClientRaw::EXTRA_TEMPERATURE_6, "6.5"));
+        $this->assertSame("6.5", $testee->getExtraTemperature6()->getCelsius());
+    }
+
+    public function test_get_extra_temperature_7()
+    {
+        $testee = self::createClientRawWithField(new Field(ClientRaw::EXTRA_TEMPERATURE_7, "7.5"));
+        $this->assertSame("7.5", $testee->getExtraTemperature7()->getCelsius());
+    }
+
+    public function test_get_extra_temperature_8()
+    {
+        $testee = self::createClientRawWithField(new Field(ClientRaw::EXTRA_TEMPERATURE_8, "8.5"));
+        $this->assertSame("8.5", $testee->getExtraTemperature8()->getCelsius());
+    }
+
+    public function test_get_extra_humidity_1()
+    {
+        $testee = self::createClientRawWithField(new Field(ClientRaw::EXTRA_HUMIDITY_1, "15"));
+        $this->assertSame("15", $testee->getExtraHumidity1()->getPercentage());
+    }
+
+    public function test_get_extra_humidity_2()
+    {
+        $testee = self::createClientRawWithField(new Field(ClientRaw::EXTRA_HUMIDITY_2, "25"));
+        $this->assertSame("25", $testee->getExtraHumidity2()->getPercentage());
+    }
+
+    public function test_get_extra_humidity_3()
+    {
+        $testee = self::createClientRawWithField(new Field(ClientRaw::EXTRA_HUMIDITY_3, "35"));
+        $this->assertSame("35", $testee->getExtraHumidity3()->getPercentage());
+    }
+
+    public function test_get_extra_humidity_4()
+    {
+        $testee = self::createClientRawWithField(new Field(ClientRaw::EXTRA_HUMIDITY_4, "45"));
+        $this->assertSame("45", $testee->getExtraHumidity4()->getPercentage());
+    }
+
+    public function test_get_extra_humidity_5()
+    {
+        $testee = self::createClientRawWithField(new Field(ClientRaw::EXTRA_HUMIDITY_5, "55"));
+        $this->assertSame("55", $testee->getExtraHumidity5()->getPercentage());
+    }
+
+    public function test_get_extra_humidity_6()
+    {
+        $testee = self::createClientRawWithField(new Field(ClientRaw::EXTRA_HUMIDITY_6, "65"));
+        $this->assertSame("65", $testee->getExtraHumidity6()->getPercentage());
+    }
+
+    public function test_get_extra_humidity_7()
+    {
+        $testee = self::createClientRawWithField(new Field(ClientRaw::EXTRA_HUMIDITY_7, "75"));
+        $this->assertSame("75", $testee->getExtraHumidity7()->getPercentage());
+    }
+
+    public function test_get_extra_humidity_8()
+    {
+        $testee = self::createClientRawWithField(new Field(ClientRaw::EXTRA_HUMIDITY_8, "85"));
+        $this->assertSame("85", $testee->getExtraHumidity8()->getPercentage());
     }
 
     public function test_get_current_date_and_time()
@@ -566,6 +656,12 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $this->assertSame("31", $currentDateAndTime->getDay());
         $this->assertSame("23", $currentDateAndTime->getHour());
         $this->assertSame("59", $currentDateAndTime->getMinute());
+    }
+
+    public function test_get_wd_version()
+    {
+        $testee = self::createClientRawWithField(new Field(167, "!!C10.37Of!!"));
+        $this->assertSame("10.37Of", $testee->getWdVersion());
     }
 
     public function test_when_fields_are_missing()
@@ -626,13 +722,31 @@ class ClientRawTest extends PHPUnit_Framework_TestCase
         $this->assertNull($testee->getDailyHighOutdoorHumidity()->getPercentage());
         $this->assertNull($testee->getDailyLowOutdoorHumidity()->getPercentage());
         $this->assertNull($testee->getSurfacePressureTrendPerHour()->getHectopascals());
-        $this->assertNull($testee->getWdVersion());
+
+        $this->assertNull($testee->getExtraTemperature1()->getCelsius());
+        $this->assertNull($testee->getExtraTemperature2()->getCelsius());
+        $this->assertNull($testee->getExtraTemperature3()->getCelsius());
+        $this->assertNull($testee->getExtraTemperature4()->getCelsius());
+        $this->assertNull($testee->getExtraTemperature5()->getCelsius());
+        $this->assertNull($testee->getExtraTemperature6()->getCelsius());
+        $this->assertNull($testee->getExtraTemperature7()->getCelsius());
+        $this->assertNull($testee->getExtraTemperature8()->getCelsius());
+        $this->assertNull($testee->getExtraHumidity1()->getPercentage());
+        $this->assertNull($testee->getExtraHumidity2()->getPercentage());
+        $this->assertNull($testee->getExtraHumidity3()->getPercentage());
+        $this->assertNull($testee->getExtraHumidity4()->getPercentage());
+        $this->assertNull($testee->getExtraHumidity5()->getPercentage());
+        $this->assertNull($testee->getExtraHumidity6()->getPercentage());
+        $this->assertNull($testee->getExtraHumidity7()->getPercentage());
+        $this->assertNull($testee->getExtraHumidity8()->getPercentage());
 
         $this->assertNull($testee->getCurrentDateAndTime()->getYear());
         $this->assertNull($testee->getCurrentDateAndTime()->getMonth());
         $this->assertNull($testee->getCurrentDateAndTime()->getDay());
         $this->assertNull($testee->getCurrentDateAndTime()->getHour());
         $this->assertNull($testee->getCurrentDateAndTime()->getMinute());
+
+        $this->assertNull($testee->getWdVersion());
     }
 }
 
