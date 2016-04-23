@@ -78,9 +78,91 @@ For example:
 * JSON: [http://www.waynedgrant.com/weather/api/everything.json](http://www.waynedgrant.com/weather/api/everything.json)
 * JSONP: [http://www.waynedgrant.com/weather/api/everything.json?callback=weatherCallback](http://www.waynedgrant.com/weather/api/everything.json?callback=weatherCallback)
 
-## API Documentation
+## Response Fields
 
-For details of Web Service response fields see Web Service API page at [Wayne's Weather](http://www.waynedgrant.com/weather/api.html).
+**General Notes**
+
+* All field values are of type String.
+* Field values that are unavailable on any given call are returned as **null**.
+
+|                          | Response Field               | Description                                                     | Formatting                                             |
+|--------------------------|------------------------------|-----------------------------------------------------------------|--------------------------------------------------------|
+| Endpoint                 |                              |                                                                 |                                                        |
+|                          | endpoint.url                 | Web Service endpoint's URL                                      |                                                        |
+|                          | endpoint.version             | Web Service endpoint's version                                  |                                                        |
+| Station                  |                              |                                                                 |                                                        |
+|                          | station.name                 | Weather station's name                                          |                                                        |
+|                          | station.latitude             | Weather station's latitude                                      | Decimal degrees, negative South of Equator             |
+|                          | station.longitude            | Weather station's longitude                                     | Decimal degrees, negative East of Prime Meridian (GMT) |
+|                          | station.wdversion            | Weather Display Software Version                                |                                                        |
+| Time                     |                              |                                                                 |                                                        |
+|                          | time.hour                    | Local hour of day, 24 hour clock                                | '0' padded to two digits                               |
+|                          | time.minute                  | Local minutes past the hour                                     | '0' padded to two digits                               |
+|                          | time.day                     | Local day of month                                              | '0' padded to two digits                               |
+|                          | time.month                   | Local month of year                                             | '0' padded to two digits                               |
+|                          | time.year                    | Local year                                                      | Four digits                                            |
+|                          | time.time                    | Local time, 24 hour clock                                       | HH:MM                                                  |
+|                          | time.date                    | Local date                                                      | DD/MM/YYYY                                             |
+|                          | time.time_date               | Local time and date                                             | HH:MM DD/MM/YYYY                                       |
+| Temperature              |                              |                                                                 |                                                        |
+|                          | c                            | Temperature in celsius                                          | To one decimal digit                                   |
+|                          | f                            | Temperature in fahrenheit                                       | To one decimal digit                                   |
+|                          | trend                        | Temperature trend                                               | Falling: -1, Steady: 0, Rising: 1                      |
+| Pressure                 |                              |                                                                 |                                                        |
+|                          | hpa                          | Surface pressure in hectopascals                                | To one decimal digit                                   |
+|                          | inhg                         | Surface pressure in inches of mercury                           | To two decimal digits                                  |
+|                          | kpa                          | Surface pressure in kilopascals                                 | To two decimal digits                                  |
+|                          | mb                           | Surface pressure in millibars                                   | To one decimal digit                                   |
+|                          | mmhg                         | Surface pressure in millimetres of mercury                      | To one decimal digit                                   |
+| Pressure Trend           |                              |                                                                 |                                                        |
+|                          | trend_per_hr.hpa             | Surface pressure trend per hour in hectopascals                 | To one decimal digit                                   |
+|                          | trend_per_hr.inhg            | Surface pressure trend per hour in inches of mercury            | To two decimal digits                                  |
+|                          | trend_per_hr.kpa             | Surface pressure trend per hour in kilopascals                  | To two decimal digits                                  |
+|                          | trend_per_hr.mb              | Surface pressure trend per hour in millibars                    | To one decimal digit                                   |
+|                          | trend_per_hr.mmhg            | Surface pressure trend per hour in millimetres of mercury       | To one decimal digit                                   |
+| Rainfall                 |                              |                                                                 |                                                        |
+|                          | in                           | Rainfall in inches                                              | To two decimal digits                                  |
+|                          | mm                           | Rainfall in millimetres                                         | To two decimal digits                                  |
+| Rainfall Rate            |                              |                                                                 |                                                        |
+|                          | in                           | Rainfall rate in inches per minute                              | To three decimal digits                                |
+|                          | mm                           | Rainfall rate in millimetres per minute                         | To two decimal digits                                  |
+| Wind Direction           |                              |                                                                 |                                                        |
+|                          | cardinal                     | Wind direction using cardinal direction                         | 'N','NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW','SW', 'WSW', 'W', 'WNW', 'NW', 'NNW' |
+|                          | degrees                      | Wind direction in degrees                                       | 0 - 359, whole number                                  |
+| Wind Speed               |                              |                                                                 |                                                        |
+|                          | bft                          | Wind speed in the beaufort scale                                | 0 - 12, whole number                                   |
+|                          | kn                           | Wind speed in knots                                             | To one decimal digit                                   |
+|                          | kmh                          | Wind speed in kilometres per hour                               | To one decimal digit                                   |
+|                          | mph                          | Wind speed in miles per hour                                    | To one decimal digit                                   |
+|                          | ms                           | Wind speed in metres per second                                 | To one decimal digit                                   |
+| Humidity                 |                              |                                                                 |                                                        |
+|                          | humidity                     | Relative humidity percentage                                    | 0 - 100, whole number                                  |
+|                          | trend                        | Humidity trend                                                  | Falling: -1, Steady: 0, Rising: 1                      |
+| Solar                    |                              |                                                                 |                                                        |
+|                          | solar.irradiance.kwm2        | Solar irradience in kilowatts per metre squared (kW/m2)         | To three decimal digits                                |
+|                          | solar.irradiance.wcm2        | Solar irradience in watts per centimetre squared (W/cm2)        | To two decimal digits                                  |
+|                          | solar.irradiance.wm2         | Solar irradience in watts per metre squared (W/m2)              | Whole number                                           |
+|                          | solar.percentage             | Percentage of possible maximum solar irradience for time of day | 0 - 100, whole number                                  |
+|                          | solar.sunshine_hours         | Sunshine hours today                                            | To one decimal digit                                   |
+| UV                       |                              |                                                                 |                                                        |
+|                          | uv.uvi                       | UV index                                                        | To one decimal digit                                   |
+|                          | uv.description               | UV index description                                            | 'low', 'moderate', 'high', 'very high', 'extreme'      |
+| Cloud Formation Altitude |                              |                                                                 |                                                        |
+|                          | cloud_formation_altitude.ft  | Cloud formation altitude in feet                                | Whole number                                           |
+|                          | cloud_formation_altitude.m   | Cloud formation altitude in metres                              | Whole number                                           |
+|                          | cloud_formation_altitude.yds | Cloud formation altitude in yards                               | Whole number                                           |
+| Forecast                 |                              |                                                                 |                                                        |
+|                          | forecast.icon.code           | Forecast icon code                                              | 0 - 35
+|                          | forecast.icon.text           | Forecast text for code                                          | 'Sunny', 'Clear Night', 'Cloudy', 'Mainly Fine', 'Cloudy Night', 'Dry', 'Fog', 'Hazy', 'Heavy Rain', 'Mainly Fine', 'Mist', 'Night Fog', 'Night Heavy Rain', 'Night Overcast', 'Night Rain', 'Night Showers', 'Night Snow', 'Night Thunder', 'Overcast', 'Mainly Cloudy', 'Rain', 'Light Rain', 'Showers', 'Sleet', 'Sleet Showers', 'Snow', 'Snow Melt', 'Snow Showers', 'Sunny', 'Thunder Showers', 'Thunder Showers', 'Thunderstorms', 'Tornado', 'Windy', 'Stopped Raining', 'Windy Rain' |
+|                          | forecast.davis_forecast      | Davis Vantage Pro forecast text                                 |                                                        |
+| Sun                      |                              |                                                                 |                                                        |
+|                          | sun.sunrise_time             | Sunrise time                                                    | Comprises time.hour, time.minute, time.time            |
+|                          | sun.sunset_time              | Sunset time                                                     | Comprises time.hour, time.minute, time.time            |
+| Moon                     |                              |                                                                 |                                                        |
+|                          | moon.moonrise_time           | Moonrise time                                                   | Comprises time.hour, time.minute, time.time            |
+|                          | moon.moonset_time            | Moonset time                                                    | Comprises time.hour, time.minute, time.time            |
+|                          | moon.moon_phase              | Moon Phase percentage                                           | To one decimal digit                                   |
+|                          | moon.moon_age                | Moon Age in days                                                | 1 - 29, whole number                                   |
 
 ## Unit Testing
 
