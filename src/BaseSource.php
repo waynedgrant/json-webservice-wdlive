@@ -5,9 +5,9 @@
 
 abstract class BaseSource
 {
-    const SERVICE_VERSION = 1.6;
+    const SERVICE_VERSION = 1.7;
     const GITHUB_PROJECT_LINK = "https://github.com/waynedgrant/json-webservice-wdlive";
-    const COPYRIGHT_NOTICE = "Copyright © 2015 Wayne D Grant (www.waynedgrant.com)";
+    const COPYRIGHT_NOTICE = "Copyright © 2016 Wayne D Grant (www.waynedgrant.com)";
 
     protected $clientRaw;
     protected $clientRawExtra;
