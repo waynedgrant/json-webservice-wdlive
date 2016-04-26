@@ -1,6 +1,6 @@
 <?php
 
-# Copyright 2015 Wayne D Grant (www.waynedgrant.com)
+# Copyright 2016 Wayne D Grant (www.waynedgrant.com)
 # Licensed under the MIT License
 
 class RainfallRateTest extends PHPUnit_Framework_TestCase

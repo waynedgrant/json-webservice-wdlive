@@ -1,6 +1,6 @@
 # json-webservice-wdlive
 
-Copyright © 2015 Wayne D Grant
+Copyright © 2016 Wayne D Grant
 
 Licensed under the MIT License
 
