@@ -33,9 +33,11 @@ Besides exposing the data in the default units found in clientraw the responses 
 
 * Download the source code for the [latest release](https://github.com/waynedgrant/json-webservice-wdlive/releases) and unzip it
 
-* Upload all **.php** and **.json** files in **json-webservice-wdlive/src** to the same directory as the clientraw files are hosted on your web server
+* Upload all **.php** and **.json** files in **json-webservice-wdlive/src** to a location on your web server
 
-* If you plan to host the **json-webservice-wdlive** in a different directory from the clientraw files then edit the **CLIENT_RAW_DIRECTORY** constant in the **config.php** file supplying the appropriate relative path.
+* If you plan to host **json-webservice-wdlive** in a different directory from the clientraw files then edit the **CLIENT_RAW_LOCATION** constant in the **config.php** file supplying the appropriate relative path.
+
+* Alternatively if you plan to host **json-webservice-wdlive** on a different host entirely from the clientraw files then edit the **CLIENT_RAW_LOCATION** supplying the remote URL.
 
 * Modify your web server to process **.json** files using PHP. For example, for Apache add the following to your **.htaccess** file:
 

@@ -7,7 +7,7 @@ require_once("config.php");
 require_once("ClientRaw.php");
 require_once("ExtraSource.php");
 
-$clientRaw = new ClientRaw(CLIENT_RAW_DIRECTORY . "clientraw.txt");
+$clientRaw = new ClientRaw(CLIENT_RAW_LOCATION . "clientraw.txt");
 
 $extraSource = new ExtraSource($clientRaw);
 

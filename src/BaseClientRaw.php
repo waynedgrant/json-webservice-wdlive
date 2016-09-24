@@ -7,19 +7,19 @@ abstract class BaseClientRaw
 {
     private $fields;
 
-    public function __construct($path)
+    public function __construct($location)
     {
-        $this->fields = self::getFieldsFromPath($path);
+        $this->fields = self::getFieldsFromLocation($location);
     }
 
-    private function getFieldsFromPath($path)
+    private function getFieldsFromLocation($location)
     {
         $fieldDelimiter = ' ';
         $fields = array();
 
-        if (is_readable($path))
+        if (is_readable($location) || filter_var($location, FILTER_VALIDATE_URL))
         {
-            $clientRawFile = fopen($path, 'r');
+            $clientRawFile = fopen($location, 'r');
 
             if ($clientRawFile)
             {

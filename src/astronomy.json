@@ -8,8 +8,8 @@ require_once("AstronomySource.php");
 require_once("ClientRaw.php");
 require_once("ClientRawExtra.php");
 
-$clientRaw = new ClientRaw(CLIENT_RAW_DIRECTORY . "clientraw.txt");
-$clientRawExtra = new ClientRawExtra(CLIENT_RAW_DIRECTORY . "clientrawextra.txt");
+$clientRaw = new ClientRaw(CLIENT_RAW_LOCATION . "clientraw.txt");
+$clientRawExtra = new ClientRawExtra(CLIENT_RAW_LOCATION . "clientrawextra.txt");
 
 $astronomySource = new AstronomySource($clientRaw, $clientRawExtra);
 
