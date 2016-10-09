@@ -53,38 +53,38 @@ For example:
 
 **Current Weather URL - weather.json**
 
-* JSON: [http://www.waynedgrant.com/weather/api/weather.json](http://www.waynedgrant.com/weather/api/weather.json)
-* JSONP: [http://www.waynedgrant.com/weather/api/weather.json?callback=weatherCallback](http://www.waynedgrant.com/weather/api/weather.json?callback=weatherCallback)
+* JSON: [http://waynedgrant.com/weather/api/weather.json](http://waynedgrant.com/weather/api/weather.json)
+* JSONP: [http://waynedgrant.com/weather/api/weather.json?callback=weatherCallback](http://waynedgrant.com/weather/api/weather.json?callback=weatherCallback)
 
 **Weather Forecast URL - forecast.json**
 
-* JSON: [http://www.waynedgrant.com/weather/api/forecast.json](http://www.waynedgrant.com/weather/api/forecast.json)
-* JSONP: [http://www.waynedgrant.com/weather/api/forecast.json?callback=weatherCallback](http://www.waynedgrant.com/weather/api/forecast.json?callback=weatherCallback)
+* JSON: [http://waynedgrant.com/weather/api/forecast.json](http://waynedgrant.com/weather/api/forecast.json)
+* JSONP: [http://waynedgrant.com/weather/api/forecast.json?callback=weatherCallback](http://waynedgrant.com/weather/api/forecast.json?callback=weatherCallback)
 
 **Weather Almanac URL - almanac.json**
 
-* JSON: [http://www.waynedgrant.com/weather/api/almanac.json](http://www.waynedgrant.com/weather/api/almanac.json)
-* JSONP: [http://www.waynedgrant.com/weather/api/almanac.json?callback=weatherCallback](http://www.waynedgrant.com/weather/api/almanac.json?callback=weatherCallback)
+* JSON: [http://waynedgrant.com/weather/api/almanac.json](http://waynedgrant.com/weather/api/almanac.json)
+* JSONP: [http://waynedgrant.com/weather/api/almanac.json?callback=weatherCallback](http://waynedgrant.com/weather/api/almanac.json?callback=weatherCallback)
 
 **Astronomy URL - astronomy.json**
 
-* JSON: [http://www.waynedgrant.com/weather/api/astronomy.json](http://www.waynedgrant.com/weather/api/astronomy.json)
-* JSONP: [http://www.waynedgrant.com/weather/api/astronomy.json?callback=weatherCallback](http://www.waynedgrant.com/weather/api/astronomy.json?callback=weatherCallback)
+* JSON: [http://waynedgrant.com/weather/api/astronomy.json](http://waynedgrant.com/weather/api/astronomy.json)
+* JSONP: [http://waynedgrant.com/weather/api/astronomy.json?callback=weatherCallback](http://waynedgrant.com/weather/api/astronomy.json?callback=weatherCallback)
 
 **Extra Sensors URL - extra.json**
 
-* JSON: [http://www.waynedgrant.com/weather/api/extra.json](http://www.waynedgrant.com/weather/api/extra.json)
-* JSONP: [http://www.waynedgrant.com/weather/api/extra.json?callback=weatherCallback](http://www.waynedgrant.com/weather/api/extra.json?callback=weatherCallback)
+* JSON: [http://waynedgrant.com/weather/api/extra.json](http://waynedgrant.com/weather/api/extra.json)
+* JSONP: [http://waynedgrant.com/weather/api/extra.json?callback=weatherCallback](http://waynedgrant.com/weather/api/extra.json?callback=weatherCallback)
 
 **Current Indoor Conditions URL - indoor.json**
 
-* JSON: [http://www.waynedgrant.com/weather/api/indoor.json](http://www.waynedgrant.com/weather/api/indoor.json)
-* JSONP: [http://www.waynedgrant.com/weather/api/indoor.json?callback=weatherCallback](http://www.waynedgrant.com/weather/api/indoor.json?callback=weatherCallback)
+* JSON: [http://waynedgrant.com/weather/api/indoor.json](http://waynedgrant.com/weather/api/indoor.json)
+* JSONP: [http://waynedgrant.com/weather/api/indoor.json?callback=weatherCallback](http://waynedgrant.com/weather/api/indoor.json?callback=weatherCallback)
 
 **Everything URL - everything.json**
 
-* JSON: [http://www.waynedgrant.com/weather/api/everything.json](http://www.waynedgrant.com/weather/api/everything.json)
-* JSONP: [http://www.waynedgrant.com/weather/api/everything.json?callback=weatherCallback](http://www.waynedgrant.com/weather/api/everything.json?callback=weatherCallback)
+* JSON: [http://waynedgrant.com/weather/api/everything.json](http://waynedgrant.com/weather/api/everything.json)
+* JSONP: [http://waynedgrant.com/weather/api/everything.json?callback=weatherCallback](http://waynedgrant.com/weather/api/everything.json?callback=weatherCallback)
 
 ## Response Fields
 
