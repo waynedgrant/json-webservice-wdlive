@@ -22,7 +22,7 @@ abstract class BaseSource
     {
         return array(
             "endpoint" => $this->createEndpoint(),
-            "station" => $this->createStation($clientRaw),
+            "station" => $this->createStation(),
             "time" => $this->clientRaw->getCurrentDateAndTime()->getAllValues());
     }
 
