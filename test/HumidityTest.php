@@ -3,7 +3,7 @@
 # Copyright 2016 Wayne D Grant (www.waynedgrant.com)
 # Licensed under the MIT License
 
-class HumidityTest extends PHPUnit_Framework_TestCase
+class HumidityTest extends PHPUnit\Framework\TestCase
 {
     public function test_humidity_value_is_null_when_percentage_is_empty()
     {

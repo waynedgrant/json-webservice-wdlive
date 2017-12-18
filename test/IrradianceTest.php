@@ -3,7 +3,7 @@
 # Copyright 2016 Wayne D Grant (www.waynedgrant.com)
 # Licensed under the MIT License
 
-class IrradianceTest extends PHPUnit_Framework_TestCase
+class IrradianceTest extends PHPUnit\Framework\TestCase
 {
     public function test_irradiance_value_is_null_when_watts_per_square_metre_is_empty()
     {

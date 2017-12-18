@@ -5,7 +5,7 @@
 
 require_once("ClientRawFileGenerator.php");
 
-class ClientRawExtraTest extends PHPUnit_Framework_TestCase
+class ClientRawExtraTest extends PHPUnit\Framework\TestCase
 {
     const CLIENT_RAW_EXTRA_PATH = "./clientrawextra.txt";
 

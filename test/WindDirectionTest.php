@@ -3,7 +3,7 @@
 # Copyright 2016 Wayne D Grant (www.waynedgrant.com)
 # Licensed under the MIT License
 
-class WindDirectionTest extends PHPUnit_Framework_TestCase
+class WindDirectionTest extends PHPUnit\Framework\TestCase
 {
     public function test_wind_direction_values_are_null_when_compass_degrees_is_empty()
     {

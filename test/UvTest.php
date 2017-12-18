@@ -3,7 +3,7 @@
 # Copyright 2016 Wayne D Grant (www.waynedgrant.com)
 # Licensed under the MIT License
 
-class UvTest extends PHPUnit_Framework_TestCase
+class UvTest extends PHPUnit\Framework\TestCase
 {
     public function test_uv_values_are_null_when_uvi_is_empty()
     {

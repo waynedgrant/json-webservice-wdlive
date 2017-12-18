@@ -3,7 +3,7 @@
 # Copyright 2016 Wayne D Grant (www.waynedgrant.com)
 # Licensed under the MIT License
 
-class PressureTest extends PHPUnit_Framework_TestCase
+class PressureTest extends PHPUnit\Framework\TestCase
 {
     public function test_pressure_values_are_null_when_hectopascals_is_empty()
     {

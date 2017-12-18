@@ -3,7 +3,7 @@
 # Copyright 2016 Wayne D Grant (www.waynedgrant.com)
 # Licensed under the MIT License
 
-class TimeTest extends PHPUnit_Framework_TestCase
+class TimeTest extends PHPUnit\Framework\TestCase
 {
     public function test_time_values_are_null_when_time_is_empty()
     {

@@ -3,7 +3,7 @@
 # Copyright 2016 Wayne D Grant (www.waynedgrant.com)
 # Licensed under the MIT License
 
-class RainfallTest extends PHPUnit_Framework_TestCase
+class RainfallTest extends PHPUnit\Framework\TestCase
 {
     public function test_rainfall_values_are_null_when_millimetres_is_empty()
     {

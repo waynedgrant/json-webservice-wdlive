@@ -3,7 +3,7 @@
 # Copyright 2016 Wayne D Grant (www.waynedgrant.com)
 # Licensed under the MIT License
 
-class TemperatureTest extends PHPUnit_Framework_TestCase
+class TemperatureTest extends PHPUnit\Framework\TestCase
 {
     public function test_temperature_values_are_null_when_celsius_is_empty()
     {
