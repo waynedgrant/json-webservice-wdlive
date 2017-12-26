@@ -3,10 +3,9 @@
 # Copyright 2016 Wayne D Grant (www.waynedgrant.com)
 # Licensed under the MIT License
 
-class DateAndTimeTest extends PHPUnit\Framework\TestCase
-{
-    public function test_date_and_time_values_are_null_when_date_and_time_is_empty()
-    {
+class DateAndTimeTest extends PHPUnit\Framework\TestCase {
+
+    public function test_date_and_time_values_are_null_when_date_and_time_is_empty() {
         $testee = new DateAndTime("-", "-", "-", "-", "-");
         $this->assertNull($testee->getYear());
         $this->assertNull($testee->getMonth());
@@ -18,8 +17,7 @@ class DateAndTimeTest extends PHPUnit\Framework\TestCase
         $this->assertNull($testee->getTimeAndDate());
     }
 
-    public function test_all_values_are_null_when_date_and_time_is_empty()
-    {
+    public function test_all_values_are_null_when_date_and_time_is_empty() {
         $testee = new DateAndTime("-", "-", "-", "-", "-");
         $this->assertNull($testee->getAllValues()["year"]);
         $this->assertNull($testee->getAllValues()["month"]);
@@ -31,8 +29,7 @@ class DateAndTimeTest extends PHPUnit\Framework\TestCase
         $this->assertNull($testee->getAllValues()["time_date"]);
     }
 
-    public function test_date_and_time_values_are_correct_when_date_and_time_is_not_empty()
-    {
+    public function test_date_and_time_values_are_correct_when_date_and_time_is_not_empty() {
         $testee = new DateAndTime("2015", "12", "31", "23", "59");
         $this->assertSame("2015", $testee->getYear());
         $this->assertSame("12", $testee->getMonth());
@@ -44,8 +41,7 @@ class DateAndTimeTest extends PHPUnit\Framework\TestCase
         $this->assertSame("23:59 31/12/2015", $testee->getTimeAndDate());
     }
 
-    public function test_all_values_are_correct_when_date_and_time_is_not_empty()
-    {
+    public function test_all_values_are_correct_when_date_and_time_is_not_empty() {
         $testee = new DateAndTime("2015", "12", "31", "23", "59");
         $this->assertSame("2015", $testee->getAllValues()["year"]);
         $this->assertSame("12", $testee->getAllValues()["month"]);

@@ -3,24 +3,21 @@
 # Copyright 2016 Wayne D Grant (www.waynedgrant.com)
 # Licensed under the MIT License
 
-class WindDirectionTest extends PHPUnit\Framework\TestCase
-{
-    public function test_wind_direction_values_are_null_when_compass_degrees_is_empty()
-    {
+class WindDirectionTest extends PHPUnit\Framework\TestCase {
+
+    public function test_wind_direction_values_are_null_when_compass_degrees_is_empty() {
         $testee = new WindDirection("-");
         $this->assertNull($testee->getCardinalDirection());
         $this->assertNull($testee->getCompassDegrees());
     }
 
-    public function test_all_measures_values_are_null_when_compass_degrees_is_empty()
-    {
+    public function test_all_measures_values_are_null_when_compass_degrees_is_empty() {
         $testee = new WindDirection("-");
         $this->assertNull($testee->getAllMeasures()["cardinal"]);
         $this->assertNull($testee->getAllMeasures()["dergrees"]);
     }
 
-    public function test_wind_direction_values_are_correct_when_compass_degrees_is_not_empty()
-    {
+    public function test_wind_direction_values_are_correct_when_compass_degrees_is_not_empty() {
         $testee = new WindDirection("0");
         $this->assertSame("0", $testee->getCompassDegrees());
 
@@ -28,8 +25,7 @@ class WindDirectionTest extends PHPUnit\Framework\TestCase
         $this->assertSame("180", $testee->getCompassDegrees());
     }
 
-    public function test_cardinal_direction_values_are_correct_when_compass_degrees_is_not_empty()
-    {
+    public function test_cardinal_direction_values_are_correct_when_compass_degrees_is_not_empty() {
         self::assert_cardinal_direction_correct("0", "N");
         self::assert_cardinal_direction_correct("22", "NNE");
         self::assert_cardinal_direction_correct("45", "NE");
@@ -48,14 +44,12 @@ class WindDirectionTest extends PHPUnit\Framework\TestCase
         self::assert_cardinal_direction_correct("335", "NNW");
     }
 
-    private function assert_cardinal_direction_correct($compassDegrees, $expectedCardinalDirection)
-    {
+    private function assert_cardinal_direction_correct($compassDegrees, $expectedCardinalDirection) {
         $testee = new WindDirection($compassDegrees);
         $this->assertSame($expectedCardinalDirection, $testee->getCardinalDirection());
     }
 
-    public function test_all_measures_values_are_correct_when_compass_degrees_is_not_empty()
-    {
+    public function test_all_measures_values_are_correct_when_compass_degrees_is_not_empty() {
         $testee = new WindDirection("0");
         $this->assertSame("N", $testee->getAllMeasures()["cardinal"]);
         $this->assertSame("0", $testee->getAllMeasures()["degrees"]);

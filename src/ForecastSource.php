@@ -5,15 +5,13 @@
 
 require_once("BaseSource.php");
 
-class ForecastSource extends BaseSource
-{
-    public function __construct($clientRaw, $clientRawExtra)
-    {
+class ForecastSource extends BaseSource {
+
+    public function __construct($clientRaw, $clientRawExtra) {
         parent::__construct($clientRaw, $clientRawExtra);
     }
 
-    public function create()
-    {
+    public function create() {
         $data = $this->createBase();
 
         $forecastIcon = $this->clientRaw->getForecastIcon();

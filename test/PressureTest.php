@@ -3,10 +3,9 @@
 # Copyright 2016 Wayne D Grant (www.waynedgrant.com)
 # Licensed under the MIT License
 
-class PressureTest extends PHPUnit\Framework\TestCase
-{
-    public function test_pressure_values_are_null_when_hectopascals_is_empty()
-    {
+class PressureTest extends PHPUnit\Framework\TestCase {
+
+    public function test_pressure_values_are_null_when_hectopascals_is_empty() {
         $testee = new Pressure("-");
         $this->assertNull($testee->getHectopascals());
         $this->assertNull($testee->getInchesOfMercury());
@@ -15,8 +14,7 @@ class PressureTest extends PHPUnit\Framework\TestCase
         $this->assertNull($testee->getMillimetresOfMercury());
     }
 
-    public function test_all_measures_values_are_null_when_hectopascals_is_empty()
-    {
+    public function test_all_measures_values_are_null_when_hectopascals_is_empty() {
         $testee = new Pressure("-");
         $this->assertNull($testee->getAllMeasures()["hpa"]);
         $this->assertNull($testee->getAllMeasures()["inhg"]);
@@ -25,8 +23,7 @@ class PressureTest extends PHPUnit\Framework\TestCase
         $this->assertNull($testee->getAllMeasures()["mmhg"]);
     }
 
-    public function test_pressure_values_are_correct_when_hectopascals_is_not_empty()
-    {
+    public function test_pressure_values_are_correct_when_hectopascals_is_not_empty() {
         $testee = new Pressure("0.0");
         $this->assertSame("0.0", $testee->getHectopascals());
         $this->assertSame("0.00", $testee->getInchesOfMercury());
@@ -42,8 +39,7 @@ class PressureTest extends PHPUnit\Framework\TestCase
         $this->assertSame("763.3", $testee->getMillimetresOfMercury());
     }
 
-    public function test_all_measures_values_are_correct_when_hectopascals_is_not_empty()
-    {
+    public function test_all_measures_values_are_correct_when_hectopascals_is_not_empty() {
         $testee = new Pressure("0.0");
         $this->assertSame("0.0", $testee->getAllMeasures()["hpa"]);
         $this->assertSame("0.00", $testee->getAllMeasures()["inhg"]);

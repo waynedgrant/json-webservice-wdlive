@@ -3,32 +3,26 @@
 # Copyright 2016 Wayne D Grant (www.waynedgrant.com)
 # Licensed under the MIT License
 
-class RainfallRate
-{
+class RainfallRate {
     private $inchesPerMinutePerMinute;
     private $millimetresPerMinute;
 
-    public function __construct($millimetresPerMinute)
-    {
-        if ($millimetresPerMinute != '-')
-        {
+    public function __construct($millimetresPerMinute) {
+        if ($millimetresPerMinute != '-') {
             $this->inchesPerMinute = number_format(($millimetresPerMinute * (1 / 25.4)), 3, '.', '');
             $this->millimetresPerMinute = number_format($millimetresPerMinute, 2, '.', '');
         }
     }
 
-    public function getInchesPerMinute()
-    {
+    public function getInchesPerMinute() {
         return $this->inchesPerMinute;
     }
 
-    public function getMillimetresPerMinute()
-    {
+    public function getMillimetresPerMinute() {
         return $this->millimetresPerMinute;
     }
 
-    public function getAllMeasures()
-    {
+    public function getAllMeasures() {
         return array(
             "in" => $this->getInchesPerMinute(),
             "mm" => $this->getMillimetresPerMinute());

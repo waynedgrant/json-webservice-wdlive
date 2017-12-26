@@ -3,8 +3,8 @@
 # Copyright 2016 Wayne D Grant (www.waynedgrant.com)
 # Licensed under the MIT License
 
-class DateAndTime
-{
+class DateAndTime {
+
     private $year;
     private $month;
     private $day;
@@ -14,10 +14,8 @@ class DateAndTime
     private $time;
     private $timeAndDate;
 
-    public function __construct($year, $month, $day, $hour, $minute)
-    {
-        if ($year != '-' && $month != '-' && $day != '-' && $hour != '-' && $minute != '-')
-        {
+    public function __construct($year, $month, $day, $hour, $minute) {
+        if ($year != '-' && $month != '-' && $day != '-' && $hour != '-' && $minute != '-') {
             $this->year = $year;
             $this->month = $month;
             $this->day = $day;
@@ -30,48 +28,39 @@ class DateAndTime
         }
     }
 
-    public function getYear()
-    {
+    public function getYear() {
         return $this->year;
     }
 
-    public function getMonth()
-    {
+    public function getMonth() {
         return $this->month;
     }
 
-    public function getDay()
-    {
+    public function getDay() {
         return $this->day;
     }
 
-    public function getHour()
-    {
+    public function getHour() {
         return $this->hour;
     }
 
-    public function getMinute()
-    {
+    public function getMinute() {
         return $this->minute;
     }
 
-    public function getDate()
-    {
+    public function getDate() {
         return $this->date;
     }
 
-    public function getTime()
-    {
+    public function getTime() {
         return $this->time;
     }
 
-    public function getTimeAndDate()
-    {
+    public function getTimeAndDate() {
         return $this->timeAndDate;
     }
 
-    public function getAllValues()
-    {
+    public function getAllValues() {
         return array(
             "hour" => $this->getHour(),
             "minute" => $this->getMinute(),

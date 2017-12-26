@@ -3,14 +3,13 @@
 # Copyright 2016 Wayne D Grant (www.waynedgrant.com)
 # Licensed under the MIT License
 
-class Altitude
-{
+class Altitude {
+
     private $feet;
     private $metres;
     private $yards;
 
-    public function __construct($feet)
-    {
+    public function __construct($feet) {
         if ($feet != '-')
         {
             $this->feet = number_format($feet, 0, '.', '');
@@ -19,23 +18,19 @@ class Altitude
         }
     }
 
-    public function getFeet()
-    {
+    public function getFeet() {
         return $this->feet;
     }
 
-    public function getMetres()
-    {
+    public function getMetres() {
         return $this->metres;
     }
 
-    public function getYards()
-    {
+    public function getYards() {
         return $this->yards;
     }
 
-    public function getAllMeasures()
-    {
+    public function getAllMeasures() {
         return array(
             "ft" => $this->getFeet(),
             "m" => $this->getMetres(),

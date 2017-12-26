@@ -3,18 +3,16 @@
 # Copyright 2016 Wayne D Grant (www.waynedgrant.com)
 # Licensed under the MIT License
 
-class Pressure
-{
+class Pressure {
+
     private $hectopascals;
     private $inchesOfMercury;
     private $kilopascals;
     private $millibars;
     private $millimetresOfMercury;
 
-    public function __construct($hectopascals)
-    {
-        if ($hectopascals != '-')
-        {
+    public function __construct($hectopascals) {
+        if ($hectopascals != '-') {
             $this->hectopascals = number_format($hectopascals, 1, '.', '');
             $this->inchesOfMercury = number_format(($hectopascals * 0.02953), 2, '.', '');
             $this->kilopascals = number_format(($hectopascals / 10), 2, '.', '');
@@ -23,33 +21,27 @@ class Pressure
         }
     }
 
-    public function getHectopascals()
-    {
+    public function getHectopascals() {
         return $this->hectopascals;
     }
 
-    public function getInchesOfMercury()
-    {
+    public function getInchesOfMercury() {
         return $this->inchesOfMercury;
     }
 
-    public function getKilopascals()
-    {
+    public function getKilopascals() {
         return $this->kilopascals;
     }
 
-    public function getMillibars()
-    {
+    public function getMillibars() {
         return $this->millibars;
     }
 
-    public function getMillimetresOfMercury()
-    {
+    public function getMillimetresOfMercury() {
         return $this->millimetresOfMercury;
     }
 
-    public function getAllMeasures()
-    {
+    public function getAllMeasures() {
         return array(
             "hpa" => $this->getHectopascals(),
             "inhg" => $this->getInchesOfMercury(),

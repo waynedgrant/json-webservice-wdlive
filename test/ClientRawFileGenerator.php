@@ -3,38 +3,32 @@
 # Copyright 2016 Wayne D Grant (www.waynedgrant.com)
 # Licensed under the MIT License
 
-class ClientRawFileGenerator
-{
+class ClientRawFileGenerator {
+
     private $path;
 
-    public function __construct($path)
-    {
+    public function __construct($path) {
         $this->path = $path;
     }
 
-    public function generateEmpty()
-    {
+    public function generateEmpty() {
         self::generateWithFields(array());
     }
 
-    public function generateWithField($field)
-    {
+    public function generateWithField($field) {
         self::generateWithFields(array($field));
     }
 
-    public function generateWithFields($fields)
-    {
+    public function generateWithFields($fields) {
         $fieldArray = $this->createFieldArray($fields);
         $fieldArrayCount = count($fieldArray);
 
         $file = fopen($this->path, "w");
 
-        for ($i=0; $i < $fieldArrayCount; $i++)
-        {
+        for ($i=0; $i < $fieldArrayCount; $i++) {
             fwrite($file, $fieldArray[$i]);
 
-            if ($i+1 < $fieldArrayCount)
-            {
+            if ($i+1 < $fieldArrayCount) {
                 fwrite($file, ' ');
             }
         }
@@ -42,31 +36,25 @@ class ClientRawFileGenerator
         fclose($file);
     }
 
-    private function createFieldArray($fields)
-    {
+    private function createFieldArray($fields) {
         $highestPosition = $this->getHighestFieldPosition($fields);
 
-        if ($highestPosition >= 0)
-        {
+        if ($highestPosition >= 0) {
             $fieldArray = array_fill(0, $highestPosition+1, '-');
         }
 
-        foreach ($fields as &$field)
-        {
+        foreach ($fields as &$field) {
             $fieldArray[$field->getPosition()] = $field->getValue();
         }
 
         return $fieldArray;
     }
 
-    private function getHighestFieldPosition($fields)
-    {
+    private function getHighestFieldPosition($fields) {
         $highestPosition = -1;
 
-        foreach ($fields as &$field)
-        {
-            if ($field->getPosition() > $highestPosition)
-            {
+        foreach ($fields as &$field) {
+            if ($field->getPosition() > $highestPosition) {
                 $highestPosition = $field->getPosition();
             }
         }
@@ -74,30 +62,26 @@ class ClientRawFileGenerator
         return $highestPosition;
     }
 
-    public function delete()
-    {
+    public function delete() {
         unlink($this->path);
     }
 }
 
-class Field
-{
+class Field {
+
     private $position;
     private $value;
 
-    public function __construct($position, $value)
-    {
+    public function __construct($position, $value) {
         $this->position = $position;
         $this->value = $value;
     }
 
-    public function getPosition()
-    {
+    public function getPosition() {
         return $this->position;
     }
 
-    public function getValue()
-    {
+    public function getValue() {
         return $this->value;
     }
 }

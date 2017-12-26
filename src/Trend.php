@@ -3,33 +3,25 @@
 # Copyright 2016 Wayne D Grant (www.waynedgrant.com)
 # Licensed under the MIT License
 
-class Trend
-{
+class Trend {
+
     private $trend;
 
-    public function __construct($trend)
-    {
-        if ($trend != '-')
-        {
+    public function __construct($trend) {
+        if ($trend != '-') {
             $this->trend = number_format($trend, 1, '.', '');
 
-            if ($trend > 0)
-            {
+            if ($trend > 0) {
                 $this->trend = "1";
-            }
-            else if ($trend < 0)
-            {
+            } else if ($trend < 0) {
                 $this->trend = "-1";
-            }
-            else
-            {
+            } else {
                 $this->trend = "0";
             }
         }
     }
 
-    public function getTrend()
-    {
+    public function getTrend() {
         return $this->trend;
     }
 }

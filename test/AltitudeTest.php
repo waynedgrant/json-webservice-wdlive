@@ -3,26 +3,23 @@
 # Copyright 2016 Wayne D Grant (www.waynedgrant.com)
 # Licensed under the MIT License
 
-class AltitudeTest extends PHPUnit\Framework\TestCase
-{
-    public function test_altitude_values_are_null_when_feet_is_empty()
-    {
+class AltitudeTest extends PHPUnit\Framework\TestCase {
+
+    public function test_altitude_values_are_null_when_feet_is_empty() {
         $testee = new Altitude("-");
         $this->assertNull($testee->getFeet());
         $this->assertNull($testee->getMetres());
         $this->assertNull($testee->getYards());
     }
 
-    public function test_all_measures_values_are_null_when_feet_is_empty()
-    {
+    public function test_all_measures_values_are_null_when_feet_is_empty() {
         $testee = new Altitude("-");
         $this->assertNull($testee->getAllMeasures()["ft"]);
         $this->assertNull($testee->getAllMeasures()["m"]);
         $this->assertNull($testee->getAllMeasures()["yds"]);
     }
 
-    public function test_altitude_values_are_correct_when_feet_is_not_empty()
-    {
+    public function test_altitude_values_are_correct_when_feet_is_not_empty() {
         $testee = new Altitude("0");
         $this->assertSame("0", $testee->getFeet());
         $this->assertSame("0", $testee->getMetres());
@@ -39,8 +36,7 @@ class AltitudeTest extends PHPUnit\Framework\TestCase
         $this->assertSame("1667", $testee->getYards());
     }
 
-    public function test_all_measures_values_are_correct_when_feet_is_not_empty()
-    {
+    public function test_all_measures_values_are_correct_when_feet_is_not_empty() {
         $testee = new Altitude("0");
         $this->assertSame("0", $testee->getAllMeasures()["ft"]);
         $this->assertSame("0", $testee->getAllMeasures()["m"]);

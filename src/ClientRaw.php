@@ -18,8 +18,8 @@ require_once("Uv.php");
 require_once("WindDirection.php");
 require_once("WindSpeed.php");
 
-class ClientRaw extends BaseClientRaw
-{
+class ClientRaw extends BaseClientRaw {
+
     const AVERAGE_WIND_SPEED = 1;
     const GUST_SPEED = 2;
     const WIND_DIRECTION = 3;
@@ -98,101 +98,80 @@ class ClientRaw extends BaseClientRaw
     const HOUR = 29;
     const MINUTE = 30;
 
-    public function getAverageWindSpeed()
-    {
+    public function getAverageWindSpeed() {
         return new WindSpeed(self::readField(self::AVERAGE_WIND_SPEED));
     }
 
-    public function getGustSpeed()
-    {
+    public function getGustSpeed() {
         return new WindSpeed(self::readField(self::GUST_SPEED));
     }
 
-    public function getWindDirection()
-    {
+    public function getWindDirection() {
         return new WindDirection(self::readField(self::WIND_DIRECTION));
     }
 
-    public function getOutdoorTemperature()
-    {
+    public function getOutdoorTemperature() {
         return new Temperature(self::readField(self::OUTDOOR_TEMPERATURE));
     }
 
-    public function getOutdoorHumidity()
-    {
+    public function getOutdoorHumidity() {
         return new Humidity(self::readField(self::OUTDOOR_HUMIDITY));
     }
 
-    public function getSurfacePressure()
-    {
+    public function getSurfacePressure() {
         return new Pressure(self::readField(self::SURFACE_PRESSURE));
     }
 
-    public function getDailyRainfall()
-    {
+    public function getDailyRainfall() {
         return new Rainfall(self::readField(self::DAILY_RAINFALL));
     }
 
-    public function getMonthlyRainfall()
-    {
+    public function getMonthlyRainfall() {
         return new Rainfall(self::readField(self::MONTHLY_RAINFALL));
     }
 
-    public function getAnnualRainfall()
-    {
+    public function getAnnualRainfall() {
         return new Rainfall(self::readField(self::ANNUAL_RAINFALL));
     }
 
-    public function getRainfallRate()
-    {
+    public function getRainfallRate() {
         return new RainfallRate(self::readField(self::RAINFALL_RATE));
     }
 
-    public function getMaximumRainfallRate()
-    {
+    public function getMaximumRainfallRate() {
         return new RainfallRate(self::readField(self::DAILY_MAXIMUM_RAINFALL_RATE));
     }
 
-    public function getIndoorTemperature()
-    {
+    public function getIndoorTemperature() {
         return new Temperature(self::readField(self::INDOOR_TEMPERATURE));
     }
 
-    public function getIndoorHumidity()
-    {
+    public function getIndoorHumidity() {
         return new Humidity(self::readField(self::INDOOR_HUMIDITY));
     }
 
-    public function getSoilTemperature()
-    {
+    public function getSoilTemperature() {
         return new Temperature(self::readField(self::SOIL_TEMPERATURE));
     }
 
-    public function getForecastIcon()
-    {
+    public function getForecastIcon() {
         return new ForecastIcon(self::readField(self::FORECAST_ICON));
     }
 
-    public function getYesterdaysRainfall()
-    {
+    public function getYesterdaysRainfall() {
         return new Rainfall(self::readField(self::YESTERDAYS_RAINFALL));
     }
 
-    public function getStationName()
-    {
+    public function getStationName() {
         $stationName = self::readField(self::STATION_NAME);
 
-        if ($stationName == '-')
-        {
+        if ($stationName == '-') {
             $stationName = null;
-        }
-        else
-        {
+        } else {
             $stationName = str_replace('_', ' ', $stationName); // Unescape '_' that represent spaces
             $dashPosition = strrpos($stationName, "-"); // Remove trailing time if included in station name
 
-            if ($dashPosition !== false)
-            {
+            if ($dashPosition !== false) {
                 $stationName = substr($stationName, 0, $dashPosition);
             }
         }
@@ -200,478 +179,418 @@ class ClientRaw extends BaseClientRaw
         return $stationName;
     }
 
-    public function getSolarPercentage()
-    {
+    public function getSolarPercentage() {
         $solarPercentage = self::readField(self::SOLAR_PERCENTAGE);
 
-        if ($solarPercentage == '-')
-        {
+        if ($solarPercentage == '-') {
             $solarPercentage = null;
-        }
-        else
-        {
+        } else {
             $solarPercentage = number_format($solarPercentage, 0, '.', '');
         }
 
         return $solarPercentage;
     }
 
-    public function getWindChill()
-    {
+    public function getWindChill() {
         return new Temperature(self::readField(self::WIND_CHILL));
     }
 
-    public function getHumidex()
-    {
+    public function getHumidex() {
         return new Temperature(self::readField(self::HUMIDEX));
     }
 
-    public function getDailyHighOutdoorTemperature()
-    {
+    public function getDailyHighOutdoorTemperature() {
         $dailyHighOutdoorTemperature = new Temperature(self::readField(self::DAILY_HIGH_OUTDOOR_TEMPERATURE));
         $outdoorTemperature = self::getOutdoorTemperature();
 
         if (!is_null($outdoorTemperature->getCelsius()) &&
             !is_null($dailyHighOutdoorTemperature->getCelsius()) &&
-            $outdoorTemperature->getCelsius() > $dailyHighOutdoorTemperature->getCelsius())
-        {
+            $outdoorTemperature->getCelsius() > $dailyHighOutdoorTemperature->getCelsius()) {
             $dailyHighOutdoorTemperature = $outdoorTemperature;
         }
 
         return $dailyHighOutdoorTemperature;
     }
 
-    public function getDailyLowOutdoorTemperature()
-    {
+    public function getDailyLowOutdoorTemperature() {
         $dailyLowOutdoorTemperature = new Temperature(self::readField(self::DAILY_LOW_OUTDOOR_TEMPERATURE));
         $outdoorTemperature = self::getOutdoorTemperature();
 
         if (!is_null($outdoorTemperature->getCelsius()) &&
             !is_null($dailyLowOutdoorTemperature->getCelsius()) &&
-            $outdoorTemperature->getCelsius() < $dailyLowOutdoorTemperature->getCelsius())
-        {
+            $outdoorTemperature->getCelsius() < $dailyLowOutdoorTemperature->getCelsius()) {
+
             $dailyLowOutdoorTemperature = $outdoorTemperature;
         }
 
         return $dailyLowOutdoorTemperature;
     }
 
-    public function getSurfacePressureTrendPerHour()
-    {
+    public function getSurfacePressureTrendPerHour() {
         return new Pressure(self::readField(self::SURFACE_PRESSURE_TREND_PER_HOUR));
     }
 
-    public function getMaximumGustSpeed()
-    {
+    public function getMaximumGustSpeed() {
         return new WindSpeed(self::readField(self::MAXIMUM_GUST_SPEED));
     }
 
-    public function getDewPoint()
-    {
+    public function getDewPoint() {
         return new Temperature(self::readField(self::DEW_POINT));
     }
 
-    public function getCloudFormationAltitude()
-    {
+    public function getCloudFormationAltitude() {
         return new Altitude(self::readField(self::CLOUD_FORMATION_ALTITUDE));
     }
 
-    public function getDailyHighHumidex()
-    {
+    public function getDailyHighHumidex() {
         $dailyHighHumidex = new Temperature(self::readField(self::DAILY_HIGH_HUMIDEX));
         $humidex = self::getHumidex();
 
         if (!is_null($humidex->getCelsius()) &&
             !is_null($dailyHighHumidex->getCelsius()) &&
-            $humidex->getCelsius() > $dailyHighHumidex->getCelsius())
-        {
+            $humidex->getCelsius() > $dailyHighHumidex->getCelsius()) {
+
             $dailyHighHumidex = $humidex;
         }
 
         return $dailyHighHumidex;
     }
 
-    public function getDailyLowHumidex()
-    {
+    public function getDailyLowHumidex() {
         $dailyLowHumidex = new Temperature(self::readField(self::DAILY_LOW_HUMIDEX));
         $humidex = self::getHumidex();
 
         if (!is_null($humidex->getCelsius()) &&
             !is_null($dailyLowHumidex->getCelsius()) &&
-            $humidex->getCelsius() < $dailyLowHumidex->getCelsius())
-        {
+            $humidex->getCelsius() < $dailyLowHumidex->getCelsius()) {
+
             $dailyLowHumidex = $humidex;
         }
 
         return $dailyLowHumidex;
     }
 
-    public function getDailyHighWindChill()
-    {
+    public function getDailyHighWindChill() {
         $dailyHighWindChill = new Temperature(self::readField(self::DAILY_HIGH_WIND_CHILL));
         $windChill = self::getWindChill();
 
         if (!is_null($windChill->getCelsius()) &&
             !is_null($dailyHighWindChill->getCelsius()) &&
-            $windChill->getCelsius() > $dailyHighWindChill->getCelsius())
-        {
+            $windChill->getCelsius() > $dailyHighWindChill->getCelsius()) {
+
             $dailyHighWindChill = $windChill;
         }
 
         return $dailyHighWindChill;
     }
 
-    public function getDailyLowWindChill()
-    {
+    public function getDailyLowWindChill() {
         $dailyLowWindChill = new Temperature(self::readField(self::DAILY_LOW_WIND_CHILL));
         $windChill = self::getWindChill();
 
         if (!is_null($windChill->getCelsius()) &&
             !is_null($dailyLowWindChill->getCelsius()) &&
-            $windChill->getCelsius() < $dailyLowWindChill->getCelsius())
-        {
+            $windChill->getCelsius() < $dailyLowWindChill->getCelsius()) {
+
             $dailyLowWindChill = $windChill;
         }
 
         return $dailyLowWindChill;
     }
 
-    public function getUV()
-    {
+    public function getUV() {
         return new Uv(self::readField(self::UV_INDEX));
     }
 
-    public function getDailyHighHeatIndex()
-    {
+    public function getDailyHighHeatIndex() {
         $dailyHighHeatIndex = new Temperature(self::readField(self::DAILY_HIGH_HEAT_INDEX));
         $heatIndex = self::getHeatIndex();
 
         if (!is_null($heatIndex->getCelsius()) &&
             !is_null($dailyHighHeatIndex->getCelsius()) &&
-            $heatIndex->getCelsius() > $dailyHighHeatIndex->getCelsius())
-        {
+            $heatIndex->getCelsius() > $dailyHighHeatIndex->getCelsius()) {
+
             $dailyHighHeatIndex = $heatIndex;
         }
 
         return $dailyHighHeatIndex;
     }
 
-    public function getDailyLowHeatIndex()
-    {
+    public function getDailyLowHeatIndex() {
         $dailyLowHeatIndex = new Temperature(self::readField(self::DAILY_LOW_HEAT_INDEX));
         $heatIndex = self::getHeatIndex();
 
         if (!is_null($heatIndex->getCelsius()) &&
             !is_null($dailyLowHeatIndex->getCelsius()) &&
-            $heatIndex->getCelsius() < $dailyLowHeatIndex->getCelsius())
-        {
+            $heatIndex->getCelsius() < $dailyLowHeatIndex->getCelsius()) {
+
             $dailyLowHeatIndex = $heatIndex;
         }
 
         return $dailyLowHeatIndex;
     }
 
-    public function getHeatIndex()
-    {
+    public function getHeatIndex() {
         return new Temperature(self::readField(self::HEAT_INDEX));
     }
 
-    public function getMaximumAverageWindSpeed()
-    {
+    public function getMaximumAverageWindSpeed() {
         return new WindSpeed(self::readField(self::MAXIMUM_AVERAGE_WIND_SPEED));
     }
 
-    public function getAverageWindDirection()
-    {
+    public function getAverageWindDirection() {
         return new WindDirection(self::readField(self::AVERAGE_WIND_DIRECTION));
     }
 
-    public function getSolarIrradiance()
-    {
+    public function getSolarIrradiance() {
         return new Irradiance(self::readField(self::SOLAR_IRRADIANCE));
     }
 
-    public function getDailyHighIndoorTemperature()
-    {
+    public function getDailyHighIndoorTemperature() {
         $dailyHighIndoorTemperature = new Temperature(self::readField(self::DAILY_HIGH_INDOOR_TEMPERATURE));
         $indoorTemperature = self::getIndoorTemperature();
 
         if (!is_null($indoorTemperature->getCelsius()) &&
             !is_null($dailyHighIndoorTemperature->getCelsius()) &&
-            $indoorTemperature->getCelsius() > $dailyHighIndoorTemperature->getCelsius())
-        {
+            $indoorTemperature->getCelsius() > $dailyHighIndoorTemperature->getCelsius()) {
+
             $dailyHighIndoorTemperature = $indoorTemperature;
         }
 
         return $dailyHighIndoorTemperature;
     }
 
-    public function getDailyLowIndoorTemperature()
-    {
+    public function getDailyLowIndoorTemperature() {
         $dailyLowIndoorTemperature = new Temperature(self::readField(self::DAILY_LOW_INDOOR_TEMPERATURE));
         $indoorTemperature = self::getIndoorTemperature();
 
         if (!is_null($indoorTemperature->getCelsius()) &&
             !is_null($dailyLowIndoorTemperature->getCelsius()) &&
-            $indoorTemperature->getCelsius() < $dailyLowIndoorTemperature->getCelsius())
-        {
+            $indoorTemperature->getCelsius() < $dailyLowIndoorTemperature->getCelsius()) {
+
             $dailyLowIndoorTemperature = $indoorTemperature;
         }
 
         return $dailyLowIndoorTemperature;
     }
 
-    public function getApparentTemperature()
-    {
+    public function getApparentTemperature() {
         return new Temperature(self::readField(self::APPARENT_TEMPERATURE));
     }
 
-    public function getDailyHighSurfacePressure()
-    {
+    public function getDailyHighSurfacePressure() {
         $dailyHighSurfacePressure = new Pressure(self::readField(self::DAILY_HIGH_SURFACE_PRESSURE));
         $surfacePressure = self::getSurfacePressure();
 
         if (!is_null($surfacePressure->getHectopascals()) &&
             !is_null($dailyHighSurfacePressure->getHectopascals()) &&
-            $surfacePressure->getHectopascals() > $dailyHighSurfacePressure->getHectopascals())
-        {
+            $surfacePressure->getHectopascals() > $dailyHighSurfacePressure->getHectopascals()) {
+
             $dailyHighSurfacePressure = $surfacePressure;
         }
 
         return $dailyHighSurfacePressure;
     }
 
-    public function getDailyLowSurfacePressure()
-    {
+    public function getDailyLowSurfacePressure() {
         $dailyLowSurfacePressure = new Pressure(self::readField(self::DAILY_LOW_SURFACE_PRESSURE));
         $surfacePressure = self::getSurfacePressure();
 
         if (!is_null($surfacePressure->getHectopascals()) &&
             !is_null($dailyLowSurfacePressure->getHectopascals()) &&
-            $surfacePressure->getHectopascals() < $dailyLowSurfacePressure->getHectopascals())
-        {
+            $surfacePressure->getHectopascals() < $dailyLowSurfacePressure->getHectopascals()) {
+
             $dailyLowSurfacePressure = $surfacePressure;
         }
 
         return $dailyLowSurfacePressure;
     }
 
-    public function getDailyHighApparentTemperature()
-    {
+    public function getDailyHighApparentTemperature() {
         $dailyHighApparentTemperature = new Temperature(self::readField(self::DAILY_HIGH_APPARENT_TEMPERATURE));
         $apparentTemperature = self::getApparentTemperature();
 
         if (!is_null($apparentTemperature->getCelsius()) &&
             !is_null($dailyHighApparentTemperature->getCelsius()) &&
-            $apparentTemperature->getCelsius() > $dailyHighApparentTemperature->getCelsius())
-        {
+            $apparentTemperature->getCelsius() > $dailyHighApparentTemperature->getCelsius()) {
+
             $dailyHighApparentTemperature = $apparentTemperature;
         }
 
         return $dailyHighApparentTemperature;
     }
 
-    public function getDailyLowApparentTemperature()
-    {
+    public function getDailyLowApparentTemperature() {
         $dailyLowApparentTemperature = new Temperature(self::readField(self::DAILY_LOW_APPARENT_TEMPERATURE));
         $apparentTemperature = self::getApparentTemperature();
 
         if (!is_null($apparentTemperature->getCelsius()) &&
             !is_null($dailyLowApparentTemperature->getCelsius()) &&
-            $apparentTemperature->getCelsius() < $dailyLowApparentTemperature->getCelsius())
-        {
+            $apparentTemperature->getCelsius() < $dailyLowApparentTemperature->getCelsius()) {
+
             $dailyLowApparentTemperature = $apparentTemperature;
         }
 
         return $dailyLowApparentTemperature;
     }
 
-    public function getDailyHighDewPoint()
-    {
+    public function getDailyHighDewPoint() {
         $dailyHighDewPoint = new Temperature(self::readField(self::DAILY_HIGH_DEW_POINT));
         $dewPoint = self::getDewPoint();
 
         if (!is_null($dewPoint->getCelsius()) &&
             !is_null($dailyHighDewPoint->getCelsius()) &&
-            $dewPoint->getCelsius() > $dailyHighDewPoint->getCelsius())
-        {
+            $dewPoint->getCelsius() > $dailyHighDewPoint->getCelsius()) {
+
             $dailyHighDewPoint = $dewPoint;
         }
 
         return $dailyHighDewPoint;
     }
 
-    public function getDailyLowDewPoint()
-    {
+    public function getDailyLowDewPoint() {
         $dailyLowDewPoint = new Temperature(self::readField(self::DAILY_LOW_DEW_POINT));
         $dewPoint = self::getDewPoint();
 
         if (!is_null($dewPoint->getCelsius()) &&
             !is_null($dailyLowDewPoint->getCelsius()) &&
-            $dewPoint->getCelsius() < $dailyLowDewPoint->getCelsius())
-        {
+            $dewPoint->getCelsius() < $dailyLowDewPoint->getCelsius()) {
+
             $dailyLowDewPoint = $dewPoint;
         }
 
         return $dailyLowDewPoint;
     }
 
-    public function getOutdoorTemperatureTrend()
-    {
+    public function getOutdoorTemperatureTrend() {
         return new Trend(self::readField(self::OUTDOOR_TEMPERATURE_TREND));
     }
 
-    public function getOutdoorHumidityTrend()
-    {
+    public function getOutdoorHumidityTrend() {
         return new Trend(self::readField(self::OUTDOOR_HUMIDITY_TREND));
     }
 
-    public function getHumidexTrend()
-    {
+    public function getHumidexTrend() {
         return new Trend(self::readField(self::HUMIDEX_TREND));
     }
 
-    public function getWetBulbTemperature()
-    {
+    public function getWetBulbTemperature() {
         return new Temperature(self::readField(self::WET_BULB_TEMPERATURE));
     }
 
-    public function getLatitude()
-    {
+    public function getLatitude() {
         $latitude = self::readField(self::LATITUDE);
 
-        if ($latitude == '-')
-        {
+        if ($latitude == '-') {
             $latitude = null;
         }
 
         return $latitude;
     }
 
-    public function getLongitude()
-    {
+    public function getLongitude() {
         $longitude = self::readField(self::LONGITUDE);
 
-        if ($longitude == '-')
-        {
+        if ($longitude == '-') {
             $longitude = null;
         }
 
         return $longitude;
     }
 
-    public function getDailyHighOutdoorHumidity()
-    {
+    public function getDailyHighOutdoorHumidity() {
         $dailyHighOutdoorHumidity = new Humidity(self::readField(self::DAILY_HIGH_OUTDOOR_HUMIDITY));
         $outdoorHumidity = self::getOutdoorHumidity();
 
         if (!is_null($outdoorHumidity->getPercentage()) &&
             !is_null($dailyHighOutdoorHumidity->getPercentage()) &&
-            $outdoorHumidity->getPercentage() > $dailyHighOutdoorHumidity->getPercentage())
-        {
+            $outdoorHumidity->getPercentage() > $dailyHighOutdoorHumidity->getPercentage()) {
+
             $dailyHighOutdoorHumidity = $outdoorHumidity;
         }
 
         return $dailyHighOutdoorHumidity;
     }
 
-    public function getDailyLowOutdoorHumidity()
-    {
+    public function getDailyLowOutdoorHumidity() {
         $dailyLowOutdoorHumidity = new Humidity(self::readField(self::DAILY_LOW_OUTDOOR_HUMIDITY));
         $outdoorHumidity = self::getOutdoorHumidity();
 
         if (!is_null($outdoorHumidity->getPercentage()) &&
             !is_null($dailyLowOutdoorHumidity->getPercentage()) &&
-            $outdoorHumidity->getPercentage() < $dailyLowOutdoorHumidity->getPercentage())
-        {
+            $outdoorHumidity->getPercentage() < $dailyLowOutdoorHumidity->getPercentage()) {
+
             $dailyLowOutdoorHumidity = $outdoorHumidity;
         }
 
         return $dailyLowOutdoorHumidity;
     }
 
-    public function getExtraTemperature1()
-    {
+    public function getExtraTemperature1() {
         return new Temperature(self::readField(self::EXTRA_TEMPERATURE_1));
     }
 
-    public function getExtraTemperature2()
-    {
+    public function getExtraTemperature2() {
         return new Temperature(self::readField(self::EXTRA_TEMPERATURE_2));
     }
 
-    public function getExtraTemperature3()
-    {
+    public function getExtraTemperature3() {
         return new Temperature(self::readField(self::EXTRA_TEMPERATURE_3));
     }
 
-    public function getExtraTemperature4()
-    {
+    public function getExtraTemperature4() {
         return new Temperature(self::readField(self::EXTRA_TEMPERATURE_4));
     }
 
-    public function getExtraTemperature5()
-    {
+    public function getExtraTemperature5() {
         return new Temperature(self::readField(self::EXTRA_TEMPERATURE_5));
     }
 
-    public function getExtraTemperature6()
-    {
+    public function getExtraTemperature6() {
         return new Temperature(self::readField(self::EXTRA_TEMPERATURE_6));
     }
 
-    public function getExtraTemperature7()
-    {
+    public function getExtraTemperature7() {
         return new Temperature(self::readField(self::EXTRA_TEMPERATURE_7));
     }
 
-    public function getExtraTemperature8()
-    {
+    public function getExtraTemperature8() {
         return new Temperature(self::readField(self::EXTRA_TEMPERATURE_8));
     }
 
-    public function getExtraHumidity1()
-    {
+    public function getExtraHumidity1() {
         return new Humidity(self::readField(self::EXTRA_HUMIDITY_1));
     }
 
-    public function getExtraHumidity2()
-    {
+    public function getExtraHumidity2() {
         return new Humidity(self::readField(self::EXTRA_HUMIDITY_2));
     }
 
-    public function getExtraHumidity3()
-    {
+    public function getExtraHumidity3() {
         return new Humidity(self::readField(self::EXTRA_HUMIDITY_3));
     }
 
-    public function getExtraHumidity4()
-    {
+    public function getExtraHumidity4() {
         return new Humidity(self::readField(self::EXTRA_HUMIDITY_4));
     }
 
-    public function getExtraHumidity5()
-    {
+    public function getExtraHumidity5() {
         return new Humidity(self::readField(self::EXTRA_HUMIDITY_5));
     }
 
-    public function getExtraHumidity6()
-    {
+    public function getExtraHumidity6() {
         return new Humidity(self::readField(self::EXTRA_HUMIDITY_6));
     }
 
-    public function getExtraHumidity7()
-    {
+    public function getExtraHumidity7() {
         return new Humidity(self::readField(self::EXTRA_HUMIDITY_7));
     }
 
-    public function getExtraHumidity8()
-    {
+    public function getExtraHumidity8() {
         return new Humidity(self::readField(self::EXTRA_HUMIDITY_8));
     }
 
-    public function getCurrentDateAndTime()
-    {
+    public function getCurrentDateAndTime() {
         return new DateAndTime(
             self::readField(self::YEAR),
             self::readField(self::MONTH),
@@ -680,16 +599,12 @@ class ClientRaw extends BaseClientRaw
             self::readField(self::MINUTE));
     }
 
-    public function getWdVersion()
-    {
+    public function getWdVersion() {
         $wdVersion = self::readField(self::fieldCount() - 1);
 
-        if ($wdVersion == '-')
-        {
+        if ($wdVersion == '-') {
             $wdVersion = null;
-        }
-        else
-        {
+        } else {
             // Remove leading and trailing '!!' from version
             $wdVersion = str_replace('!!C', '', $wdVersion);
             $wdVersion = str_replace('!!', '', $wdVersion);

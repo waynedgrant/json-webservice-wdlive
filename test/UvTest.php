@@ -3,24 +3,21 @@
 # Copyright 2016 Wayne D Grant (www.waynedgrant.com)
 # Licensed under the MIT License
 
-class UvTest extends PHPUnit\Framework\TestCase
-{
-    public function test_uv_values_are_null_when_uvi_is_empty()
-    {
+class UvTest extends PHPUnit\Framework\TestCase {
+
+    public function test_uv_values_are_null_when_uvi_is_empty() {
         $testee = new Uv("-");
         $this->assertNull($testee->getUvi());
         $this->assertNull($testee->getUviDescription());
     }
 
-    public function test_all_measures_values_are_null_when_uvi_is_empty()
-    {
+    public function test_all_measures_values_are_null_when_uvi_is_empty() {
         $testee = new Uv("-");
         $this->assertNull($testee->getAllMeasures()["uvi"]);
         $this->assertNull($testee->getAllMeasures()["description"]);
     }
 
-    public function test_uv_values_are_correct_when_uvi_is_not_empty()
-    {
+    public function test_uv_values_are_correct_when_uvi_is_not_empty() {
         $testee = new Uv("0.0");
         $this->assertSame("0.0", $testee->getUvi());
         $this->assertSame("low", $testee->getUviDescription());
@@ -58,8 +55,7 @@ class UvTest extends PHPUnit\Framework\TestCase
         $this->assertSame("extreme", $testee->getUviDescription());
     }
 
-    public function test_all_measurements_values_are_correct_when_uvi_is_not_empty()
-    {
+    public function test_all_measurements_values_are_correct_when_uvi_is_not_empty() {
         $testee = new Uv("0.0");
         $this->assertSame("0.0", $testee->getAllMeasures()["uvi"]);
         $this->assertSame("low", $testee->getAllMeasures()["description"]);

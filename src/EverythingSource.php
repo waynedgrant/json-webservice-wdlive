@@ -11,15 +11,13 @@ require_once("ForecastSource.php");
 require_once("IndoorSource.php");
 require_once("WeatherSource.php");
 
-class EverythingSource extends BaseSource
-{
-    public function __construct($clientRaw, $clientRawExtra)
-    {
+class EverythingSource extends BaseSource {
+
+    public function __construct($clientRaw, $clientRawExtra) {
         parent::__construct($clientRaw, $clientRawExtra);
     }
 
-    public function create()
-    {
+    public function create() {
         $almanacSource = new AlmanacSource($this->clientRaw, $this->clientRawExtra);
         $astronomySource = new AstronomySource($this->clientRaw, $this->clientRawExtra);
         $extraSource = new ExtraSource($this->clientRaw);

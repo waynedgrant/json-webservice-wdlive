@@ -5,15 +5,13 @@
 
 require_once("BaseSource.php");
 
-class WeatherSource extends BaseSource
-{
-    public function __construct($clientRaw, $clientRawExtra)
-    {
+class WeatherSource extends BaseSource {
+
+    public function __construct($clientRaw, $clientRawExtra) {
         parent::__construct($clientRaw, $clientRawExtra);
     }
 
-    public function create()
-    {
+    public function create() {
         $temperature = array(
             "current" => $this->clientRaw->getOutdoorTemperature()->getAllMeasures(),
             "high" => $this->clientRaw->getDailyHighOutdoorTemperature()->getAllMeasures(),

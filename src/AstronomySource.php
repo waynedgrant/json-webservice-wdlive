@@ -5,15 +5,13 @@
 
 require_once("BaseSource.php");
 
-class AstronomySource extends BaseSource
-{
-    public function __construct($clientRaw, $clientRawExtra)
-    {
+class AstronomySource extends BaseSource {
+
+    public function __construct($clientRaw, $clientRawExtra) {
         parent::__construct($clientRaw, $clientRawExtra);
     }
 
-    public function create()
-    {
+    public function create() {
         $sun = array(
             "sunrise_time" => $this->clientRawExtra->getSunriseTime()->getAllValues(),
             "sunset_time" => $this->clientRawExtra->getSunsetTime()->getAllValues());

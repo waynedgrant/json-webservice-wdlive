@@ -3,22 +3,18 @@
 # Copyright 2016 Wayne D Grant (www.waynedgrant.com)
 # Licensed under the MIT License
 
-class ForecastIcon
-{
+class ForecastIcon {
     private $code;
     private $text;
 
-    public function __construct($code)
-    {
-        if ($code != '-')
-        {
+    public function __construct($code) {
+        if ($code != '-') {
             $this->code =$code;
             $this->text = $this->lookupTextForCode($code);
         }
     }
 
     private function lookupTextForCode($code) {
-
         $text = 'Unknown';
 
         switch ($code) {
@@ -63,18 +59,15 @@ class ForecastIcon
         return $text;
     }
 
-    public function getCode()
-    {
+    public function getCode() {
         return $this->code;
     }
 
-    public function getText()
-    {
+    public function getText() {
         return $this->text;
     }
 
-    public function getAllMeasures()
-    {
+    public function getAllMeasures() {
         return array(
             "code" => $this->getCode(),
             "text" => $this->getText());

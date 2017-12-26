@@ -5,15 +5,13 @@
 
 require_once("BaseSource.php");
 
-class AlmanacSource extends BaseSource
-{
-    public function __construct($clientRaw, $clientRawExtra)
-    {
+class AlmanacSource extends BaseSource {
+
+    public function __construct($clientRaw, $clientRawExtra) {
         parent::__construct($clientRaw, $clientRawExtra);
     }
 
-    public function create()
-    {
+    public function create() {
         $data = $this->createBase();
 
         $data["almanac"] = array(
@@ -24,8 +22,7 @@ class AlmanacSource extends BaseSource
         return $data;
     }
 
-    private function createMonthToDate()
-    {
+    private function createMonthToDate() {
         $highOutdoorTemperature = $this->createAlmanacMeasurement(
             $this->clientRawExtra->getMonthlyHighOutdoorTemperature(),
             $this->clientRawExtra->getMonthlyHighOutdoorTemperatureDateAndTime());
@@ -131,8 +128,7 @@ class AlmanacSource extends BaseSource
             "uv" => array("high" => $highUv));
     }
 
-    private function createYearToDate()
-    {
+    private function createYearToDate() {
         $highOutdoorTemperature = $this->createAlmanacMeasurement(
             $this->clientRawExtra->getYearlyHighOutdoorTemperature(),
             $this->clientRawExtra->getYearlyHighOutdoorTemperatureDateAndTime());
@@ -237,8 +233,7 @@ class AlmanacSource extends BaseSource
             "uv" => array("high" => $highUv));
     }
 
-    private function createAllTime()
-    {
+    private function createAllTime() {
         $highOutdoorTemperature = $this->createAlmanacMeasurement(
             $this->clientRawExtra->getAllTimeHighOutdoorTemperature(),
             $this->clientRawExtra->getAllTimeHighOutdoorTemperatureDateAndTime());
@@ -340,24 +335,21 @@ class AlmanacSource extends BaseSource
             "uv" => array("high" => $highUv));
     }
 
-    private function createAlmanacMeasurement($measurement, $measurementTime)
-    {
+    private function createAlmanacMeasurement($measurement, $measurementTime) {
         $almanacMeasurement = $measurement->getAllMeasures();
         $almanacMeasurement['time'] = $measurementTime->getAllValues();
 
         return $almanacMeasurement;
     }
 
-    private function createAlmanacWindMeasurement($speedMeasurement, $directionMeasurement, $measurementTime)
-    {
+    private function createAlmanacWindMeasurement($speedMeasurement, $directionMeasurement, $measurementTime) {
         return array(
             "speed" => $speedMeasurement->getAllMeasures(),
             "direction" => $directionMeasurement->getAllMeasures(),
             "time" => $measurementTime->getAllValues());
     }
 
-    private function createAlmanacSolarIrradianceMeasurement($solarIrradianceMeasurement, $measurementTime)
-    {
+    private function createAlmanacSolarIrradianceMeasurement($solarIrradianceMeasurement, $measurementTime) {
         return array(
             "irradiance" => $solarIrradianceMeasurement->getAllMeasures(),
             "time" => $measurementTime->getAllValues());

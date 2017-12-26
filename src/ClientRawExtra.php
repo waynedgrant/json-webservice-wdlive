@@ -411,13 +411,11 @@ class ClientRawExtra extends BaseClientRaw
     const MOON_AGE = 561;
     const SUNSHINE_HOURS = 696;
 
-    public function getMonthlyHighOutdoorTemperature()
-    {
+    public function getMonthlyHighOutdoorTemperature() {
         return new Temperature(self::readField(self::MONTHLY_HIGH_OUTDOOR_TEMPERATURE));
     }
 
-    public function getMonthlyHighOutdoorTemperatureDateAndTime()
-    {
+    public function getMonthlyHighOutdoorTemperatureDateAndTime() {
         return new DateAndTime(
             self::readField(self::MONTHLY_HIGH_OUTDOOR_TEMPERATURE_YEAR),
             self::readField(self::MONTHLY_HIGH_OUTDOOR_TEMPERATURE_MONTH),
@@ -426,13 +424,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::MONTHLY_HIGH_OUTDOOR_TEMPERATURE_MINUTE));
     }
 
-    public function getMonthlyLowOutdoorTemperature()
-    {
+    public function getMonthlyLowOutdoorTemperature() {
         return new Temperature(self::readField(self::MONTHLY_LOW_OUTDOOR_TEMPERATURE));
     }
 
-    public function getMonthlyLowOutdoorTemperatureDateAndTime()
-    {
+    public function getMonthlyLowOutdoorTemperatureDateAndTime() {
         return new DateAndTime(
             self::readField(self::MONTHLY_LOW_OUTDOOR_TEMPERATURE_YEAR),
             self::readField(self::MONTHLY_LOW_OUTDOOR_TEMPERATURE_MONTH),
@@ -441,13 +437,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::MONTHLY_LOW_OUTDOOR_TEMPERATURE_MINUTE));
     }
 
-    public function getMonthlyMaximumGustSpeed()
-    {
+    public function getMonthlyMaximumGustSpeed() {
         return new WindSpeed(self::readField(self::MONTHLY_MAXIMUM_GUST_SPEED));
     }
 
-    public function getMonthlyMaximumGustSpeedDateAndTime()
-    {
+    public function getMonthlyMaximumGustSpeedDateAndTime() {
         return new DateAndTime(
             self::readField(self::MONTHLY_MAXIMUM_GUST_SPEED_YEAR),
             self::readField(self::MONTHLY_MAXIMUM_GUST_SPEED_MONTH),
@@ -456,13 +450,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::MONTHLY_MAXIMUM_GUST_SPEED_MINUTE));
     }
 
-    public function getMonthlyMaximumRainfallRate()
-    {
+    public function getMonthlyMaximumRainfallRate() {
         return new RainfallRate(self::readField(self::MONTHLY_MAXIMUM_RAINFALL_RATE));
     }
 
-    public function getMonthlyMaximumRainfallRateDateAndTime()
-    {
+    public function getMonthlyMaximumRainfallRateDateAndTime() {
         return new DateAndTime(
             self::readField(self::MONTHLY_MAXIMUM_RAINFALL_RATE_YEAR),
             self::readField(self::MONTHLY_MAXIMUM_RAINFALL_RATE_MONTH),
@@ -471,13 +463,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::MONTHLY_MAXIMUM_RAINFALL_RATE_MINUTE));
     }
 
-    public function getMonthlyLowSurfacePressure()
-    {
+    public function getMonthlyLowSurfacePressure() {
         return new Pressure(self::readField(self::MONTHLY_LOW_SURFACE_PRESSURE));
     }
 
-    public function getMonthlyLowSurfacePressureDateAndTime()
-    {
+    public function getMonthlyLowSurfacePressureDateAndTime() {
         return new DateAndTime(
             self::readField(self::MONTHLY_LOW_SURFACE_PRESSURE_YEAR),
             self::readField(self::MONTHLY_LOW_SURFACE_PRESSURE_MONTH),
@@ -486,13 +476,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::MONTHLY_LOW_SURFACE_PRESSURE_MINUTE));
     }
 
-    public function getMonthlyHighSurfacePressure()
-    {
+    public function getMonthlyHighSurfacePressure() {
         return new Pressure(self::readField(self::MONTHLY_HIGH_SURFACE_PRESSURE));
     }
 
-    public function getMonthlyHighSurfacePressureDateAndTime()
-    {
+    public function getMonthlyHighSurfacePressureDateAndTime() {
         return new DateAndTime(
             self::readField(self::MONTHLY_HIGH_SURFACE_PRESSURE_YEAR),
             self::readField(self::MONTHLY_HIGH_SURFACE_PRESSURE_MONTH),
@@ -501,13 +489,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::MONTHLY_HIGH_SURFACE_PRESSURE_MINUTE));
     }
 
-    public function getMonthlyHighestDailyRainfall()
-    {
+    public function getMonthlyHighestDailyRainfall() {
         return new Rainfall(self::readField(self::MONTHLY_HIGHEST_DAILY_RAINFALL));
     }
 
-    public function getMonthlyHighestDailyRainfallDateAndTime()
-    {
+    public function getMonthlyHighestDailyRainfallDateAndTime() {
         return new DateAndTime(
             self::readField(self::MONTHLY_HIGHEST_DAILY_RAINFALL_YEAR),
             self::readField(self::MONTHLY_HIGHEST_DAILY_RAINFALL_MONTH),
@@ -516,13 +502,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::MONTHLY_HIGHEST_DAILY_RAINFALL_MINUTE));
     }
 
-    public function getMonthlyHighestRainfallInAnHour()
-    {
+    public function getMonthlyHighestRainfallInAnHour() {
         return new Rainfall(self::readField(self::MONTHLY_HIGHEST_RAINFALL_IN_AN_HOUR));
     }
 
-    public function getMonthlyHighestRainfallInAnHourDateAndTime()
-    {
+    public function getMonthlyHighestRainfallInAnHourDateAndTime() {
         return new DateAndTime(
             self::readField(self::MONTHLY_HIGHEST_RAINFALL_IN_AN_HOUR_YEAR),
             self::readField(self::MONTHLY_HIGHEST_RAINFALL_IN_AN_HOUR_MONTH),
@@ -531,13 +515,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::MONTHLY_HIGHEST_RAINFALL_IN_AN_HOUR_MINUTE));
     }
 
-    public function getMonthlyMaximumAverageWindSpeed()
-    {
+    public function getMonthlyMaximumAverageWindSpeed() {
         return new WindSpeed(self::readField(self::MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED));
     }
 
-    public function getMonthlyMaximumAverageWindSpeedDateAndTime()
-    {
+    public function getMonthlyMaximumAverageWindSpeedDateAndTime() {
         return new DateAndTime(
             self::readField(self::MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED_YEAR),
             self::readField(self::MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED_MONTH),
@@ -546,13 +528,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED_MINUTE));
     }
 
-    public function getMonthlyHighSoilTemperature()
-    {
+    public function getMonthlyHighSoilTemperature() {
         return new Temperature(self::readField(self::MONTHLY_HIGH_SOIL_TEMPERATURE));
     }
 
-    public function getMonthlyHighSoilTemperatureDateAndTime()
-    {
+    public function getMonthlyHighSoilTemperatureDateAndTime() {
         return new DateAndTime(
             self::readField(self::MONTHLY_HIGH_SOIL_TEMPERATURE_YEAR),
             self::readField(self::MONTHLY_HIGH_SOIL_TEMPERATURE_MONTH),
@@ -561,13 +541,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::MONTHLY_HIGH_SOIL_TEMPERATURE_MINUTE));
     }
 
-    public function getMonthlyLowSoilTemperature()
-    {
+    public function getMonthlyLowSoilTemperature() {
         return new Temperature(self::readField(self::MONTHLY_LOW_SOIL_TEMPERATURE));
     }
 
-    public function getMonthlyLowSoilTemperatureDateAndTime()
-    {
+    public function getMonthlyLowSoilTemperatureDateAndTime() {
         return new DateAndTime(
             self::readField(self::MONTHLY_LOW_SOIL_TEMPERATURE_YEAR),
             self::readField(self::MONTHLY_LOW_SOIL_TEMPERATURE_MONTH),
@@ -576,13 +554,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::MONTHLY_LOW_SOIL_TEMPERATURE_MINUTE));
     }
 
-    public function getMonthlyLowWindChill()
-    {
+    public function getMonthlyLowWindChill() {
         return new Temperature(self::readField(self::MONTHLY_LOW_WIND_CHILL));
     }
 
-    public function getMonthlyLowWindChillDateAndTime()
-    {
+    public function getMonthlyLowWindChillDateAndTime() {
         return new DateAndTime(
             self::readField(self::MONTHLY_LOW_WIND_CHILL_YEAR),
             self::readField(self::MONTHLY_LOW_WIND_CHILL_MONTH),
@@ -591,23 +567,19 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::MONTHLY_LOW_WIND_CHILL_MINUTE));
     }
 
-    public function getMonthlyMaximumGustSpeedDirection()
-    {
+    public function getMonthlyMaximumGustSpeedDirection() {
         return new WindDirection(self::readField(self::MONTHLY_MAXIMUM_GUST_SPEED_DIRECTION));
     }
 
-    public function getMonthlyMaximumAverageWindSpeedDirection()
-    {
+    public function getMonthlyMaximumAverageWindSpeedDirection() {
         return new WindDirection(self::readField(self::MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED_DIRECTION));
     }
 
-    public function getMonthlyWarmestDay()
-    {
+    public function getMonthlyWarmestDay() {
         return new Temperature(self::readField(self::MONTHLY_WARMEST_DAY));
     }
 
-    public function getMonthlyWarmestDayDateAndTime()
-    {
+    public function getMonthlyWarmestDayDateAndTime() {
         return new DateAndTime(
             self::readField(self::MONTHLY_WARMEST_DAY_YEAR),
             self::readField(self::MONTHLY_WARMEST_DAY_MONTH),
@@ -616,13 +588,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::MONTHLY_WARMEST_DAY_MINUTE));
     }
 
-    public function getMonthlyColdestNight()
-    {
+    public function getMonthlyColdestNight() {
         return new Temperature(self::readField(self::MONTHLY_COLDEST_NIGHT));
     }
 
-    public function getMonthlyColdestNightDateAndTime()
-    {
+    public function getMonthlyColdestNightDateAndTime() {
         return new DateAndTime(
             self::readField(self::MONTHLY_COLDEST_NIGHT_YEAR),
             self::readField(self::MONTHLY_COLDEST_NIGHT_MONTH),
@@ -631,13 +601,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::MONTHLY_COLDEST_NIGHT_MINUTE));
     }
 
-    public function getMonthlyColdestDay()
-    {
+    public function getMonthlyColdestDay() {
         return new Temperature(self::readField(self::MONTHLY_COLDEST_DAY));
     }
 
-    public function getMonthlyColdestDayDateAndTime()
-    {
+    public function getMonthlyColdestDayDateAndTime() {
         return new DateAndTime(
             self::readField(self::MONTHLY_COLDEST_DAY_YEAR),
             self::readField(self::MONTHLY_COLDEST_DAY_MONTH),
@@ -646,13 +614,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::MONTHLY_COLDEST_DAY_MINUTE));
     }
 
-    public function getMonthlyWarmestNight()
-    {
+    public function getMonthlyWarmestNight() {
         return new Temperature(self::readField(self::MONTHLY_WARMEST_NIGHT));
     }
 
-    public function getMonthlyWarmestNightDateAndTime()
-    {
+    public function getMonthlyWarmestNightDateAndTime() {
         return new DateAndTime(
             self::readField(self::MONTHLY_WARMEST_NIGHT_YEAR),
             self::readField(self::MONTHLY_WARMEST_NIGHT_MONTH),
@@ -661,13 +627,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::MONTHLY_WARMEST_NIGHT_MINUTE));
     }
 
-    public function getMonthlyHighHeatIndex()
-    {
+    public function getMonthlyHighHeatIndex() {
         return new Temperature(self::readField(self::MONTHLY_HIGH_HEAT_INDEX));
     }
 
-    public function getMonthlyHighHeatIndexDateAndTime()
-    {
+    public function getMonthlyHighHeatIndexDateAndTime() {
         return new DateAndTime(
             self::readField(self::MONTHLY_HIGH_HEAT_INDEX_YEAR),
             self::readField(self::MONTHLY_HIGH_HEAT_INDEX_MONTH),
@@ -676,13 +640,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::MONTHLY_HIGH_HEAT_INDEX_MINUTE));
     }
 
-    public function getMonthlyHighSolarIrradiance()
-    {
+    public function getMonthlyHighSolarIrradiance() {
         return new Irradiance(self::readField(self::MONTHLY_HIGH_SOLAR_IRRADIANCE));
     }
 
-    public function getMonthlyHighSolarIrradianceDateAndTime()
-    {
+    public function getMonthlyHighSolarIrradianceDateAndTime() {
         return new DateAndTime(
             self::readField(self::MONTHLY_HIGH_SOLAR_IRRADIANCE_YEAR),
             self::readField(self::MONTHLY_HIGH_SOLAR_IRRADIANCE_MONTH),
@@ -691,13 +653,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::MONTHLY_HIGH_SOLAR_IRRADIANCE_MINUTE));
     }
 
-    public function getMonthlyHighUv()
-    {
+    public function getMonthlyHighUv() {
         return new Uv(self::readField(self::MONTHLY_HIGH_UV));
     }
 
-    public function getMonthlyHighUvDateAndTime()
-    {
+    public function getMonthlyHighUvDateAndTime() {
         return new DateAndTime(
             self::readField(self::MONTHLY_HIGH_UV_YEAR),
             self::readField(self::MONTHLY_HIGH_UV_MONTH),
@@ -706,13 +666,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::MONTHLY_HIGH_UV_MINUTE));
     }
 
-    public function getMonthlyHighDewPoint()
-    {
+    public function getMonthlyHighDewPoint() {
         return new Temperature(self::readField(self::MONTHLY_HIGH_DEW_POINT));
     }
 
-    public function getMonthlyHighDewPointDateAndTime()
-    {
+    public function getMonthlyHighDewPointDateAndTime() {
         return new DateAndTime(
             self::readField(self::MONTHLY_HIGH_DEW_POINT_YEAR),
             self::readField(self::MONTHLY_HIGH_DEW_POINT_MONTH),
@@ -721,13 +679,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::MONTHLY_HIGH_DEW_POINT_MINUTE));
     }
 
-    public function getMonthlyLowDewPoint()
-    {
+    public function getMonthlyLowDewPoint() {
         return new Temperature(self::readField(self::MONTHLY_LOW_DEW_POINT));
     }
 
-    public function getMonthlyLowDewPointDateAndTime()
-    {
+    public function getMonthlyLowDewPointDateAndTime() {
         return new DateAndTime(
             self::readField(self::MONTHLY_LOW_DEW_POINT_YEAR),
             self::readField(self::MONTHLY_LOW_DEW_POINT_MONTH),
@@ -736,13 +692,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::MONTHLY_LOW_DEW_POINT_MINUTE));
     }
 
-    public function getYearlyHighOutdoorTemperature()
-    {
+    public function getYearlyHighOutdoorTemperature() {
         return new Temperature(self::readField(self::YEARLY_HIGH_OUTDOOR_TEMPERATURE));
     }
 
-    public function getYearlyHighOutdoorTemperatureDateAndTime()
-    {
+    public function getYearlyHighOutdoorTemperatureDateAndTime() {
         return new DateAndTime(
             self::readField(self::YEARLY_HIGH_OUTDOOR_TEMPERATURE_YEAR),
             self::readField(self::YEARLY_HIGH_OUTDOOR_TEMPERATURE_MONTH),
@@ -751,13 +705,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::YEARLY_HIGH_OUTDOOR_TEMPERATURE_MINUTE));
     }
 
-    public function getYearlyLowOutdoorTemperature()
-    {
+    public function getYearlyLowOutdoorTemperature() {
         return new Temperature(self::readField(self::YEARLY_LOW_OUTDOOR_TEMPERATURE));
     }
 
-    public function getYearlyLowOutdoorTemperatureDateAndTime()
-    {
+    public function getYearlyLowOutdoorTemperatureDateAndTime() {
         return new DateAndTime(
             self::readField(self::YEARLY_LOW_OUTDOOR_TEMPERATURE_YEAR),
             self::readField(self::YEARLY_LOW_OUTDOOR_TEMPERATURE_MONTH),
@@ -766,13 +718,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::YEARLY_LOW_OUTDOOR_TEMPERATURE_MINUTE));
     }
 
-    public function getYearlyMaximumGustSpeed()
-    {
+    public function getYearlyMaximumGustSpeed() {
         return new WindSpeed(self::readField(self::YEARLY_MAXIMUM_GUST_SPEED));
     }
 
-    public function getYearlyMaximumGustSpeedDateAndTime()
-    {
+    public function getYearlyMaximumGustSpeedDateAndTime() {
         return new DateAndTime(
             self::readField(self::YEARLY_MAXIMUM_GUST_SPEED_YEAR),
             self::readField(self::YEARLY_MAXIMUM_GUST_SPEED_MONTH),
@@ -781,13 +731,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::YEARLY_MAXIMUM_GUST_SPEED_MINUTE));
     }
 
-    public function getYearlyMaximumRainfallRate()
-    {
+    public function getYearlyMaximumRainfallRate() {
         return new RainfallRate(self::readField(self::YEARLY_MAXIMUM_RAINFALL_RATE));
     }
 
-    public function getYearlyMaximumRainfallRateDateAndTime()
-    {
+    public function getYearlyMaximumRainfallRateDateAndTime() {
         return new DateAndTime(
             self::readField(self::YEARLY_MAXIMUM_RAINFALL_RATE_YEAR),
             self::readField(self::YEARLY_MAXIMUM_RAINFALL_RATE_MONTH),
@@ -796,13 +744,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::YEARLY_MAXIMUM_RAINFALL_RATE_MINUTE));
     }
 
-    public function getYearlyLowSurfacePressure()
-    {
+    public function getYearlyLowSurfacePressure() {
         return new Pressure(self::readField(self::YEARLY_LOW_SURFACE_PRESSURE));
     }
 
-    public function getYearlyLowSurfacePressureDateAndTime()
-    {
+    public function getYearlyLowSurfacePressureDateAndTime() {
         return new DateAndTime(
             self::readField(self::YEARLY_LOW_SURFACE_PRESSURE_YEAR),
             self::readField(self::YEARLY_LOW_SURFACE_PRESSURE_MONTH),
@@ -811,13 +757,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::YEARLY_LOW_SURFACE_PRESSURE_MINUTE));
     }
 
-    public function getYearlyHighSurfacePressure()
-    {
+    public function getYearlyHighSurfacePressure() {
         return new Pressure(self::readField(self::YEARLY_HIGH_SURFACE_PRESSURE));
     }
 
-    public function getYearlyHighSurfacePressureDateAndTime()
-    {
+    public function getYearlyHighSurfacePressureDateAndTime() {
         return new DateAndTime(
             self::readField(self::YEARLY_HIGH_SURFACE_PRESSURE_YEAR),
             self::readField(self::YEARLY_HIGH_SURFACE_PRESSURE_MONTH),
@@ -826,13 +770,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::YEARLY_HIGH_SURFACE_PRESSURE_MINUTE));
     }
 
-    public function getYearlyHighestDailyRainfall()
-    {
+    public function getYearlyHighestDailyRainfall() {
         return new Rainfall(self::readField(self::YEARLY_HIGHEST_DAILY_RAINFALL));
     }
 
-    public function getYearlyHighestDailyRainfallDateAndTime()
-    {
+    public function getYearlyHighestDailyRainfallDateAndTime() {
         return new DateAndTime(
             self::readField(self::YEARLY_HIGHEST_DAILY_RAINFALL_YEAR),
             self::readField(self::YEARLY_HIGHEST_DAILY_RAINFALL_MONTH),
@@ -841,13 +783,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::YEARLY_HIGHEST_DAILY_RAINFALL_MINUTE));
     }
 
-    public function getYearlyHighestRainfallInAnHour()
-    {
+    public function getYearlyHighestRainfallInAnHour() {
         return new Rainfall(self::readField(self::YEARLY_HIGHEST_RAINFALL_IN_AN_HOUR));
     }
 
-    public function getYearlyHighestRainfallInAnHourDateAndTime()
-    {
+    public function getYearlyHighestRainfallInAnHourDateAndTime() {
         return new DateAndTime(
             self::readField(self::YEARLY_HIGHEST_RAINFALL_IN_AN_HOUR_YEAR),
             self::readField(self::YEARLY_HIGHEST_RAINFALL_IN_AN_HOUR_MONTH),
@@ -856,13 +796,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::YEARLY_HIGHEST_RAINFALL_IN_AN_HOUR_MINUTE));
     }
 
-    public function getYearlyMaximumAverageWindSpeed()
-    {
+    public function getYearlyMaximumAverageWindSpeed() {
         return new WindSpeed(self::readField(self::YEARLY_MAXIMUM_AVERAGE_WIND_SPEED));
     }
 
-    public function getYearlyMaximumAverageWindSpeedDateAndTime()
-    {
+    public function getYearlyMaximumAverageWindSpeedDateAndTime() {
         return new DateAndTime(
             self::readField(self::YEARLY_MAXIMUM_AVERAGE_WIND_SPEED_YEAR),
             self::readField(self::YEARLY_MAXIMUM_AVERAGE_WIND_SPEED_MONTH),
@@ -871,13 +809,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::YEARLY_MAXIMUM_AVERAGE_WIND_SPEED_MINUTE));
     }
 
-    public function getYearlyHighSoilTemperature()
-    {
+    public function getYearlyHighSoilTemperature() {
         return new Temperature(self::readField(self::YEARLY_HIGH_SOIL_TEMPERATURE));
     }
 
-    public function getYearlyHighSoilTemperatureDateAndTime()
-    {
+    public function getYearlyHighSoilTemperatureDateAndTime() {
         return new DateAndTime(
             self::readField(self::YEARLY_HIGH_SOIL_TEMPERATURE_YEAR),
             self::readField(self::YEARLY_HIGH_SOIL_TEMPERATURE_MONTH),
@@ -886,13 +822,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::YEARLY_HIGH_SOIL_TEMPERATURE_MINUTE));
     }
 
-    public function getYearlyLowSoilTemperature()
-    {
+    public function getYearlyLowSoilTemperature() {
         return new Temperature(self::readField(self::YEARLY_LOW_SOIL_TEMPERATURE));
     }
 
-    public function getYearlyLowSoilTemperatureDateAndTime()
-    {
+    public function getYearlyLowSoilTemperatureDateAndTime() {
         return new DateAndTime(
             self::readField(self::YEARLY_LOW_SOIL_TEMPERATURE_YEAR),
             self::readField(self::YEARLY_LOW_SOIL_TEMPERATURE_MONTH),
@@ -901,13 +835,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::YEARLY_LOW_SOIL_TEMPERATURE_MINUTE));
     }
 
-    public function getYearlyLowWindChill()
-    {
+    public function getYearlyLowWindChill() {
         return new Temperature(self::readField(self::YEARLY_LOW_WIND_CHILL));
     }
 
-    public function getYearlyLowWindChillDateAndTime()
-    {
+    public function getYearlyLowWindChillDateAndTime() {
         return new DateAndTime(
             self::readField(self::YEARLY_LOW_WIND_CHILL_YEAR),
             self::readField(self::YEARLY_LOW_WIND_CHILL_MONTH),
@@ -916,23 +848,19 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::YEARLY_LOW_WIND_CHILL_MINUTE));
     }
 
-    public function getYearlyMaximumGustSpeedDirection()
-    {
+    public function getYearlyMaximumGustSpeedDirection() {
         return new WindDirection(self::readField(self::YEARLY_MAXIMUM_GUST_SPEED_DIRECTION));
     }
 
-    public function getYearlyMaximumAverageWindSpeedDirection()
-    {
+    public function getYearlyMaximumAverageWindSpeedDirection() {
         return new WindDirection(self::readField(self::YEARLY_MAXIMUM_AVERAGE_WIND_SPEED_DIRECTION));
     }
 
-    public function getYearlyWarmestDay()
-    {
+    public function getYearlyWarmestDay() {
         return new Temperature(self::readField(self::YEARLY_WARMEST_DAY));
     }
 
-    public function getYearlyWarmestDayDateAndTime()
-    {
+    public function getYearlyWarmestDayDateAndTime() {
         return new DateAndTime(
             self::readField(self::YEARLY_WARMEST_DAY_YEAR),
             self::readField(self::YEARLY_WARMEST_DAY_MONTH),
@@ -941,13 +869,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::YEARLY_WARMEST_DAY_MINUTE));
     }
 
-    public function getYearlyColdestNight()
-    {
+    public function getYearlyColdestNight() {
         return new Temperature(self::readField(self::YEARLY_COLDEST_NIGHT));
     }
 
-    public function getYearlyColdestNightDateAndTime()
-    {
+    public function getYearlyColdestNightDateAndTime() {
         return new DateAndTime(
            self::readField(self::YEARLY_COLDEST_NIGHT_YEAR),
            self::readField(self::YEARLY_COLDEST_NIGHT_MONTH),
@@ -956,13 +882,11 @@ class ClientRawExtra extends BaseClientRaw
            self::readField(self::YEARLY_COLDEST_NIGHT_MINUTE));
     }
 
-    public function getYearlyColdestDay()
-    {
+    public function getYearlyColdestDay() {
         return new Temperature(self::readField(self::YEARLY_COLDEST_DAY));
     }
 
-    public function getYearlyColdestDayDateAndTime()
-    {
+    public function getYearlyColdestDayDateAndTime() {
         return new DateAndTime(
             self::readField(self::YEARLY_COLDEST_DAY_YEAR),
             self::readField(self::YEARLY_COLDEST_DAY_MONTH),
@@ -971,13 +895,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::YEARLY_COLDEST_DAY_MINUTE));
     }
 
-    public function getYearlyWarmestNight()
-    {
+    public function getYearlyWarmestNight() {
         return new Temperature(self::readField(self::YEARLY_WARMEST_NIGHT));
     }
 
-    public function getYearlyWarmestNightDateAndTime()
-    {
+    public function getYearlyWarmestNightDateAndTime() {
         return new DateAndTime(
             self::readField(self::YEARLY_WARMEST_NIGHT_YEAR),
             self::readField(self::YEARLY_WARMEST_NIGHT_MONTH),
@@ -986,13 +908,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::YEARLY_WARMEST_NIGHT_MINUTE));
     }
 
-    public function getYearlyHighHeatIndex()
-    {
+    public function getYearlyHighHeatIndex() {
         return new Temperature(self::readField(self::YEARLY_HIGH_HEAT_INDEX));
     }
 
-    public function getYearlyHighHeatIndexDateAndTime()
-    {
+    public function getYearlyHighHeatIndexDateAndTime() {
         return new DateAndTime(
             self::readField(self::YEARLY_HIGH_HEAT_INDEX_YEAR),
             self::readField(self::YEARLY_HIGH_HEAT_INDEX_MONTH),
@@ -1001,13 +921,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::YEARLY_HIGH_HEAT_INDEX_MINUTE));
     }
 
-    public function getYearlyHighSolarIrradiance()
-    {
+    public function getYearlyHighSolarIrradiance() {
         return new Irradiance(self::readField(self::YEARLY_HIGH_SOLAR_IRRADIANCE));
     }
 
-    public function getYearlyHighSolarIrradianceDateAndTime()
-    {
+    public function getYearlyHighSolarIrradianceDateAndTime() {
         return new DateAndTime(
             self::readField(self::YEARLY_HIGH_SOLAR_IRRADIANCE_YEAR),
             self::readField(self::YEARLY_HIGH_SOLAR_IRRADIANCE_MONTH),
@@ -1016,13 +934,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::YEARLY_HIGH_SOLAR_IRRADIANCE_MINUTE));
     }
 
-    public function getYearlyHighUv()
-    {
+    public function getYearlyHighUv() {
         return new Uv(self::readField(self::YEARLY_HIGH_UV));
     }
 
-    public function getYearlyHighUvDateAndTime()
-    {
+    public function getYearlyHighUvDateAndTime() {
         return new DateAndTime(
             self::readField(self::YEARLY_HIGH_UV_YEAR),
             self::readField(self::YEARLY_HIGH_UV_MONTH),
@@ -1031,13 +947,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::YEARLY_HIGH_UV_MINUTE));
     }
 
-    public function getYearlyHighDewPoint()
-    {
+    public function getYearlyHighDewPoint() {
         return new Temperature(self::readField(self::YEARLY_HIGH_DEW_POINT));
     }
 
-    public function getYearlyHighDewPointDateAndTime()
-    {
+    public function getYearlyHighDewPointDateAndTime() {
         return new DateAndTime(
             self::readField(self::YEARLY_HIGH_DEW_POINT_YEAR),
             self::readField(self::YEARLY_HIGH_DEW_POINT_MONTH),
@@ -1046,13 +960,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::YEARLY_HIGH_DEW_POINT_MINUTE));
     }
 
-    public function getYearlyLowDewPoint()
-    {
+    public function getYearlyLowDewPoint() {
         return new Temperature(self::readField(self::YEARLY_LOW_DEW_POINT));
     }
 
-    public function getYearlyLowDewPointDateAndTime()
-    {
+    public function getYearlyLowDewPointDateAndTime() {
         return new DateAndTime(
             self::readField(self::YEARLY_LOW_DEW_POINT_YEAR),
             self::readField(self::YEARLY_LOW_DEW_POINT_MONTH),
@@ -1061,13 +973,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::YEARLY_LOW_DEW_POINT_MINUTE));
     }
 
-    public function getAllTimeHighOutdoorTemperature()
-    {
+    public function getAllTimeHighOutdoorTemperature() {
         return new Temperature(self::readField(self::ALL_TIME_HIGH_OUTDOOR_TEMPERATURE));
     }
 
-    public function getAllTimeHighOutdoorTemperatureDateAndTime()
-    {
+    public function getAllTimeHighOutdoorTemperatureDateAndTime() {
         return new DateAndTime(
             self::readField(self::ALL_TIME_HIGH_OUTDOOR_TEMPERATURE_YEAR),
             self::readField(self::ALL_TIME_HIGH_OUTDOOR_TEMPERATURE_MONTH),
@@ -1076,13 +986,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::ALL_TIME_HIGH_OUTDOOR_TEMPERATURE_MINUTE));
     }
 
-    public function getAllTimeLowOutdoorTemperature()
-    {
+    public function getAllTimeLowOutdoorTemperature() {
         return new Temperature(self::readField(self::ALL_TIME_LOW_OUTDOOR_TEMPERATURE));
     }
 
-    public function getAllTimeLowOutdoorTemperatureDateAndTime()
-    {
+    public function getAllTimeLowOutdoorTemperatureDateAndTime() {
         return new DateAndTime(
             self::readField(self::ALL_TIME_LOW_OUTDOOR_TEMPERATURE_YEAR),
             self::readField(self::ALL_TIME_LOW_OUTDOOR_TEMPERATURE_MONTH),
@@ -1091,13 +999,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::ALL_TIME_LOW_OUTDOOR_TEMPERATURE_MINUTE));
     }
 
-    public function getAllTimeMaximumGustSpeed()
-    {
+    public function getAllTimeMaximumGustSpeed() {
         return new WindSpeed(self::readField(self::ALL_TIME_MAXIMUM_GUST_SPEED));
     }
 
-    public function getAllTimeMaximumGustSpeedDateAndTime()
-    {
+    public function getAllTimeMaximumGustSpeedDateAndTime() {
         return new DateAndTime(
             self::readField(self::ALL_TIME_MAXIMUM_GUST_SPEED_YEAR),
             self::readField(self::ALL_TIME_MAXIMUM_GUST_SPEED_MONTH),
@@ -1106,13 +1012,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::ALL_TIME_MAXIMUM_GUST_SPEED_MINUTE));
     }
 
-    public function getAllTimeMaximumRainfallRate()
-    {
+    public function getAllTimeMaximumRainfallRate() {
         return new RainfallRate(self::readField(self::ALL_TIME_MAXIMUM_RAINFALL_RATE));
     }
 
-    public function getAllTimeMaximumRainfallRateDateAndTime()
-    {
+    public function getAllTimeMaximumRainfallRateDateAndTime() {
         return new DateAndTime(
             self::readField(self::ALL_TIME_MAXIMUM_RAINFALL_RATE_YEAR),
             self::readField(self::ALL_TIME_MAXIMUM_RAINFALL_RATE_MONTH),
@@ -1121,13 +1025,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::ALL_TIME_MAXIMUM_RAINFALL_RATE_MINUTE));
     }
 
-    public function getAllTimeLowSurfacePressure()
-    {
+    public function getAllTimeLowSurfacePressure() {
         return new Pressure(self::readField(self::ALL_TIME_LOW_SURFACE_PRESSURE));
     }
 
-    public function getAllTimeLowSurfacePressureDateAndTime()
-    {
+    public function getAllTimeLowSurfacePressureDateAndTime() {
         return new DateAndTime(
             self::readField(self::ALL_TIME_LOW_SURFACE_PRESSURE_YEAR),
             self::readField(self::ALL_TIME_LOW_SURFACE_PRESSURE_MONTH),
@@ -1136,13 +1038,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::ALL_TIME_LOW_SURFACE_PRESSURE_MINUTE));
     }
 
-    public function getAllTimeHighSurfacePressure()
-    {
+    public function getAllTimeHighSurfacePressure() {
         return new Pressure(self::readField(self::ALL_TIME_HIGH_SURFACE_PRESSURE));
     }
 
-    public function getAllTimeHighSurfacePressureDateAndTime()
-    {
+    public function getAllTimeHighSurfacePressureDateAndTime() {
         return new DateAndTime(
             self::readField(self::ALL_TIME_HIGH_SURFACE_PRESSURE_YEAR),
             self::readField(self::ALL_TIME_HIGH_SURFACE_PRESSURE_MONTH),
@@ -1151,13 +1051,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::ALL_TIME_HIGH_SURFACE_PRESSURE_MINUTE));
     }
 
-    public function getAllTimeHighestDailyRainfall()
-    {
+    public function getAllTimeHighestDailyRainfall() {
         return new Rainfall(self::readField(self::ALL_TIME_HIGHEST_DAILY_RAINFALL));
     }
 
-    public function getAllTimeHighestDailyRainfallDateAndTime()
-    {
+    public function getAllTimeHighestDailyRainfallDateAndTime() {
         return new DateAndTime(
             self::readField(self::ALL_TIME_HIGHEST_DAILY_RAINFALL_YEAR),
             self::readField(self::ALL_TIME_HIGHEST_DAILY_RAINFALL_MONTH),
@@ -1166,13 +1064,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::ALL_TIME_HIGHEST_DAILY_RAINFALL_MINUTE));
     }
 
-    public function getAllTimeHighestRainfallInAnHour()
-    {
+    public function getAllTimeHighestRainfallInAnHour() {
         return new Rainfall(self::readField(self::ALL_TIME_HIGHEST_RAINFALL_IN_AN_HOUR));
     }
 
-    public function getAllTimeHighestRainfallInAnHourDateAndTime()
-    {
+    public function getAllTimeHighestRainfallInAnHourDateAndTime() {
         return new DateAndTime(
             self::readField(self::ALL_TIME_HIGHEST_RAINFALL_IN_AN_HOUR_YEAR),
             self::readField(self::ALL_TIME_HIGHEST_RAINFALL_IN_AN_HOUR_MONTH),
@@ -1181,13 +1077,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::ALL_TIME_HIGHEST_RAINFALL_IN_AN_HOUR_MINUTE));
     }
 
-    public function getAllTimeMaximumAverageWindSpeed()
-    {
+    public function getAllTimeMaximumAverageWindSpeed() {
         return new WindSpeed(self::readField(self::ALL_TIME_MAXIMUM_AVERAGE_WIND_SPEED));
     }
 
-    public function getAllTimeMaximumAverageWindSpeedDateAndTime()
-    {
+    public function getAllTimeMaximumAverageWindSpeedDateAndTime() {
         return new DateAndTime(
             self::readField(self::ALL_TIME_MAXIMUM_AVERAGE_WIND_SPEED_YEAR),
             self::readField(self::ALL_TIME_MAXIMUM_AVERAGE_WIND_SPEED_MONTH),
@@ -1196,13 +1090,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::ALL_TIME_MAXIMUM_AVERAGE_WIND_SPEED_MINUTE));
     }
 
-    public function getAllTimeHighSoilTemperature()
-    {
+    public function getAllTimeHighSoilTemperature() {
         return new Temperature(self::readField(self::ALL_TIME_HIGH_SOIL_TEMPERATURE));
     }
 
-    public function getAllTimeHighSoilTemperatureDateAndTime()
-    {
+    public function getAllTimeHighSoilTemperatureDateAndTime() {
         return new DateAndTime(
             self::readField(self::ALL_TIME_HIGH_SOIL_TEMPERATURE_YEAR),
             self::readField(self::ALL_TIME_HIGH_SOIL_TEMPERATURE_MONTH),
@@ -1211,13 +1103,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::ALL_TIME_HIGH_SOIL_TEMPERATURE_MINUTE));
     }
 
-    public function getAllTimeLowSoilTemperature()
-    {
+    public function getAllTimeLowSoilTemperature() {
         return new Temperature(self::readField(self::ALL_TIME_LOW_SOIL_TEMPERATURE));
     }
 
-    public function getAllTimeLowSoilTemperatureDateAndTime()
-    {
+    public function getAllTimeLowSoilTemperatureDateAndTime() {
         return new DateAndTime(
             self::readField(self::ALL_TIME_LOW_SOIL_TEMPERATURE_YEAR),
             self::readField(self::ALL_TIME_LOW_SOIL_TEMPERATURE_MONTH),
@@ -1226,13 +1116,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::ALL_TIME_LOW_SOIL_TEMPERATURE_MINUTE));
     }
 
-    public function getAllTimeLowWindChill()
-    {
+    public function getAllTimeLowWindChill() {
         return new Temperature(self::readField(self::ALL_TIME_LOW_WIND_CHILL));
     }
 
-    public function getAllTimeLowWindChillDateAndTime()
-    {
+    public function getAllTimeLowWindChillDateAndTime() {
         return new DateAndTime(
             self::readField(self::ALL_TIME_LOW_WIND_CHILL_YEAR),
             self::readField(self::ALL_TIME_LOW_WIND_CHILL_MONTH),
@@ -1241,23 +1129,19 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::ALL_TIME_LOW_WIND_CHILL_MINUTE));
     }
 
-    public function getAllTimeMaximumGustSpeedDirection()
-    {
+    public function getAllTimeMaximumGustSpeedDirection() {
         return new WindDirection(self::readField(self::ALL_TIME_MAXIMUM_GUST_SPEED_DIRECTION));
     }
 
-    public function getAllTimeMaximumAverageWindSpeedDirection()
-    {
+    public function getAllTimeMaximumAverageWindSpeedDirection() {
         return new WindDirection(self::readField(self::ALL_TIME_MAXIMUM_AVERAGE_WIND_SPEED_DIRECTION));
     }
 
-    public function getAllTimeWarmestDay()
-    {
+    public function getAllTimeWarmestDay() {
         return new Temperature(self::readField(self::ALL_TIME_WARMEST_DAY));
     }
 
-    public function getAllTimeWarmestDayDateAndTime()
-    {
+    public function getAllTimeWarmestDayDateAndTime() {
         return new DateAndTime(
             self::readField(self::ALL_TIME_WARMEST_DAY_YEAR),
             self::readField(self::ALL_TIME_WARMEST_DAY_MONTH),
@@ -1266,13 +1150,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::ALL_TIME_WARMEST_DAY_MINUTE));
     }
 
-    public function getAllTimeColdestNight()
-    {
+    public function getAllTimeColdestNight() {
         return new Temperature(self::readField(self::ALL_TIME_COLDEST_NIGHT));
     }
 
-    public function getAllTimeColdestNightDateAndTime()
-    {
+    public function getAllTimeColdestNightDateAndTime() {
         return new DateAndTime(
            self::readField(self::ALL_TIME_COLDEST_NIGHT_YEAR),
            self::readField(self::ALL_TIME_COLDEST_NIGHT_MONTH),
@@ -1281,13 +1163,11 @@ class ClientRawExtra extends BaseClientRaw
            self::readField(self::ALL_TIME_COLDEST_NIGHT_MINUTE));
     }
 
-    public function getAllTimeColdestDay()
-    {
+    public function getAllTimeColdestDay() {
         return new Temperature(self::readField(self::ALL_TIME_COLDEST_DAY));
     }
 
-    public function getAllTimeColdestDayDateAndTime()
-    {
+    public function getAllTimeColdestDayDateAndTime() {
         return new DateAndTime(
             self::readField(self::ALL_TIME_COLDEST_DAY_YEAR),
             self::readField(self::ALL_TIME_COLDEST_DAY_MONTH),
@@ -1296,13 +1176,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::ALL_TIME_COLDEST_DAY_MINUTE));
     }
 
-    public function getAllTimeWarmestNight()
-    {
+    public function getAllTimeWarmestNight() {
         return new Temperature(self::readField(self::ALL_TIME_WARMEST_NIGHT));
     }
 
-    public function getAllTimeWarmestNightDateAndTime()
-    {
+    public function getAllTimeWarmestNightDateAndTime() {
         return new DateAndTime(
             self::readField(self::ALL_TIME_WARMEST_NIGHT_YEAR),
             self::readField(self::ALL_TIME_WARMEST_NIGHT_MONTH),
@@ -1311,13 +1189,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::ALL_TIME_WARMEST_NIGHT_MINUTE));
     }
 
-    public function getAllTimeHighHeatIndex()
-    {
+    public function getAllTimeHighHeatIndex() {
         return new Temperature(self::readField(self::ALL_TIME_HIGH_HEAT_INDEX));
     }
 
-    public function getAllTimeHighHeatIndexDateAndTime()
-    {
+    public function getAllTimeHighHeatIndexDateAndTime() {
         return new DateAndTime(
             self::readField(self::ALL_TIME_HIGH_HEAT_INDEX_YEAR),
             self::readField(self::ALL_TIME_HIGH_HEAT_INDEX_MONTH),
@@ -1326,13 +1202,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::ALL_TIME_HIGH_HEAT_INDEX_MINUTE));
     }
 
-    public function getAllTimeHighSolarIrradiance()
-    {
+    public function getAllTimeHighSolarIrradiance() {
         return new Irradiance(self::readField(self::ALL_TIME_HIGH_SOLAR_IRRADIANCE));
     }
 
-    public function getAllTimeHighSolarIrradianceDateAndTime()
-    {
+    public function getAllTimeHighSolarIrradianceDateAndTime() {
         return new DateAndTime(
             self::readField(self::ALL_TIME_HIGH_SOLAR_IRRADIANCE_YEAR),
             self::readField(self::ALL_TIME_HIGH_SOLAR_IRRADIANCE_MONTH),
@@ -1341,13 +1215,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::ALL_TIME_HIGH_SOLAR_IRRADIANCE_MINUTE));
     }
 
-    public function getAllTimeHighUv()
-    {
+    public function getAllTimeHighUv() {
         return new Uv(self::readField(self::ALL_TIME_HIGH_UV));
     }
 
-    public function getAllTimeHighUvDateAndTime()
-    {
+    public function getAllTimeHighUvDateAndTime() {
         return new DateAndTime(
             self::readField(self::ALL_TIME_HIGH_UV_YEAR),
             self::readField(self::ALL_TIME_HIGH_UV_MONTH),
@@ -1356,13 +1228,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::ALL_TIME_HIGH_UV_MINUTE));
     }
 
-    public function getAllTimeHighDewPoint()
-    {
+    public function getAllTimeHighDewPoint() {
         return new Temperature(self::readField(self::ALL_TIME_HIGH_DEW_POINT));
     }
 
-    public function getAllTimeHighDewPointDateAndTime()
-    {
+    public function getAllTimeHighDewPointDateAndTime() {
         return new DateAndTime(
             self::readField(self::ALL_TIME_HIGH_DEW_POINT_YEAR),
             self::readField(self::ALL_TIME_HIGH_DEW_POINT_MONTH),
@@ -1371,13 +1241,11 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::ALL_TIME_HIGH_DEW_POINT_MINUTE));
     }
 
-    public function getAllTimeLowDewPoint()
-    {
+    public function getAllTimeLowDewPoint() {
         return new Temperature(self::readField(self::ALL_TIME_LOW_DEW_POINT));
     }
 
-    public function getAllTimeLowDewPointDateAndTime()
-    {
+    public function getAllTimeLowDewPointDateAndTime() {
         return new DateAndTime(
             self::readField(self::ALL_TIME_LOW_DEW_POINT_YEAR),
             self::readField(self::ALL_TIME_LOW_DEW_POINT_MONTH),
@@ -1386,84 +1254,64 @@ class ClientRawExtra extends BaseClientRaw
             self::readField(self::ALL_TIME_LOW_DEW_POINT_MINUTE));
     }
 
-    public function getDavisForecast()
-    {
+    public function getDavisForecast() {
         $davisForecast = self::readField(self::DAVIS_FORECAST);
 
-        if ($davisForecast == '-')
-        {
+        if ($davisForecast == '-') {
             $davisForecast = null;
-        }
-        else
-        {
+        } else {
             $davisForecast = str_replace('_', ' ', $davisForecast); // Unescape '_' that represent spaces
         }
 
         return $davisForecast;
     }
 
-    public function getSunriseTime()
-    {
+    public function getSunriseTime() {
         return new Time(self::readField(self::SUNRISE_TIME));
     }
 
-    public function getSunsetTime()
-    {
+    public function getSunsetTime() {
         return new Time(self::readField(self::SUNSET_TIME));
     }
 
-    public function getMoonriseTime()
-    {
+    public function getMoonriseTime() {
         return new Time(self::readField(self::MOONRISE_TIME));
     }
 
-    public function getMoonsetTime()
-    {
+    public function getMoonsetTime() {
         return new Time(self::readField(self::MOONSET_TIME));
     }
 
-    public function getMoonPhase()
-    {
+    public function getMoonPhase() {
         $moonPhase = self::readField(self::MOON_PHASE);
 
-        if ($moonPhase == '-')
-        {
+        if ($moonPhase == '-') {
             $moonPhase = null;
-        }
-        else
-        {
+        } else {
             $moonPhase = number_format($moonPhase, 1, '.', '');
         }
 
         return $moonPhase;
     }
 
-    public function getMoonAge()
-    {
+    public function getMoonAge() {
         $moonAge = self::readField(self::MOON_AGE);
 
-        if ($moonAge == '-')
-        {
+        if ($moonAge == '-') {
             $moonAge = null;
-        }
-        else
-        {
+        } else {
             $moonAge = number_format($moonAge, 0, '.', '');
         }
 
         return $moonAge;
     }
 
-    public function getSunshineHours()
-    {
+    public function getSunshineHours() {
         $sunshineHours = self::readField(self::SUNSHINE_HOURS);
 
-        if ($sunshineHours == '-')
-        {
+        if ($sunshineHours == '-') {
             $sunshineHours = null;
-        }
-        else
-        {
+        } else {
             $sunshineHours = number_format($sunshineHours, 1, '.', '');
         }
 

@@ -11,42 +11,35 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
 
     private static $generator;
 
-    public static function setUpBeforeClass()
-    {
+    public static function setUpBeforeClass() {
         self::$generator = new ClientRawFileGenerator(self::CLIENT_RAW_EXTRA_PATH);
     }
 
-    protected function tearDown()
-    {
+    protected function tearDown() {
         self::$generator->delete();
     }
 
-    private function createEmptyClientRawExtra()
-    {
+    private function createEmptyClientRawExtra() {
         self::$generator->generateEmpty();
         return new ClientRawExtra(self::CLIENT_RAW_EXTRA_PATH);
     }
 
-    private function createClientRawExtraWithField($field)
-    {
+    private function createClientRawExtraWithField($field) {
         self::$generator->generateWithField($field);
         return new ClientRawExtra(self::CLIENT_RAW_EXTRA_PATH);
     }
 
-    private function createClientRawExtraWithFields($fields)
-    {
+    private function createClientRawExtraWithFields($fields) {
         self::$generator->generateWithFields($fields);
         return new ClientRawExtra(self::CLIENT_RAW_EXTRA_PATH);
     }
 
-    public function test_get_monthly_high_outdoor_temperature()
-    {
+    public function test_get_monthly_high_outdoor_temperature() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MONTHLY_HIGH_OUTDOOR_TEMPERATURE, "25.2"));
         $this->assertSame("25.2", $testee->getMonthlyHighOutdoorTemperature()->getCelsius());
     }
 
-    public function test_get_monthly_high_outdoor_temperature_date_and_time()
-    {
+    public function test_get_monthly_high_outdoor_temperature_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::MONTHLY_HIGH_OUTDOOR_TEMPERATURE_YEAR, "2015"),
@@ -64,14 +57,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_monthly_low_outdoor_temperature()
-    {
+    public function test_get_monthly_low_outdoor_temperature() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MONTHLY_LOW_OUTDOOR_TEMPERATURE, "-5.1"));
         $this->assertSame("-5.1", $testee->getMonthlyLowOutdoorTemperature()->getCelsius());
     }
 
-    public function test_get_monthly_low_outdoor_temperature_date_and_time()
-    {
+    public function test_get_monthly_low_outdoor_temperature_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::MONTHLY_LOW_OUTDOOR_TEMPERATURE_YEAR, "2015"),
@@ -89,14 +80,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_monthly_maximum_gust_speed()
-    {
+    public function test_get_monthly_maximum_gust_speed() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MONTHLY_MAXIMUM_GUST_SPEED, "30.7"));
         $this->assertSame("30.7", $testee->getMonthlyMaximumGustSpeed()->getKnots());
     }
 
-    public function test_get_monthly_maximum_gust_speed_date_and_time()
-    {
+    public function test_get_monthly_maximum_gust_speed_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::MONTHLY_MAXIMUM_GUST_SPEED_YEAR, "2015"),
@@ -114,14 +103,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_monthly_maximum_rainfall_rate()
-    {
+    public function test_get_monthly_maximum_rainfall_rate() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MONTHLY_MAXIMUM_RAINFALL_RATE, "2.06"));
         $this->assertSame("2.06", $testee->getMonthlyMaximumRainfallRate()->getMillimetresPerMinute());
     }
 
-    public function test_get_monthly_maximum_rainfall_rate_date_and_time()
-    {
+    public function test_get_monthly_maximum_rainfall_rate_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::MONTHLY_MAXIMUM_RAINFALL_RATE_YEAR, "2015"),
@@ -139,14 +126,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_monthly_low_surface_pressure()
-    {
+    public function test_get_monthly_low_surface_pressure() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MONTHLY_LOW_SURFACE_PRESSURE, "1001.5"));
         $this->assertSame("1001.5", $testee->getMonthlyLowSurfacePressure()->getHectopascals());
     }
 
-    public function test_get_monthly_low_surface_pressure_date_and_time()
-    {
+    public function test_get_monthly_low_surface_pressure_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::MONTHLY_LOW_SURFACE_PRESSURE_YEAR, "2015"),
@@ -164,14 +149,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_monthly_high_surface_pressure()
-    {
+    public function test_get_monthly_high_surface_pressure() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MONTHLY_HIGH_SURFACE_PRESSURE, "1017.6"));
         $this->assertSame("1017.6", $testee->getMonthlyHighSurfacePressure()->getHectopascals());
     }
 
-    public function test_get_monthly_high_surface_pressure_date_and_time()
-    {
+    public function test_get_monthly_high_surface_pressure_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::MONTHLY_HIGH_SURFACE_PRESSURE_YEAR, "2015"),
@@ -189,14 +172,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_monthly_highest_daily_rainfall()
-    {
+    public function test_get_monthly_highest_daily_rainfall() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MONTHLY_HIGHEST_DAILY_RAINFALL, "10.56"));
         $this->assertSame("10.56", $testee->getMonthlyHighestDailyRainfall()->getMillimetres());
     }
 
-    public function test_get_monthly_highest_daily_rainfall_date_and_time()
-    {
+    public function test_get_monthly_highest_daily_rainfall_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::MONTHLY_HIGHEST_DAILY_RAINFALL_YEAR, "2015"),
@@ -214,14 +195,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_monthly_highest_rainfall_in_an_hour()
-    {
+    public function test_get_monthly_highest_rainfall_in_an_hour() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MONTHLY_HIGHEST_RAINFALL_IN_AN_HOUR, "3.41"));
         $this->assertSame("3.41", $testee->getMonthlyHighestRainfallInAnHour()->getMillimetres());
     }
 
-    public function test_get_monthly_highest_rainfall_in_an_hour_date_and_time()
-    {
+    public function test_get_monthly_highest_rainfall_in_an_hour_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::MONTHLY_HIGHEST_RAINFALL_IN_AN_HOUR_YEAR, "2015"),
@@ -239,14 +218,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_monthly_maximum_average_wind_speed()
-    {
+    public function test_get_monthly_maximum_average_wind_speed() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED, "26.4"));
         $this->assertSame("26.4", $testee->getMonthlyMaximumAverageWindSpeed()->getKnots());
     }
 
-    public function test_get_monthly_maximum_average_wind_speed_date_and_time()
-    {
+    public function test_get_monthly_maximum_average_wind_speed_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED_YEAR, "2015"),
@@ -264,14 +241,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_monthly_high_soil_temperature()
-    {
+    public function test_get_monthly_high_soil_temperature() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MONTHLY_HIGH_SOIL_TEMPERATURE, "17.9"));
         $this->assertSame("17.9", $testee->getMonthlyHighSoilTemperature()->getCelsius());
     }
 
-    public function test_get_monthly_high_soil_temperature_date_and_time()
-    {
+    public function test_get_monthly_high_soil_temperature_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::MONTHLY_HIGH_SOIL_TEMPERATURE_YEAR, "2015"),
@@ -289,14 +264,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_monthly_low_soil_temperature()
-    {
+    public function test_get_monthly_low_soil_temperature() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MONTHLY_LOW_SOIL_TEMPERATURE, "-7.2"));
         $this->assertSame("-7.2", $testee->getMonthlyLowSoilTemperature()->getCelsius());
     }
 
-    public function test_get_monthly_low_soil_temperature_date_and_time()
-    {
+    public function test_get_monthly_low_soil_temperature_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::MONTHLY_LOW_SOIL_TEMPERATURE_YEAR, "2015"),
@@ -314,14 +287,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_monthly_low_wind_chill()
-    {
+    public function test_get_monthly_low_wind_chill() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MONTHLY_LOW_WIND_CHILL, "-17.9"));
         $this->assertSame("-17.9", $testee->getMonthlyLowWindChill()->getCelsius());
     }
 
-    public function test_get_monthly_low_wind_chill_date_and_time()
-    {
+    public function test_get_monthly_low_wind_chill_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::MONTHLY_LOW_WIND_CHILL_YEAR, "2015"),
@@ -339,26 +310,22 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_monthly_maximum_gust_speed_direction()
-    {
+    public function test_get_monthly_maximum_gust_speed_direction() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MONTHLY_MAXIMUM_GUST_SPEED_DIRECTION, "90"));
         $this->assertSame("90", $testee->getMonthlyMaximumGustSpeedDirection()->getCompassDegrees());
     }
 
-    public function test_get_monthly_maximum_average_wind_speed_direction()
-    {
+    public function test_get_monthly_maximum_average_wind_speed_direction() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MONTHLY_MAXIMUM_AVERAGE_WIND_SPEED_DIRECTION, "180"));
         $this->assertSame("180", $testee->getMonthlyMaximumAverageWindSpeedDirection()->getCompassDegrees());
     }
 
-    public function test_get_monthly_warmest_day()
-    {
+    public function test_get_monthly_warmest_day() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MONTHLY_WARMEST_DAY, "25.2"));
         $this->assertSame("25.2", $testee->getMonthlyWarmestDay()->getCelsius());
     }
 
-    public function test_get_monthly_warmest_day_date_and_time()
-    {
+    public function test_get_monthly_warmest_day_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::MONTHLY_WARMEST_DAY_YEAR, "2015"),
@@ -376,14 +343,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_monthly_coldest_night()
-    {
+    public function test_get_monthly_coldest_night() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MONTHLY_COLDEST_NIGHT, "5.1"));
         $this->assertSame("5.1", $testee->getMonthlyColdestNight()->getCelsius());
     }
 
-    public function test_get_monthly_coldest_night_date_and_time()
-    {
+    public function test_get_monthly_coldest_night_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::MONTHLY_COLDEST_NIGHT_YEAR, "2015"),
@@ -401,14 +366,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_monthly_coldest_day()
-    {
+    public function test_get_monthly_coldest_day() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MONTHLY_COLDEST_DAY, "1.3"));
         $this->assertSame("1.3", $testee->getMonthlyColdestDay()->getCelsius());
     }
 
-    public function test_get_monthly_coldest_day_date_and_time()
-    {
+    public function test_get_monthly_coldest_day_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::MONTHLY_COLDEST_DAY_YEAR, "2015"),
@@ -426,14 +389,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_monthly_warmest_night()
-    {
+    public function test_get_monthly_warmest_night() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MONTHLY_WARMEST_NIGHT, "25.3"));
         $this->assertSame("25.3", $testee->getMonthlyWarmestNight()->getCelsius());
     }
 
-    public function test_get_monthly_warmest_night_date_and_time()
-    {
+    public function test_get_monthly_warmest_night_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::MONTHLY_WARMEST_NIGHT_YEAR, "2015"),
@@ -451,14 +412,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_monthly_high_heat_index()
-    {
+    public function test_get_monthly_high_heat_index() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MONTHLY_HIGH_HEAT_INDEX, "35.7"));
         $this->assertSame("35.7", $testee->getMonthlyHighHeatIndex()->getCelsius());
     }
 
-    public function test_get_monthly_high_heat_index_date_and_time()
-    {
+    public function test_get_monthly_high_heat_index_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::MONTHLY_HIGH_HEAT_INDEX_YEAR, "2015"),
@@ -476,14 +435,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_monthly_high_solar_irradiance()
-    {
+    public function test_get_monthly_high_solar_irradiance() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MONTHLY_HIGH_SOLAR_IRRADIANCE, "817"));
         $this->assertSame("817", $testee->getMonthlyHighSolarIrradiance()->getWattsPerSquareMetre());
     }
 
-    public function test_get_monthly_high_solar_irradiance_date_and_time()
-    {
+    public function test_get_monthly_high_solar_irradiance_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::MONTHLY_HIGH_SOLAR_IRRADIANCE_YEAR, "2015"),
@@ -501,14 +458,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_monthly_high_uv()
-    {
+    public function test_get_monthly_high_uv() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MONTHLY_HIGH_UV, "9.4"));
         $this->assertSame("9.4", $testee->getMonthlyHighUv()->getUvi());
     }
 
-    public function test_get_monthly_high_uv_date_and_time()
-    {
+    public function test_get_monthly_high_uv_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::MONTHLY_HIGH_UV_YEAR, "2015"),
@@ -526,14 +481,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_monthly_high_dew_point()
-    {
+    public function test_get_monthly_high_dew_point() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MONTHLY_HIGH_DEW_POINT, "22.1"));
         $this->assertSame("22.1", $testee->getMonthlyHighDewPoint()->getCelsius());
     }
 
-    public function test_get_monthly_high_dew_point_date_and_time()
-    {
+    public function test_get_monthly_high_dew_point_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::MONTHLY_HIGH_DEW_POINT_YEAR, "2015"),
@@ -551,14 +504,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_monthly_low_dew_point()
-    {
+    public function test_get_monthly_low_dew_point() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MONTHLY_LOW_DEW_POINT, "1.3"));
         $this->assertSame("1.3", $testee->getMonthlyLowDewPoint()->getCelsius());
     }
 
-    public function test_get_monthly_low_dew_point_date_and_time()
-    {
+    public function test_get_monthly_low_dew_point_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::MONTHLY_LOW_DEW_POINT_YEAR, "2015"),
@@ -576,8 +527,7 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_when_monthly_fields_are_missing()
-    {
+    public function test_when_monthly_fields_are_missing() {
         $testee = self::createEmptyClientRawExtra();
 
         $this->assertNull($testee->getMonthlyHighOutdoorTemperature()->getCelsius());
@@ -732,14 +682,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertNull($testee->getMonthlyLowDewPointDateAndTime()->getMinute());
     }
 
-    public function test_get_yearly_high_outdoor_temperature()
-    {
+    public function test_get_yearly_high_outdoor_temperature() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::YEARLY_HIGH_OUTDOOR_TEMPERATURE, "25.2"));
         $this->assertSame("25.2", $testee->getYearlyHighOutdoorTemperature()->getCelsius());
     }
 
-    public function test_get_yearly_high_outdoor_temperature_date_and_time()
-    {
+    public function test_get_yearly_high_outdoor_temperature_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::YEARLY_HIGH_OUTDOOR_TEMPERATURE_YEAR, "2015"),
@@ -757,14 +705,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_yearly_low_outdoor_temperature()
-    {
+    public function test_get_yearly_low_outdoor_temperature() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::YEARLY_LOW_OUTDOOR_TEMPERATURE, "-5.1"));
         $this->assertSame("-5.1", $testee->getYearlyLowOutdoorTemperature()->getCelsius());
     }
 
-    public function test_get_yearly_low_outdoor_temperature_date_and_time()
-    {
+    public function test_get_yearly_low_outdoor_temperature_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::YEARLY_LOW_OUTDOOR_TEMPERATURE_YEAR, "2015"),
@@ -782,14 +728,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_yearly_maximum_gust_speed()
-    {
+    public function test_get_yearly_maximum_gust_speed() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::YEARLY_MAXIMUM_GUST_SPEED, "30.7"));
         $this->assertSame("30.7", $testee->getYearlyMaximumGustSpeed()->getKnots());
     }
 
-    public function test_get_yearly_maximum_gust_speed_date_and_time()
-    {
+    public function test_get_yearly_maximum_gust_speed_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::YEARLY_MAXIMUM_GUST_SPEED_YEAR, "2015"),
@@ -807,14 +751,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_yearly_maximum_rainfall_rate()
-    {
+    public function test_get_yearly_maximum_rainfall_rate() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::YEARLY_MAXIMUM_RAINFALL_RATE, "2.06"));
         $this->assertSame("2.06", $testee->getYearlyMaximumRainfallRate()->getMillimetresPerMinute());
     }
 
-    public function test_get_yearly_maximum_rainfall_rate_date_and_time()
-    {
+    public function test_get_yearly_maximum_rainfall_rate_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::YEARLY_MAXIMUM_RAINFALL_RATE_YEAR, "2015"),
@@ -832,14 +774,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_yearly_low_surface_pressure()
-    {
+    public function test_get_yearly_low_surface_pressure() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::YEARLY_LOW_SURFACE_PRESSURE, "1001.5"));
         $this->assertSame("1001.5", $testee->getYearlyLowSurfacePressure()->getHectopascals());
     }
 
-    public function test_get_yearly_low_surface_pressure_date_and_time()
-    {
+    public function test_get_yearly_low_surface_pressure_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::YEARLY_LOW_SURFACE_PRESSURE_YEAR, "2015"),
@@ -857,14 +797,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_yearly_high_surface_pressure()
-    {
+    public function test_get_yearly_high_surface_pressure() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::YEARLY_HIGH_SURFACE_PRESSURE, "1017.6"));
         $this->assertSame("1017.6", $testee->getYearlyHighSurfacePressure()->getHectopascals());
     }
 
-    public function test_get_yearly_high_surface_pressure_date_and_time()
-    {
+    public function test_get_yearly_high_surface_pressure_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::YEARLY_HIGH_SURFACE_PRESSURE_YEAR, "2015"),
@@ -882,14 +820,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_yearly_highest_daily_rainfall()
-    {
+    public function test_get_yearly_highest_daily_rainfall() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::YEARLY_HIGHEST_DAILY_RAINFALL, "22.12"));
         $this->assertSame("22.12", $testee->getYearlyHighestDailyRainfall()->getMillimetres());
     }
 
-    public function test_get_yearly_highest_daily_rainfall_date_and_time()
-    {
+    public function test_get_yearly_highest_daily_rainfall_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::YEARLY_HIGHEST_DAILY_RAINFALL_YEAR, "2015"),
@@ -907,14 +843,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_yearly_highest_rainfall_in_an_hour()
-    {
+    public function test_get_yearly_highest_rainfall_in_an_hour() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::YEARLY_HIGHEST_RAINFALL_IN_AN_HOUR, "8.97"));
         $this->assertSame("8.97", $testee->getYearlyHighestRainfallInAnHour()->getMillimetres());
     }
 
-    public function test_get_yearly_highest_rainfall_in_an_hour_date_and_time()
-    {
+    public function test_get_yearly_highest_rainfall_in_an_hour_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::YEARLY_HIGHEST_RAINFALL_IN_AN_HOUR_YEAR, "2015"),
@@ -932,14 +866,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_yearly_maximum_average_wind_speed()
-    {
+    public function test_get_yearly_maximum_average_wind_speed() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::YEARLY_MAXIMUM_AVERAGE_WIND_SPEED, "26.4"));
         $this->assertSame("26.4", $testee->getYearlyMaximumAverageWindSpeed()->getKnots());
     }
 
-    public function test_get_yearly_maximum_average_wind_speed_date_and_time()
-    {
+    public function test_get_yearly_maximum_average_wind_speed_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::YEARLY_MAXIMUM_AVERAGE_WIND_SPEED_YEAR, "2015"),
@@ -957,14 +889,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_yearly_high_soil_temperature()
-    {
+    public function test_get_yearly_high_soil_temperature() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::YEARLY_HIGH_SOIL_TEMPERATURE, "19.2"));
         $this->assertSame("19.2", $testee->getYearlyHighSoilTemperature()->getCelsius());
     }
 
-    public function test_get_yearly_high_soil_temperature_date_and_time()
-    {
+    public function test_get_yearly_high_soil_temperature_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::YEARLY_HIGH_SOIL_TEMPERATURE_YEAR, "2015"),
@@ -982,14 +912,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_yearly_low_soil_temperature()
-    {
+    public function test_get_yearly_low_soil_temperature() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::YEARLY_LOW_SOIL_TEMPERATURE, "-8.6"));
         $this->assertSame("-8.6", $testee->getYearlyLowSoilTemperature()->getCelsius());
     }
 
-    public function test_get_yearly_low_soil_temperature_date_and_time()
-    {
+    public function test_get_yearly_low_soil_temperature_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::YEARLY_LOW_SOIL_TEMPERATURE_YEAR, "2015"),
@@ -1007,14 +935,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_yearly_low_wind_chill()
-    {
+    public function test_get_yearly_low_wind_chill() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::YEARLY_LOW_WIND_CHILL, "-17.9"));
         $this->assertSame("-17.9", $testee->getYearlyLowWindChill()->getCelsius());
     }
 
-    public function test_get_yearly_low_wind_chill_date_and_time()
-    {
+    public function test_get_yearly_low_wind_chill_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::YEARLY_LOW_WIND_CHILL_YEAR, "2015"),
@@ -1032,26 +958,22 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_yearly_maximum_gust_speed_direction()
-    {
+    public function test_get_yearly_maximum_gust_speed_direction() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::YEARLY_MAXIMUM_GUST_SPEED_DIRECTION, "90"));
         $this->assertSame("90", $testee->getYearlyMaximumGustSpeedDirection()->getCompassDegrees());
     }
 
-    public function test_get_yearly_maximum_average_wind_speed_direction()
-    {
+    public function test_get_yearly_maximum_average_wind_speed_direction() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::YEARLY_MAXIMUM_AVERAGE_WIND_SPEED_DIRECTION, "180"));
         $this->assertSame("180", $testee->getYearlyMaximumAverageWindSpeedDirection()->getCompassDegrees());
     }
 
-    public function test_get_yearly_warmest_day()
-    {
+    public function test_get_yearly_warmest_day() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::YEARLY_WARMEST_DAY, "27.5"));
         $this->assertSame("27.5", $testee->getYearlyWarmestDay()->getCelsius());
     }
 
-    public function test_get_yearly_warmest_day_date_and_time()
-    {
+    public function test_get_yearly_warmest_day_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::YEARLY_WARMEST_DAY_YEAR, "2015"),
@@ -1069,14 +991,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_yearly_coldest_night()
-    {
+    public function test_get_yearly_coldest_night() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::YEARLY_COLDEST_NIGHT, "3.2"));
         $this->assertSame("3.2", $testee->getYearlyColdestNight()->getCelsius());
     }
 
-    public function test_get_yearly_coldest_night_date_and_time()
-    {
+    public function test_get_yearly_coldest_night_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::YEARLY_COLDEST_NIGHT_YEAR, "2015"),
@@ -1094,14 +1014,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_yearly_coldest_day()
-    {
+    public function test_get_yearly_coldest_day() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::YEARLY_COLDEST_DAY, "-0.4"));
         $this->assertSame("-0.4", $testee->getYearlyColdestDay()->getCelsius());
     }
 
-    public function test_get_yearly_coldest_day_date_and_time()
-    {
+    public function test_get_yearly_coldest_day_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::YEARLY_COLDEST_DAY_YEAR, "2015"),
@@ -1119,14 +1037,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_yearly_warmest_night()
-    {
+    public function test_get_yearly_warmest_night() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::YEARLY_WARMEST_NIGHT, "26.1"));
         $this->assertSame("26.1", $testee->getYearlyWarmestNight()->getCelsius());
     }
 
-    public function test_get_yearly_warmest_night_date_and_time()
-    {
+    public function test_get_yearly_warmest_night_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::YEARLY_WARMEST_NIGHT_YEAR, "2015"),
@@ -1144,14 +1060,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_yearly_high_heat_index()
-    {
+    public function test_get_yearly_high_heat_index() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::YEARLY_HIGH_HEAT_INDEX, "35.7"));
         $this->assertSame("35.7", $testee->getYearlyHighHeatIndex()->getCelsius());
     }
 
-    public function test_get_yearly_high_heat_index_date_and_time()
-    {
+    public function test_get_yearly_high_heat_index_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::YEARLY_HIGH_HEAT_INDEX_YEAR, "2015"),
@@ -1169,14 +1083,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_yearly_high_solar_irradiance()
-    {
+    public function test_get_yearly_high_solar_irradiance() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::YEARLY_HIGH_SOLAR_IRRADIANCE, "987"));
         $this->assertSame("987", $testee->getYearlyHighSolarIrradiance()->getWattsPerSquareMetre());
     }
 
-    public function test_get_yearly_high_solar_irradiance_date_and_time()
-    {
+    public function test_get_yearly_high_solar_irradiance_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::YEARLY_HIGH_SOLAR_IRRADIANCE_YEAR, "2015"),
@@ -1194,14 +1106,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_yearly_high_uv()
-    {
+    public function test_get_yearly_high_uv() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::YEARLY_HIGH_UV, "9.4"));
         $this->assertSame("9.4", $testee->getYearlyHighUv()->getUvi());
     }
 
-    public function test_get_yearly_high_uv_date_and_time()
-    {
+    public function test_get_yearly_high_uv_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::YEARLY_HIGH_UV_YEAR, "2015"),
@@ -1219,14 +1129,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_yearly_high_dew_point()
-    {
+    public function test_get_yearly_high_dew_point() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::YEARLY_HIGH_DEW_POINT, "22.1"));
         $this->assertSame("22.1", $testee->getYearlyHighDewPoint()->getCelsius());
     }
 
-    public function test_get_yearly_high_dew_point_date_and_time()
-    {
+    public function test_get_yearly_high_dew_point_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::YEARLY_HIGH_DEW_POINT_YEAR, "2015"),
@@ -1244,14 +1152,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_yearly_low_dew_point()
-    {
+    public function test_get_yearly_low_dew_point() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::YEARLY_LOW_DEW_POINT, "1.3"));
         $this->assertSame("1.3", $testee->getYearlyLowDewPoint()->getCelsius());
     }
 
-    public function test_get_yearly_low_dew_point_date_and_time()
-    {
+    public function test_get_yearly_low_dew_point_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::YEARLY_LOW_DEW_POINT_YEAR, "2015"),
@@ -1269,8 +1175,7 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_when_yearly_fields_are_missing()
-    {
+    public function test_when_yearly_fields_are_missing() {
         $testee = self::createEmptyClientRawExtra();
 
         $this->assertNull($testee->getYearlyHighOutdoorTemperature()->getCelsius());
@@ -1425,14 +1330,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertNull($testee->getYearlyLowDewPointDateAndTime()->getMinute());
     }
 
-    public function test_get_all_time_high_outdoor_temperature()
-    {
+    public function test_get_all_time_high_outdoor_temperature() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::ALL_TIME_HIGH_OUTDOOR_TEMPERATURE, "25.2"));
         $this->assertSame("25.2", $testee->getAllTimeHighOutdoorTemperature()->getCelsius());
     }
 
-    public function test_get_all_time_high_outdoor_temperature_date_and_time()
-    {
+    public function test_get_all_time_high_outdoor_temperature_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::ALL_TIME_HIGH_OUTDOOR_TEMPERATURE_YEAR, "2015"),
@@ -1450,14 +1353,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_all_time_low_outdoor_temperature()
-    {
+    public function test_get_all_time_low_outdoor_temperature() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::ALL_TIME_LOW_OUTDOOR_TEMPERATURE, "-5.1"));
         $this->assertSame("-5.1", $testee->getAllTimeLowOutdoorTemperature()->getCelsius());
     }
 
-    public function test_get_all_time_low_outdoor_temperature_date_and_time()
-    {
+    public function test_get_all_time_low_outdoor_temperature_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::ALL_TIME_LOW_OUTDOOR_TEMPERATURE_YEAR, "2015"),
@@ -1475,14 +1376,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_all_time_maximum_gust_speed()
-    {
+    public function test_get_all_time_maximum_gust_speed() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::ALL_TIME_MAXIMUM_GUST_SPEED, "30.7"));
         $this->assertSame("30.7", $testee->getAllTimeMaximumGustSpeed()->getKnots());
     }
 
-    public function test_get_all_time_maximum_gust_speed_date_and_time()
-    {
+    public function test_get_all_time_maximum_gust_speed_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::ALL_TIME_MAXIMUM_GUST_SPEED_YEAR, "2015"),
@@ -1500,14 +1399,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_all_time_maximum_rainfall_rate()
-    {
+    public function test_get_all_time_maximum_rainfall_rate() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::ALL_TIME_MAXIMUM_RAINFALL_RATE, "2.06"));
         $this->assertSame("2.06", $testee->getAllTimeMaximumRainfallRate()->getMillimetresPerMinute());
     }
 
-    public function test_get_all_time_maximum_rainfall_rate_date_and_time()
-    {
+    public function test_get_all_time_maximum_rainfall_rate_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::ALL_TIME_MAXIMUM_RAINFALL_RATE_YEAR, "2015"),
@@ -1525,14 +1422,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_all_time_low_surface_pressure()
-    {
+    public function test_get_all_time_low_surface_pressure() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::ALL_TIME_LOW_SURFACE_PRESSURE, "1001.5"));
         $this->assertSame("1001.5", $testee->getAllTimeLowSurfacePressure()->getHectopascals());
     }
 
-    public function test_get_all_time_low_surface_pressure_date_and_time()
-    {
+    public function test_get_all_time_low_surface_pressure_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::ALL_TIME_LOW_SURFACE_PRESSURE_YEAR, "2015"),
@@ -1550,14 +1445,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_all_time_high_surface_pressure()
-    {
+    public function test_get_all_time_high_surface_pressure() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::ALL_TIME_HIGH_SURFACE_PRESSURE, "1017.6"));
         $this->assertSame("1017.6", $testee->getAllTimeHighSurfacePressure()->getHectopascals());
     }
 
-    public function test_get_all_time_high_surface_pressure_date_and_time()
-    {
+    public function test_get_all_time_high_surface_pressure_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::ALL_TIME_HIGH_SURFACE_PRESSURE_YEAR, "2015"),
@@ -1575,14 +1468,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_all_time_highest_daily_rainfall()
-    {
+    public function test_get_all_time_highest_daily_rainfall() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::ALL_TIME_HIGHEST_DAILY_RAINFALL, "35.67"));
         $this->assertSame("35.67", $testee->getAllTimeHighestDailyRainfall()->getMillimetres());
     }
 
-    public function test_get_all_time_highest_daily_rainfall_date_and_time()
-    {
+    public function test_get_all_time_highest_daily_rainfall_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::ALL_TIME_HIGHEST_DAILY_RAINFALL_YEAR, "2015"),
@@ -1600,14 +1491,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_all_time_highest_rainfall_in_an_hour()
-    {
+    public function test_get_all_time_highest_rainfall_in_an_hour() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::ALL_TIME_HIGHEST_RAINFALL_IN_AN_HOUR, "12.41"));
         $this->assertSame("12.41", $testee->getAllTimeHighestRainfallInAnHour()->getMillimetres());
     }
 
-    public function test_get_all_time_highest_rainfall_in_an_hour_date_and_time()
-    {
+    public function test_get_all_time_highest_rainfall_in_an_hour_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::ALL_TIME_HIGHEST_RAINFALL_IN_AN_HOUR_YEAR, "2015"),
@@ -1625,14 +1514,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_all_time_maximum_average_wind_speed()
-    {
+    public function test_get_all_time_maximum_average_wind_speed() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::ALL_TIME_MAXIMUM_AVERAGE_WIND_SPEED, "26.4"));
         $this->assertSame("26.4", $testee->getAllTimeMaximumAverageWindSpeed()->getKnots());
     }
 
-    public function test_get_all_time_maximum_average_wind_speed_date_and_time()
-    {
+    public function test_get_all_time_maximum_average_wind_speed_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::ALL_TIME_MAXIMUM_AVERAGE_WIND_SPEED_YEAR, "2015"),
@@ -1650,14 +1537,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_all_time_high_soil_temperature()
-    {
+    public function test_get_all_time_high_soil_temperature() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::ALL_TIME_HIGH_SOIL_TEMPERATURE, "19.2"));
         $this->assertSame("19.2", $testee->getAllTimeHighSoilTemperature()->getCelsius());
     }
 
-    public function test_get_all_time_high_soil_temperature_date_and_time()
-    {
+    public function test_get_all_time_high_soil_temperature_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::ALL_TIME_HIGH_SOIL_TEMPERATURE_YEAR, "2015"),
@@ -1675,14 +1560,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_all_time_low_soil_temperature()
-    {
+    public function test_get_all_time_low_soil_temperature() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::ALL_TIME_LOW_SOIL_TEMPERATURE, "-8.6"));
         $this->assertSame("-8.6", $testee->getAllTimeLowSoilTemperature()->getCelsius());
     }
 
-    public function test_get_all_time_low_soil_temperature_date_and_time()
-    {
+    public function test_get_all_time_low_soil_temperature_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::ALL_TIME_LOW_SOIL_TEMPERATURE_YEAR, "2015"),
@@ -1700,14 +1583,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_all_time_low_wind_chill()
-    {
+    public function test_get_all_time_low_wind_chill() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::ALL_TIME_LOW_WIND_CHILL, "-17.9"));
         $this->assertSame("-17.9", $testee->getAllTimeLowWindChill()->getCelsius());
     }
 
-    public function test_get_all_time_low_wind_chill_date_and_time()
-    {
+    public function test_get_all_time_low_wind_chill_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::ALL_TIME_LOW_WIND_CHILL_YEAR, "2015"),
@@ -1725,26 +1606,22 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_all_time_maximum_gust_speed_direction()
-    {
+    public function test_get_all_time_maximum_gust_speed_direction() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::ALL_TIME_MAXIMUM_GUST_SPEED_DIRECTION, "90"));
         $this->assertSame("90", $testee->getAllTimeMaximumGustSpeedDirection()->getCompassDegrees());
     }
 
-    public function test_get_all_time_maximum_average_wind_speed_direction()
-    {
+    public function test_get_all_time_maximum_average_wind_speed_direction() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::ALL_TIME_MAXIMUM_AVERAGE_WIND_SPEED_DIRECTION, "180"));
         $this->assertSame("180", $testee->getAllTimeMaximumAverageWindSpeedDirection()->getCompassDegrees());
     }
 
-    public function test_get_all_time_warmest_day()
-    {
+    public function test_get_all_time_warmest_day() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::ALL_TIME_WARMEST_DAY, "30.8"));
         $this->assertSame("30.8", $testee->getAllTimeWarmestDay()->getCelsius());
     }
 
-    public function test_get_all_time_warmest_day_date_and_time()
-    {
+    public function test_get_all_time_warmest_day_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::ALL_TIME_WARMEST_DAY_YEAR, "2015"),
@@ -1762,14 +1639,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_all_time_coldest_night()
-    {
+    public function test_get_all_time_coldest_night() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::ALL_TIME_COLDEST_NIGHT, "-5.4"));
         $this->assertSame("-5.4", $testee->getAllTimeColdestNight()->getCelsius());
     }
 
-    public function test_get_all_time_coldest_night_date_and_time()
-    {
+    public function test_get_all_time_coldest_night_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::ALL_TIME_COLDEST_NIGHT_YEAR, "2015"),
@@ -1787,14 +1662,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_all_time_coldest_day()
-    {
+    public function test_get_all_time_coldest_day() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::ALL_TIME_COLDEST_DAY, "-2.1"));
         $this->assertSame("-2.1", $testee->getAllTimeColdestDay()->getCelsius());
     }
 
-    public function test_get_all_time_coldest_day_date_and_time()
-    {
+    public function test_get_all_time_coldest_day_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::ALL_TIME_COLDEST_DAY_YEAR, "2015"),
@@ -1812,14 +1685,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_all_time_warmest_night()
-    {
+    public function test_get_all_time_warmest_night() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::ALL_TIME_WARMEST_NIGHT, "29.3"));
         $this->assertSame("29.3", $testee->getAllTimeWarmestNight()->getCelsius());
     }
 
-    public function test_get_all_time_warmest_night_date_and_time()
-    {
+    public function test_get_all_time_warmest_night_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::ALL_TIME_WARMEST_NIGHT_YEAR, "2015"),
@@ -1838,14 +1709,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
     }
 
 
-    public function test_get_all_time_high_heat_index()
-    {
+    public function test_get_all_time_high_heat_index() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::ALL_TIME_HIGH_HEAT_INDEX, "35.7"));
         $this->assertSame("35.7", $testee->getAllTimeHighHeatIndex()->getCelsius());
     }
 
-    public function test_get_all_time_high_heat_index_date_and_time()
-    {
+    public function test_get_all_time_high_heat_index_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::ALL_TIME_HIGH_HEAT_INDEX_YEAR, "2015"),
@@ -1863,14 +1732,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_all_time_high_solar_irradiance()
-    {
+    public function test_get_all_time_high_solar_irradiance() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::ALL_TIME_HIGH_SOLAR_IRRADIANCE, "1399"));
         $this->assertSame("1399", $testee->getAllTimeHighSolarIrradiance()->getWattsPerSquareMetre());
     }
 
-    public function test_get_all_time_high_solar_irradiance_date_and_time()
-    {
+    public function test_get_all_time_high_solar_irradiance_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::ALL_TIME_HIGH_SOLAR_IRRADIANCE_YEAR, "2015"),
@@ -1888,14 +1755,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_all_time_high_uv()
-    {
+    public function test_get_all_time_high_uv() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::ALL_TIME_HIGH_UV, "9.4"));
         $this->assertSame("9.4", $testee->getAllTimeHighUv()->getUvi());
     }
 
-    public function test_get_all_time_high_uv_date_and_time()
-    {
+    public function test_get_all_time_high_uv_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::ALL_TIME_HIGH_UV_YEAR, "2015"),
@@ -1913,14 +1778,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_all_time_high_dew_point()
-    {
+    public function test_get_all_time_high_dew_point() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::ALL_TIME_HIGH_DEW_POINT, "22.1"));
         $this->assertSame("22.1", $testee->getAllTimeHighDewPoint()->getCelsius());
     }
 
-    public function test_get_all_time_high_dew_point_date_and_time()
-    {
+    public function test_get_all_time_high_dew_point_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::ALL_TIME_HIGH_DEW_POINT_YEAR, "2015"),
@@ -1938,14 +1801,12 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_all_time_low_dew_point()
-    {
+    public function test_get_all_time_low_dew_point() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::ALL_TIME_LOW_DEW_POINT, "1.3"));
         $this->assertSame("1.3", $testee->getAllTimeLowDewPoint()->getCelsius());
     }
 
-    public function test_get_all_time_low_dew_point_date_and_time()
-    {
+    public function test_get_all_time_low_dew_point_date_and_time() {
         $testee = self::createClientRawExtraWithFields(
             array(
                 new Field(ClientRawExtra::ALL_TIME_LOW_DEW_POINT_YEAR, "2015"),
@@ -1963,49 +1824,41 @@ class ClientRawExtraTest extends PHPUnit\Framework\TestCase
         $this->assertSame("59", $dateAndTime->getMinute());
     }
 
-    public function test_get_davis_forecast()
-    {
+    public function test_get_davis_forecast() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::DAVIS_FORECAST, "PARTLY_SUNNY_WITH_A_SLIGHT_CHANCE_OF_SHOWERS"));
         $this->assertSame("PARTLY SUNNY WITH A SLIGHT CHANCE OF SHOWERS", $testee->getDavisForecast());
     }
-    public function test_get_sunrise_time()
-    {
+    public function test_get_sunrise_time() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::SUNRISE_TIME, "06:21"));
         $this->assertSame("06:21", $testee->getSunriseTime()->getTime());
     }
 
-    public function test_get_sunset_time()
-    {
+    public function test_get_sunset_time() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::SUNSET_TIME, "20:09"));
         $this->assertSame("20:09", $testee->getSunsetTime()->getTime());
     }
 
-    public function test_get_moonrise_time()
-    {
+    public function test_get_moonrise_time() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MOONRISE_TIME, "21:45"));
         $this->assertSame("21:45", $testee->getMoonriseTime()->getTime());
     }
 
-    public function test_get_moon_phase()
-    {
+    public function test_get_moon_phase() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MOON_PHASE, "87.2"));
         $this->assertSame("87.2", $testee->getMoonPhase());
     }
 
-    public function test_get_moon_age()
-    {
+    public function test_get_moon_age() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::MOON_AGE, "18"));
         $this->assertSame("18", $testee->getMoonAge());
     }
 
-    public function test_get_sunshine_hours()
-    {
+    public function test_get_sunshine_hours() {
         $testee = self::createClientRawExtraWithField(new Field(ClientRawExtra::SUNSHINE_HOURS, "5.1"));
         $this->assertSame("5.1", $testee->getSunshineHours());
     }
 
-    public function test_when_all_time_fields_are_missing()
-    {
+    public function test_when_all_time_fields_are_missing() {
         $testee = self::createEmptyClientRawExtra();
 
         $this->assertNull($testee->getAllTimeHighOutdoorTemperature()->getCelsius());

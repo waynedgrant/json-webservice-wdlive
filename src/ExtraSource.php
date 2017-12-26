@@ -5,15 +5,13 @@
 
 require_once("BaseSource.php");
 
-class ExtraSource extends BaseSource
-{
-    public function __construct($clientRaw)
-    {
+class ExtraSource extends BaseSource {
+
+    public function __construct($clientRaw) {
         parent::__construct($clientRaw);
     }
 
-    public function create()
-    {
+    public function create() {
         $data = $this->createBase();
 
         $temperature = array(

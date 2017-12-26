@@ -3,18 +3,16 @@
 # Copyright 2016 Wayne D Grant (www.waynedgrant.com)
 # Licensed under the MIT License
 
-class WindSpeed
-{
+class WindSpeed {
+
     private $beaufortScale;
     private $kilometresPerHour;
     private $knots;
     private $metresPerSecond;
     private $milesPerHour;
 
-    public function __construct($knots)
-    {
-        if ($knots != '-')
-        {
+    public function __construct($knots) {
+        if ($knots != '-') {
             $this->beaufortScale = self::calculateBeaufortScale($knots);
             $this->kilometresPerHour = number_format(($knots * 1.852), 1, '.', '');
             $this->knots = number_format($knots, 1, '.', '');
@@ -23,91 +21,61 @@ class WindSpeed
         }
     }
 
-    public function getBeaufortScale()
-    {
+    public function getBeaufortScale() {
         return $this->beaufortScale;
     }
 
-    public function getKilometresPerHour()
-    {
+    public function getKilometresPerHour() {
         return $this->kilometresPerHour;
     }
 
-    public function getKnots()
-    {
+    public function getKnots() {
         return $this->knots;
     }
 
-    public function getMetresPerSecond()
-    {
+    public function getMetresPerSecond() {
         return $this->metresPerSecond;
     }
 
-    public function getMilesPerHour()
-    {
+    public function getMilesPerHour() {
         return $this->milesPerHour;
     }
 
-    private function calculateBeaufortScale($knots)
-    {
+    private function calculateBeaufortScale($knots) {
         $rounded_knots = round($knots, 0, PHP_ROUND_HALF_UP);
 
         $beaufortScale = 0;
 
-        if ($rounded_knots >= 1 && $rounded_knots <= 3)
-        {
+        if ($rounded_knots >= 1 && $rounded_knots <= 3) {
             $beaufortScale = 1;
-        }
-        elseif ($rounded_knots >= 4 && $rounded_knots <= 6)
-        {
+        } elseif ($rounded_knots >= 4 && $rounded_knots <= 6) {
             $beaufortScale = 2;
-        }
-        elseif ($rounded_knots >= 7 && $rounded_knots <= 10)
-        {
+        } elseif ($rounded_knots >= 7 && $rounded_knots <= 10) {
             $beaufortScale = 3;
-        }
-        elseif ($rounded_knots >= 11 && $rounded_knots <= 16)
-        {
+        } elseif ($rounded_knots >= 11 && $rounded_knots <= 16) {
             $beaufortScale = 4;
-        }
-        elseif ($rounded_knots >= 17 && $rounded_knots <= 21)
-        {
+        } elseif ($rounded_knots >= 17 && $rounded_knots <= 21) {
             $beaufortScale = 5;
-        }
-        elseif ($rounded_knots >= 22 && $rounded_knots <= 27)
-        {
+        } elseif ($rounded_knots >= 22 && $rounded_knots <= 27) {
             $beaufortScale = 6;
-        }
-        elseif ($rounded_knots >= 28 && $rounded_knots <= 33)
-        {
+        } elseif ($rounded_knots >= 28 && $rounded_knots <= 33) {
             $beaufortScale = 7;
-        }
-        elseif ($rounded_knots >= 34 && $rounded_knots <= 40)
-        {
+        } elseif ($rounded_knots >= 34 && $rounded_knots <= 40) {
             $beaufortScale = 8;
-        }
-        elseif ($rounded_knots >= 41 && $rounded_knots <= 47)
-        {
+        } elseif ($rounded_knots >= 41 && $rounded_knots <= 47) {
             $beaufortScale = 9;
-        }
-        elseif ($rounded_knots >= 48 && $rounded_knots <= 55)
-        {
+        } elseif ($rounded_knots >= 48 && $rounded_knots <= 55) {
             $beaufortScale = 10;
-        }
-        elseif ($rounded_knots >= 56 && $rounded_knots <= 63)
-        {
+        } elseif ($rounded_knots >= 56 && $rounded_knots <= 63) {
             $beaufortScale = 11;
-        }
-        elseif ($rounded_knots >= 64)
-        {
+        } elseif ($rounded_knots >= 64) {
             $beaufortScale = 12;
         }
 
         return number_format($beaufortScale, 0, '.', '');
     }
 
-    public function getAllMeasures()
-    {
+    public function getAllMeasures() {
         return array(
             "bft" => $this->getBeaufortScale(),
             "kn" => $this->getKnots(),
