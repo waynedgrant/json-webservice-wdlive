@@ -45,7 +45,7 @@ Besides exposing the data in the default units found in clientraw the responses 
 AddHandler application/x-httpd-php5 .json
 ```
 
-* Alternatively rename all **.json** files with the extension **.php**.
+* Alternatively rename all **.json** files changing them to have the extension **.php**.
 
 ## Execution
 
