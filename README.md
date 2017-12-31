@@ -27,7 +27,7 @@ Besides exposing the data in the default units found in clientraw the responses 
 ## Requirements
 
 1. [Weather Display](http://www.weather-display.com) (or equivalent such as [MeteoHub](http://wiki.meteohub.de)) configured to periodically upload WDL clientraw files to a web server
-2. PHP5 installed on the web server
+2. PHP version 5 or above installed on the web server
 
 ## Installation
 
