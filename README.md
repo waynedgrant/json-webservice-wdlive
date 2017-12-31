@@ -45,6 +45,8 @@ Besides exposing the data in the default units found in clientraw the responses 
 AddHandler application/x-httpd-php5 .json
 ```
 
+* Alternatively rename all **.json** files with the extension **.php**.
+
 ## Execution
 
 Hit the URL of your deployed .json files using a web browser or other REST client. Both JSON and JSONP are supported.
